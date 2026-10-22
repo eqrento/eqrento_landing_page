@@ -516,12 +516,13 @@ section[id] { scroll-margin-top: 80px; }
 .why-card--hero {
   scale: 1.05;
   z-index: 2;
-  overflow: hidden; isolation: isolate;
+  isolation: isolate;   /* not clipped: the badge sits on the top edge (same badge as the recommended pricing plan) */
   background: var(--black); border: 1px solid rgba(255, 255, 255, .1);
   box-shadow: var(--shadow-brand);
 }
+.why-card__glows { position: absolute; inset: 0; z-index: -1; overflow: hidden; border-radius: inherit; pointer-events: none; }
 .why-card__blob {
-  position: absolute; z-index: -1; border-radius: 50%; opacity: .45;
+  position: absolute; border-radius: 50%; opacity: .45;
   background: var(--gradient); filter: blur(61px);
 }
 .why-card__blob--a { width: 355px; height: 355px; right: -167px; top: -155px; animation: drift 14s ease-in-out infinite alternate; }
