@@ -741,12 +741,6 @@ section[id] { scroll-margin-top: 80px; }
 .gps-doc text { font-family: "Sora", system-ui, sans-serif; text-rendering: geometricPrecision; }
 .gps__card h3 { font-size: 6.2cqi; font-weight: 700; line-height: 1.2; letter-spacing: -.01em; color: var(--black); }
 .gps__card p { margin-top: 1.8cqi; font-size: 4.1cqi; line-height: 1.5; color: var(--gray-2); }
-.gps__btn {
-  margin-top: 4.5cqi; height: 11cqi; border-radius: 999px;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(90deg, #7b52e1, #22196b);
-  font-size: 4.3cqi; font-weight: 600; color: var(--white);
-}
 
 /* =========================================================
    PRICING
