@@ -83,3 +83,9 @@ Menu: Home, Why EQrento, Platform, How it works, Pricing, FAQ (header, mobile me
 - Optional: favicon set, social-sharing image (Open Graph), `robots.txt`, `sitemap.xml`, 404 page,
   converting large PNG/JPG images to WebP.
 - The free UIcons licence requires attribution (“Uicons by Flaticon”) unless you have a Flaticon subscription.
+
+## Cache busting
+
+`index.html` loads `style.css` and `main.js` with a version in the address (`?v=20261022a`). Browsers keep those
+files for up to 10 minutes on GitHub Pages, so after changing either file bump the version (e.g. `20261023a`) in both
+links, otherwise visitors may see new HTML with old styles.
