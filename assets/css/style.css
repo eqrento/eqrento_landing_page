@@ -1441,11 +1441,11 @@ section[id] { scroll-margin-top: 80px; }
 /* =========================================================
    EXPERIMENT: orange only where it means action or money
    Orange = buttons, hero ticks, the overuse row on the invoice, glows on dark sections.
-   Plain markers (ticks in the plans, “+” / “−”, arrows between stages, limits box) are neutral;
-   “+” in Key features and in the FAQ turn orange on hover / when open.
+   Plain markers (ticks in the plans, arrows between stages, limits box) are neutral.
+   The “+” icons (Key features, FAQ) stay orange.
    (to undo: delete this block)
    ========================================================= */
-:root { --marker: #4a4540; --marker-soft: #7a736b; --marker-hot: #ffa41b; }
+:root { --marker: #4a4540; --marker-soft: #7a736b; }
 
 /* ticks in the plan cards and the comparison table */
 .plan__list li::before, .cmp__table .y::before { background: var(--marker); }
@@ -1457,19 +1457,3 @@ section[id] { scroll-margin-top: 80px; }
 
 /* arrows between the telematics stages: the orange overuse row is the only orange left in that section */
 .gps__link::before { background: var(--marker-soft); }
-
-/* “+” in Key features: drawn with CSS so the colour can change (the img is hidden) */
-.plus-btn { position: relative; }
-.plus-btn img { display: none; }
-.plus-btn::before, .plus-btn::after {
-  content: ""; position: absolute; left: calc(50% - 8px); top: calc(50% - 1px); width: 16px; height: 2px;
-  background: var(--marker-soft); transition: background-color .3s var(--ease);
-}
-.plus-btn::after { transform: rotate(90deg); }
-.feat__head:hover .plus-btn::before, .feat__head:hover .plus-btn::after,
-.feat__head:focus-visible .plus-btn::before, .feat__head:focus-visible .plus-btn::after { background: var(--marker-hot); }
-
-/* FAQ + / − */
-.qa__icon::before, .qa__icon::after { background: var(--marker-soft); }
-.qa.is-open .qa__icon::before, .qa.is-open .qa__icon::after,
-.qa__q:hover .qa__icon::before, .qa__q:hover .qa__icon::after { background: var(--marker-hot); }
