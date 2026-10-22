@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EQrento – rental management software for equipment rental companies</title>
+  <meta name="description" content="Equipment rental software that automatically connects offers, contracts, transport, service, telematics, GPS and invoicing. Built for machinery rental.">
+  <meta name="theme-color" content="#f8f7f5">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="wrap header__inner">
+    <a href="#home" class="header__logo" aria-label="EQrento – home">
+      <img src="assets/icons/logo-dark.svg" width="246" height="50" alt="EQrento">
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        <li><a class="nav__link is-active" href="#home">Home</a></li>
+        <li><a class="nav__link" href="#why">Why EQrento</a></li>
+        <li><a class="nav__link" href="#platform">Platform</a></li>
+        <li><a class="nav__link" href="#steps">How it works</a></li>
+        <li><a class="nav__link" href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <a href="#" class="btn btn--primary header__cta">Book a demo</a>
+
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+</header>
+
+<!-- mobile menu lives outside the header: the scrolled header uses backdrop-filter, which would trap a fixed child inside it -->
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <ul class="mobile-menu__list">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#why">Why EQrento</a></li>
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="#steps">How it works</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#" class="btn btn--primary btn--arrow mobile-menu__cta">
+    <span>Book a 30-minute demo</span>
+    <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+  </a>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="glow glow--hero-a"></span>
+      <span class="glow glow--hero-b"></span>
+    </div>
+
+    <div class="wrap hero__inner">
+      <div class="hero__content">
+        <p class="pill pill--dark" data-reveal style="--d:100ms"><span>End-to-end</span>&nbsp;equipment rental software</p>
+        <h1 class="hero__title" data-reveal style="--d:200ms">Every machine tracked.<br>Every hour billed.</h1>
+        <p class="hero__lead" data-reveal style="--d:320ms">Built for companies renting machinery, platforms and&nbsp;equipment.<br><span class="nowrap">Smarter than a spreadsheet.</span> <span class="nowrap">Simpler than an ERP.</span></p>
+        <ul class="hero__chips" data-reveal style="--d:380ms">
+          <li>Built-in telematics</li>
+          <li>Overuse billed automatically</li>
+          <li>Automated document flow</li>
+          <li>Live in weeks</li>
+        </ul>
+        <div data-reveal style="--d:440ms">
+          <a href="#" class="btn btn--primary btn--arrow">
+            <span>Book a 30-minute demo</span>
+            <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__stage" aria-hidden="true">
+      <div class="hero__screen" data-reveal="zoom" style="--d:350ms">
+        <img src="assets/img/hero-screen.png" width="837" height="509" alt="" data-parallax="-0.04">
+      </div>
+      <div class="hero__forklift" data-reveal="left" style="--d:600ms">
+        <img src="assets/img/hero-forklift.png" width="510" height="426" alt="" data-parallax="0.12">
+      </div>
+      <div class="hero__lift" data-reveal="right" style="--d:700ms">
+        <img src="assets/img/hero-lift.png" width="490" height="563" alt="" data-parallax="0.12">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOGOS ============ -->
+  <section class="logos" aria-labelledby="logos-title">
+    <!-- grey for red-on-black logos: grey = red − 0.4 × green, so red lettering stays light on the dark oval -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="logo-gray-red" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 -0.4 0 0 0  1 -0.4 0 0 0  1 -0.4 0 0 0  0 0 0 1 0"/></filter></svg>
+    <h2 class="logos__title" id="logos-title" data-reveal>Trusted by equipment rental companies all&nbsp;around&nbsp;the&nbsp;world</h2>
+    <div class="wrap-narrow">
+      <ul class="logos__list">
+        <li data-reveal style="--d:0ms"><img src="assets/img/logo-bac.png" width="226" height="70" style="--lh:40.9" alt="BAC Polska" loading="lazy"></li>
+        <li data-reveal style="--d:70ms"><img src="assets/img/logo-emrent.png" width="318" height="94" style="--lh:37.4" alt="EM Rent" loading="lazy"></li>
+        <li data-reveal style="--d:140ms"><img src="assets/img/logo-rops.png" width="469" height="54" style="--lh:24.9" alt="ROPS Verhuur" loading="lazy"></li>
+        <li data-reveal style="--d:210ms"><img src="assets/img/logo-eurorent.png" width="229" height="134" style="--lh:48.7" alt="Eurorent" loading="lazy"></li>
+        <li data-reveal style="--d:280ms"><img src="assets/img/logo-podnosniki.png" width="515" height="87" style="--lh:34.6" alt="Podnosniki.pl" loading="lazy"></li>
+        <li data-reveal style="--d:350ms"><img src="assets/img/logo-tenge.png" width="228" height="98" style="--lh:39.4; --logo-gray: url(#logo-gray-red)" alt="Tenge Rent" loading="lazy"></li>
+        <li data-reveal style="--d:420ms"><img src="assets/img/logo-pcaban.svg" width="924" height="398" style="--lh:51.1" alt="PCaban" loading="lazy"></li>
+        <li data-reveal style="--d:490ms"><img src="assets/img/logo-hardy-carts-light-bg.png" width="307" height="84" style="--lh:42.3" alt="Hardy Carts &amp; Equipment" loading="lazy"></li>
+        <li data-reveal style="--d:560ms"><img src="assets/img/logo-ewheelz.png" width="448" height="63" style="--lh:31.4; --tone:.75" alt="eWheelz Golf Carts" loading="lazy"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ WHY / POSITIONING ============ -->
+  <section class="why" id="why">
+    <div class="wrap-narrow">
+      <div class="section-head why__head">
+        <h2 class="h2" data-reveal style="--d:80ms">Between a basic spreadsheet <br>and a complex ERP&nbsp;system</h2>
+        <p class="lead" data-reveal style="--d:160ms">Most rental companies get pushed toward one of two bad options: a light booking tool that ignores transport and service, or a corporate ERP that costs a fortune and takes a year to implement.</p>
+      </div>
+
+      <div class="why__cards">
+        <article class="why-card" data-reveal="left" style="--d:150ms">
+          <header class="why-card__head">
+            <h3 class="why-card__title">Spreadsheets <br>&amp; light tools</h3>
+            <p class="why-card__quote">“Fine at ten units. Painful at a hundred.”</p>
+          </header>
+          <ul class="why-card__list">
+            <li><img src="assets/icons/close.svg" width="24" height="24" alt="">Cheap and quick to start</li>
+            <li><img src="assets/icons/close.svg" width="24" height="24" alt="">No transport planning or protocols</li>
+            <li><img src="assets/icons/close.svg" width="24" height="24" alt="">No service or maintenance module</li>
+            <li><img src="assets/icons/close.svg" width="24" height="24" alt="">No GPS or usage-based billing</li>
+            <li><img src="assets/icons/close.svg" width="24" height="24" alt="">Breaks down across branches</li>
+          </ul>
+        </article>
+
+        <article class="why-card why-card--hero" data-reveal="zoom">
+          <span class="why-card__blob why-card__blob--a" aria-hidden="true"></span>
+          <span class="why-card__blob why-card__blob--b" aria-hidden="true"></span>
+          <p class="pill pill--glass">Built for rental companies like yours</p>
+          <header class="why-card__head">
+            <h3 class="why-card__title">EQrento</h3>
+            <p class="why-card__quote">“For fleets of roughly 30–1,000 units, single or multi-branch.”</p>
+          </header>
+          <ul class="why-card__list">
+            <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Full cycle: offer&nbsp;→ contract&nbsp;→ transport&nbsp;→ service&nbsp;→ report&nbsp;→&nbsp;invoice</li>
+            <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Transport module with photo protocols</li>
+            <li><img src="assets/icons/check.svg" width="24" height="24" alt="">GPS and engine-hour billing built in</li>
+            <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Unlimited users, branches and units</li>
+            <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Live in weeks - your fleet imported for you</li>
+            <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Direct line to the people who build it</li>
+          </ul>
+          <a href="#" class="btn btn--primary btn--arrow why-card__cta">
+            <span>Book a 30-minute demo</span>
+            <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+          </a>
+        </article>
+
+        <article class="why-card" data-reveal="right" style="--d:150ms">
+          <header class="why-card__head">
+            <h3 class="why-card__title">Enterprise ERPs</h3>
+            <p class="why-card__quote">“Powerful, if you have the budget and the year.”</p>
+          </header>
+          <ul class="why-card__list">
+            <li class="is-strong"><img src="assets/icons/close.svg" width="24" height="24" alt="">Deep finance and corporate reporting</li>
+            <li><img src="assets/icons/close.svg" width="24" height="24" alt="">Rental features feel bolted on</li>
+            <li><img src="assets/icons/close.svg" width="24" height="24" alt="">Six-figure projects, months of consultants</li>
+            <li><img src="assets/icons/close.svg" width="24" height="24" alt="">Every change is a paid change request</li>
+            <li><img src="assets/icons/close.svg" width="24" height="24" alt="">Too heavy for a 50-person operation</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLATFORM ============ -->
+  <section class="platform" id="platform">
+    <div class="platform__bg" aria-hidden="true">
+      <span class="glow glow--plat-a"></span>
+      <span class="glow glow--plat-b"></span>
+    </div>
+
+    <h2 class="h2 platform__title" data-reveal>One platform. <br>Every rental management workflow.</h2>
+
+    <div class="platform__diagram">
+      <svg class="platform__lines" aria-hidden="true"></svg>
+
+      <div class="platform__core" data-reveal="zoom" style="--d:100ms">
+        <img src="assets/icons/logo-dark.svg" width="416" height="85" alt="EQrento">
+      </div>
+
+      <ul class="platform__nodes">
+        <li class="node" data-node="tl"   data-reveal="zoom" style="--d:250ms"><img src="assets/icons/platform/excavator.svg" width="24" height="24" alt="">Equipment</li>
+        <li class="node" data-node="l1"   data-reveal="zoom" style="--d:330ms"><img src="assets/icons/platform/shipping-fast.svg" width="24" height="24" alt="">Transport</li>
+        <li class="node" data-node="l2"   data-reveal="zoom" style="--d:410ms"><img src="assets/icons/platform/service.svg" width="24" height="24" alt="">Service</li>
+        <li class="node" data-node="bl"   data-reveal="zoom" style="--d:490ms"><img src="assets/icons/platform/reports.svg" width="24" height="24" alt="">Reports</li>
+        <li class="node" data-node="b1"   data-reveal="zoom" style="--d:570ms"><img src="assets/icons/platform/telematics.svg" width="24" height="24" alt="">Telematics</li>
+        <li class="node" data-node="b2"   data-reveal="zoom" style="--d:650ms"><img src="assets/icons/platform/mailbox.svg" width="24" height="24" alt="">Mailbox</li>
+        <li class="node" data-node="br"   data-reveal="zoom" style="--d:730ms"><img src="assets/icons/platform/region-pin.svg" width="24" height="24" alt="">Map</li>
+        <li class="node" data-node="r2"   data-reveal="zoom" style="--d:810ms"><img src="assets/icons/platform/file-invoice-dollar.svg" width="24" height="24" alt="">Invoices</li>
+        <li class="node" data-node="r1"   data-reveal="zoom" style="--d:890ms"><img src="assets/icons/platform/file-invoice.svg" width="24" height="24" alt="">Offers and contracts</li>
+        <li class="node" data-node="tr"   data-reveal="zoom" style="--d:970ms"><img src="assets/icons/platform/users.svg" width="24" height="24" alt="">Business partners</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ STEPS (pinned horizontal scroll) ============ -->
+  <section class="steps" id="steps">
+    <div class="steps__pin">
+      <div class="wrap-narrow steps__head">
+        <h2 class="h2" data-reveal>Six interconnected stages, <br>zero re-typing</h2>
+        <p class="lead" data-reveal style="--d:120ms">Every phase feeds the next directly. From the initial customer phone call to the final ERP accounting ledger.</p>
+      </div>
+
+      <div class="steps__viewport">
+        <ol class="steps__track">
+          <li class="step" data-step="0">
+            <div class="step__media"><img src="assets/img/step-1.png" width="293" height="200" alt="" loading="lazy"></div>
+            <span class="step__num">01</span>
+            <div class="step__foot">
+              <span class="icon-box"><img src="assets/icons/offer.svg" width="19" height="24" alt=""></span>
+              <h3 class="step__title">Offer</h3>
+            </div>
+            <p class="step__desc"><span>Built in under a minute directly from live fleet availability.</span></p>
+            <span class="step__glow" aria-hidden="true"></span>
+          </li>
+          <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
+          <li class="step" data-step="1">
+            <div class="step__media"><img src="assets/img/step-2.png" width="293" height="200" alt="" loading="lazy"></div>
+            <span class="step__num">02</span>
+            <div class="step__foot">
+              <span class="icon-box"><img src="assets/icons/contract.svg" width="24" height="24" alt=""></span>
+              <h3 class="step__title">Contract</h3>
+            </div>
+            <p class="step__desc"><span>One click from approved offer, signed electronically on mobile.</span></p>
+            <span class="step__glow" aria-hidden="true"></span>
+          </li>
+          <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
+          <li class="step" data-step="2">
+            <div class="step__media"><img src="assets/img/step-3.png" width="293" height="200" alt="" loading="lazy"></div>
+            <span class="step__num">03</span>
+            <div class="step__foot">
+              <span class="icon-box"><img src="assets/icons/transport.svg" width="26" height="24" alt=""></span>
+              <h3 class="step__title">Transport</h3>
+            </div>
+            <p class="step__desc"><span>Tickets planned automatically, dispatched straight to drivers via a dedicated app.</span></p>
+            <span class="step__glow" aria-hidden="true"></span>
+          </li>
+          <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
+          <li class="step" data-step="3">
+            <div class="step__media"><img src="assets/img/step-4.png" width="293" height="200" alt="" loading="lazy"></div>
+            <span class="step__num">04</span>
+            <div class="step__foot">
+              <span class="icon-box"><img src="assets/icons/handover.svg" width="24" height="24" alt=""></span>
+              <h3 class="step__title">Handover</h3>
+            </div>
+            <p class="step__desc"><span>Digital condition protocol, with a signature provided <span class="nowrap">on-site</span> during the handover.</span></p>
+            <span class="step__glow" aria-hidden="true"></span>
+          </li>
+          <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
+          <li class="step" data-step="4">
+            <div class="step__media"><img src="assets/img/step-5.png" width="293" height="200" alt="" loading="lazy"></div>
+            <span class="step__num">05</span>
+            <div class="step__foot">
+              <span class="icon-box"><img src="assets/icons/gps.svg" width="27" height="27" alt=""></span>
+              <h3 class="step__title">Telematics &amp; GPS</h3>
+            </div>
+            <p class="step__desc"><span>Live tracking of GPS position and telematics data, in relation to contractual limits.</span></p>
+            <span class="step__glow" aria-hidden="true"></span>
+          </li>
+          <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
+          <li class="step" data-step="5">
+            <div class="step__media"><img src="assets/img/step-6.png" width="293" height="200" alt="" loading="lazy"></div>
+            <span class="step__num">06</span>
+            <div class="step__foot">
+              <span class="icon-box"><img src="assets/icons/invoice.svg" width="24" height="24" alt=""></span>
+              <h3 class="step__title">Invoice</h3>
+            </div>
+            <p class="step__desc"><span>Automatically calculated based on contractual terms and overtime, then transmitted to your accounting system.</span></p>
+            <span class="step__glow" aria-hidden="true"></span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="wrap-narrow steps__progress" aria-hidden="true">
+        <span class="steps__count"><b>01</b> / 06</span>
+        <span class="steps__bar"><i></i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KEY FEATURES ============ -->
+  <section class="features" id="features">
+    <div class="wrap-narrow">
+      <h2 class="h2 features__title" data-reveal>Key features <br>and competitive differentiators</h2>
+
+      <div class="features__grid">
+        <div class="features__list" role="tablist" aria-label="Key features and competitive differentiators">
+          <div data-photo="assets/img/features-photo.png" data-screen="assets/img/features-screen.png" class="feat is-open" data-reveal="left" style="--d:0ms">
+            <button class="feat__head" type="button" role="tab" aria-selected="true" aria-controls="feat-1" id="feat-1-tab">
+              <span class="icon-box"><img src="assets/icons/offer.svg" width="19" height="24" alt=""></span>
+              <span class="feat__name">Offers and contracts</span>
+              <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
+            </button>
+            <div class="feat__body" id="feat-1" role="tabpanel" aria-labelledby="feat-1-tab">
+              <p>Offers, contracts, transport, service, telematics, GPS and invoicing automatically connected end to end.<br>Built specifically for companies renting machinery, platforms and equipment.<br>Not a spreadsheet. Not an ERP.</p>
+            </div>
+          </div>
+
+          <div data-photo="assets/img/features-photo-transport.png" data-screen="assets/img/features-screen-transport.png" class="feat" data-reveal="left" style="--d:80ms">
+            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-2" id="feat-2-tab">
+              <span class="icon-box"><img src="assets/icons/feat-transport.svg" width="26" height="19" alt=""></span>
+              <span class="feat__name">Transport</span>
+              <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
+            </button>
+            <div class="feat__body" id="feat-2" role="tabpanel" aria-labelledby="feat-2-tab">
+              <p>Transport tickets are created straight from the contract and dispatched to drivers. Routes, loading times and photo protocols live in one place, so nothing gets lost between the office and the yard.</p>
+            </div>
+          </div>
+
+          <div data-photo="assets/img/features-photo-equipment.png" data-screen="assets/img/features-screen-equipment.png" class="feat" data-reveal="left" style="--d:160ms">
+            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-3" id="feat-3-tab">
+              <span class="icon-box"><img src="assets/icons/forklift.svg" width="26" height="26" alt=""></span>
+              <span class="feat__name">Equipment</span>
+              <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
+            </button>
+            <div class="feat__body" id="feat-3" role="tabpanel" aria-labelledby="feat-3-tab">
+              <p>Your whole fleet with live availability, documents, inspections and history per unit. See at a glance what is out, what is back and what is ready for the next job.</p>
+            </div>
+          </div>
+
+          <div data-photo="assets/img/features-photo-service.png" data-screen="assets/img/features-screen-service.png" class="feat" data-reveal="left" style="--d:240ms">
+            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-4" id="feat-4-tab">
+              <span class="icon-box"><img src="assets/icons/service.svg" width="21" height="21" alt=""></span>
+              <span class="feat__name">Service</span>
+              <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
+            </button>
+            <div class="feat__body" id="feat-4" role="tabpanel" aria-labelledby="feat-4-tab">
+              <p>Planned maintenance and repair orders tied to each machine. Mechanics log work on mobile, parts and hours are tracked, and downtime is visible before it blocks a booking.</p>
+            </div>
+          </div>
+
+          <div data-photo="assets/img/features-photo.png" data-screen="assets/img/features-screen-map.png" class="feat" data-reveal="left" style="--d:320ms">
+            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-5" id="feat-5-tab">
+              <span class="icon-box"><img src="assets/icons/map.svg" width="26" height="26" alt=""></span>
+              <span class="feat__name">Map</span>
+              <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
+            </button>
+            <div class="feat__body" id="feat-5" role="tabpanel" aria-labelledby="feat-5-tab">
+              <p>Every machine on one map, filtered by status and category. Know where your equipment is working right now and plan transport around it.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="features__visual" data-reveal="right" style="--d:150ms">
+          <div class="features__screen">
+            <img class="js-feat-screen" src="assets/img/features-screen.png" width="954" height="623" alt="EQrento app – Offers and contracts" loading="lazy">
+          </div>
+          <div class="features__photo" data-parallax="-0.08">
+            <img class="js-feat-photo" src="assets/img/features-photo.png" width="287" height="186" alt="" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GPS ============ -->
+  <section class="gps" id="gps">
+    <div class="wrap-narrow">
+      <div class="section-head">
+        <h2 class="h2" data-reveal style="--d:80ms">Telematics that safeguards your billing</h2>
+        <p class="lead gps__lead" data-reveal style="--d:160ms"><span class="gps__lead-long">By integrating telemetry with a GPS system, our telematics solution automatically detects any activity occurring outside of designated hours (e.g., on weekends or public holidays) or beyond a specified geographical area. If these parameters are exceeded—as per the terms of your agreement—the system automatically applies the relevant charges or penalties directly to the invoice.</span><span class="gps__lead-mid">By integrating telemetry with GPS, our telematics solution detects activity outside designated hours (e.g., weekends or public holidays) or beyond a specified area. Charges or penalties under your agreement are applied directly to the invoice.</span><span class="gps__lead-short">Telemetry and GPS detect work outside agreed hours, on weekends and holidays, or outside the permitted area. Contractual charges are added straight to the invoice.</span><br>No more manual calculations or disputes&nbsp;with&nbsp;clients!</p>
+      </div>
+
+      <!-- GPS flow: machine → map → GPS report → invoice. One row on wide screens, a column below 1200px.
+           The map and both cards share the map frame's proportions (598 × 372) and scale together;
+           the card contents are sized in container units (cqi), so they scale like a picture. -->
+      <div class="gps__flow">
+        <div class="gps__machine" aria-hidden="true">
+          <div class="gps__lift" data-reveal="left" style="--d:100ms"><img src="assets/img/gps-lift.png" width="269" height="311" alt="" loading="lazy" data-parallax="0.1"></div>
+          <div class="gps__device-round" data-reveal="zoom" style="--d:250ms"><img src="assets/img/gps-device-round.png" width="280" height="289" alt="" loading="lazy" data-parallax="-0.08"></div>
+        </div>
+        <span class="gps__link" aria-hidden="true"></span>
+        <div class="gps__panel gps__map" data-reveal="zoom" style="--d:150ms" aria-hidden="true"><img src="assets/img/gps-screen.png" width="708" height="452" alt="" loading="lazy"></div>
+        <span class="gps__link" aria-hidden="true"></span>
+        <article class="gps__panel gps__card" data-reveal style="--d:300ms">
+          <div class="gps__card-in">
+            <svg class="gps-doc" viewBox="0 0 157 220" aria-hidden="true" focusable="false">
+              <rect x=".5" y=".5" width="156" height="219" rx="3" fill="#fff" stroke="#e4e2ee"/>
+              <text x="12" y="24" font-size="11" font-weight="800" fill="#26217a" letter-spacing=".3">GPS REPORT</text>
+              <!-- machine + location -->
+              <path d="M16 33.5a4 4 0 0 0-4 4c0 3 4 7.5 4 7.5s4-4.5 4-7.5a4 4 0 0 0-4-4Zm0 5.4a1.4 1.4 0 1 1 0-2.8 1.4 1.4 0 0 1 0 2.8Z" fill="#e5484d"/>
+              <g fill="#26217a"><rect x="24" y="35" width="40" height="2.4" rx="1"/></g>
+              <g fill="#d6d4e3"><rect x="24" y="40.5" width="58" height="2" rx="1"/><rect x="104" y="35" width="40" height="2" rx="1"/><rect x="112" y="40.5" width="32" height="2" rx="1"/></g>
+              <!-- working hours per day: the part above the agreed limit is overuse -->
+              <rect x="12" y="52" width="133" height="66" rx="2" fill="#f6f5fb"/>
+              <g fill="#3e3a9f">
+                <rect x="20" y="84" width="9" height="28" rx="1"/><rect x="37" y="80" width="9" height="32" rx="1"/><rect x="54" y="78" width="9" height="34" rx="1"/>
+                <rect x="71" y="78" width="9" height="34" rx="1"/><rect x="88" y="82" width="9" height="30" rx="1"/><rect x="105" y="78" width="9" height="34" rx="1"/><rect x="122" y="90" width="9" height="22" rx="1"/>
+              </g>
+              <g fill="#ffa41b"><rect x="54" y="66" width="9" height="12" rx="1"/><rect x="71" y="60" width="9" height="18" rx="1"/><rect x="105" y="70" width="9" height="8" rx="1"/></g>
+              <path d="M16 78h125" stroke="#e5484d" stroke-width="1" stroke-dasharray="3 2"/>
+              <rect x="16" y="113" width="125" height=".8" fill="#d6d4e3"/>
+              <!-- table -->
+              <rect x="12" y="128" width="133" height="9" rx="1.5" fill="#3e3a9f"/>
+              <g fill="#fff" opacity=".85"><rect x="16" y="131.5" width="22" height="2" rx="1"/><rect x="80" y="131.5" width="16" height="2" rx="1"/><rect x="118" y="131.5" width="22" height="2" rx="1"/></g>
+              <g fill="#d6d4e3"><rect x="16" y="144" width="30" height="2" rx="1"/><rect x="82" y="144" width="12" height="2" rx="1"/><rect x="128" y="144" width="12" height="2" rx="1"/>
+                <rect x="16" y="166" width="28" height="2" rx="1"/><rect x="82" y="166" width="12" height="2" rx="1"/><rect x="128" y="166" width="12" height="2" rx="1"/></g>
+              <rect x="12" y="150" width="133" height="11" rx="2" fill="#fff1d6"/>
+              <g fill="#e08a00"><rect x="16" y="154.5" width="32" height="2.4" rx="1"/><rect x="82" y="154.5" width="12" height="2.4" rx="1"/><rect x="126" y="154.5" width="14" height="2.4" rx="1"/></g>
+              <g fill="#ecebf3"><rect x="12" y="149" width="133" height=".8"/><rect x="12" y="172" width="133" height=".8"/></g>
+              <!-- PDF badge -->
+              <rect x="12" y="188" width="30" height="16" rx="3" fill="#e5484d"/>
+              <text x="27" y="199.5" font-size="8.5" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing=".3">PDF</text>
+              <g fill="#d6d4e3"><rect x="50" y="191" width="46" height="2.2" rx="1"/><rect x="50" y="197" width="34" height="2" rx="1"/></g>
+            </svg>
+            <div class="gps__card-text">
+              <h3>GPS Report</h3>
+              <p>overtime and non-standard usage</p>
+              <span class="gps__btn" aria-hidden="true">Download PDF</span>
+            </div>
+          </div>
+        </article>
+        <span class="gps__link" aria-hidden="true"></span>
+        <article class="gps__panel gps__card" data-reveal style="--d:450ms">
+          <div class="gps__card-in">
+            <svg class="gps-doc" viewBox="0 0 157 220" aria-hidden="true" focusable="false">
+              <rect x=".5" y=".5" width="156" height="219" rx="3" fill="#fff" stroke="#e4e2ee"/>
+              <text x="12" y="24" font-size="11" font-weight="800" fill="#26217a" letter-spacing=".3">INVOICE</text>
+              <g fill="#26217a"><rect x="12" y="36" width="16" height="2.4" rx="1"/><rect x="57" y="36" width="18" height="2.4" rx="1"/><rect x="104" y="36" width="20" height="2.4" rx="1"/></g>
+              <g fill="#d6d4e3"><rect x="12" y="42" width="34" height="2" rx="1"/><rect x="12" y="47" width="28" height="2" rx="1"/><rect x="12" y="52" width="31" height="2" rx="1"/>
+                <rect x="57" y="42" width="32" height="2" rx="1"/><rect x="57" y="47" width="36" height="2" rx="1"/><rect x="57" y="52" width="26" height="2" rx="1"/>
+                <rect x="104" y="42" width="30" height="2" rx="1"/><rect x="104" y="47" width="24" height="2" rx="1"/></g>
+              <rect x="12" y="66" width="133" height="9" rx="1.5" fill="#3e3a9f"/>
+              <g fill="#fff" opacity=".85"><rect x="16" y="69.5" width="26" height="2" rx="1"/><rect x="86" y="69.5" width="14" height="2" rx="1"/><rect x="108" y="69.5" width="8" height="2" rx="1"/><rect x="124" y="69.5" width="16" height="2" rx="1"/></g>
+              <g fill="#d6d4e3">
+                <rect x="16" y="82" width="44" height="2" rx="1"/><rect x="88" y="82" width="12" height="2" rx="1"/><rect x="110" y="82" width="4" height="2" rx="1"/><rect x="126" y="82" width="14" height="2" rx="1"/>
+                <rect x="16" y="93" width="52" height="2" rx="1"/><rect x="88" y="93" width="12" height="2" rx="1"/><rect x="110" y="93" width="4" height="2" rx="1"/><rect x="126" y="93" width="14" height="2" rx="1"/>
+                <rect x="16" y="104" width="38" height="2" rx="1"/><rect x="88" y="104" width="12" height="2" rx="1"/><rect x="110" y="104" width="4" height="2" rx="1"/><rect x="126" y="104" width="14" height="2" rx="1"/>
+              </g>
+              <g fill="#ecebf3"><rect x="12" y="88" width="133" height=".8"/><rect x="12" y="99" width="133" height=".8"/><rect x="12" y="110" width="133" height=".8"/></g>
+              <!-- the overuse line the system adds automatically -->
+              <rect x="12" y="113" width="133" height="12" rx="2" fill="#fff1d6"/>
+              <g fill="#e08a00"><rect x="16" y="118" width="36" height="2.4" rx="1"/><rect x="88" y="118" width="12" height="2.4" rx="1"/><rect x="108" y="118" width="7" height="2.4" rx="1"/><rect x="124" y="118" width="16" height="2.4" rx="1"/></g>
+              <g fill="#d6d4e3"><rect x="96" y="136" width="20" height="2" rx="1"/><rect x="126" y="136" width="14" height="2" rx="1"/><rect x="96" y="143" width="16" height="2" rx="1"/><rect x="126" y="143" width="14" height="2" rx="1"/></g>
+              <rect x="92" y="150" width="53" height="10" rx="1.5" fill="#26217a"/>
+              <g fill="#fff"><rect x="96" y="154" width="14" height="2.2" rx="1"/><rect x="124" y="154" width="17" height="2.2" rx="1"/></g>
+              <g fill="#d6d4e3"><rect x="12" y="136" width="26" height="2.4" rx="1" fill="#26217a"/><rect x="12" y="142" width="40" height="2" rx="1"/><rect x="12" y="147" width="34" height="2" rx="1"/></g>
+              <rect x="12" y="186" width="133" height="22" rx="2" fill="#3e3a9f"/>
+              <g fill="#fff" opacity=".8"><rect x="17" y="191" width="34" height="2.2" rx="1"/><rect x="17" y="197" width="118" height="1.6" rx=".8" opacity=".7"/><rect x="17" y="201" width="96" height="1.6" rx=".8" opacity=".7"/></g>
+            </svg>
+            <div class="gps__card-text">
+              <h3>Overuse right on the invoice</h3>
+              <p>The system detects work beyond the limit and adds it to the invoice automatically.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="reviews" id="reviews">
+    <div class="wrap-narrow">
+      <h2 class="h2 reviews__title" data-reveal>What our customers are saying?</h2>
+
+      <figure class="testimonial" data-reveal style="--d:120ms">
+        <!-- Customer video. Captions are burned into the video, so the slot never crops them
+             (CSS switches from cover to contain when the slot gets too narrow). -->
+        <div class="testimonial__media">
+          <img class="testimonial__backdrop" src="assets/img/testimonial-hardy-poster.jpg" width="960" height="720" alt="" aria-hidden="true">
+          <video class="testimonial__video" controls playsinline preload="metadata" poster="assets/img/testimonial-hardy-poster.jpg" aria-label="Video testimonial: Andrea Hardy, owner of Hardy Carts &amp; Equipment">
+            <source src="assets/video/hardy-carts.mp4" type="video/mp4">
+            <source src="assets/video/hardy-carts.webm" type="video/webm">
+          </video>
+          <button class="testimonial__play" type="button" hidden>
+            <span class="testimonial__play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M7 4.5v15a1 1 0 0 0 1.52.85l12-7.5a1 1 0 0 0 0-1.7l-12-7.5A1 1 0 0 0 7 4.5Z" fill="#170f04"/></svg>
+            </span>
+            <span>Watch the video <small>1:20</small></span>
+          </button>
+        </div>
+
+        <div class="testimonial__body">
+          <span class="testimonial__blob testimonial__blob--a" aria-hidden="true"></span>
+          <span class="testimonial__blob testimonial__blob--b" aria-hidden="true"></span>
+          <img class="testimonial__logo" src="assets/img/logo-hardy-carts.png" width="560" height="146" alt="Hardy Carts &amp; Equipment">
+          <blockquote class="testimonial__quote">“They’ve been extremely supportive and creative and coming up with solutions. That is something I’ve never experienced with other rental softwares we’ve used or other rental softwares we overlooked in favor of choosing <b>EQrento</b>.”</blockquote>
+          <figcaption class="testimonial__author">
+            <b>Andrea Hardy</b>
+            <span>Owner of Hardy Carts &amp; Equipment</span>
+          </figcaption>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq">
+    <div class="wrap-narrow faq__grid">
+      <h2 class="h2 faq__title" data-reveal>The questions rental companies actually ask</h2>
+
+      <div class="faq__list">
+        <div class="qa is-open" data-reveal style="--d:0ms">
+          <h3><button class="qa__q" type="button" aria-expanded="true" aria-controls="qa-1" id="qa-1-q">
+            <span>We already have software. Why would we change?</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="qa-1" role="region" aria-labelledby="qa-1-q"><div>
+            <p>Usually you wouldn't — unless the system stops at the reservation and your team fills the gaps with spreadsheets, WhatsApp and manual invoicing. The question worth asking is what happens after the booking: does transport get planned in it? Are handover photos on the contract? Do engine hours reach the invoice? That's the part we cover.</p>
+          </div></div>
+        </div>
+
+        <div class="qa" data-reveal style="--d:60ms">
+          <h3><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-2" id="qa-2-q">
+            <span>Our Excel works fine. Honestly.</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="qa-2" role="region" aria-labelledby="qa-2-q"><div>
+            <p>Excel is great until two people edit the same booking, a machine is double-rented or overtime never makes it to the invoice. EQrento keeps the flexibility you like and adds availability, transport and billing that update themselves.</p>
+          </div></div>
+        </div>
+
+        <div class="qa" data-reveal style="--d:120ms">
+          <h3><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-3" id="qa-3-q">
+            <span>How long does implementation take, and what does it need from us?</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="qa-3" role="region" aria-labelledby="qa-3-q"><div>
+            <p>Most companies are live within a few weeks. We import your fleet, customers and price lists for you; from your side we need one person who knows the process and a couple of short workshops with the team.</p>
+          </div></div>
+        </div>
+
+        <div class="qa" data-reveal style="--d:180ms">
+          <h3><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-4" id="qa-4-q">
+            <span>Can it connect to our ERP or accounting system?</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="qa-4" role="region" aria-labelledby="qa-4-q"><div>
+            <p>Yes. Invoices and customer data can be pushed to popular accounting and ERP systems, and we build integrations with the tools you already use.</p>
+          </div></div>
+        </div>
+
+        <div class="qa" data-reveal style="--d:240ms">
+          <h3><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-5" id="qa-5-q">
+            <span>What does it cost?</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="qa-5" role="region" aria-labelledby="qa-5-q"><div>
+            <p>Pricing depends on fleet size and the modules you need, with unlimited users and branches included. Book a short demo and we'll give you a clear quote.</p>
+          </div></div>
+        </div>
+
+        <div class="qa" data-reveal style="--d:300ms">
+          <h3><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-6" id="qa-6-q">
+            <span>Our machines are in the field, our mechanics aren't at desks.</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="qa-6" role="region" aria-labelledby="qa-6-q"><div>
+            <p>That's exactly who the mobile app is for. Drivers and mechanics record handovers, photos, signatures and service work on their phones, right next to the machine.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta" id="demo">
+    <div class="wrap-narrow">
+      <div class="cta__box" data-reveal="zoom">
+        <div class="cta__bg" aria-hidden="true" data-parallax="0.06"></div>
+
+        <div class="cta__content">
+          <h2 class="cta__title" data-reveal style="--d:150ms">See it on your <br>kind of fleet</h2>
+          <p class="cta__lead" data-reveal style="--d:250ms">A 30-minute demo, tailored to how you actually work — your equipment types, your branches, your process. No slides, no pressure, and a straight answer on whether we're a fit.</p>
+          <div data-reveal style="--d:350ms">
+            <a href="#" class="btn btn--primary btn--arrow">
+              <span>Book a 30-minute demo</span>
+              <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+            </a>
+          </div>
+          <p class="cta__note" data-reveal style="--d:450ms">Prefer to write first? Send us your questions and we'll answer them before any call.</p>
+        </div>
+
+        <img class="cta__float cta__float--res"   src="assets/img/cta-reservation.png" width="236" height="88" alt="" loading="lazy" data-parallax="-0.12">
+        <img class="cta__float cta__float--pay"   src="assets/img/cta-payment.png"     width="155" height="118" alt="" loading="lazy" data-parallax="0.1">
+        <img class="cta__float cta__float--badge" src="assets/img/cta-badge.png"       width="90" height="90" alt="" loading="lazy" data-parallax="-0.08">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <span class="glow glow--footer" aria-hidden="true"></span>
+  <div class="wrap-narrow">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="#home" aria-label="EQrento – back to top"><img src="assets/icons/logo-light.svg" width="246" height="50" alt="EQrento"></a>
+        <p>EQrento service belongs to SOLTIX Sp. z o.o. company.</p>
+        <p>Get in touch with us for details on implementation and to learn how EQrento outperforms other solutions.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Address</h3>
+        <address>SOLTIX Sp. z o.o.<br>ul. Gen. Wl. Sikorskiego 19<br>65-454 Zielona Góra, Poland<br>NIP / VAT ID: 9292077160<br>KRS / National Court Register: 0001036416</address>
+      </div>
+      <div class="footer__col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:contact@eqrento.com">contact@eqrento.com</a></li>
+          <li><a href="tel:+48693629446">+48 693 629 446</a></li>
+          <li><a href="tel:+48603197858">+48 603 197 858</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3>System</h3>
+        <ul>
+          <li><a href="#why">Why EQrento?</a></li>
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#steps">How it works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>Copyright © 2026 SOLTIX Sp. z o.o. • All Rights Reserved</p>
+      <ul class="footer__legal">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><button type="button" class="footer__cookie-btn" data-cookie-open>Cookie settings</button></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ COOKIE BANNER (shown by main.js until the visitor makes a choice) ============ -->
+<div class="cookie" id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-text" hidden>
+  <p class="cookie__title" id="cookie-title">We use cookies</p>
+  <p class="cookie__text" id="cookie-text">We use cookies that are necessary for this site to work. With your consent, we’ll also use analytics and marketing cookies to improve the site. You can change your choice at any time via “Cookie settings” in the footer. <a href="#">Cookie Policy</a></p>
+  <div class="cookie__prefs" hidden>
+    <label class="cookie__opt">
+      <span><b>Necessary</b><small>Required for the site to work. Always on.</small></span>
+      <input type="checkbox" checked disabled>
+    </label>
+    <label class="cookie__opt">
+      <span><b>Analytics</b><small>Help us understand how visitors use the site.</small></span>
+      <input type="checkbox" data-category="analytics">
+    </label>
+    <label class="cookie__opt">
+      <span><b>Marketing</b><small>Measure our campaigns and show relevant offers.</small></span>
+      <input type="checkbox" data-category="marketing">
+    </label>
+  </div>
+  <div class="cookie__actions">
+    <button type="button" class="cookie__btn cookie__btn--primary cookie__btn--wide" data-cookie="save" hidden>Save my choices</button>
+    <button type="button" class="cookie__btn cookie__btn--primary" data-cookie="accept">Accept all</button>
+    <button type="button" class="cookie__btn" data-cookie="reject">Reject all</button>
+    <button type="button" class="cookie__btn cookie__btn--link" data-cookie="customize">Customize</button>
+  </div>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
