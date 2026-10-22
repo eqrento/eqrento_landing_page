@@ -1437,3 +1437,39 @@ section[id] { scroll-margin-top: 80px; }
 }
 .hero .pill--dark { background: rgba(101, 97, 255, .07); border-color: rgba(101, 97, 255, .24); }
 .hero .pill--dark span { color: var(--label-violet-ink); font-weight: 600; }
+
+/* =========================================================
+   EXPERIMENT: orange only where it means action or money
+   Orange = buttons, hero ticks, the overuse row on the invoice, glows on dark sections.
+   Plain markers (ticks in the plans, “+” / “−”, arrows between stages, limits box) are neutral;
+   “+” in Key features and in the FAQ turn orange on hover / when open.
+   (to undo: delete this block)
+   ========================================================= */
+:root { --marker: #4a4540; --marker-soft: #7a736b; --marker-hot: #ffa41b; }
+
+/* ticks in the plan cards and the comparison table */
+.plan__list li::before, .cmp__table .y::before { background: var(--marker); }
+.plan--hero .plan__list li::before { background: #e5e1db; }
+
+/* limits box: neutral instead of pale yellow (the dark card already has a neutral one) */
+.plan__limits { background: rgba(28, 26, 23, .05); }
+.plan--hero .plan__limits { background: rgba(255, 255, 255, .07); }
+
+/* arrows between the telematics stages: the orange overuse row is the only orange left in that section */
+.gps__link::before { background: var(--marker-soft); }
+
+/* “+” in Key features: drawn with CSS so the colour can change (the img is hidden) */
+.plus-btn { position: relative; }
+.plus-btn img { display: none; }
+.plus-btn::before, .plus-btn::after {
+  content: ""; position: absolute; left: calc(50% - 8px); top: calc(50% - 1px); width: 16px; height: 2px;
+  background: var(--marker-soft); transition: background-color .3s var(--ease);
+}
+.plus-btn::after { transform: rotate(90deg); }
+.feat__head:hover .plus-btn::before, .feat__head:hover .plus-btn::after,
+.feat__head:focus-visible .plus-btn::before, .feat__head:focus-visible .plus-btn::after { background: var(--marker-hot); }
+
+/* FAQ + / − */
+.qa__icon::before, .qa__icon::after { background: var(--marker-soft); }
+.qa.is-open .qa__icon::before, .qa.is-open .qa__icon::after,
+.qa__q:hover .qa__icon::before, .qa__q:hover .qa__icon::after { background: var(--marker-hot); }
