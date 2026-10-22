@@ -36,8 +36,9 @@ assets/video/          – testimonial video (mp4 + webm fallback)
 
 Hero → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
 (“One platform…”) → How it works (“Six interconnected stages…”, pinned horizontal scroll) → Key features and
-competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Testimonial → FAQ → CTA → footer.
-Menu: Home, Why EQrento, Platform, How it works, FAQ (header, mobile menu and footer follow the page order).
+competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Testimonial → Pricing → FAQ → CTA →
+footer.
+Menu: Home, Why EQrento, Platform, How it works, Pricing, FAQ (header, mobile menu and footer follow the page order).
 
 ## Things worth knowing
 
@@ -54,6 +55,12 @@ Menu: Home, Why EQrento, Platform, How it works, FAQ (header, mobile menu and fo
 - **Telematics section** – machine → map → GPS report card → invoice card, one row above 1200px, a column below.
   The cards are HTML/CSS sized in container units (`cqi`) so they scale like a picture; the two documents are inline
   SVG. Arrows between stages are CSS masks.
+- **Pricing** (`#pricing`) – four plans: Essential, Complete (recommended, dark card), Connected, Enterprise. Each card is
+  a CSS subgrid of 8 rows, so names, prices, buttons and lists line up across the cards (4 in a row above 1200px, 2×2
+  down to 641px, one column on phones). Yearly / monthly switch: every price has `data-yearly` and `data-monthly`, and
+  `main.js` swaps the texts. “Compare all features” opens the full table; its header sticks under the page header.
+  Below 900px each row shows the feature name above its four plan cells (the explicit ARIA roles in the table markup
+  keep it a table for screen readers). Cells: `class="y"` included, `"n"` not included, `"t"` text.
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
 - **Steps (How it works)** – pinned while the cards scroll; on short screens the pin position adapts so the cards and

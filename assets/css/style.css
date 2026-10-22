@@ -85,6 +85,11 @@ section[id] { scroll-margin-top: 80px; }
   background: var(--white); color: var(--black); padding: 10px 16px; border-radius: 8px;
 }
 .skip-link:focus { top: 16px; }
+/* text for screen readers only (e.g. “Included” behind the ticks in the pricing table) */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
 
 .wrap { width: var(--wrap); margin-inline: auto; }
 .wrap-narrow { width: var(--wrap-narrow); margin-inline: auto; }
@@ -135,6 +140,9 @@ section[id] { scroll-margin-top: 80px; }
   transition: transform .35s var(--ease);
 }
 .btn--arrow:hover .btn__icon { transform: translateX(4px); }
+/* secondary action on light cards (pricing) */
+.btn--ghost { color: var(--ink); background: var(--white); border-color: rgba(23, 15, 4, .16); }
+.btn--ghost:hover { border-color: rgba(23, 15, 4, .4); box-shadow: 0 14px 32px -16px rgba(23, 15, 4, .3); }
 
 /* ---------- pills ---------- */
 .pill {
@@ -740,6 +748,158 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 /* =========================================================
+   PRICING
+   ========================================================= */
+.pricing { padding: var(--sec-join) 0; background: var(--soft); }
+.pricing__head .lead { max-width: 640px; }
+
+/* yearly / monthly switch – main.js swaps every [data-yearly] / [data-monthly] text */
+.billing {
+  display: inline-flex; gap: 4px; margin-top: 8px; padding: 4px; border-radius: 999px;
+  background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 0 0 1px rgba(23, 15, 4, .08);
+}
+.billing__opt {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 44px; padding: 0 22px; border-radius: 999px;
+  font-size: 15px; font-weight: 600; color: var(--gray-2);
+  transition: color .3s var(--ease);
+}
+.billing__opt:hover { color: var(--ink); }
+.billing__opt[aria-pressed="true"] { background: var(--gradient); color: #170f04; }
+.billing__save { padding: 2px 8px; border-radius: 999px; font-size: 12px; line-height: 1.4; background: rgba(23, 15, 4, .08); }
+
+/* four cards in a row; each card is a subgrid of 8 rows (name, text, price, billing, limits,
+   button, intro, list), so prices, buttons and lists line up across the cards */
+.plans {
+  margin-top: 56px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 20px;
+}
+.plan {
+  position: relative; isolation: isolate;
+  grid-row: span 8; display: grid; grid-template-rows: subgrid; row-gap: 0;
+  padding: 36px 32px; border-radius: 24px; background: var(--white);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+@supports not (grid-template-rows: subgrid) { .plan { display: flex; flex-direction: column; } }
+.plan__name { font-size: 26px; font-weight: 600; line-height: 1.25; color: var(--ink); }
+/* sits on the card's top edge (out of the grid flow), so it never competes with the plan name for room */
+.plan__badge {
+  position: absolute; top: 0; left: 50%; translate: -50% -50%;
+  display: inline-flex; align-items: center; height: 28px; padding: 0 14px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; white-space: nowrap; color: #170f04; background: var(--gradient);
+  box-shadow: 0 8px 20px -8px rgba(255, 164, 27, .7);
+}
+.plan__desc { margin-top: 10px; font-size: 15px; line-height: 1.5; color: var(--gray-2); text-wrap: balance; }
+.plan__price {
+  margin-top: 28px; display: flex; align-items: baseline; gap: 4px;
+  font-size: 44px; font-weight: 600; line-height: 1.1; letter-spacing: -.02em; color: var(--ink);
+}
+.plan__price small { font-size: 16px; font-weight: 400; letter-spacing: 0; color: var(--gray-2); }
+.plan__price--quote { align-self: end; font-size: 28px; line-height: 1.2; letter-spacing: -.01em; }   /* bottom of the price row, level with the figures */
+.plan__billing { margin-top: 4px; font-size: 14px; line-height: 1.5; color: var(--gray-2); }
+.plan__limits {
+  margin-top: 24px; padding: 14px 16px; border-radius: 14px;
+  display: flex; flex-direction: column; gap: 4px;
+  font-size: 14px; line-height: 1.45; color: var(--gray-2); background: rgba(255, 210, 63, .12);
+}
+.plan__limits b { font-weight: 600; color: var(--ink); }
+.plan__cta { margin-top: 24px; width: 100%; height: 56px; padding: 0 24px; font-size: 16px; }
+.plan__intro {
+  margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(23, 15, 4, .08);
+  font-size: 14px; font-weight: 600; line-height: 1.5; color: var(--ink);
+}
+.plan__list { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+.plan__list li { position: relative; padding-left: 30px; font-size: 15px; line-height: 1.45; color: var(--gray-2); text-wrap: pretty; }   /* pretty: no single word left on the last line */
+.plan__list li::before {   /* same tick as the hero chips */
+  content: ""; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; background: #eda532;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* recommended plan: dark card with drifting glows, like the EQrento card in “Why” */
+.plan--hero { background: var(--black); border: 1px solid rgba(255, 255, 255, .1); box-shadow: var(--shadow-brand); }
+.plan--hero .plan__name, .plan--hero .plan__price, .plan--hero .plan__intro, .plan--hero .plan__limits b { color: var(--white); }
+.plan--hero .plan__desc, .plan--hero .plan__billing, .plan--hero .plan__price small, .plan--hero .plan__limits { color: var(--gray); }
+.plan--hero .plan__limits { background: rgba(255, 255, 255, .07); }
+.plan--hero .plan__intro { border-color: rgba(229, 225, 219, .2); }
+.plan--hero .plan__list li { color: rgba(255, 255, 255, .88); }
+.plan--hero .plan__list li::before { background: #ffd23f; }
+.plan__glows { position: absolute; inset: 0; z-index: -1; overflow: hidden; border-radius: inherit; pointer-events: none; }   /* clips the glows, not the badge */
+.plan__blob {
+  position: absolute; border-radius: 50%;
+  background: var(--gradient); filter: blur(61px); opacity: .32;
+}
+.plan__blob--a { width: 300px; height: 300px; right: -150px; top: -150px; animation: drift 14s ease-in-out infinite alternate; }
+.plan__blob--b { width: 320px; height: 320px; left: -190px; bottom: -200px; animation: drift 17s ease-in-out infinite alternate-reverse; }
+
+.pricing__tracker {
+  margin: 40px auto 0; max-width: 940px;
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 28px; border-radius: 20px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  font-size: 15px; line-height: 1.5; color: var(--gray-2);
+}
+.pricing__tracker b { font-weight: 600; color: var(--ink); }
+.pricing__note { margin: 20px auto 0; max-width: 760px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-2); }
+
+/* ---------- full feature comparison, collapsed until asked for ---------- */
+.cmp { margin-top: 40px; }
+.cmp__toggle {
+  display: flex; align-items: center; gap: 12px; margin-inline: auto;
+  height: 56px; padding: 0 28px; border-radius: 999px;
+  font-size: 16px; font-weight: 600; color: var(--ink);
+  background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 0 0 1px rgba(23, 15, 4, .1);
+  transition: box-shadow .3s var(--ease);
+}
+.cmp__toggle:hover { box-shadow: 0 14px 32px -16px rgba(23, 15, 4, .3), inset 0 0 0 1px rgba(23, 15, 4, .22); }
+.cmp__icon { position: relative; flex: none; width: 20px; height: 20px; }
+.cmp__icon::before, .cmp__icon::after {
+  content: ""; position: absolute; left: 3px; right: 3px; top: 9px; height: 2px; border-radius: 2px;
+  background: #ffa41b; transition: transform .4s var(--ease);
+}
+.cmp__icon::after { transform: rotate(90deg); }
+.cmp.is-open .cmp__icon::after { transform: rotate(0deg); }
+.cmp__body {
+  display: grid; grid-template-rows: 0fr; visibility: hidden;
+  transition: grid-template-rows .6s var(--ease), visibility 0s .6s;
+}
+.cmp.is-open .cmp__body { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .6s var(--ease), visibility 0s; }
+/* clip rather than hidden: a clipping box is not a scroll container, so the table header can still stick under the page header */
+.cmp__body > div { min-height: 0; overflow: hidden; }
+@supports (overflow: clip) { .cmp__body > div { overflow: clip; } }
+.cmp__card {
+  margin-top: 32px; padding: 8px 16px 16px; border-radius: 24px;
+  background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+/* separate borders: with collapsed borders the lines would not travel with the sticky header */
+.cmp__table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 15px; line-height: 1.45; color: var(--ink); }
+.cmp__table th, .cmp__table td { padding: 13px 16px; border-bottom: 1px solid rgba(23, 15, 4, .07); }
+.cmp__table thead th {
+  position: sticky; top: 84px; z-index: 1;   /* right under the scrolled page header */
+  padding: 20px 16px 16px; background: var(--white);
+  font-size: 16px; font-weight: 600; text-align: center;
+  border-bottom-color: rgba(23, 15, 4, .14);
+}
+.cmp__table thead small { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--gray-2); }
+.cmp__table th[scope="row"] { width: 40%; font-weight: 400; text-align: left; text-wrap: pretty; }
+.cmp__table td { width: 15%; text-align: center; }
+.cmp__group th {
+  padding: 36px 16px 10px; text-align: left;
+  font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--gray-2);
+  border-bottom-color: rgba(23, 15, 4, .14);
+}
+.cmp__table tbody:first-of-type .cmp__group th { padding-top: 24px; }
+/* the recommended plan's column, lightly tinted (opaque, so rows never show through the sticky header) */
+.cmp__table tr > :nth-child(3) { background: #fffbef; }
+.cmp__table .y::before, .cmp__table .n::before { content: ""; display: inline-block; vertical-align: middle; }
+.cmp__table .y::before {
+  width: 20px; height: 20px; background: #eda532;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.cmp__table .n::before { width: 12px; height: 2px; border-radius: 2px; background: #d6d0c8; }
+.cmp__table .t { font-size: 14px; font-weight: 600; }
+
+/* =========================================================
    FAQ
    ========================================================= */
 .faq { padding: var(--sec-join) 0; background: var(--soft); }
@@ -771,6 +931,7 @@ section[id] { scroll-margin-top: 80px; }
   font-size: 16px; line-height: 1.5; color: var(--gray-2);
   opacity: 0; transition: opacity .35s var(--ease);
 }
+.qa__a a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 .qa.is-open .qa__a { grid-template-rows: 1fr; }
 .qa.is-open .qa__a p { opacity: 1; transition-delay: .12s; }
 .qa__q:hover .qa__icon::before, .qa__q:hover .qa__icon::after { background: var(--violet); }
@@ -943,6 +1104,10 @@ section[id] { scroll-margin-top: 80px; }
   .why-card__cta { padding-left: 28px; gap: 12px; font-size: 17px; }
   .features__photo { left: 70%; width: 32%; }
   .faq__grid { gap: 64px; }
+  .plan { padding: 32px 26px; }
+  .plan__name { font-size: 24px; }
+  .plan__price { font-size: 40px; }
+  .plan__price--quote { font-size: 26px; }
 }
 
 @media (max-width: 1200px) {
@@ -987,6 +1152,7 @@ section[id] { scroll-margin-top: 80px; }
   .mobile-menu.is-open .mobile-menu__list li:nth-child(3) a { transition-delay: .1s; }
   .mobile-menu.is-open .mobile-menu__list li:nth-child(4) a { transition-delay: .15s; }
   .mobile-menu.is-open .mobile-menu__list li:nth-child(5) a { transition-delay: .2s; }
+  .mobile-menu.is-open .mobile-menu__list li:nth-child(6) a { transition-delay: .25s; }
   .mobile-menu__cta { width: 100%; }
   body.menu-open { overflow: hidden; }
 
@@ -1030,6 +1196,13 @@ section[id] { scroll-margin-top: 80px; }
   .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
   .footer__brand p { max-width: 520px; }
+
+  /* pricing: two cards per row (still a subgrid, so each pair lines up) */
+  .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 920px; margin-inline: auto; }
+  .plan:nth-child(-n+2) { margin-bottom: 20px; }
+  .cmp__table thead th { top: 72px; }
+  .cmp__table th[scope="row"] { width: 46%; }   /* fewer two-line feature names; the plan columns only hold ticks */
+  .cmp__table td { width: 13.5%; }
 }
 
 @media (max-width: 900px) {
@@ -1060,6 +1233,20 @@ section[id] { scroll-margin-top: 80px; }
   .platform__core img { width: min(300px, 64vw); }
   .platform__nodes { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .node { position: relative; left: auto !important; top: auto !important; translate: none; height: 52px; padding: 0 18px; gap: 12px; font-size: 16px; letter-spacing: -.3px; }
+
+  /* pricing table: each feature name on its own line, above its four plan cells
+     (explicit ARIA roles in the markup keep it a table for screen readers) */
+  .cmp__card { padding: 0 8px 8px; }
+  .cmp__table, .cmp__table thead, .cmp__table tbody { display: block; }
+  .cmp__table tr { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .cmp__table thead { position: sticky; top: 72px; z-index: 1; }
+  .cmp__table thead th { position: static; padding: 14px 2px 10px; }
+  .cmp__table thead th:first-child { display: none; }
+  .cmp__table th[scope="row"] { grid-column: 1 / -1; width: auto; padding: 14px 8px 4px; border-bottom: 0; }
+  .cmp__table td { width: auto; padding: 6px 2px 12px; }
+  .cmp__group th { grid-column: 1 / -1; padding: 28px 8px 8px; }
+  .cmp__table tbody:first-of-type .cmp__group th { padding-top: 20px; }
+  .cmp__table tbody tr > :nth-child(3) { background: none; }   /* stacked rows would break the tinted column into blocks: tint only the header */
 }
 
 @media (max-width: 640px) {
@@ -1134,6 +1321,22 @@ section[id] { scroll-margin-top: 80px; }
   .gps__lead-short { display: inline; }
   .gps__flow { margin-top: 32px; grid-template-columns: minmax(0, 1fr); }
   .gps__link { height: 32px; }
+
+  /* pricing: one card per row; the table stacks each feature name above its four plan cells */
+  .billing__opt { height: 40px; padding: 0 18px; font-size: 14px; }
+  .plans { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .plan { display: flex; flex-direction: column; padding: 28px 24px; border-radius: 20px; }
+  .plan:nth-child(-n+2) { margin-bottom: 0; }
+  .plan--hero { margin-top: 14px; }   /* room for the badge on its top edge */
+  .plan__price { font-size: 40px; }
+  .pricing__tracker { margin-top: 32px; flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px; }
+  .cmp__card { margin-top: 24px; border-radius: 20px; }
+  .cmp__table thead { top: 64px; }
+  .cmp__table thead th { padding-inline: 0; font-size: clamp(11px, 3.4vw, 13px); letter-spacing: -.01em; }   /* “Connected” fits a quarter of a 320px screen */
+  .cmp__table thead small { display: none; }
+  .cmp__table th[scope="row"] { font-size: 14px; }
+  .cmp__group th { font-size: 12px; }
+  .cmp__table .t { font-size: 12px; line-height: 1.3; }
 
   .qa__q { padding: 20px; font-size: 17px; line-height: 1.3; gap: 16px; }
   .qa.is-open .qa__q { padding-top: 24px; }

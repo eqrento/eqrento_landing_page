@@ -184,6 +184,23 @@
     });
   });
 
+  /* ---------- pricing: yearly / monthly prices + full comparison ---------- */
+  const billingOpts = $$('.billing__opt');
+  billingOpts.forEach(opt => opt.addEventListener('click', () => {
+    const mode = opt.dataset.billing;   // "yearly" | "monthly": every price carries both texts
+    billingOpts.forEach(o => o.setAttribute('aria-pressed', String(o === opt)));
+    $$('[data-yearly][data-monthly]').forEach(el => { el.textContent = el.dataset[mode]; });
+  }));
+  const cmp = $('.cmp');
+  if (cmp) {
+    const cmpBtn = $('.cmp__toggle', cmp);
+    cmpBtn.addEventListener('click', () => {
+      const open = !cmp.classList.contains('is-open');
+      cmp.classList.toggle('is-open', open);
+      cmpBtn.setAttribute('aria-expanded', String(open));
+    });
+  }
+
   /* ---------- platform diagram: scale + connector lines ---------- */
   const diagram = $('.platform__diagram');
   const svg = $('.platform__lines');
