@@ -1424,3 +1424,16 @@ section[id] { scroll-margin-top: 80px; }
 .hero .pill--dark span { color: #b06d00; margin: 0; }   /* the highlighted word opens the label; the &nbsp; after it is the word space (a plain space is dropped inside the flex pill) */
 /* the app mockup has a translucent "glass" frame made for a dark page: give it the dark backing it had there */
 .hero__screen img { background: #0b0805; box-shadow: 0 30px 70px -25px rgba(23, 15, 4, .35); }   /* neutral shadow instead of the yellow glow */
+
+/* =========================================================
+   EXPERIMENT: violet for labels (non-CTA), orange stays for buttons
+   Logo violets #9776FF / #6561FF, a touch deeper here so white text on them passes contrast.
+   (to undo: delete this block)
+   ========================================================= */
+:root { --label-violet: #6b5cff; --label-violet-2: #5550f0; --label-violet-ink: #4b3fd6; }
+.plan__badge {
+  color: #fff; background: linear-gradient(90deg, var(--label-violet), var(--label-violet-2));
+  box-shadow: 0 8px 20px -8px rgba(101, 97, 255, .7);
+}
+.hero .pill--dark { background: rgba(101, 97, 255, .07); border-color: rgba(101, 97, 255, .24); }
+.hero .pill--dark span { color: var(--label-violet-ink); font-weight: 600; }
