@@ -786,8 +786,8 @@ section[id] { scroll-margin-top: 80px; }
 /* sits on the card's top edge (out of the grid flow), so it never competes with the plan name for room */
 .plan__badge {
   position: absolute; top: 0; left: 50%; translate: -50% -50%;
-  display: inline-flex; align-items: center; height: 28px; padding: 0 14px; border-radius: 999px;
-  font-size: 13px; font-weight: 600; white-space: nowrap; color: #170f04; background: var(--gradient);
+  display: inline-flex; align-items: center; justify-content: center; height: 46px; padding: 0 24px; border-radius: 999px;
+  font-size: 15px; line-height: 1.1; font-weight: 600; white-space: nowrap; color: #170f04; background: var(--gradient);
   box-shadow: 0 8px 20px -8px rgba(255, 164, 27, .7);
 }
 .plan__desc { margin-top: 10px; font-size: 15px; line-height: 1.5; color: var(--gray-2); text-wrap: balance; }
@@ -1328,7 +1328,8 @@ section[id] { scroll-margin-top: 80px; }
   .plans { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
   .plan { display: flex; flex-direction: column; padding: 28px 24px; border-radius: 20px; }
   .plan:nth-child(-n+2) { margin-bottom: 0; }
-  .plan--hero { margin-top: 14px; }   /* room for the badge on its top edge */
+  .plan--hero { margin-top: 20px; }   /* room for the badge on its top edge */
+  .plan__badge { height: 40px; padding: 0 16px; font-size: 13px; }
   .plan__price { font-size: 40px; }
   .pricing__tracker { margin-top: 32px; flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px; }
   .cmp__card { margin-top: 24px; border-radius: 20px; }
