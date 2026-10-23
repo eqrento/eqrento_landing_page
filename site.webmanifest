@@ -1,0 +1,15 @@
+{
+  "name": "EQrento – equipment rental software",
+  "short_name": "EQrento",
+  "description": "Equipment rental software that connects offers, contracts, transport, service, telematics, GPS and invoicing.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "browser",
+  "theme_color": "#f8f7f5",
+  "background_color": "#f8f7f5",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -6,7 +6,8 @@ Static website: HTML + CSS + JavaScript, no build step, no dependencies, no serv
 
 Upload **the contents of this folder** (`index.html` and the `assets` folder) to the web root of any static host
 (classic hosting via FTP / file manager, Netlify, Vercel, Cloudflare Pages, GitHub Pages, S3…).
-`index.html` must be at the root of the site. All paths are relative, so the site also works from a sub-folder.
+`index.html` must be at the root of the site, with `favicon.ico`, `apple-touch-icon.png` and `site.webmanifest` next to it.
+All paths are relative, so the site also works from a sub-folder.
 
 Recommended server settings (most hosts do this by default):
 
@@ -24,11 +25,14 @@ and the video on `file://`.
 
 ```
 index.html
+favicon.ico            – browser tab / bookmarks (16, 32, 48 px)
+apple-touch-icon.png   – iOS home screen (180 px)
+site.webmanifest       – Android home-screen icons (round 192 / 512 px + maskable)
 assets/css/style.css   – all styles; design tokens at the top (:root)
 assets/js/main.js      – interactions and animations
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos
-assets/icons/          – SVG icons and logos
+assets/icons/          – SVG icons and logos, favicon.svg, icon-192/512 and icon-maskable-512 PNGs
 assets/video/          – testimonial video (mp4 + webm fallback)
 ```
 
@@ -80,7 +84,7 @@ Menu: Home, Why EQrento, Platform, How it works, Pricing, FAQ (header, mobile me
 - “Privacy Policy” and “Cookie Policy” links have `href="#"` – point them to the real documents. Keep the banner text
   and the Cookie Policy in line with the tools actually used.
 - FAQ answers 2–6 and some Key features descriptions are placeholder copy.
-- Optional: favicon set, social-sharing image (Open Graph), `robots.txt`, `sitemap.xml`, 404 page,
+- Optional: social-sharing image (Open Graph), `robots.txt`, `sitemap.xml`, 404 page,
   converting large PNG/JPG images to WebP.
 - The free UIcons licence requires attribution (“Uicons by Flaticon”) unless you have a Flaticon subscription.
 
