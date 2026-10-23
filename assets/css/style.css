@@ -859,7 +859,9 @@ section[id] { scroll-margin-top: 80px; }
 }
 .cmp.is-open .cmp__body { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .6s var(--ease), visibility 0s; }
 /* clip rather than hidden: a clipping box is not a scroll container, so the table header can still stick under the page header */
-.cmp__body > div { min-height: 0; overflow: hidden; }
+/* position: relative makes this box the containing block of the table's visually hidden (.sr-only, absolute) labels,
+   so they are clipped with it; otherwise they escape the clip and stretch the page far below the footer */
+.cmp__body > div { position: relative; min-height: 0; overflow: hidden; }
 @supports (overflow: clip) { .cmp__body > div { overflow: clip; } }
 .cmp__card {
   margin-top: 32px; padding: 8px 16px 16px; border-radius: 24px;
