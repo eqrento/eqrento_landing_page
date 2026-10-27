@@ -279,8 +279,10 @@
     });
     logoItems.forEach(li => li.classList.add('is-in'));
     logos.classList.add('is-marquee');
-    // constant speed whatever the logo size: 80px per second, a bit quicker on phones where only ~2 logos are in view
-    const speed = window.innerWidth <= 640 ? 95 : 80;
+    // constant speed whatever the logo size (px per second): 110 on desktop / laptop (> 1200px), 80 on tablets,
+    // 95 on phones where only ~2 logos are in view
+    const vw = window.innerWidth;
+    const speed = vw > 1200 ? 110 : vw <= 640 ? 95 : 80;
     logos.style.setProperty('--marquee-dur', `${(logoList.scrollWidth / 2 / speed).toFixed(1)}s`);
   };
 
