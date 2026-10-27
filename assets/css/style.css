@@ -1263,7 +1263,7 @@ section[id] { scroll-margin-top: 80px; }
   .hero__content { gap: 24px; }
   .pill--dark { height: 44px; font-size: 14px; padding: 0 18px; }
   .hero__lead { font-size: 16px; }
-  .hero__title { font-size: min(34px, calc((100vw - 2 * var(--gutter)) / 11.9)); }   /* “Every machine tracked.” fits one line */
+  .hero__title { font-size: min(34px, calc((100vw - 2 * var(--gutter)) / 11.9)); }   /* the longer headline line (“automated end to end.”, 11.5em) fits one line */
   /* phones: four pills would stack one per row, so show them as a compact checklist instead */
   .hero__chips { flex-direction: column; gap: 6px; margin-top: -6px; }
   .hero .hero__chips li { padding: 0; background: none; border: 0; font-size: 14px; }
@@ -1436,6 +1436,14 @@ section[id] { scroll-margin-top: 80px; }
 }
 .hero .pill--dark { background: rgba(101, 97, 255, .07); border-color: rgba(101, 97, 255, .24); }
 .hero .pill--dark span { color: var(--label-violet-ink); font-weight: 600; }
+/* small label above a section heading (telematics: “Every machine tracked. Every hour billed.”);
+   wraps only between its two sentences (.nowrap spans), sits a little closer to the heading than the 16px head gap */
+.kicker {
+  margin-bottom: -4px;
+  font-size: 14px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--label-violet-ink);
+}
+@media (max-width: 640px) { .kicker { font-size: 13px; } }
 
 /* =========================================================
    EXPERIMENT: orange only where it means action or money
