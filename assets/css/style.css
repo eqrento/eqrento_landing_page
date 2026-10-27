@@ -319,6 +319,9 @@ section[id] { scroll-margin-top: 80px; }
 }
 /* spacing as padding (not gap) so the duplicated half is exactly 50% wide and the loop is seamless */
 .logos.is-marquee .logos__list li { padding: 0 calc(max(var(--logo-gap), 56px) / 2); }
+@media (max-width: 640px) {
+  .logos.is-marquee .logos__list li { padding: 0 14px; }   /* phones: 28px between logos instead of 56px, so more of them are in view at once */
+}
 @media (hover: hover) {
   .logos.is-marquee:hover .logos__list { animation-play-state: paused; }
 }
