@@ -279,8 +279,9 @@
     });
     logoItems.forEach(li => li.classList.add('is-in'));
     logos.classList.add('is-marquee');
-    // constant speed whatever the logo size: ~60px per second
-    logos.style.setProperty('--marquee-dur', `${(logoList.scrollWidth / 2 / 60).toFixed(1)}s`);
+    // constant speed whatever the logo size: 80px per second, a bit quicker on phones where only ~2 logos are in view
+    const speed = window.innerWidth <= 640 ? 95 : 80;
+    logos.style.setProperty('--marquee-dur', `${(logoList.scrollWidth / 2 / speed).toFixed(1)}s`);
   };
 
   // touch: a tap on a logo highlights it and pauses the marquee; scrolling the page
