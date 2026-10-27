@@ -1444,6 +1444,11 @@ section[id] { scroll-margin-top: 80px; }
   color: var(--label-violet-ink);
 }
 @media (max-width: 640px) { .kicker { font-size: 13px; } }
+/* the label above the client logos uses the same style (weight, case and tracking already match; size, line height and colour here) */
+.logos__title { font-size: 14px; line-height: 1.4; color: var(--label-violet-ink); }
+@media (max-width: 640px) { .logos__title { font-size: 13px; } }
+/* the very narrowest phones (320px): 13px would push the long logos title onto three lines */
+@media (max-width: 340px) { .kicker, .logos__title { font-size: 12.5px; } }
 
 /* =========================================================
    EXPERIMENT: orange only where it means action or money
