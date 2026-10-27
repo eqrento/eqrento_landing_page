@@ -1278,7 +1278,7 @@ section[id] { scroll-margin-top: 80px; }
 
   .steps__pin { --pin-top: 64px; }
   .steps__head br { display: none; }
-  .why__head br { display: none; }   /* phones: let the heading flow (3 even lines) */
+  .why__head .h2 br { display: none; }   /* phones: let the heading flow (3 even lines); the lead keeps its line break */
   .steps__track { --card-h: 240px; }
   .step { width: 266px; padding: 20px; }   /* wide enough for “Telematics & GPS” on one line */
   .step__glow { left: -130px; }
