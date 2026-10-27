@@ -256,6 +256,9 @@ section[id] { scroll-margin-top: 80px; }
   font-size: 14px; font-weight: 600; line-height: 1.2; color: var(--white);
   background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12);
 }
+/* short laptop screens (e.g. 1366×657): the hero is never lower than 760px and its content is centred in it, so on a lower
+   viewport the demo button sinks to the fold; tighter gaps pull it back up (the badge still clears the header logo) */
+@media (min-width: 1201px) and (max-height: 700px) { .hero__content { gap: 20px; } }
 .hero__chips li::before {
   content: ""; flex: none; width: 16px; height: 16px; background: #eda532;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
