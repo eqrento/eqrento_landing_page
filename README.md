@@ -25,14 +25,14 @@ and the video on `file://`.
 
 ```
 index.html
-favicon.ico            – browser tab / bookmarks (16, 32, 48 px)
+favicon.ico            – browser tab / bookmarks (16, 32, 48 px), made from the EQ mark
 apple-touch-icon.png   – iOS home screen (180 px)
 site.webmanifest       – Android home-screen icons (round 192 / 512 px + maskable)
 assets/css/style.css   – all styles; design tokens at the top (:root)
 assets/js/main.js      – interactions and animations
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos
-assets/icons/          – SVG icons and logos, favicon.svg, icon-192/512 and icon-maskable-512 PNGs
+assets/icons/          – SVG icons, logo-light.png (footer logo, white lettering), icon-192/512 and icon-maskable-512 PNGs
 assets/video/          – testimonial video (mp4 + webm fallback)
 ```
 
@@ -49,7 +49,7 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **Section spacing** – two variables at the top of `style.css`: `--sec-y` (76px desktop / 50px from 1200px down)
   where the background changes, `--sec-join` (48px / 32px) where two neighbouring sections share the same background.
 - **Hero background** – the block marked `EXPERIMENT` at the end of `style.css` gives the hero and header the light
-  page background. To return to the dark hero: delete that block, use `logo-light.svg` in the header and set
+  page background. To return to the dark hero: delete that block, use a light-lettered logo in the header and set
   `theme-color` back to `#0b0805`.
 - **Client logos** – each logo has a height `--lh` (set in `index.html`) chosen by optical balancing (wide and light
   marks bigger, compact and heavy marks smaller). Optional per logo: `--tone` darkens a pale logo in its grey state,

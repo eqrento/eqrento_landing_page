@@ -1418,7 +1418,7 @@ section[id] { scroll-margin-top: 80px; }
 
 /* =========================================================
    EXPERIMENT: light header + hero on the page background (no glows)
-   (to undo: delete this block, put logo-light.svg back in the header, theme-color #0b0805)
+   (to undo: delete this block, use a light-lettered logo in the header, theme-color #0b0805)
    ========================================================= */
 .header.is-scrolled { background: rgba(255, 255, 255, .88); border-color: rgba(23, 15, 4, .08); }
 .nav__link { color: var(--ink); opacity: .6; }
