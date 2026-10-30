@@ -32,7 +32,7 @@ assets/css/style.css   – all styles; design tokens at the top (:root)
 assets/js/main.js      – interactions and animations
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos
-assets/icons/          – SVG icons, logo-light.png (footer logo, white lettering), icon-192/512 and icon-maskable-512 PNGs
+assets/icons/          – SVG icons, logo-light.png (footer logo, all white), icon-192/512 and icon-maskable-512 PNGs
 assets/video/          – testimonial video (mp4 + webm fallback)
 ```
 
