@@ -781,7 +781,7 @@ section[id] { scroll-margin-top: 80px; }
   padding: 36px 32px; border-radius: 24px; background: var(--white);
   box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
-@supports not (grid-template-rows: subgrid) { .plan { display: flex; flex-direction: column; } }
+@supports not (grid-template-rows: subgrid) { .plan { display: flex; flex-direction: column; } .plan__price--quote { align-self: stretch; } }
 .plan__name { font-size: 26px; font-weight: 600; line-height: 1.25; color: var(--ink); }
 /* sits on the card's top edge (out of the grid flow), so it never competes with the plan name for room */
 .plan__badge {
@@ -796,7 +796,11 @@ section[id] { scroll-margin-top: 80px; }
   font-size: 44px; font-weight: 600; line-height: 1.1; letter-spacing: -.02em; color: var(--ink);
 }
 .plan__price small { font-size: 16px; font-weight: 400; letter-spacing: 0; color: var(--gray-2); }
-.plan__price--quote { align-self: end; font-size: 28px; line-height: 1.2; letter-spacing: -.01em; }   /* bottom of the price row, level with the figures */
+/* “Ask for a quote” is set like the prices (same size, weight, tracking) and sits at the bottom of the price row, level with the figures.
+   It is wider than “$799 /month”, so on one line it only fits the card at the price size when the card is wide (tablet / phone);
+   in the narrow four-column row the span shrinks to the card’s inner width (100cqi of the <p>, 7.45em = the text’s width in em). */
+.plan__price--quote { align-self: end; container-type: inline-size; }
+.plan__price--quote span { display: block; white-space: nowrap; font-size: min(1em, calc(100cqi / 7.45)); }
 .plan__billing { margin-top: 4px; font-size: 14px; line-height: 1.5; color: var(--gray-2); }
 .plan__limits {
   margin-top: 24px; padding: 14px 16px; border-radius: 14px;
@@ -1113,7 +1117,6 @@ section[id] { scroll-margin-top: 80px; }
   .plan { padding: 32px 26px; }
   .plan__name { font-size: 24px; }
   .plan__price { font-size: 40px; }
-  .plan__price--quote { font-size: 26px; }
 }
 
 @media (max-width: 1200px) {
@@ -1336,6 +1339,7 @@ section[id] { scroll-margin-top: 80px; }
   .plan--hero { margin-top: 20px; }   /* room for the badge on its top edge */
   .plan__badge { height: 40px; padding: 0 16px; font-size: 13px; }
   .plan__price { font-size: 40px; }
+  .plan__price--quote { align-self: stretch; }   /* in the stacked flex card "end" would shrink the box to its (size-contained) width: 0 */
   .pricing__tracker { margin-top: 32px; flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px; }
   .cmp__card { margin-top: 24px; border-radius: 20px; }
   .cmp__table thead { top: 64px; }
