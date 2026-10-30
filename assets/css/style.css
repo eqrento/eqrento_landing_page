@@ -848,14 +848,17 @@ section[id] { scroll-margin-top: 80px; }
 
 /* ---------- full feature comparison, collapsed until asked for ---------- */
 .cmp { margin-top: 40px; }
+/* the toggle is the way to the full plan comparison, so it is a solid dark button (a secondary action next to the
+   yellow demo buttons): white text, yellow plus, a soft shadow and the same 64px height as the other large buttons */
 .cmp__toggle {
-  display: flex; align-items: center; gap: 12px; margin-inline: auto;
-  height: 56px; padding: 0 28px; border-radius: 999px;
-  font-size: 16px; font-weight: 600; color: var(--ink);
-  background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 0 0 1px rgba(23, 15, 4, .1);
-  transition: box-shadow .3s var(--ease);
+  display: flex; align-items: center; gap: 14px; margin-inline: auto;
+  height: 64px; padding: 0 36px; border-radius: 999px;
+  font-size: 17px; font-weight: 600; color: var(--white);
+  background: var(--black); box-shadow: 0 18px 40px -18px rgba(23, 15, 4, .55), 0 1px 1px rgba(0, 0, 0, .2);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
 }
-.cmp__toggle:hover { box-shadow: 0 14px 32px -16px rgba(23, 15, 4, .3), inset 0 0 0 1px rgba(23, 15, 4, .22); }
+.cmp__toggle:hover { transform: translateY(-2px); box-shadow: 0 24px 44px -16px rgba(23, 15, 4, .6), 0 1px 1px rgba(0, 0, 0, .2); }
+@media (max-width: 640px) { .cmp__toggle { height: 60px; padding: 0 28px; font-size: 16px; } }
 .cmp__icon { position: relative; flex: none; width: 20px; height: 20px; }
 .cmp__icon::before, .cmp__icon::after {
   content: ""; position: absolute; left: 3px; right: 3px; top: 9px; height: 2px; border-radius: 2px;
