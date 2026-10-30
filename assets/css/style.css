@@ -943,6 +943,9 @@ section[id] { scroll-margin-top: 80px; }
    CTA
    ========================================================= */
 .cta { padding: var(--sec-join) 0 var(--sec-y); background: var(--soft); }
+.cta[hidden] { display: none; }
+/* while the CTA is hidden the FAQ is the last section before the dark footer: use the full section spacing below it, not the join spacing */
+.faq:has(+ .cta[hidden]) { padding-bottom: var(--sec-y); }
 .cta__box {
   position: relative; isolation: isolate; overflow: hidden;
   height: 671px; border-radius: 40px;
