@@ -42,7 +42,7 @@ Hero → client logos → Why EQrento (“Between a basic spreadsheet and a comp
 (“One platform…”) → How it works (“Six interconnected stages…”, pinned horizontal scroll) → Key features and
 competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Testimonial → Pricing → FAQ → CTA →
 footer.
-Menu: Home, Why EQrento, Platform, How it works, Pricing, FAQ (header, mobile menu and footer follow the page order).
+Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobile menu and footer follow the page order; the Platform section has no menu link).
 
 ## Things worth knowing
 
