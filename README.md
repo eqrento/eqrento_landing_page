@@ -66,7 +66,7 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **Pricing** (`#pricing`) – four plans: Essential, Complete (recommended, dark card), Connected, Enterprise. Each card is
   a CSS subgrid of 8 rows, so names, prices, buttons and lists line up across the cards (4 in a row above 1200px, 2×2
   down to 641px, one column on phones). Yearly / monthly switch: every price has `data-yearly` and `data-monthly`, and
-  `main.js` swaps the texts. “Compare all EQrento features” opens the full table; its header sticks under the page header.
+  `main.js` swaps the texts. Order below the cards: “Compare all EQrento features” (opens the full table, whose header sticks under the page header), the telemetry-device box, the price note.
   Below 900px each row shows the feature name above its four plan cells (the explicit ARIA roles in the table markup
   keep it a table for screen readers). Cells: `class="y"` included, `"n"` not included, `"t"` text.
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
