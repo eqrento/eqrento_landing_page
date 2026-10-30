@@ -51,6 +51,10 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **Hero background** – the block marked `EXPERIMENT` at the end of `style.css` gives the hero and header the light
   page background. To return to the dark hero: delete that block, use a light-lettered logo in the header and set
   `theme-color` back to `#0b0805`.
+- **Dark surfaces** – navy from the logo mark (`--mark-navy: #1b1562`) instead of black on the EQrento card (Why),
+  One platform, the testimonial card, the Complete plan, the compare button, the active How it works card and the
+  footer, with violet glows and a cool grey for secondary text. It is the last `EXPERIMENT` block in `style.css`;
+  delete it to go back to black.
 - **Client logos** – each logo has a height `--lh` (set in `index.html`) chosen by optical balancing (wide and light
   marks bigger, compact and heavy marks smaller). Optional per logo: `--tone` darkens a pale logo in its grey state,
   `--logo-gray: url(#logo-gray-red)` uses a red-channel grey (for the red-on-black Tenge logo; the SVG filter is inline
