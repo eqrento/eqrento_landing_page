@@ -1507,8 +1507,12 @@ section[id] { scroll-margin-top: 80px; }
   --mark-glow: linear-gradient(90deg, #9776fe, #6462ff);    /* left and right half of the mark */
   --shadow-brand: 0 24px 70px -15px rgba(100, 98, 255, .42);
 }
-.why-card--hero, .platform, .testimonial, .plan--hero, .cmp__toggle, .footer,
+.why-card--hero, .platform, .plan--hero, .cmp__toggle, .footer,
 .step.is-active, .step:hover { background: var(--mark-navy); }
+/* testimonial: the navy sits on the text half only. A background on the rounded card itself shows as a dark rim along the anti-aliased
+   corners of the photo/video (card background + clipped child blend at the curve); without it the corners blend with the page instead */
+.testimonial { background: transparent; }
+.testimonial__body { background: var(--mark-navy); }
 /* secondary text on navy: cool grey, 7.6:1 */
 .why-card--hero, .testimonial, .plan--hero, .footer, .step.is-active, .step:hover { --gray: #b3afd6; }
 
