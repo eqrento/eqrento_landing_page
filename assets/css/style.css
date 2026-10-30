@@ -630,9 +630,12 @@ section[id] { scroll-margin-top: 80px; }
   background: var(--black);
   box-shadow: 0 32px 80px -40px rgba(196, 122, 0, .45);
 }
-.testimonial__media { position: relative; overflow: hidden; background: #0b0805; container-type: size; }
-/* blurred copy of the poster fills any space around the video */
+/* no background and no backdrop under a video that fills the slot: anything dark under the video shows as a dark rim
+   along the card's anti-aliased rounded corners (with nothing under it, the corners blend with the page) */
+.testimonial__media { position: relative; overflow: hidden; container-type: size; }
+/* blurred copy of the poster fills the space around the video – only when the whole frame is shown (below) */
 .testimonial__backdrop {
+  display: none;
   position: absolute; inset: -12%; width: 124%; height: 124%; max-width: none;
   object-fit: cover; filter: blur(28px) brightness(.55); pointer-events: none;
 }
@@ -640,6 +643,7 @@ section[id] { scroll-margin-top: 80px; }
 /* captions sit at 10–91% of the video width: once the slot is narrower than ~10:9, show the whole frame */
 @container (max-aspect-ratio: 10 / 9) {
   .testimonial__video { object-fit: contain; }
+  .testimonial__backdrop { display: block; }
 }
 .testimonial__play {
   position: absolute; left: 24px; bottom: 24px; z-index: 1;
