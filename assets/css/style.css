@@ -1023,9 +1023,8 @@ section[id] { scroll-margin-top: 80px; }
   .footer__legal { justify-content: center; }
 }
 .footer__bottom p { text-wrap: balance; }   /* narrow phones: the tagline breaks after “Poland,” (its halves are .nowrap) */
-/* the copyright breaks only after “z o.o.”: where it no longer fits on one line, the bullet goes and “All Rights Reserved” gets its own line */
+/* the copyright breaks only after “z o.o.”: where it no longer fits on one line, “All Rights Reserved” gets its own line (there is no bullet: “o.o.” already ends with a full stop) */
 @media (max-width: 380px) {
-  .footer__sep { display: none; }
   .footer__rights { display: block; }
 }
 .footer__tagline svg { display: inline-block; vertical-align: -1px; }
