@@ -1015,10 +1015,12 @@ section[id] { scroll-margin-top: 80px; }
   margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .08);
   display: flex; justify-content: space-between; gap: 16px; font-size: 12px;
 }
-.footer__copy p { text-wrap: balance; }   /* narrow phones: two even lines; “SOLTIX Sp. z o.o. •” and “All Rights Reserved” never split, the tagline breaks after “Poland,” */
-.footer__copy p + p { margin-top: 2px; }   /* “Crafted with grit in Poland…” right under the copyright, same small grey text */
-/* below ~760px the copyright lines and the three legal links no longer fit side by side: stack them (as on phones) */
-@media (max-width: 760px) { .footer__bottom { flex-direction: column; } }
+/* desktop: copyright – tagline – legal links in one row; space-between puts the tagline midway between the other two */
+@media (min-width: 1201px) { .footer__bottom > * { white-space: nowrap; } }
+/* tablets and phones: one column, from the top: legal links, tagline, copyright */
+@media (max-width: 1200px) { .footer__bottom { flex-direction: column-reverse; gap: 12px; } }
+.footer__bottom p { text-wrap: balance; }   /* narrow phones: two even lines; “SOLTIX Sp. z o.o. •”, “All Rights Reserved” and the tagline’s two halves (break after “Poland,”) never split */
+.footer__tagline svg { display: inline-block; vertical-align: -1px; }
 .footer__legal { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .footer__cookie-btn {
   padding: 0; border: 0; background: none; cursor: pointer;
@@ -1388,8 +1390,11 @@ section[id] { scroll-margin-top: 80px; }
   .footer__grid { grid-template-columns: 1fr 1fr; row-gap: 8px; }
   .footer__grid > .footer__col:nth-child(2) { grid-column: 1 / -1; }
   .footer__brand img { width: 190px; }
-  .footer__bottom { flex-direction: column; margin-top: 40px; }
+  .footer__bottom { margin-top: 40px; }
 }
+/* narrowest phones (320px): the e-mail address sets the Contact column's width, so a smaller column gap
+   leaves the System links (“Why EQrento?”, “How it works”, “Key features”) room for one line each */
+@media (max-width: 350px) { .footer__grid { column-gap: 12px; } }
 
 /* =========================================================
    WARM VARIANT (yellow) – component tweaks
