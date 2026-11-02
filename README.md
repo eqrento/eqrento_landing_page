@@ -25,13 +25,15 @@ and the video on `file://`.
 
 ```
 index.html
+robots.txt, sitemap.xml – search engines (point to https://eqrento.com/)
+404.html               – page for unknown addresses (GitHub Pages serves it automatically; works from the site root)
 favicon.ico            – browser tab / bookmarks (16, 32, 48 px), made from the EQ mark
 apple-touch-icon.png   – iOS home screen (180 px)
 site.webmanifest       – Android home-screen icons (round 192 / 512 px + maskable)
 assets/css/style.css   – all styles; design tokens at the top (:root)
 assets/js/main.js      – interactions and animations
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
-assets/img/            – images, client logos
+assets/img/            – images, client logos, og-image.png (1200×630 link-preview picture)
 assets/icons/          – SVG icons, logo-light.png (footer logo, all white), icon-192/512 and icon-maskable-512 PNGs
 assets/video/          – testimonial video (mp4 + webm fallback)
 ```
@@ -88,8 +90,7 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - “Privacy Policy” and “Cookie Policy” links have `href="#"` – point them to the real documents. Keep the banner text
   and the Cookie Policy in line with the tools actually used.
 - FAQ answers 2–6 and some Key features descriptions are placeholder copy.
-- Optional: social-sharing image (Open Graph), `robots.txt`, `sitemap.xml`, 404 page,
-  converting large PNG/JPG images to WebP.
+- Optional: converting large PNG/JPG images to WebP.
 - The free UIcons licence requires attribution (“Uicons by Flaticon”) unless you have a Flaticon subscription.
 
 ## Cache busting

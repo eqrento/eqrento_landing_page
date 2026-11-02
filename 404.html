@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found – EQrento</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#1b1562">
+  <!-- this page is served for any unknown address (also deep ones like /a/b/c), so every link is relative to the site root:
+       on eqrento.com that is "/", on the GitHub draft it is "/eqrento_landing_page/" -->
+  <script>
+    document.write('<base href="' + (location.hostname.slice(-10) === 'github.io' ? '/eqrento_landing_page/' : '/') + '">');
+  </script>
+  <link rel="icon" href="favicon.ico?v=2" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+  <style>
+    @font-face {
+      font-family: "Sora"; font-style: normal; font-display: swap; font-weight: 100 800;
+      src: url("assets/fonts/sora-latin-wght-normal.woff2") format("woff2-variations");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: grid; place-items: center; padding: 32px 24px;
+      font-family: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: #fff; text-align: center; -webkit-font-smoothing: antialiased;
+      background: radial-gradient(60% 70% at 100% 0%, rgba(100, 98, 255, .38), transparent 70%),
+                  radial-gradient(50% 60% at 0% 100%, rgba(151, 118, 254, .25), transparent 70%), #1b1562;
+    }
+    main { max-width: 520px; }
+    .logo { width: 220px; height: auto; margin-bottom: 48px; }
+    .code { margin: 0; font-size: clamp(72px, 18vw, 120px); font-weight: 700; line-height: 1; letter-spacing: -.03em; color: #9776fe; }
+    h1 { margin: 16px 0 0; font-size: clamp(24px, 5vw, 32px); font-weight: 600; line-height: 1.25; }
+    p { margin: 16px 0 0; font-size: 16px; line-height: 1.6; color: #b3afd6; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; height: 56px; margin-top: 36px; padding: 0 36px;
+      border-radius: 999px; background: linear-gradient(90deg, #ffd23f, #ffa41b);
+      font-size: 16px; font-weight: 600; color: #170f04; text-decoration: none;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(255, 187, 45, .55); }
+    .btn:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="assets/icons/logo-light.png?v=2" width="220" height="44" alt="EQrento">
+    <p class="code" aria-hidden="true">404</p>
+    <h1>This page doesn’t exist</h1>
+    <p>The address may be mistyped or the page has moved. Let’s get you back to the start.</p>
+    <a class="btn" href="./">Back to EQrento</a>
+  </main>
+</body>
+</html>
