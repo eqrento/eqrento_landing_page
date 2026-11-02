@@ -1015,6 +1015,10 @@ section[id] { scroll-margin-top: 80px; }
   margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .08);
   display: flex; justify-content: space-between; gap: 16px; font-size: 12px;
 }
+.footer__copy p { text-wrap: balance; }   /* narrow phones: two even lines; “SOLTIX Sp. z o.o. •” and “All Rights Reserved” never split, the tagline breaks after “Poland,” */
+.footer__copy p + p { margin-top: 2px; }   /* “Crafted with grit in Poland…” right under the copyright, same small grey text */
+/* below ~760px the copyright lines and the three legal links no longer fit side by side: stack them (as on phones) */
+@media (max-width: 760px) { .footer__bottom { flex-direction: column; } }
 .footer__legal { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .footer__cookie-btn {
   padding: 0; border: 0; background: none; cursor: pointer;
