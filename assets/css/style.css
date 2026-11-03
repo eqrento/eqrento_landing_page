@@ -894,6 +894,7 @@ section[id] { scroll-margin-top: 80px; }
 }
 .pricing__tracker b { font-weight: 600; color: var(--ink); }
 .pricing__note { margin: 20px auto 0; max-width: 760px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-2); }
+@media (min-width: 1201px) { .pricing__note { max-width: none; } }   /* wide screens: the whole note on one line */
 
 /* ---------- full feature comparison, collapsed until asked for ---------- */
 .cmp { margin-top: 40px; }
