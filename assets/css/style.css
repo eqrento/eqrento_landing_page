@@ -275,8 +275,8 @@ section[id] { scroll-margin-top: 80px; }
 }
 .hero__stage > div { position: absolute; }
 .hero__screen  { left: 23.8%;  top: 0;      width: 63.65%; z-index: 1; }
-.hero__forklift{ left: 0;      top: 36.8%;  width: 38.78%; z-index: 2; }
-.hero__lift    { left: 66.84%; top: 28.99%; width: 29.806%; z-index: 3; } /* image canvas extended on the right so the glow fades out */
+.hero__forklift{ left: 6.263%; top: 36.8%;  width: 38.78%; z-index: 2; }   /* its back edge sits as far left of the front (offer) window as the lift sits right of it */
+.hero__lift    { left: 67.497%; top: 36.212%; width: 26.229%; z-index: 3; } /* 12% smaller than it was (more of the AI window shows), wheels on the same line; image canvas extended on the right so the glow fades out */
 .hero__screen img { width: 100%; }   /* the collage brings its own window shadows and glow */
 
 /* =========================================================
@@ -1353,13 +1353,13 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   .hero__content { width: 640px; }
   .hero__title { max-width: 620px; }
   /* the whole picture is centred and fits the content width: the visible part runs from the forklift's
-     forks (7.07% of the stage) to the scissor lift's right edge (90.75%) – 83.68% wide, centred at 48.91% */
+     forks (13.33% of the stage) to the scissor lift's right edge (88.48%) – 75.15% wide, centred at 50.91% */
   .hero__stage {
-    --sw: min(calc((100% - 2 * var(--gutter)) / .8368), 1100px);
+    --sw: min(calc((100% - 2 * var(--gutter)) / .7515), 1100px);
     position: relative; top: auto; right: auto;
-    margin: 48px 0 -2% calc(50% - var(--sw) * .4891);
+    margin: 48px 0 -2% calc(50% - var(--sw) * .5091);
   }
-  .hero__lift { top: 29.44%; } /* wheels level with the forklift (parallax is gentler here) */
+  .hero__lift { top: 36.419%; } /* wheels level with the forklift (parallax is gentler here) */
 
   .logos { --logo-k: .825; --logo-gap: 64px; }
   .logos__list { justify-content: center; }   /* only seen without the marquee (reduced motion) */
@@ -1458,8 +1458,14 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   /* phones: four pills would stack one per row, so show them as a compact checklist instead */
   .hero__chips { flex-direction: column; gap: 6px; margin-top: -6px; }
   .hero .hero__chips li { padding: 0; background: none; border: 0; font-size: 14px; }
-  .hero__stage { margin-top: 32px; }
-  .hero__lift { top: 29.51%; } /* wheels level with the forklift (parallax is gentler here) */
+  /* phones get the offer window on its own (1.6× larger), so both machines stand in front of its edges: the forklift
+     overlaps it as much as the lift does; the visible part (forks 14.26% – lift 88.48% of the stage) is centred */
+  .hero__stage {
+    --sw: min(calc((100% - 2 * var(--gutter)) / .7422), 1100px);
+    margin: 32px 0 -2% calc(50% - var(--sw) * .5137);
+  }
+  .hero__forklift { left: 7.188%; }
+  .hero__lift { top: 36.452%; } /* wheels level with the forklift (parallax is gentler here) */
 
   .logos { --logo-k: .845; --logo-gap: 56px; }   /* phones: logos ~1/3 larger than the original 132px slots */
   .logos__title { margin-bottom: 20px; font-size: 12px; }
@@ -1592,7 +1598,7 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 .qa__icon::before, .qa__icon::after { background: #ffa41b; }
 .qa__q:hover .qa__icon::before, .qa__q:hover .qa__icon::after { background: #f08c00; }
 /* no parallax: wheels level with the forklift in the static layout */
-@media (prefers-reduced-motion: reduce) { .hero__lift { top: 29.71%; } }
+@media (prefers-reduced-motion: reduce) { .hero__lift { top: 36.546%; } }
 
 /* =========================================================
    EXPERIMENT: light header + hero on the page background (no glows)

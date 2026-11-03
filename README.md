@@ -81,7 +81,10 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   `collage 2.webp` (2640×1827, transparent), flattened onto the hero colour `#f8f7f5` with a soft violet glow baked in
   and saved as JPEG: `assets/img/screens/hero-640|840|1080|1320|1680.jpg` and `hero-phone-300|450|600|800.jpg`
   (`fetchpriority="high"`: it is the first big picture). If the hero background colour changes, the pictures have to
-  be made again (`../narzedzia/`).
+  be made again (`../narzedzia/`). The forklift and the lift stand the same distance from the offer window's edges
+  (on phones they overlap its edges by the same amount). When moving or resizing them, update the centring constants
+  of the ≤ 1200px and ≤ 640px layouts (`--sw` divisor, margin factor) and the lift's `top` values (wheels on one line,
+  parallax included) to match.
 - **Telematics section** – machine → map → GPS report card → invoice card, one row above 1200px, a column below.
   The cards are HTML/CSS sized in container units (`cqi`) so they scale like a picture; the two documents are inline
   SVG. Arrows between stages are CSS masks.
