@@ -424,3 +424,191 @@
   if (stored) apply(stored);
   else setTimeout(() => show(false), 600);
 })();
+
+/* ---------- demo request dialog ----------
+   Every link to #book-demo opens it; eqrento.com/#book-demo opens it on arrival (e-mails, ads).
+   The form posts JSON to its data-endpoint: a Google Apps Script web app (README: “Demo request form”).
+   The body goes as text/plain on purpose – that keeps it a “simple” cross-origin request with no CORS
+   preflight, which Apps Script can’t answer. No endpoint yet, or sending failed → the visitor gets a
+   pre-filled e-mail to contact@eqrento.com instead, so no request is lost. */
+(() => {
+  const dialog = document.getElementById('book-demo');
+  if (!dialog || typeof dialog.showModal !== 'function') return;
+  const HASH = '#book-demo', CONTACT = 'contact@eqrento.com', LABEL = 'Request my demo';
+  const form = dialog.querySelector('.demo__form');
+  const field = name => form.elements.namedItem(name);
+  const views = { form: dialog.querySelector('[data-demo-view="form"]'), done: dialog.querySelector('[data-demo-view="done"]') };
+  const status = dialog.querySelector('.demo__status');
+  const submit = dialog.querySelector('.demo__submit');
+  const other = form.querySelector('[data-demo-other]');
+  let trigger = null, source = 'direct link', openedAt = 0, pushed = false, sending = false, downOnBackdrop = false, isOpen = false;
+
+  /* where the visitor clicked (“pricing – Complete”, “hero”…) – it lands in the e-mail and the sheet */
+  const AREAS = { header: 'header', 'mobile-menu': 'mobile menu', home: 'hero', why: 'why EQrento card', demo: 'closing call to action' };
+  const sourceOf = el => {
+    const plan = el.closest('.plan');
+    if (plan) return 'pricing – ' + plan.querySelector('.plan__name').textContent.trim();
+    const area = el.closest('[id]');
+    return area ? AREAS[area.id] || area.id : 'page';
+  };
+
+  const showView = name => Object.entries(views).forEach(([key, view]) => { view.hidden = key !== name; });
+  const open = el => {
+    trigger = el;
+    source = el ? sourceOf(el) : 'direct link';
+    showView('form');
+    if (!dialog.open) dialog.showModal();
+    isOpen = true;
+    document.body.classList.add('demo-open');
+    openedAt = Date.now();
+    dialog.scrollTop = 0;
+    views.form.querySelector('.demo__title').focus({ preventScroll: true });
+    document.dispatchEvent(new CustomEvent('eq:demo-open', { detail: { source } }));
+  };
+  /* runs once per closing, whichever way it closes (button, backdrop, Esc, phone Back) – done here and not only
+     in the dialog’s own "close" event, which browsers may deliver late */
+  const cleanup = () => {
+    if (!isOpen) return;
+    isOpen = false;
+    document.body.classList.remove('demo-open');
+    if (pushed) { pushed = false; if (history.state && history.state.demo) history.back(); }
+    else if (location.hash === HASH) history.replaceState(null, '', location.pathname + location.search);
+    // focus goes back to the button that opened the form, once the dialog has actually closed
+    setTimeout(() => { if (trigger && trigger.offsetParent && !dialog.open) trigger.focus({ preventScroll: true }); }, 0);
+  };
+  const close = () => { if (dialog.open) dialog.close(); cleanup(); };
+
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href="#book-demo"]');
+    if (!link) return;
+    e.preventDefault();
+    // own history entry, so the phone’s Back button closes the form instead of leaving the page
+    if (!dialog.open && location.hash !== HASH) { history.pushState({ demo: true }, '', HASH); pushed = true; }
+    open(link);
+  });
+  if (location.hash === HASH) open(null);
+  window.addEventListener('hashchange', () => { if (location.hash === HASH && !dialog.open) open(null); });
+  window.addEventListener('popstate', () => { if (dialog.open && location.hash !== HASH) { pushed = false; close(); } });
+
+  dialog.querySelectorAll('[data-demo-close]').forEach(b => b.addEventListener('click', close));
+  // a click on the dimmed area closes it – not a drag that ends there, not the scrollbar
+  dialog.addEventListener('pointerdown', e => { downOnBackdrop = e.target === dialog && e.clientX < dialog.clientWidth; });
+  dialog.addEventListener('click', e => { if (downOnBackdrop && e.target === dialog) close(); });
+  dialog.addEventListener('cancel', cleanup);   // Esc, or the Back gesture on Android
+  dialog.addEventListener('close', cleanup);
+
+  other.addEventListener('change', () => {
+    field('rents_other').hidden = !other.checked;
+    if (other.checked) field('rents_other').focus();
+  });
+
+  /* validation: only after the first “Request my demo”, then errors clear as the visitor fixes them */
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const checks = [
+    { box: form.querySelector('[data-demo-required="rents"]'), ok: () => !!form.querySelector('[name="rents"]:checked') },
+    { box: form.querySelector('[data-demo-required="fleet_size"]'), ok: () => !!form.querySelector('[name="fleet_size"]:checked') },
+    { input: field('company'), ok: () => field('company').value.trim() !== '' },
+    { input: field('name'), ok: () => field('name').value.trim() !== '' },
+    { input: field('email'), ok: () => EMAIL.test(field('email').value.trim()) }
+  ];
+  checks.forEach((c, i) => {
+    c.holder = c.box || c.input.closest('.demo__field');
+    c.error = c.holder.querySelector('.demo__error');
+    c.error.id = 'demo-error-' + i;
+  });
+  const validate = () => {
+    let first = null;
+    checks.forEach(c => {
+      const bad = !c.ok();
+      c.error.hidden = !bad;
+      const target = c.input || c.box;
+      if (bad) target.setAttribute('aria-describedby', c.error.id); else target.removeAttribute('aria-describedby');
+      if (c.input) c.input.setAttribute('aria-invalid', String(bad));
+      if (bad && !first) first = c;
+    });
+    return first;
+  };
+  const revalidate = () => { if (form.dataset.tried) validate(); };
+  form.addEventListener('input', revalidate);
+  form.addEventListener('change', revalidate);
+
+  const collect = () => {
+    const utm = [...new URLSearchParams(location.search)]
+      .filter(([k]) => /^(utm_|gclid|fbclid)/.test(k)).map(([k, v]) => k + '=' + v).join('&');
+    let timezone = '';
+    try { timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    return {
+      rents: [...form.querySelectorAll('[name="rents"]:checked')].map(i => i.value),
+      rents_other: other.checked ? field('rents_other').value.trim() : '',
+      fleet_size: form.querySelector('[name="fleet_size"]:checked').value,
+      company: field('company').value.trim(),
+      name: field('name').value.trim(),
+      email: field('email').value.trim(),
+      phone: field('phone').value.trim(),
+      message: field('message').value.trim(),
+      website: field('website').value,   // spam trap
+      source, page: location.origin + location.pathname, referrer: document.referrer, utm, timezone,
+      language: navigator.language || '', seconds: Math.round((Date.now() - openedAt) / 1000)
+    };
+  };
+
+  const setSending = on => {
+    sending = on;
+    submit.disabled = on;
+    submit.querySelector('[data-demo-label]').textContent = on ? 'Sending…' : LABEL;
+    form.setAttribute('aria-busy', String(on));
+  };
+  const done = data => {
+    views.done.querySelector('[data-demo-done-title]').textContent = `Thank you, ${data.name.split(/\s+/)[0]} – request received!`;
+    views.done.querySelector('[data-demo-done-email]').textContent = ` at ${data.email}`;
+    form.reset();
+    field('rents_other').hidden = true;
+    form.querySelector('.demo__more').open = false;
+    delete form.dataset.tried;
+    showView('done');
+    dialog.scrollTop = 0;
+    views.done.querySelector('.demo__title').focus({ preventScroll: true });
+    document.dispatchEvent(new CustomEvent('eq:demo-request', { detail: { source: data.source, fleet_size: data.fleet_size } }));
+  };
+  const link = (text, href) => Object.assign(document.createElement('a'), { textContent: text, href });
+  const fail = data => {
+    const body = [
+      'Hello EQrento team,', '', 'I’d like to book a 30-minute demo.', '',
+      `Company: ${data.company}`, `Name: ${data.name}`, `Email: ${data.email}`, `Phone: ${data.phone || '–'}`,
+      `Fleet size: ${data.fleet_size} units`,
+      `We rent: ${data.rents.join(', ')}${data.rents_other ? ` (${data.rents_other})` : ''}`,
+      '', data.message
+    ].join('\n').trim();
+    const mail = `mailto:${CONTACT}?subject=${encodeURIComponent('Demo request – ' + data.company)}&body=${encodeURIComponent(body)}`;
+    status.replaceChildren('Your request couldn’t be sent just now. ', link('Send it by email instead', mail),
+      ' – everything you entered is already filled in – or write to ', link(CONTACT, 'mailto:' + CONTACT), '.');
+    status.hidden = false;
+  };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (sending) return;
+    status.hidden = true;
+    form.dataset.tried = '1';
+    const bad = validate();
+    if (bad) { (bad.input || bad.box.querySelector('input')).focus(); return; }
+    const data = collect();
+    if (data.website) { done(data); return; }   // a bot filled the trap: look successful, send nothing
+    const endpoint = form.dataset.endpoint;
+    if (!endpoint) { fail(data); return; }
+    setSending(true);
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 20000);
+    try {
+      const res = await fetch(endpoint, { method: 'POST', body: JSON.stringify(data), signal: ctrl.signal });
+      const reply = await res.json().catch(() => ({}));
+      if (!res.ok || !reply.ok) throw new Error(reply.error || String(res.status));
+      done(data);
+    } catch (err) {
+      fail(data);
+    } finally {
+      clearTimeout(timer);
+      setSending(false);
+    }
+  });
+})();

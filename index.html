@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261102f">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261103d">
 </head>
 <body>
 
@@ -52,7 +52,7 @@
       </ul>
     </nav>
 
-    <a href="#" class="btn btn--primary header__cta">Book a demo</a>
+    <a href="#book-demo" class="btn btn--primary header__cta">Book a demo</a>
 
     <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -71,7 +71,7 @@
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#" class="btn btn--primary btn--arrow mobile-menu__cta">
+  <a href="#book-demo" class="btn btn--primary btn--arrow mobile-menu__cta">
     <span>Book a 30-minute demo</span>
     <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
   </a>
@@ -98,7 +98,7 @@
           <li>Live in weeks&nbsp;– we import your&nbsp;data</li>
         </ul>
         <div data-reveal style="--d:440ms">
-          <a href="#" class="btn btn--primary btn--arrow">
+          <a href="#book-demo" class="btn btn--primary btn--arrow">
             <span>Book a 30-minute demo</span>
             <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
           </a>
@@ -178,7 +178,7 @@
             <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Live in weeks, not months&nbsp;– we import your fleet, customers and price&nbsp;lists</li>
             <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Direct line to the people who build&nbsp;it</li>
           </ul>
-          <a href="#" class="btn btn--primary btn--arrow why-card__cta">
+          <a href="#book-demo" class="btn btn--primary btn--arrow why-card__cta">
             <span>Book a 30-minute demo</span>
             <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
           </a>
@@ -559,7 +559,7 @@
             <li><b>Up to 50</b> units</li>
             <li><b>Unlimited</b> users and&nbsp;branches</li>
           </ul>
-          <a href="#" class="btn btn--primary plan__cta">Book a demo</a>
+          <a href="#book-demo" class="btn btn--primary plan__cta">Book a demo</a>
           <p class="plan__intro">What’s included:</p>
           <ul class="plan__list">
             <li>Offers built from live fleet availability</li>
@@ -582,7 +582,7 @@
             <li><b>Up to 200</b> units</li>
             <li><b>Unlimited</b> users and&nbsp;branches</li>
           </ul>
-          <a href="#" class="btn btn--primary plan__cta">Book a demo</a>
+          <a href="#book-demo" class="btn btn--primary plan__cta">Book a demo</a>
           <p class="plan__intro">Everything in Essential, plus:</p>
           <ul class="plan__list">
             <li>Transport planning with the driver app</li>
@@ -603,7 +603,7 @@
             <li><b>Up to 500</b> units</li>
             <li><b>Unlimited</b> users and&nbsp;branches</li>
           </ul>
-          <a href="#" class="btn btn--primary plan__cta">Book a demo</a>
+          <a href="#book-demo" class="btn btn--primary plan__cta">Book a demo</a>
           <p class="plan__intro">Everything in Complete, plus:</p>
           <ul class="plan__list">
             <li>Live GPS map of the whole fleet</li>
@@ -871,7 +871,7 @@
           <h2 class="cta__title" data-reveal style="--d:150ms">See it on your <br>kind of fleet</h2>
           <p class="cta__lead" data-reveal style="--d:250ms">A 30-minute demo, tailored to how you actually work — your equipment types, your branches, your process. No slides, no pressure, and a straight answer on whether we're a fit.</p>
           <div data-reveal style="--d:350ms">
-            <a href="#" class="btn btn--primary btn--arrow">
+            <a href="#book-demo" class="btn btn--primary btn--arrow">
               <span>Book a 30-minute demo</span>
               <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
             </a>
@@ -934,6 +934,99 @@
   </div>
 </footer>
 
+<!-- ============ DEMO REQUEST – every “Book a demo” button links to #book-demo and opens this dialog (main.js);
+     eqrento.com/#book-demo opens it straight away. The form sends JSON to data-endpoint (Google Apps Script web app
+     URL, see README); with no endpoint, or when sending fails, the visitor gets a ready-made e-mail instead. ============ -->
+<dialog class="demo" id="book-demo" aria-labelledby="demo-title">
+  <div class="demo__panel">
+    <button type="button" class="demo__close" data-demo-close aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
+    <div class="demo__view" data-demo-view="form">
+      <h2 class="demo__title" id="demo-title" tabindex="-1">Book a 30-minute demo</h2>
+      <p class="demo__lead">Tell us a little about your fleet and we’ll tailor the demo to it. It takes about a minute.</p>
+
+      <form class="demo__form" novalidate data-endpoint="">
+        <fieldset class="demo__group" data-demo-required="rents">
+          <legend class="demo__label">What do you rent? <span class="demo__hint">Select all that apply</span></legend>
+          <div class="demo__chips">
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Construction machinery"><span>Construction machinery</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Access platforms &amp; lifts"><span>Access platforms &amp; lifts</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Forklifts &amp; telehandlers"><span>Forklifts &amp; telehandlers</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Tools &amp; small equipment"><span>Tools &amp; small equipment</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Power &amp; climate"><span>Power &amp; climate</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Vehicles &amp; carts"><span>Vehicles &amp; carts</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Event equipment"><span>Event equipment</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Other" data-demo-other><span>Other</span></label>
+          </div>
+          <input class="demo__input demo__other" type="text" name="rents_other" maxlength="120" placeholder="What else do you rent?" aria-label="What else do you rent?" hidden>
+          <p class="demo__error" hidden>Choose at least one.</p>
+        </fieldset>
+
+        <fieldset class="demo__group" data-demo-required="fleet_size">
+          <legend class="demo__label">Fleet size <span class="demo__hint">Units = machines or devices you track individually</span></legend>
+          <div class="demo__chips">
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="Up to 50"><span>Up to 50</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="51–200"><span>51–200</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="201–500"><span>201–500</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="501–1,000"><span>501–1,000</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="1,000+"><span>1,000+</span></label>
+          </div>
+          <p class="demo__error" hidden>Choose your fleet size.</p>
+        </fieldset>
+
+        <div class="demo__grid">
+          <div class="demo__field">
+            <label class="demo__label" for="demo-company">Company name</label>
+            <input class="demo__input" id="demo-company" name="company" type="text" autocomplete="organization" maxlength="120" required>
+            <p class="demo__error" hidden>Enter your company name.</p>
+          </div>
+          <div class="demo__field">
+            <label class="demo__label" for="demo-name">Your name</label>
+            <input class="demo__input" id="demo-name" name="name" type="text" autocomplete="name" maxlength="80" required>
+            <p class="demo__error" hidden>Enter your name.</p>
+          </div>
+          <div class="demo__field">
+            <label class="demo__label" for="demo-email">Email</label>
+            <input class="demo__input" id="demo-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" required>
+            <p class="demo__error" hidden>Enter a valid email address.</p>
+          </div>
+          <div class="demo__field">
+            <label class="demo__label" for="demo-phone">Phone <span class="demo__optional">(optional)</span></label>
+            <input class="demo__input" id="demo-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40">
+          </div>
+        </div>
+
+        <details class="demo__more">
+          <summary>Add a note for our team <span class="demo__optional">(optional)</span></summary>
+          <label class="sr-only" for="demo-message">Anything you’d like us to cover?</label>
+          <textarea class="demo__input" id="demo-message" name="message" rows="3" maxlength="1500" placeholder="Anything you’d like us to cover? E.g. we work in spreadsheets today and want GPS-based billing for our lifts"></textarea>
+        </details>
+
+        <!-- spam trap: people never see this field, bots fill it in -->
+        <div class="demo__trap" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+        <button type="submit" class="btn btn--primary btn--arrow demo__submit">
+          <span data-demo-label>Request my demo</span>
+          <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+        </button>
+        <p class="demo__privacy">We’ll use your details only to arrange your demo. More in our <a href="#">Privacy Policy</a>.</p>
+        <p class="demo__status" role="alert" hidden></p>
+      </form>
+    </div>
+
+    <div class="demo__view demo__done" data-demo-view="done" hidden>
+      <span class="demo__done-icon" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </span>
+      <h2 class="demo__title" tabindex="-1" data-demo-done-title>Thank you – request received!</h2>
+      <p class="demo__lead">We’ll get back to you<span data-demo-done-email></span> within one business day to pick a time for your 30-minute demo.</p>
+      <button type="button" class="btn btn--ghost demo__done-close" data-demo-close>Close</button>
+    </div>
+  </div>
+</dialog>
+
 <!-- ============ COOKIE BANNER (shown by main.js until the visitor makes a choice) ============ -->
 <div class="cookie" id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-text" hidden>
   <p class="cookie__title" id="cookie-title">We use cookies</p>
@@ -960,6 +1053,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20261027b" defer></script>
+<script src="assets/js/main.js?v=20261103c" defer></script>
 </body>
 </html>

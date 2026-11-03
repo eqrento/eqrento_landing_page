@@ -1,11 +1,12 @@
 # EQrento – landing page
 
 Static website: HTML + CSS + JavaScript, no build step, no dependencies, no server-side code.
+The draft runs on GitHub Pages; the final site will be served from SOLTIX's own dedicated server (OVH).
 
 ## Deploy
 
 Upload **the contents of this folder** (`index.html` and the `assets` folder) to the web root of any static host
-(classic hosting via FTP / file manager, Netlify, Vercel, Cloudflare Pages, GitHub Pages, S3…).
+(own server – Apache / nginx, classic hosting via FTP / file manager, Netlify, Vercel, Cloudflare Pages, GitHub Pages, S3…).
 `index.html` must be at the root of the site, with `favicon.ico`, `apple-touch-icon.png` and `site.webmanifest` next to it.
 All paths are relative, so the site also works from a sub-folder.
 
@@ -17,6 +18,10 @@ Recommended server settings (most hosts do this by default):
 - correct MIME types: `.woff2` → `font/woff2`, `.webm` → `video/webm`, `.mp4` → `video/mp4`,
   `.svg` → `image/svg+xml`
 - byte-range requests allowed (standard) so the testimonial video can start before it is fully downloaded
+- unknown addresses answered with `404.html` and status 404 (GitHub Pages does it by itself; Apache:
+  `ErrorDocument 404 /404.html`, nginx: `error_page 404 /404.html;`)
+- if the server sends a `Content-Security-Policy` header, it must allow the demo form to reach Google:
+  `connect-src 'self' https://script.google.com https://script.googleusercontent.com`
 
 Open the site through a web server, not by double-clicking `index.html`: some browsers block the self-hosted fonts
 and the video on `file://`.
@@ -81,12 +86,25 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   marketing tags, load them only after consent:
   `window.eqOnConsent('analytics', () => { /* load the analytics script here */ });`
   (or listen to the `eq:consent` event). Change `VERSION` in `main.js` to ask everybody again after a policy change.
+- **Demo request form** – every “Book a demo” / “Book a 30-minute demo” button links to `#book-demo` and opens the
+  `<dialog id="book-demo">` near the end of `index.html` (styles under “DEMO REQUEST DIALOG”, logic at the end of
+  `main.js`); `https://eqrento.com/#book-demo` opens it directly (links in e-mails, ads). Fields: what they rent
+  (chips, several allowed, “Other” adds a text box), fleet size (chips matching the plan limits), company, name,
+  email, phone (optional), note (optional, folded). The form posts JSON as `text/plain` (no CORS preflight) to the
+  URL in the form's `data-endpoint` – a Google Apps Script web app that adds a row to a Google Sheet and e-mails
+  contact@eqrento.com (code and set-up guide are kept outside this public repo: `../formularz-demo/`). Body:
+  `rents` (array), `rents_other`, `fleet_size`, `company`, `name`, `email`, `phone`, `message`, `website` (spam
+  trap, must stay empty), `source` (which button), `page`, `referrer`, `utm`, `timezone`, `language`, `seconds`;
+  expected answer `{"ok":true}` – any endpoint that does this (e.g. PHP on the own server) can replace Apps Script.
+  No endpoint, or sending fails → the visitor gets a pre-filled e-mail to contact@eqrento.com instead. Events for
+  analytics: `eq:demo-open`, `eq:demo-request` (on `document`).
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
 
 ## Before going live – still to do
 
-- “Book a demo” / “Book a 30-minute demo” buttons have `href="#"` – connect them to the booking form / calendar.
+- Demo request form: put the Apps Script web-app URL (…/exec) into `data-endpoint` of `.demo__form` in `index.html`
+  (until then the form falls back to a pre-filled e-mail).
 - “Privacy Policy” and “Cookie Policy” links have `href="#"` – point them to the real documents. Keep the banner text
   and the Cookie Policy in line with the tools actually used.
 - FAQ answers 2–6 and some Key features descriptions are placeholder copy.

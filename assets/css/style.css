@@ -1101,6 +1101,128 @@ section[id] { scroll-margin-top: 80px; }
 @media (prefers-reduced-motion: reduce) { .cookie { transition: none; } }
 
 /* =========================================================
+   DEMO REQUEST DIALOG – every “Book a demo” button opens it (#book-demo, main.js)
+   The <dialog> itself is the full-screen scroll box; the white panel is centred in it
+   (or starts at the top when it is taller than the screen). Full-screen sheet on phones.
+   ========================================================= */
+.demo {
+  position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+  margin: 0; padding: 24px; border: 0; background: transparent; color: var(--gray-2);
+  overflow-y: auto; overscroll-behavior: contain;
+}
+.demo[open] { display: grid; }
+.demo::backdrop { background: rgba(16, 12, 58, .62); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.demo__panel {
+  position: relative; width: min(640px, 100%); margin: auto;
+  padding: 40px 40px 32px; border-radius: 24px; background: var(--white);
+  box-shadow: 0 40px 100px -30px rgba(10, 6, 40, .55);
+}
+.demo[open] .demo__panel { animation: demo-in .4s var(--ease); }
+.demo[open]::backdrop { animation: demo-fade .3s ease; }
+@keyframes demo-in { from { opacity: 0; transform: translateY(16px) scale(.98); } }
+@keyframes demo-fade { from { opacity: 0; } }
+body.demo-open { overflow: hidden; }
+
+.demo__close {
+  position: absolute; top: 16px; right: 16px; z-index: 2; width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center; border: 0; background: var(--soft); color: var(--ink); cursor: pointer;
+  transition: background-color .25s var(--ease);
+}
+.demo__close:hover { background: #ece9e4; }
+.demo__close:focus-visible { outline: 2px solid var(--label-violet); outline-offset: 2px; }
+
+.demo__title { padding-right: 40px; font-size: 30px; font-weight: 600; line-height: 1.2; letter-spacing: -.02em; color: var(--ink); }
+.demo__title:focus { outline: none; }   /* focused on open only so screen readers start here */
+.demo__lead { margin-top: 10px; font-size: 16px; line-height: 1.55; }
+
+.demo__form { margin-top: 24px; display: grid; gap: 20px; }
+.demo__group { min-width: 0; margin: 0; padding: 0; border: 0; }
+.demo__label { display: block; margin-bottom: 10px; padding: 0; font-size: 14px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.demo__hint { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--marker-soft); }
+.demo__optional { font-weight: 400; color: var(--marker-soft); }
+
+/* choice chips: the real checkbox / radio covers the chip (invisible), so taps, keyboard and screen readers all work */
+.demo__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.demo__chip { position: relative; }
+.demo__chip input { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.demo__chip span {
+  display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 16px;
+  border: 1px solid rgba(23, 15, 4, .16); border-radius: 999px; background: var(--white);
+  font-size: 14px; font-weight: 500; line-height: 1; color: var(--ink); white-space: nowrap;
+  transition: border-color .2s var(--ease), background-color .2s var(--ease), color .2s var(--ease);
+}
+.demo__chip:hover span { border-color: rgba(23, 15, 4, .38); }
+.demo__chip input:checked + span { border-color: var(--mark-navy); background: var(--mark-navy); color: var(--white); }
+.demo__chip input:checked + span::before {
+  content: ""; width: 14px; height: 14px; margin-left: -3px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.demo__chip input:focus-visible + span { outline: 2px solid var(--label-violet); outline-offset: 2px; }
+
+.demo__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 16px; }
+.demo__input {
+  display: block; width: 100%; height: 52px; padding: 0 16px;
+  border: 1px solid rgba(23, 15, 4, .16); border-radius: 12px; background: var(--white);
+  font: inherit; font-size: 16px; color: var(--ink);   /* 16px: iPhones don’t zoom into the field */
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-height: 1.5; resize: vertical; }
+.demo__input::placeholder { color: #9a948c; }
+.demo__input:hover { border-color: rgba(23, 15, 4, .32); }
+.demo__input:focus { outline: none; border-color: var(--label-violet); box-shadow: 0 0 0 3px rgba(107, 92, 255, .2); }
+.demo__input[aria-invalid="true"] { border-color: #d64545; }
+.demo__input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgba(214, 69, 69, .18); }
+.demo__other { margin-top: 10px; }
+/* the optional note stays folded until asked for – the form looks (and is) short */
+.demo__more summary {
+  display: inline-flex; align-items: center; gap: 8px; list-style: none; cursor: pointer;
+  font-size: 14px; font-weight: 600; line-height: 1.4; color: var(--ink);
+}
+.demo__more summary::-webkit-details-marker { display: none; }
+.demo__more summary::before {   /* + that turns into − when open */
+  content: ""; flex: none; width: 20px; height: 20px; border-radius: 50%; background: var(--soft)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%231c1a17' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M6 10h8M10 6v8'/%3E%3C/svg%3E") center / 20px no-repeat;
+}
+.demo__more[open] summary::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%231c1a17' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M6 10h8'/%3E%3C/svg%3E");
+}
+.demo__more summary:hover::before { background-color: #ece9e4; }
+.demo__more summary:focus-visible { outline: 2px solid var(--label-violet); outline-offset: 3px; border-radius: 6px; }
+.demo__more textarea { margin-top: 10px; }
+.demo__other[hidden], .demo__error[hidden], .demo__status[hidden], .demo__view[hidden] { display: none; }
+.demo__error { margin-top: 6px; font-size: 13px; line-height: 1.4; color: #c53030; }
+.demo__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.demo__submit { width: 100%; margin-top: 4px; }
+.demo__submit[disabled] { opacity: .7; cursor: progress; transform: none; }
+.demo__privacy { margin-top: -8px; font-size: 12.5px; line-height: 1.5; text-align: center; color: var(--marker-soft); }
+.demo__privacy a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.demo__status { padding: 12px 16px; border-radius: 12px; background: #fdeeee; font-size: 14px; line-height: 1.5; color: #8f1d1d; }
+.demo__status a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+/* thank-you view */
+.demo__done { padding: 12px 0 4px; text-align: center; }
+.demo__done-icon {
+  display: grid; place-items: center; width: 64px; height: 64px; margin: 0 auto 20px; border-radius: 50%;
+  background: var(--mark-navy); color: var(--white); box-shadow: 0 14px 30px -12px rgba(27, 21, 98, .6);
+}
+.demo__done .demo__title { padding: 0; }
+.demo__done .demo__lead { max-width: 440px; margin-inline: auto; }
+.demo__done-close { min-width: 160px; margin-top: 28px; }
+
+@media (max-width: 640px) {
+  .demo { padding: 0; }
+  .demo[open] { display: block; }   /* block, not grid: the white sheet then grows with the form instead of stopping at one screen */
+  .demo__panel { width: 100%; min-height: 100%; margin: 0; padding: 72px 20px 32px; border-radius: 0; box-shadow: none; }
+  .demo__close { position: fixed; top: 12px; right: 12px; }   /* stays in reach while the form scrolls */
+  .demo__title { padding-right: 0; font-size: 26px; }
+  .demo__grid { grid-template-columns: 1fr; }
+  .demo__done { padding-top: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { .demo[open] .demo__panel, .demo[open]::backdrop { animation: none; } }
+
+/* =========================================================
    REVEAL & MOTION
    ========================================================= */
 .js [data-reveal] {
