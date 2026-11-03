@@ -6,6 +6,15 @@
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
+  /* ---------- one device pixel in CSS px (--dpx): the hero collage is rounded to whole device pixels, so it is shown
+     1:1 instead of being resized; updated when the window moves to a screen with other scaling or the page is zoomed */
+  const setDpx = () => {
+    const dpr = window.devicePixelRatio || 1;
+    root.style.setProperty('--dpx', `${1 / dpr}px`);
+    window.matchMedia(`(resolution: ${dpr}dppx)`).addEventListener('change', setDpx, { once: true });
+  };
+  setDpx();
+
   /* ---------- placeholder links (href="#") do nothing for now ---------- */
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href="#"]');

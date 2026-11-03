@@ -277,7 +277,9 @@ section[id] { scroll-margin-top: 80px; }
 .hero__screen  { left: 23.8%;  top: 0;      width: 63.65%; z-index: 1; }
 .hero__forklift{ left: 6.263%; top: 36.8%;  width: 38.78%; z-index: 2; }   /* its back edge sits as far left of the front (offer) window as the lift sits right of it */
 .hero__lift    { left: 67.497%; top: 36.212%; width: 26.229%; z-index: 3; } /* 12% smaller than it was (more of the AI window shows), wheels on the same line; image canvas extended on the right so the glow fades out */
-.hero__screen img { width: 100%; }   /* the collage brings its own window shadows and glow */
+/* the collage brings its own window shadows and glow. Its width is rounded to whole device pixels (--dpx = one device
+   pixel, set by main.js), so the browser shows the picture of that exact width 1:1 instead of resizing it (sharper) */
+.hero__screen img { width: 100%; width: round(100%, var(--dpx, 1px)); max-width: none; }   /* may be a fraction of a pixel wider than its box */
 
 /* =========================================================
    LOGOS
@@ -478,34 +480,45 @@ section[id] { scroll-margin-top: 80px; }
 .feat.is-open .feat__body > p { opacity: 1; padding: 16px 32px 32px; transition-delay: .1s; }
 
 .features__visual { position: relative; }
-/* ONE device frame for the product screenshots (Key features and the telematics map) – dark, like the hero mockup,
-   so the light screenshots stand out on the light page: a dark bezel with a title bar and three dots, the screenshot
-   inset in it, and a soft violet glow (the colours of the logo mark) under it. The screenshots are raw – no frame,
-   no glow baked in. --bar = title bar, --pad = bezel at the sides and bottom. */
-.features__screen, .gps__map {
-  --frame: #17151c;
-  position: relative; background: var(--frame); border-radius: 16px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, .07),
-    0 30px 60px -30px rgba(23, 15, 4, .45),
-    0 26px 90px -34px rgba(100, 98, 255, .5);
-}
+/* Window frames for the product screenshots (the screenshots are raw – no frame, no glow baked in). Both have a title
+   bar (--bar) with red / yellow / green dots like the windows in the hero collage.
+   Key features: a light window like the ones in the collage – light title bar, hairline edge – with the collage's
+   shadow: a soft navy shadow all round that lifts the window off the page, and a violet glow under it.
+   Telematics map: a dark bezel (--pad at the sides and bottom) with a violet glow. */
+.features__screen, .gps__map { position: relative; }
 .features__screen::after, .gps__map::after {   /* the three dots in the title bar */
   content: ""; position: absolute; z-index: 2;
   --dot: calc(var(--bar) * .3);
   top: calc((var(--bar) - var(--dot)) / 2); left: calc(var(--bar) * .55);
   width: var(--dot); height: var(--dot); border-radius: 50%;
-  background: #ff5f57; box-shadow: calc(var(--dot) * 1.8) 0 #febc2e, calc(var(--dot) * 3.6) 0 #28c840;   /* red, yellow, green – like the windows in the hero collage */
+  background: #ff5f57; box-shadow: calc(var(--dot) * 1.8) 0 #febc2e, calc(var(--dot) * 3.6) 0 #28c840;
 }
-.features__screen { --bar: 26px; --pad: 7px; padding: var(--bar) var(--pad) var(--pad); overflow: hidden; }   /* hidden: the picture slides a little while the tab changes */
+.features__screen {
+  --bar: 26px;
+  padding-top: var(--bar); overflow: hidden;   /* hidden: the picture slides a little while the tab changes */
+  background: linear-gradient(#edeef5 var(--bar), #fff 0);   /* title bar colour of the collage windows */
+  border-radius: 12px;
+  box-shadow:
+    0 1px 3px rgba(7, 10, 27, .08),
+    0 16px 48px -8px rgba(7, 10, 27, .26),
+    0 40px 110px -30px rgba(100, 98, 255, .55);
+}
+.features__screen::before {   /* hairline edge over the picture, like the collage windows */
+  content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 0 0 0 1px #d3d7e8;
+}
 .features__screen img {
-  display: block; width: 100%; height: auto; border-radius: 7px;
+  display: block; width: 100%; height: auto;
   aspect-ratio: 1894 / 953; object-fit: cover; object-position: top left;   /* the six screenshots differ by a few pixels in height: no jump when the tab changes */
   transition: opacity .35s var(--ease), transform .5s var(--ease);
 }
-@media (max-width: 640px) {   /* phones: a slimmer frame around the smaller picture */
-  .features__screen { --bar: 20px; --pad: 5px; border-radius: 12px; }
-  .features__screen img { border-radius: 5px; }
+@media (max-width: 640px) { .features__screen { --bar: 20px; border-radius: 10px; } }   /* phones: a slimmer title bar */
+.gps__map {
+  background: #17151c; border-radius: 16px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .07),
+    0 30px 60px -30px rgba(23, 15, 4, .45),
+    0 26px 90px -34px rgba(100, 98, 255, .5);
 }
 .features__photo {
   position: absolute; left: 75.24%; top: 75.3%; width: 34%;
@@ -1458,14 +1471,15 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   /* phones: four pills would stack one per row, so show them as a compact checklist instead */
   .hero__chips { flex-direction: column; gap: 6px; margin-top: -6px; }
   .hero .hero__chips li { padding: 0; background: none; border: 0; font-size: 14px; }
-  /* phones get the offer window on its own (1.6× larger), so both machines stand in front of its edges: the forklift
-     overlaps it as much as the lift does; the visible part (forks 14.26% – lift 88.48% of the stage) is centred */
+  /* phones: the whole collage (all three windows) fills the content width – the windows run from 25.97% to 85.28% of
+     the stage. The machines are 25% smaller and stand in its empty bottom corners, both overlapping the offer window
+     by the same amount (the forks line up with the windows' left edge) */
   .hero__stage {
-    --sw: min(calc((100% - 2 * var(--gutter)) / .7422), 1100px);
-    margin: 32px 0 -2% calc(50% - var(--sw) * .5137);
+    --sw: min(calc((100% - 2 * var(--gutter)) / .5931), 1100px);
+    margin: 32px 0 calc(var(--sw) * -.034) calc(50% - var(--sw) * .5563);   /* smaller machines: less empty room under the wheels */
   }
-  .hero__forklift { left: 7.188%; }
-  .hero__lift { top: 36.452%; } /* wheels level with the forklift (parallax is gentler here) */
+  .hero__forklift { left: 20.666%; top: 49.188%; width: 29.085%; }
+  .hero__lift { left: 62.224%; top: 48.928%; width: 19.672%; } /* wheels level with the forklift (parallax is gentler here) */
 
   .logos { --logo-k: .845; --logo-gap: 56px; }   /* phones: logos ~1/3 larger than the original 132px slots */
   .logos__title { margin-bottom: 20px; font-size: 12px; }
@@ -1599,6 +1613,7 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 .qa__q:hover .qa__icon::before, .qa__q:hover .qa__icon::after { background: #f08c00; }
 /* no parallax: wheels level with the forklift in the static layout */
 @media (prefers-reduced-motion: reduce) { .hero__lift { top: 36.546%; } }
+@media (prefers-reduced-motion: reduce) and (max-width: 640px) { .hero__lift { top: 49.001%; } }
 
 /* =========================================================
    EXPERIMENT: light header + hero on the page background (no glows)

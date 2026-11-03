@@ -74,17 +74,24 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   that matches the screen (≈ 1:1 on 1×, 1.25×, 1.5× and 2× screens). Key features keeps the set per tab in
   `data-srcset` (main.js swaps it and preloads the other tabs once the section is near). Made with a Lanczos resize plus
   a light sharpen (`../narzedzia/zrzuty.ps1` + `Sharp.cs`, outside the repo); a new screenshot needs the same four sizes.
-  The device frame (dark bezel with a title bar and red / yellow / green dots like the windows in the hero collage,
-  and a soft violet glow) is CSS, shared by `.features__screen` and `.gps__map` (“ONE device frame” in `style.css`).
+  The window frames are CSS (“Window frames” in `style.css`), both with a title bar and red / yellow / green dots
+  like the windows in the hero collage: Key features (`.features__screen`) is a light window like the collage ones
+  (light title bar, hairline edge, soft navy shadow and a violet glow under it); the telematics map (`.gps__map`)
+  has a dark bezel with a violet glow.
 - **Hero picture** – a collage of three app windows (equipment list, “Ask AI about your data”, offer) between the
-  forklift and the scissor lift; phones (≤ 640px, `<picture>`) get the offer window on its own. Source: the designer's
-  `collage 2.webp` (2640×1827, transparent), flattened onto the hero colour `#f8f7f5` with a soft violet glow baked in
-  and saved as JPEG: `assets/img/screens/hero-640|840|1080|1320|1680.jpg` and `hero-phone-300|450|600|800.jpg`
-  (`fetchpriority="high"`: it is the first big picture). If the hero background colour changes, the pictures have to
-  be made again (`../narzedzia/`). The forklift and the lift stand the same distance from the offer window's edges
-  (on phones they overlap its edges by the same amount). When moving or resizing them, update the centring constants
-  of the ≤ 1200px and ≤ 640px layouts (`--sw` divisor, margin factor) and the lift's `top` values (wheels on one line,
-  parallax included) to match.
+  forklift and the scissor lift; on phones (≤ 640px) the whole collage fills the content width and the machines,
+  25% smaller, stand in its empty bottom corners. Source: the designer's `collage 2.webp` (2640×1827, transparent);
+  `../narzedzia/hero-kolaz.ps1` makes the window shadows 1.5× stronger, flattens it onto the hero colour `#f8f7f5`
+  with a violet glow baked in and saves sharp JPEGs in the exact widths the picture is shown at on common screens
+  (`assets/img/screens/hero-521.jpg` … `hero-1674.jpg`, 21 sizes; the script lists which screen needs which).
+  CSS rounds the picture to whole device pixels (`--dpx`, set by `main.js`), so the browser shows that file 1:1
+  instead of resizing it (resizing, and the parallax moving it by fractions of a pixel, made it look soft – the
+  collage has no parallax now). `sizes` in `index.html` is the picture's width in each layout minus .5px: change it
+  together with the stage sizes. `fetchpriority="high"`: it is the first big picture. If the hero background colour
+  changes, the pictures have to be made again. The forklift and the lift stand the same distance from the offer
+  window's edges (on phones they overlap its edges by the same amount). When moving or resizing them, update the
+  centring constants of the ≤ 1200px and ≤ 640px layouts (`--sw` divisor, margin factor) and the lift's `top` values
+  (wheels on one line, parallax included, plus the reduced-motion ones) to match.
 - **Telematics section** – machine → map → GPS report card → invoice card, one row above 1200px, a column below.
   The cards are HTML/CSS sized in container units (`cqi`) so they scale like a picture; the two documents are inline
   SVG. Arrows between stages are CSS masks.
