@@ -67,6 +67,11 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   `--logo-gray: url(#logo-gray-red)` uses a red-channel grey (for the red-on-black Tenge logo; the SVG filter is inline
   in the logos section). Logos are grey, full colour on hover / tap. When they don't fit in one row, JS turns the
   strip into a seamless marquee (currently always, with 9 logos).
+- **Product screenshots** (Key features tabs and the telematics map) – raw light-theme screenshots without frame or glow:
+  `assets/img/screen-offers.png`, `screen-equipment.png`, `screen-transport.png`, `screen-gps.jpg` (also the map in the
+  telematics section), `screen-service.png`, `screen-invoicing.png` (≈ 1900×960). The window frame (rounded corners,
+  hairline, shadow, title bar with three dots) is CSS, shared by `.features__screen` and `.gps__map` (“ONE window frame”
+  in `style.css`). To change a screenshot, replace the file (keep ≈ 2:1; Key features fixes the box to 1894:953).
 - **Telematics section** – machine → map → GPS report card → invoice card, one row above 1200px, a column below.
   The cards are HTML/CSS sized in container units (`cqi`) so they scale like a picture; the two documents are inline
   SVG. Arrows between stages are CSS masks.

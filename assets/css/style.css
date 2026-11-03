@@ -478,9 +478,28 @@ section[id] { scroll-margin-top: 80px; }
 .feat.is-open .feat__body > p { opacity: 1; padding: 16px 32px 32px; transition-delay: .1s; }
 
 .features__visual { position: relative; }
+/* ONE window frame for the product screenshots (Key features and the telematics map): rounded corners, a hairline,
+   a soft shadow and a slim title bar with three dots. The screenshots are raw (no frame, no glow) – the frame is CSS.
+   --bar = height of the title bar (the screenshot sits under it). */
+.features__screen, .gps__map {
+  position: relative; overflow: hidden; background: #fff; border-radius: 14px;
+  box-shadow: 0 30px 60px -28px rgba(23, 15, 4, .38), 0 0 0 1px rgba(23, 15, 4, .1);
+}
+.features__screen::before, .gps__map::before {   /* title bar */
+  content: ""; position: absolute; inset: 0 0 auto; z-index: 1; height: var(--bar);
+  background: #f3f1ed; border-bottom: 1px solid rgba(23, 15, 4, .08);
+}
+.features__screen::after, .gps__map::after {   /* the three dots */
+  content: ""; position: absolute; z-index: 2;
+  --dot: calc(var(--bar) * .28);
+  top: calc((var(--bar) - var(--dot)) / 2); left: calc(var(--bar) * .5);
+  width: var(--dot); height: var(--dot); border-radius: 50%;
+  background: #d3cec6; box-shadow: calc(var(--dot) * 1.8) 0 #d3cec6, calc(var(--dot) * 3.6) 0 #d3cec6;
+}
+.features__screen { --bar: 26px; }
 .features__screen img {
-  width: 113.03%; max-width: none;
-  margin: -3.67% 0 -9.36% -6.52%;
+  display: block; width: 100%; height: auto; margin-top: var(--bar);
+  aspect-ratio: 1894 / 953; object-fit: cover; object-position: top left;   /* the six screenshots differ by a few pixels in height: no jump when the tab changes */
   transition: opacity .35s var(--ease), transform .5s var(--ease);
 }
 .features__photo {
@@ -734,8 +753,10 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 .gps__panel { position: relative; aspect-ratio: 598 / 372; }   /* the map's device frame, without the glow under it */
-/* the screenshot has transparent margins (and its shadow) around the device frame: crop to the frame */
-.gps__map img { position: absolute; left: -9.2%; top: 0; width: 118.39%; max-width: none; }
+/* the map card: same window frame; the screenshot sits under the title bar and is cropped from the left,
+   so the app menu drops out and the map with its pop-up stays (sized in container units like the report cards) */
+.gps__map { container-type: inline-size; --bar: 6.6cqi; }   /* no cqi on the card itself: on a container, cqi would measure the page, not the card */
+.gps__map img { position: absolute; left: -17.7%; top: var(--bar); width: 118%; max-width: none; height: auto; }   /* 118% wide, shifted left 15% of the picture: the app menu (≈ 14%) drops out */
 
 .gps__card { container-type: inline-size; }
 /* look + layout live on the inner box: [data-reveal] owns the card's own transform/transition */
