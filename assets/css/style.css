@@ -480,12 +480,21 @@ section[id] { scroll-margin-top: 80px; }
 .feat.is-open .feat__body > p { opacity: 1; padding: 16px 32px 32px; transition-delay: .1s; }
 
 .features__visual { position: relative; }
-/* Window frames for the product screenshots (the screenshots are raw – no frame, no glow baked in). Both have a title
-   bar (--bar) with red / yellow / green dots like the windows in the hero collage.
-   Key features: a light window like the ones in the collage – light title bar, hairline edge – with the collage's
-   shadow: a soft navy shadow all round that lifts the window off the page, and a violet glow under it.
-   Telematics map: a dark bezel (--pad at the sides and bottom) with a violet glow. */
-.features__screen, .gps__map { position: relative; }
+/* ONE window frame for the product screenshots (Key features and the telematics map card; the screenshots are raw – no
+   frame, no glow baked in): a light window like the ones in the hero collage – light title bar (--bar) with red /
+   yellow / green dots, hairline edge – with the collage's shadow: a soft navy shadow all round that lifts the window
+   off the page, and a violet glow under it */
+.features__screen, .gps__map {
+  position: relative; border-radius: 12px;
+  box-shadow:
+    0 1px 3px rgba(7, 10, 27, .08),
+    0 16px 48px -8px rgba(7, 10, 27, .26),
+    0 40px 110px -30px rgba(100, 98, 255, .55);
+}
+.features__screen::before, .gps__map::before {   /* hairline edge over the picture */
+  content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 0 0 0 1px #d3d7e8;
+}
 .features__screen::after, .gps__map::after {   /* the three dots in the title bar */
   content: ""; position: absolute; z-index: 2;
   --dot: calc(var(--bar) * .3);
@@ -497,15 +506,6 @@ section[id] { scroll-margin-top: 80px; }
   --bar: 26px;
   padding-top: var(--bar); overflow: hidden;   /* hidden: the picture slides a little while the tab changes */
   background: linear-gradient(#edeef5 var(--bar), #fff 0);   /* title bar colour of the collage windows */
-  border-radius: 12px;
-  box-shadow:
-    0 1px 3px rgba(7, 10, 27, .08),
-    0 16px 48px -8px rgba(7, 10, 27, .26),
-    0 40px 110px -30px rgba(100, 98, 255, .55);
-}
-.features__screen::before {   /* hairline edge over the picture, like the collage windows */
-  content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none;
-  box-shadow: inset 0 0 0 1px #d3d7e8;
 }
 .features__screen img {
   display: block; width: 100%; height: auto;
@@ -513,13 +513,6 @@ section[id] { scroll-margin-top: 80px; }
   transition: opacity .35s var(--ease), transform .5s var(--ease);
 }
 @media (max-width: 640px) { .features__screen { --bar: 20px; border-radius: 10px; } }   /* phones: a slimmer title bar */
-.gps__map {
-  background: #17151c; border-radius: 16px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, .07),
-    0 30px 60px -30px rgba(23, 15, 4, .45),
-    0 26px 90px -34px rgba(100, 98, 255, .5);
-}
 .features__photo {
   position: absolute; left: 75.24%; top: 75.3%; width: 34%;
   border-radius: 24px; overflow: hidden;
@@ -771,11 +764,12 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 .gps__panel { position: relative; aspect-ratio: 598 / 372; }   /* the map's device frame, without the glow under it */
-/* the map card: the same device frame; the screenshot sits in an inner box and is cropped from the left, so the app
-   menu drops out and the map with its pop-up stays (sized in container units like the report cards; no cqi on the
-   card itself – on a container, cqi would measure the page, not the card) */
-.gps__map { container-type: inline-size; --bar: 6.6cqi; --pad: 2cqi; }
-.gps__map-in { position: absolute; inset: var(--bar) var(--pad) var(--pad); overflow: hidden; border-radius: 1.8cqi; }
+/* the map card: the same light window frame; the screenshot sits in an inner box under the title bar and is cropped
+   from the left, so the app menu drops out and the map with its pop-up stays (title bar in container units like the
+   report cards; no cqi on the card itself – on a container, cqi would measure the page, not the card – so the card's
+   own background is the title bar colour and the map covers the rest) */
+.gps__map { container-type: inline-size; --bar: 6.6cqi; background: #edeef5; border-radius: 10px; }
+.gps__map-in { position: absolute; inset: var(--bar) 0 0; overflow: hidden; border-radius: 0 0 10px 10px; background: #fff; }
 .gps__map img { position: absolute; left: -17.7%; top: 0; width: 118%; max-width: none; height: auto; }   /* 118% wide, shifted left 15% of the picture: the app menu (≈ 14%) drops out */
 
 .gps__card { container-type: inline-size; }

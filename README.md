@@ -74,10 +74,9 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   that matches the screen (≈ 1:1 on 1×, 1.25×, 1.5× and 2× screens). Key features keeps the set per tab in
   `data-srcset` (main.js swaps it and preloads the other tabs once the section is near). Made with a Lanczos resize plus
   a light sharpen (`../narzedzia/zrzuty.ps1` + `Sharp.cs`, outside the repo); a new screenshot needs the same four sizes.
-  The window frames are CSS (“Window frames” in `style.css`), both with a title bar and red / yellow / green dots
-  like the windows in the hero collage: Key features (`.features__screen`) is a light window like the collage ones
-  (light title bar, hairline edge, soft navy shadow and a violet glow under it); the telematics map (`.gps__map`)
-  has a dark bezel with a violet glow.
+  The window frame is CSS (“ONE window frame” in `style.css`), shared by `.features__screen` and `.gps__map`: a light
+  window like the ones in the hero collage – light title bar with red / yellow / green dots, hairline edge, a soft
+  navy shadow all round and a violet glow under it.
 - **Hero picture** – a collage of three app windows (equipment list, “Ask AI about your data”, offer) between the
   forklift and the scissor lift; on phones (≤ 640px) the whole collage fills the content width and the machines,
   25% smaller, stand in its empty bottom corners. Source: the designer's `collage 2.webp` (2640×1827, transparent);
