@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261103l">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261103m">
 </head>
 <body>
 
@@ -108,7 +108,15 @@
 
     <div class="hero__stage" aria-hidden="true">
       <div class="hero__screen" data-reveal="zoom" style="--d:350ms">
-        <img src="assets/img/hero-screen.png" width="837" height="509" alt="" data-parallax="-0.04">
+        <!-- three app windows (equipment, AI chat, offer); phones get the offer window on its own. The pictures are
+             flattened onto the page colour (#f8f7f5) with the violet glow baked in – remake them if the hero background changes -->
+        <picture>
+          <source media="(max-width: 640px)" sizes="68vw"
+                  srcset="assets/img/screens/hero-phone-300.jpg 300w, assets/img/screens/hero-phone-450.jpg 450w, assets/img/screens/hero-phone-600.jpg 600w, assets/img/screens/hero-phone-800.jpg 800w">
+          <img src="assets/img/screens/hero-1080.jpg"
+               srcset="assets/img/screens/hero-640.jpg 640w, assets/img/screens/hero-840.jpg 840w, assets/img/screens/hero-1080.jpg 1080w, assets/img/screens/hero-1320.jpg 1320w, assets/img/screens/hero-1680.jpg 1680w"
+               sizes="(max-width: 1200px) min(70vw, 700px), min(41vw, 837px)" width="1680" height="1163" alt="" fetchpriority="high" data-parallax="-0.04">
+        </picture>
       </div>
       <div class="hero__forklift" data-reveal="left" style="--d:600ms">
         <img src="assets/img/hero-forklift.png" width="510" height="426" alt="" data-parallax="0.12">

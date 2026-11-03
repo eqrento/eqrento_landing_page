@@ -74,8 +74,14 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   that matches the screen (≈ 1:1 on 1×, 1.25×, 1.5× and 2× screens). Key features keeps the set per tab in
   `data-srcset` (main.js swaps it and preloads the other tabs once the section is near). Made with a Lanczos resize plus
   a light sharpen (`../narzedzia/zrzuty.ps1` + `Sharp.cs`, outside the repo); a new screenshot needs the same four sizes.
-  The device frame (dark bezel with a title bar and three dots, like the hero mockup, and a soft violet glow) is CSS,
-  shared by `.features__screen` and `.gps__map` (“ONE device frame” in `style.css`).
+  The device frame (dark bezel with a title bar and red / yellow / green dots like the windows in the hero collage,
+  and a soft violet glow) is CSS, shared by `.features__screen` and `.gps__map` (“ONE device frame” in `style.css`).
+- **Hero picture** – a collage of three app windows (equipment list, “Ask AI about your data”, offer) between the
+  forklift and the scissor lift; phones (≤ 640px, `<picture>`) get the offer window on its own. Source: the designer's
+  `collage 2.webp` (2640×1827, transparent), flattened onto the hero colour `#f8f7f5` with a soft violet glow baked in
+  and saved as JPEG: `assets/img/screens/hero-640|840|1080|1320|1680.jpg` and `hero-phone-300|450|600|800.jpg`
+  (`fetchpriority="high"`: it is the first big picture). If the hero background colour changes, the pictures have to
+  be made again (`../narzedzia/`).
 - **Telematics section** – machine → map → GPS report card → invoice card, one row above 1200px, a column below.
   The cards are HTML/CSS sized in container units (`cqi`) so they scale like a picture; the two documents are inline
   SVG. Arrows between stages are CSS masks.
