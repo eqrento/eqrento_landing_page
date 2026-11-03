@@ -951,6 +951,12 @@ section[id] { scroll-margin-top: 80px; }
   border-bottom-color: rgba(23, 15, 4, .14);
 }
 .cmp__table tbody:first-of-type .cmp__group th { padding-top: 24px; }
+/* group icons: the orange icons on a light tint, as in Key features, so each group is easy to spot in the long table */
+.cmp__ico {
+  display: inline-grid; place-items: center; width: 32px; height: 32px; margin: -9px 12px -9px 0;
+  vertical-align: middle; border-radius: 9px; background: var(--tint);
+}
+.cmp__ico img { width: 20px; height: 20px; object-fit: contain; }
 /* the recommended plan's column, lightly tinted (opaque, so rows never show through the sticky header) */
 .cmp__table tr > :nth-child(3) { background: #fffbef; }
 .cmp__table .y::before, .cmp__table .n::before { content: ""; display: inline-block; vertical-align: middle; }

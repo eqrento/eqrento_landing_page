@@ -102,7 +102,10 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   down to 641px, one column on phones). Yearly / monthly switch: every price has `data-yearly` and `data-monthly`, and
   `main.js` swaps the texts. Order below the cards: “Compare all EQrento features” (opens the full table, whose header sticks under the page header), the telemetry-device box, the price note.
   Below 900px each row shows the feature name above its four plan cells (the explicit ARIA roles in the table markup
-  keep it a table for screen readers). Cells: `class="y"` included, `"n"` not included, `"t"` text.
+  keep it a table for screen readers). Cells: `class="y"` included, `"n"` not included, `"t"` text. Every group
+  heading has an icon (`<span class="cmp__ico">`, orange on a light tint like Key features) so the groups are easy to
+  spot in the long table; `pricing`, `mailbox`, `settings` and `support.svg` were drawn for it, the rest are the
+  Key features icons.
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
 - **Steps (How it works)** – pinned while the cards scroll; on short screens the pin position adapts so the cards and
