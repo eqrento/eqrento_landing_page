@@ -537,7 +537,7 @@ section[id] { scroll-margin-top: 80px; }
    ========================================================= */
 .why { padding: var(--sec-join) 0 var(--sec-y); background: var(--soft); }
 /* the featured card is scaled 1.05 and pokes ~19px out of the row: keep the visible gap below it at --sec-y */
-@media (min-width: 1201px) { .why { padding-bottom: calc(var(--sec-y) + 19px); } }
+@media (min-width: 1201px) { .why { padding-bottom: calc(var(--sec-y) + 19px + 34px); } }   /* + the CTA half below the card */
 .why__head .lead { line-height: 1.5; }
 .why__cards {
   margin-top: 64px;
@@ -580,6 +580,14 @@ section[id] { scroll-margin-top: 80px; }
 .why-card--hero .why-card__list { padding-top: 8px; margin-top: 16px; }
 .why-card--hero .why-card__list li { color: var(--white); }
 .why-card__cta { margin-top: 46px; width: 100%; min-width: 0; }
+/* the CTA sits on the card's bottom edge, half in and half out – like the badge on its top edge (height unchanged);
+   --cta-x = the card's side padding, the bottom padding keeps the old room under the list */
+.why-card.why-card--hero { --cta-x: 48px; padding-bottom: calc(46px + 32px); }
+.why-card--hero .why-card__cta { position: absolute; left: var(--cta-x); right: var(--cta-x); bottom: 0; z-index: 1; width: auto; margin: 0; translate: 0 50%; }
+@media (max-width: 1440px) { .why-card.why-card--hero { --cta-x: 36px; } }
+@media (max-width: 1200px) { .why-card.why-card--hero { margin-bottom: 32px; } }   /* stacked cards: room for the half that sticks out */
+@media (max-width: 640px) { .why-card.why-card--hero { --cta-x: 24px; padding-bottom: calc(32px + 28px); margin-bottom: 28px; } }
+@media (max-width: 340px) { .why-card.why-card--hero { --cta-x: 18px; } }
 
 /* =========================================================
    PLATFORM
