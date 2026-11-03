@@ -478,29 +478,34 @@ section[id] { scroll-margin-top: 80px; }
 .feat.is-open .feat__body > p { opacity: 1; padding: 16px 32px 32px; transition-delay: .1s; }
 
 .features__visual { position: relative; }
-/* ONE window frame for the product screenshots (Key features and the telematics map): rounded corners, a hairline,
-   a soft shadow and a slim title bar with three dots. The screenshots are raw (no frame, no glow) – the frame is CSS.
-   --bar = height of the title bar (the screenshot sits under it). */
+/* ONE device frame for the product screenshots (Key features and the telematics map) – dark, like the hero mockup,
+   so the light screenshots stand out on the light page: a dark bezel with a title bar and three dots, the screenshot
+   inset in it, and a soft violet glow (the colours of the logo mark) under it. The screenshots are raw – no frame,
+   no glow baked in. --bar = title bar, --pad = bezel at the sides and bottom. */
 .features__screen, .gps__map {
-  position: relative; overflow: hidden; background: #fff; border-radius: 14px;
-  box-shadow: 0 30px 60px -28px rgba(23, 15, 4, .38), 0 0 0 1px rgba(23, 15, 4, .1);
+  --frame: #17151c;
+  position: relative; background: var(--frame); border-radius: 16px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .07),
+    0 30px 60px -30px rgba(23, 15, 4, .45),
+    0 26px 90px -34px rgba(100, 98, 255, .5);
 }
-.features__screen::before, .gps__map::before {   /* title bar */
-  content: ""; position: absolute; inset: 0 0 auto; z-index: 1; height: var(--bar);
-  background: #f3f1ed; border-bottom: 1px solid rgba(23, 15, 4, .08);
-}
-.features__screen::after, .gps__map::after {   /* the three dots */
+.features__screen::after, .gps__map::after {   /* the three dots in the title bar */
   content: ""; position: absolute; z-index: 2;
-  --dot: calc(var(--bar) * .28);
-  top: calc((var(--bar) - var(--dot)) / 2); left: calc(var(--bar) * .5);
+  --dot: calc(var(--bar) * .3);
+  top: calc((var(--bar) - var(--dot)) / 2); left: calc(var(--bar) * .55);
   width: var(--dot); height: var(--dot); border-radius: 50%;
-  background: #d3cec6; box-shadow: calc(var(--dot) * 1.8) 0 #d3cec6, calc(var(--dot) * 3.6) 0 #d3cec6;
+  background: #4a4652; box-shadow: calc(var(--dot) * 1.8) 0 #4a4652, calc(var(--dot) * 3.6) 0 #4a4652;
 }
-.features__screen { --bar: 26px; }
+.features__screen { --bar: 26px; --pad: 7px; padding: var(--bar) var(--pad) var(--pad); overflow: hidden; }   /* hidden: the picture slides a little while the tab changes */
 .features__screen img {
-  display: block; width: 100%; height: auto; margin-top: var(--bar);
+  display: block; width: 100%; height: auto; border-radius: 7px;
   aspect-ratio: 1894 / 953; object-fit: cover; object-position: top left;   /* the six screenshots differ by a few pixels in height: no jump when the tab changes */
   transition: opacity .35s var(--ease), transform .5s var(--ease);
+}
+@media (max-width: 640px) {   /* phones: a slimmer frame around the smaller picture */
+  .features__screen { --bar: 20px; --pad: 5px; border-radius: 12px; }
+  .features__screen img { border-radius: 5px; }
 }
 .features__photo {
   position: absolute; left: 75.24%; top: 75.3%; width: 34%;
@@ -753,10 +758,12 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 .gps__panel { position: relative; aspect-ratio: 598 / 372; }   /* the map's device frame, without the glow under it */
-/* the map card: same window frame; the screenshot sits under the title bar and is cropped from the left,
-   so the app menu drops out and the map with its pop-up stays (sized in container units like the report cards) */
-.gps__map { container-type: inline-size; --bar: 6.6cqi; }   /* no cqi on the card itself: on a container, cqi would measure the page, not the card */
-.gps__map img { position: absolute; left: -17.7%; top: var(--bar); width: 118%; max-width: none; height: auto; }   /* 118% wide, shifted left 15% of the picture: the app menu (≈ 14%) drops out */
+/* the map card: the same device frame; the screenshot sits in an inner box and is cropped from the left, so the app
+   menu drops out and the map with its pop-up stays (sized in container units like the report cards; no cqi on the
+   card itself – on a container, cqi would measure the page, not the card) */
+.gps__map { container-type: inline-size; --bar: 6.6cqi; --pad: 2cqi; }
+.gps__map-in { position: absolute; inset: var(--bar) var(--pad) var(--pad); overflow: hidden; border-radius: 1.8cqi; }
+.gps__map img { position: absolute; left: -17.7%; top: 0; width: 118%; max-width: none; height: auto; }   /* 118% wide, shifted left 15% of the picture: the app menu (≈ 14%) drops out */
 
 .gps__card { container-type: inline-size; }
 /* look + layout live on the inner box: [data-reveal] owns the card's own transform/transition */

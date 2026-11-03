@@ -67,11 +67,15 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   `--logo-gray: url(#logo-gray-red)` uses a red-channel grey (for the red-on-black Tenge logo; the SVG filter is inline
   in the logos section). Logos are grey, full colour on hover / tap. When they don't fit in one row, JS turns the
   strip into a seamless marquee (currently always, with 9 logos).
-- **Product screenshots** (Key features tabs and the telematics map) – raw light-theme screenshots without frame or glow:
-  `assets/img/screen-offers.png`, `screen-equipment.png`, `screen-transport.png`, `screen-gps.jpg` (also the map in the
-  telematics section), `screen-service.png`, `screen-invoicing.png` (≈ 1900×960). The window frame (rounded corners,
-  hairline, shadow, title bar with three dots) is CSS, shared by `.features__screen` and `.gps__map` (“ONE window frame”
-  in `style.css`). To change a screenshot, replace the file (keep ≈ 2:1; Key features fixes the box to 1894:953).
+- **Product screenshots** (Key features tabs and the telematics map) – raw light-theme screenshots (≈ 1900×960, no
+  frame or glow) resized in advance to the sizes the page shows, so the browser never has to shrink a big picture (that
+  is what made the small menu text look soft): `assets/img/screens/<name>-860|1080|1290|1720.png` (`gps` is JPEG) for
+  Key features, `map-520|700|1040|1400.jpg` for the telematics card; `srcset` + `sizes` let the browser take the one
+  that matches the screen (≈ 1:1 on 1×, 1.25×, 1.5× and 2× screens). Key features keeps the set per tab in
+  `data-srcset` (main.js swaps it and preloads the other tabs once the section is near). Made with a Lanczos resize plus
+  a light sharpen (`../narzedzia/zrzuty.ps1` + `Sharp.cs`, outside the repo); a new screenshot needs the same four sizes.
+  The device frame (dark bezel with a title bar and three dots, like the hero mockup, and a soft violet glow) is CSS,
+  shared by `.features__screen` and `.gps__map` (“ONE device frame” in `style.css`).
 - **Telematics section** – machine → map → GPS report card → invoice card, one row above 1200px, a column below.
   The cards are HTML/CSS sized in container units (`cqi`) so they scale like a picture; the two documents are inline
   SVG. Arrows between stages are CSS masks.

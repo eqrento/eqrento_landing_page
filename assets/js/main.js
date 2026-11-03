@@ -132,9 +132,24 @@
 
   /* ---------- key features: tabs / accordion ---------- */
   const feats = $$('.feat');
-  // preload tab photos so switching is instant
-  feats.forEach(f => [f.dataset.photo, f.dataset.screen].forEach(src => { if (src) { const i = new Image(); i.src = src; } }));
   const visual = $('.features__visual');
+  // preload the other tabs' photo and screenshot (in the size this screen needs) once the section is near,
+  // so switching is instant – but nobody who never scrolls that far downloads them
+  const preloadTabs = () => feats.forEach(f => {
+    if (f.dataset.photo) new Image().src = f.dataset.photo;
+    if (f.dataset.screen) {
+      const i = new Image();
+      i.sizes = $('.js-feat-screen', visual).sizes;
+      if (f.dataset.srcset) i.srcset = f.dataset.srcset;
+      i.src = f.dataset.screen;
+    }
+  });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) { io.disconnect(); preloadTabs(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(visual);
+  } else preloadTabs();
   const featGrid = $('.features__grid');
   const stacked = window.matchMedia('(max-width: 1200px)');
   // stacked layout: the visual sits right under the open item; side by side: back in the grid
@@ -155,14 +170,18 @@
         f.classList.toggle('is-open', on);
         $('.feat__head', f).setAttribute('aria-selected', String(on));
       });
-      // swap the photo (and, later, the screenshot) for the selected tab
+      // swap the photo and the screenshot (srcset: the browser picks the size for this screen) for the selected tab
       const photo = $('.js-feat-photo', visual);
       const screen = $('.js-feat-screen', visual);
       const next = feat.dataset.photo, nextScreen = feat.dataset.screen;
       const name = $('.feat__name', feat).textContent.trim();
       const swap = () => {
         if (next && photo.getAttribute('src') !== next) photo.src = next;
-        if (nextScreen && screen.getAttribute('src') !== nextScreen) { screen.src = nextScreen; screen.alt = `EQrento app – ${name}`; }
+        if (nextScreen && screen.getAttribute('src') !== nextScreen) {
+          screen.srcset = feat.dataset.srcset || '';
+          screen.src = nextScreen;
+          screen.alt = `EQrento app – ${name}`;
+        }
       };
       if (reduceMotion) { swap(); placeVisual(); return; }
       visual.classList.add('is-swapping');
