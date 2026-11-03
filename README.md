@@ -78,11 +78,14 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   window like the ones in the hero collage – light title bar with red / yellow / green dots, hairline edge, a soft
   navy shadow all round and a violet glow under it.
 - **Hero picture** – a collage of three app windows (equipment list, “Ask AI about your data”, offer) between the
-  forklift and the scissor lift; on phones (≤ 640px) the whole collage fills the content width and the machines,
-  25% smaller, stand in its empty bottom corners. Source: the designer's `collage 2.webp` (2640×1827, transparent);
-  `../narzedzia/hero-kolaz.ps1` makes the window shadows 1.5× stronger, flattens it onto the hero colour `#f8f7f5`
-  with a violet glow baked in and saves sharp JPEGs in the exact widths the picture is shown at on common screens
-  (`assets/img/screens/hero-521.jpg` … `hero-1674.jpg`, 21 sizes; the script lists which screen needs which).
+  forklift and the scissor lift; on wide screens (> 1200px) it is 10% larger (70.02% of the stage – the machines
+  keep their size and move out with the offer window's edges); on phones (≤ 640px) the whole collage fills the
+  content width and the machines, 25% smaller, stand in its empty bottom corners. Source: the designer's
+  `collage 2.webp` (2640×1827, transparent); `../narzedzia/hero-kolaz.ps1` makes the window shadows 1.5× stronger,
+  flattens it onto the hero colour `#f8f7f5` with a violet glow baked in and adds 8% of canvas at the bottom so the
+  shadow and the glow fade out instead of stopping in a line. The result is kept as `../narzedzia/hero-flat.png`
+  (2640×1973); from it the script saves sharp JPEGs in the exact widths the picture is shown at on common screens
+  (`assets/img/screens/hero-574.jpg` … `hero-1842.jpg`, 23 sizes; the script lists which screen needs which).
   CSS rounds the picture to whole device pixels (`--dpx`, set by `main.js`), so the browser shows that file 1:1
   instead of resizing it (resizing, and the parallax moving it by fractions of a pixel, made it look soft – the
   collage has no parallax now). `sizes` in `index.html` is the picture's width in each layout minus .5px: change it

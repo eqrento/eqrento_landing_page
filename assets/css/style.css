@@ -280,6 +280,15 @@ section[id] { scroll-margin-top: 80px; }
 /* the collage brings its own window shadows and glow. Its width is rounded to whole device pixels (--dpx = one device
    pixel, set by main.js), so the browser shows the picture of that exact width 1:1 instead of resizing it (sharper) */
 .hero__screen img { width: 100%; width: round(100%, var(--dpx, 1px)); max-width: none; }   /* may be a fraction of a pixel wider than its box */
+/* wide screens: the collage 10% larger (the machines keep their size), grown around the bottom middle of the offer
+   window; the machines move out with its edges, so both still stand 2.95% of the stage away from them. The picture
+   now reaches 3.9% of the stage higher, so the stage sits 1.95% lower to keep it centred beside the text */
+@media (min-width: 1201px) {
+  .hero__stage    { top: calc(50% - var(--sw) * .1592); }
+  .hero__screen   { left: 20.663%; top: -8.036%; width: 70.02%; }
+  .hero__forklift { left: 4.839%; }
+  .hero__lift     { left: 68.921%; }
+}
 
 /* =========================================================
    LOGOS
@@ -483,9 +492,10 @@ section[id] { scroll-margin-top: 80px; }
 /* ONE window frame for the product screenshots (Key features and the telematics map card; the screenshots are raw – no
    frame, no glow baked in): a light window like the ones in the hero collage – light title bar (--bar) with red /
    yellow / green dots, hairline edge – with the collage's shadow: a soft navy shadow all round that lifts the window
-   off the page, and a violet glow under it */
+   off the page, and a violet glow under it. isolation: the hairline and the dots stay inside the frame, so the small
+   photo that overlaps the Key features window covers them (no light line across the photo) */
 .features__screen, .gps__map {
-  position: relative; border-radius: 12px;
+  position: relative; isolation: isolate; border-radius: 12px;
   box-shadow:
     0 1px 3px rgba(7, 10, 27, .08),
     0 16px 48px -8px rgba(7, 10, 27, .26),
