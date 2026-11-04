@@ -80,9 +80,14 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **Key features tab photos** (`data-photo`, the small picture over the screenshot's corner) – 287:186.
   - Older ones: `features-photo.png` (Offers), `-equipment.png` and `-service.png`, all 287×186 PNG.
   - Newer ones: 574×372 JPEG (2×) – `-gps.jpg`, `-invoicing.jpg`, `-wms.jpg`, `-transport.jpg`.
-  - The Transport photo's phone shows a real screenshot of the EQrento driver app (light theme). It is warped onto the
-    phone screen by `../narzedzia/telefon-transport.ps1` (`PhoneScreen.cs`). The original photo is kept there as
-    `features-photo-transport-orig.png`.
+  - Transport photo: a Gemini picture (open plant trucks – a flatbed with a mini excavator, a low-loader with its ramps
+    down carrying a scissor lift and a forklift). The same picture is the How it works “Transport” step card
+    (`step-3.jpg`, 586×400 – 2× of 293×200 – with the step pictures' dark fade at the bottom).
+  - Its phone shows a real screenshot of the EQrento driver app (light theme), made by
+    `../narzedzia/telefon-transport2.ps1` + `PhoneScreen.cs`. The script finds the phone's white screen in the photo by
+    itself, warps the app screen onto it, then makes both crops.
+  - The app screen (status bar + screenshot + home bar) is `../narzedzia/transport-screen.png`, built by
+    `telefon-transport.ps1` for the first, trucks-only photo.
   - `-sales.jpg` (Gemini picture, key fob retouched by `../narzedzia/zdjecie-sprzedaz.ps1`) belongs to the
     “Equipment sales” tab.
 - **Key features motion** (main.js, “key features: tabs / accordion”):
