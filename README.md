@@ -83,7 +83,7 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   - The Transport photo's phone shows a real screenshot of the EQrento driver app (light theme). It is warped onto the
     phone screen by `../narzedzia/telefon-transport.ps1` (`PhoneScreen.cs`). The original photo is kept there as
     `features-photo-transport-orig.png`.
-  - `-sales.jpg` (Gemini picture, key fob retouched by `../narzedzia/zdjecie-sprzedaz.ps1`) is ready for the coming
+  - `-sales.jpg` (Gemini picture, key fob retouched by `../narzedzia/zdjecie-sprzedaz.ps1`) belongs to the
     “Equipment sales” tab.
 - **Hero picture** – a collage of three app windows (equipment list, “Ask AI about your data”, offer) between the
   forklift and the scissor lift; on wide screens (> 1200px) it is 10% larger (70.02% of the stage – the machines
@@ -117,7 +117,7 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **AI Assistant** (paid add-on, available in every plan – always say “paid add-on”, nothing about tokens or prices)
   appears in: the hero checklist (“Ask AI about your data”), the EQrento card in Why (“Optional AI Assistant…”), the
   One platform diagram (violet chip `.node--ai`, `data-node="t"` on top of the core; its connector is the `t` route in
-  `drawLines()` in `main.js`), Key features (8th, last tab; screenshot `assets/img/screens/ai-860|1080|1290|1720.png` made by
+  `drawLines()` in `main.js`), Key features (9th, last tab; screenshot `assets/img/screens/ai-860|1080|1290|1720.png` made by
   `../narzedzia/zrzut-ai.ps1` from the raw screenshot; the tab has no `data-photo`, so `main.js` adds `.is-nophoto` and
   the small photo is hidden), the comparison table (group “AI Assistant”, cells “Paid add-on”), a box under the pricing
   cards and an FAQ question. Icons: `assets/icons/ai.svg` (orange) and `assets/icons/platform/ai.svg` (white).
@@ -129,9 +129,10 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   Icons: `assets/icons/wms.svg` (orange), `assets/icons/platform/wms.svg` (white).
 - **Equipment and parts sales** (selling machines and parts, plus after-sales service) – Enterprise only: a group in
   the comparison table after Warehouse (WMS) and the second line of the Enterprise card. The two sale rows that used to
-  be in Equipment now live there. A Key features tab “Equipment sales” (after Warehouse (WMS)) waits for a screenshot
-  of the app's “Equipment for Sale” screen. Its small photo is ready (`assets/img/features-photo-sales.jpg`). Never call
-  it the only system on the market that sells. Icon: `assets/icons/sales.svg` (orange tag).
+  be in Equipment now live there. Key features: 7th tab “Equipment sales” (after Warehouse (WMS)), with the photo
+  `assets/img/features-photo-sales.jpg`. Its screenshot is TEMPORARILY the Equipment one; when the app's “Equipment for
+  Sale” screenshot arrives, make its four sizes and swap `data-screen` / `data-srcset`. Never call it the only system
+  on the market that sells. Icon: `assets/icons/sales.svg` (orange tag).
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
 - **Steps (How it works)** – pinned while the cards scroll; on short screens the pin position adapts so the cards and
