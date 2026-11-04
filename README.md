@@ -88,6 +88,13 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
     itself, warps the app screen onto it, then makes both crops.
   - The app screen (status bar + screenshot + home bar) is `../narzedzia/transport-screen.png`, built by
     `telefon-transport.ps1` for the first, trucks-only photo.
+- **How it works step pictures** (`.step__media`, 293×200 at 1×): the dark fade at the bottom is baked into the
+  pictures (85 of 200 px, to #010101) and the CSS adds its own.
+  - `step-1|2|5|6.png` are 1× PNGs.
+  - `step-3.jpg` (Transport, see above) and `step-4.jpg` (Handover) are 586×400 JPEGs (2×).
+  - In `step-4.jpg` the worker's phone shows the EQrento app (calendar with a repair task, light theme). It was made by
+    `../narzedzia/telefon-przekazanie.ps1` from `step-4-orig.png` (the original picture, enlarged to 2×) and
+    `handover-shot.png`. The phone's screen is found by itself, leaving out the camera notch.
   - `-sales.jpg` (Gemini picture, key fob retouched by `../narzedzia/zdjecie-sprzedaz.ps1`) belongs to the
     “Equipment sales” tab.
 - **Key features motion** (main.js, “key features: tabs / accordion”):
