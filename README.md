@@ -116,7 +116,8 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **Warehouse (WMS)** – Enterprise only: a group in the comparison table, the One platform chip in the former “Map”
   slot (`data-node="br"`), the first line of the Enterprise card and Key features (6th tab, after Service; screenshot
   `assets/img/screens/wms-860|1080|1290|1720.png` made by `../narzedzia/zrzut-wms.ps1` – the raw screenshot is much
-  wider than the others, so app background is added under it and the sidebar's scrollbar is removed; no `data-photo`).
+  wider than the others, so app background is added under it and the sidebar's scrollbar is removed; small photo
+  `assets/img/features-photo-wms.jpg`, a Gemini picture cropped and sized by `../narzedzia/zdjecie-wms.ps1`).
   Icons: `assets/icons/wms.svg` (orange), `assets/icons/platform/wms.svg` (white).
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
