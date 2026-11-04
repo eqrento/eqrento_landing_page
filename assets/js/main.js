@@ -171,40 +171,147 @@
       featGrid.appendChild(visual);
     }
   };
-  // after a tab opens, the page lines it up right under the fixed header. Side by side its picture (screenshot window
-  // plus the small photo that sticks out of it) moves to the same level – a top margin in the grid row, so for the
-  // last tabs the row (and the section) simply grows instead of the picture covering the next section. Stacked, the
-  // picture follows the tab: the pair is lined up as one block and the whole picture stays on screen
-  const resetLevel = () => { visual.style.marginTop = visual.style.marginBottom = visual.style.alignSelf = ''; };
-  const alignOpen = () => {
-    const open = feats.find(f => f.classList.contains('is-open'));
-    const from = $('.header').getBoundingClientRect().bottom + 16, to = window.innerHeight - 16;
-    const screenBox = $('.features__screen', visual), photoBox = $('.features__photo', visual);
-    const tab = open.getBoundingClientRect();
-    let shift = tab.top - from;
-    if (stacked.matches) {
-      resetLevel();
-      // the picture's end (layout offsets, so the photo's parallax doesn't count); when tab and picture don't fit on
-      // screen together (tablets held sideways), the block ends at the screenshot window and only the photo sticks out
-      const vTop = visual.getBoundingClientRect().top;
-      let bottom = vTop + Math.max(screenBox.offsetTop + screenBox.offsetHeight,
-        visual.classList.contains('is-nophoto') ? 0 : photoBox.offsetTop + photoBox.offsetHeight);
-      if (bottom - tab.top > to - from) bottom = vTop + screenBox.offsetTop + screenBox.offsetHeight;
-      shift = Math.max(shift, bottom - to);
-    } else {
-      if (visual.style.alignSelf !== 'start') {   // first time: take over from the centred place without a jump
-        visual.style.transition = 'none';
-        visual.style.marginTop = `${visual.getBoundingClientRect().top - featGrid.getBoundingClientRect().top}px`;
-        visual.style.alignSelf = 'start';
-        void visual.offsetHeight;
-        visual.style.transition = '';
-      }
-      visual.style.marginTop = `${(tab.top - featGrid.getBoundingClientRect().top - screenBox.offsetTop).toFixed(1)}px`;
-      // room in the row for the small photo that sticks out below the visual's box
-      const over = visual.classList.contains('is-nophoto') ? 0 : photoBox.offsetTop + photoBox.offsetHeight - visual.offsetHeight;
-      visual.style.marginBottom = `${Math.max(0, over)}px`;
+  // After a tab opens, the page lines it up right under the fixed header; side by side its picture (screenshot window
+  // plus the small photo sticking out of it) glides to the same level. It all starts on the click and runs as ONE
+  // movement – the accordion, the page scroll and the picture – aimed at where things end up, measured up front on an
+  // invisible copy of the list with only the new tab open (the real tabs keep animating untouched).
+  // Side by side the picture moves with `translate`: the GPU shifts the finished picture, no relayout and no repaint of
+  // its big shadow and glow on every frame (with an animated margin that was the stutter). For the last tabs the grid
+  // gets an animated bottom padding, so the picture never covers the next section. The small photo's parallax is
+  // updated on every frame meanwhile, so it doesn't jump on the next scroll.
+  // Stacked (≤ 1200px) the picture sits under the open tab: it fades out, moves there, and the tabs that shift because
+  // of the move glide back (FLIP) instead of jumping; then the page lines up the tab and the whole picture.
+  const featList = $('.features__list');
+  const screenBox = $('.features__screen', visual), photoBox = $('.features__photo', visual);
+  const photo = $('.js-feat-photo', visual), screen = $('.js-feat-screen', visual);
+  const MOVE = 500;   // ms: the accordion's .5s – the picture and the grid's bottom padding take the same
+  let aligned = false, run = 0;
+  const snap = v => { const d = window.devicePixelRatio || 1; return Math.round(v * d) / d; };   // whole device px: sharp
+  const lineTop = () => header.getBoundingClientRect().bottom + 16;
+  const resetLevel = () => {
+    cancelAnimationFrame(glide);
+    if (glideOff) glideOff();
+    visual.style.transition = 'none';
+    visual.style.translate = visual.style.alignSelf = '';
+    featGrid.style.paddingBottom = '';
+    void visual.offsetHeight;
+    visual.style.transition = '';
+    aligned = false;
+  };
+  // the list once only `target` is open: target's top and the list's height, from the list's top
+  const planFor = target => {
+    const i = feats.indexOf(target);
+    const copy = featList.cloneNode(true);
+    copy.classList.add('is-probe');
+    copy.querySelectorAll('[id]').forEach(e => e.removeAttribute('id'));
+    copy.style.width = `${featList.clientWidth}px`;
+    const items = $$('.feat', copy);
+    items.forEach((f, k) => f.classList.toggle('is-open', k === i));
+    featGrid.appendChild(copy);
+    const plan = { top: items[i].offsetTop, height: copy.offsetHeight };
+    copy.remove();
+    return plan;
+  };
+  // the page's --ease, cubic-bezier(.2, .7, .2, 1), for the movements driven from here (they match the CSS ones)
+  const ease = (() => {
+    const cx = .6, bx = -.6, ax = 1, cy = 2.1, by = -1.2, ay = .1;   // the curve's polynomial coefficients
+    const sx = t => ((ax * t + bx) * t + cx) * t, sy = t => ((ay * t + by) * t + cy) * t, dx = t => (3 * ax * t + 2 * bx) * t + cx;
+    return x => {
+      if (x <= 0) return 0;
+      if (x >= 1) return 1;
+      let t = x;
+      for (let k = 0; k < 6; k++) { const e = sx(t) - x; if (Math.abs(e) < 1e-5) break; t -= e / dx(t); }
+      return sy(t);
+    };
+  })();
+  // side by side: the picture glides to where the tab will be and the page scrolls the tab under the header – in one
+  // frame loop, with the accordion's own curve and time, so the tab, the picture and the page move as one (the
+  // browser's own smooth scroll has another curve: the picture dipped first, then rose – a visible hop). If the
+  // visitor scrolls meanwhile, the page is theirs and only the picture finishes its move.
+  let glide = 0, glideOff = null;
+  const glideSide = target => {
+    const plan = planFor(target);
+    const gridTop = featGrid.getBoundingClientRect().top, listTop = featList.getBoundingClientRect().top;
+    if (!aligned) {   // first time: take over from the centred place without a jump
+      const before = visual.getBoundingClientRect().top;
+      visual.style.alignSelf = 'start';
+      visual.style.translate = `0 ${before - visual.getBoundingClientRect().top}px`;
+      aligned = true;
     }
-    window.scrollBy({ top: shift, behavior: reduceMotion ? 'auto' : 'smooth' });
+    const y0 = parseFloat((visual.style.translate || '0 0').split(' ')[1]) || 0;   // where it is now (also mid-glide)
+    const y1 = snap(listTop - gridTop + plan.top - screenBox.offsetTop);
+    // the picture's end (layout offsets: the photo's parallax doesn't count) against the list's end
+    const over = target.dataset.photo ? Math.max(0, photoBox.offsetTop + photoBox.offsetHeight - visual.offsetHeight) : 0;
+    const need = y1 + visual.offsetHeight + over - (listTop - gridTop + plan.height);
+    featGrid.style.paddingBottom = need > 0 ? `${Math.ceil(need)}px` : '';   // animated by CSS, same curve and time
+    const s0 = window.scrollY, s1 = s0 + listTop + plan.top - lineTop();
+    cancelAnimationFrame(glide);
+    if (glideOff) glideOff();
+    if (reduceMotion) { visual.style.translate = `0 ${y1}px`; window.scrollTo(0, s1); updateParallax(); return; }
+    let mine = true;   // the page scroll is ours until the visitor scrolls
+    const yours = () => { mine = false; };
+    const inputs = ['wheel', 'touchstart', 'keydown', 'mousedown'];
+    inputs.forEach(e => addEventListener(e, yours, { passive: true }));
+    glideOff = () => {
+      inputs.forEach(e => removeEventListener(e, yours));
+      root.style.scrollBehavior = visual.style.willChange = '';
+      glideOff = null;
+    };
+    root.style.scrollBehavior = 'auto';   // each scrollTo below is one frame of the movement, not a smooth scroll
+    visual.style.willChange = 'translate';   // its own layer while it moves: no repaint of the shadow and glow
+    const t0 = performance.now();
+    const step = now => {
+      const p = ease((now - t0) / MOVE);
+      visual.style.translate = `0 ${p < 1 ? (y0 + (y1 - y0) * p).toFixed(2) : y1}px`;
+      if (mine) window.scrollTo(0, s0 + (s1 - s0) * p);
+      updateParallax();
+      if (p < 1) glide = requestAnimationFrame(step);
+      else glideOff();
+    };
+    glide = requestAnimationFrame(step);
+  };
+  // stacked: the picture (faded out by now) moves under the new tab; the tabs it shifts glide back into place
+  const moveStacked = () => {
+    const before = feats.map(f => f.getBoundingClientRect().top);
+    const anchor = root.style.overflowAnchor;
+    root.style.overflowAnchor = 'none';   // the browser's scroll anchoring would shift the page on this move
+    placeVisual();
+    const after = feats.map(f => f.getBoundingClientRect().top);
+    root.style.overflowAnchor = anchor;
+    feats.forEach((f, k) => { const d = before[k] - after[k]; if (Math.abs(d) > .5) f.style.translate = `0 ${d}px`; });
+    void featList.offsetHeight;
+    featList.classList.add('is-flip');
+    feats.forEach(f => { f.style.translate = ''; });
+    setTimeout(() => featList.classList.remove('is-flip'), 350);
+  };
+  // stacked: the tab right under the header; the picture below it whole on screen (tablets held sideways: only the
+  // screenshot window has to fit, the photo may stick out)
+  const alignStacked = () => {
+    const open = feats.find(f => f.classList.contains('is-open'));
+    const from = lineTop(), to = window.innerHeight - 16;
+    const tab = open.getBoundingClientRect();
+    const vTop = visual.getBoundingClientRect().top;
+    let bottom = vTop + Math.max(screenBox.offsetTop + screenBox.offsetHeight,
+      visual.classList.contains('is-nophoto') ? 0 : photoBox.offsetTop + photoBox.offsetHeight);
+    if (bottom - tab.top > to - from) bottom = vTop + screenBox.offsetTop + screenBox.offsetHeight;
+    window.scrollBy({ top: Math.max(tab.top - from, bottom - to), behavior: reduceMotion ? 'auto' : 'smooth' });
+  };
+  // the selected tab's photo and screenshot (srcset: the browser picks the size for this screen)
+  const swapTo = feat => {
+    const next = feat.dataset.photo, nextScreen = feat.dataset.screen;
+    if (next && photo.getAttribute('src') !== next) photo.src = next;
+    visual.classList.toggle('is-nophoto', !next);   // a tab without data-photo (AI Assistant) hides the small photo
+    if (nextScreen && screen.getAttribute('src') !== nextScreen) {
+      screen.srcset = feat.dataset.srcset || '';
+      screen.src = nextScreen;
+      screen.alt = `EQrento app – ${$('.feat__name', feat).textContent.trim()}`;
+    }
+  };
+  // fade the new pictures in once they are decoded (no half-drawn frame), at most 300ms later
+  const showWhenReady = r => {
+    const ready = [screen, photo].map(im => (im.decode ? im.decode() : Promise.resolve()).catch(() => {}));
+    Promise.race([Promise.all(ready), new Promise(res => setTimeout(res, 300))])
+      .then(() => { if (r === run) visual.classList.remove('is-swapping', 'is-moving'); });
   };
   // only a new width moves things: phones and tablets fire height-only resizes when the address bar hides or shows
   let levelW = window.innerWidth;
@@ -212,29 +319,24 @@
   feats.forEach(feat => {
     $('.feat__head', feat).addEventListener('click', () => {
       if (feat.classList.contains('is-open')) return;
+      const r = ++run;
+      const side = !stacked.matches;
       feats.forEach(f => {
         const on = f === feat;
         f.classList.toggle('is-open', on);
         $('.feat__head', f).setAttribute('aria-selected', String(on));
       });
-      // swap the photo and the screenshot (srcset: the browser picks the size for this screen) for the selected tab
-      const photo = $('.js-feat-photo', visual);
-      const screen = $('.js-feat-screen', visual);
-      const next = feat.dataset.photo, nextScreen = feat.dataset.screen;
-      const name = $('.feat__name', feat).textContent.trim();
-      const swap = () => {
-        if (next && photo.getAttribute('src') !== next) photo.src = next;
-        visual.classList.toggle('is-nophoto', !next);   // a tab without data-photo (AI Assistant) hides the small photo
-        if (nextScreen && screen.getAttribute('src') !== nextScreen) {
-          screen.srcset = feat.dataset.srcset || '';
-          screen.src = nextScreen;
-          screen.alt = `EQrento app – ${name}`;
-        }
-      };
-      if (reduceMotion) { swap(); placeVisual(); setTimeout(alignOpen, 50); return; }
-      visual.classList.add('is-swapping');
-      setTimeout(() => { swap(); placeVisual(); visual.classList.remove('is-swapping'); }, 320);
-      setTimeout(alignOpen, 560);   // the item has finished opening (0.5s): its final size and place are known
+      if (side) {
+        glideSide(feat);
+        if (reduceMotion) { swapTo(feat); return; }
+        visual.classList.add('is-swapping');
+        setTimeout(() => { if (r === run) { swapTo(feat); showWhenReady(r); } }, 300);
+        return;
+      }
+      if (reduceMotion) { swapTo(feat); placeVisual(); setTimeout(alignStacked, 50); return; }
+      visual.classList.add('is-swapping', 'is-moving');   // the whole picture fades out, its frame too
+      setTimeout(() => { if (r === run) { moveStacked(); swapTo(feat); showWhenReady(r); } }, 220);
+      setTimeout(() => { if (r === run) alignStacked(); }, 560);   // the tabs have settled: line them up
     });
   });
 

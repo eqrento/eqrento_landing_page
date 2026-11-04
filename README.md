@@ -85,6 +85,16 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
     `features-photo-transport-orig.png`.
   - `-sales.jpg` (Gemini picture, key fob retouched by `../narzedzia/zdjecie-sprzedaz.ps1`) belongs to the
     “Equipment sales” tab.
+- **Key features motion** (main.js, “key features: tabs / accordion”):
+  - On a click everything moves as one 0.5s movement on the page's `--ease` curve: the accordion, the page scroll (the
+    tab ends right under the header) and, side by side, the picture.
+  - The movement aims at the end state, measured first on an invisible copy of the list (`.is-probe`).
+  - The picture moves with `translate`, set frame by frame in the same loop as the scroll, on its own layer while it
+    moves. Never animate its margin: that relays out the page and repaints the big shadow and glow on every frame,
+    which stutters.
+  - For the last tabs the grid gets an animated bottom padding, so the picture doesn't cover the next section.
+  - Stacked (≤ 1200px): the picture fades out and moves under the new tab, the tabs it shifts glide back (FLIP,
+    `.is-flip`), then the page lines up the tab and the picture.
 - **Hero picture** – a collage of three app windows (equipment list, “Ask AI about your data”, offer) between the
   forklift and the scissor lift; on wide screens (> 1200px) it is 10% larger (70.02% of the stage – the machines
   keep their size and move out with the offer window's edges); on phones (≤ 640px) the whole collage fills the

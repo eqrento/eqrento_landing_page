@@ -451,8 +451,14 @@ section[id] { scroll-margin-top: 80px; }
 .features__grid {
   margin-top: 64px;
   display: grid; grid-template-columns: minmax(0, 452fr) minmax(0, 844fr); gap: 64px; align-items: center;
+  transition: padding-bottom .5s var(--ease);   /* room for the picture next to the last tabs (main.js) */
 }
-.features__list { display: flex; flex-direction: column; gap: 16px; align-self: start; }   /* stays at the top when the picture's margin makes the row taller */
+.features__list { display: flex; flex-direction: column; gap: 16px; align-self: start; }   /* stays at the top; the picture glides beside it */
+/* main.js: an invisible copy of the list, measured in its end state (only the new tab open) */
+.features__list.is-probe { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+.is-probe, .is-probe * { transition: none !important; }
+/* stacked: the tabs that shift when the picture moves under another tab glide back into place (FLIP, main.js) */
+.features__list.is-flip > .feat { transition: background-color .45s var(--ease), box-shadow .45s var(--ease), translate .3s var(--ease); }
 
 .feat {
   border-radius: 24px; background: transparent;
@@ -489,7 +495,8 @@ section[id] { scroll-margin-top: 80px; }
 .feat.is-open .feat__body > p { opacity: 1; padding: 16px 32px 32px; transition-delay: .1s; }
 
 .features__visual { position: relative; }
-.js .features__visual[data-reveal] { transition: opacity .9s var(--ease) var(--d, 0ms), transform 1s var(--ease) var(--d, 0ms), margin-top .5s var(--ease); }   /* + glides to the opened tab's level (main.js) */
+/* the picture glides to the opened tab's level with `translate`, moved frame by frame by main.js in step with the page
+   scroll and the accordion (its own layer meanwhile: no repaint of the shadow and glow per frame) */
 /* ONE window frame for the product screenshots (Key features and the telematics map card; the screenshots are raw – no
    frame, no glow baked in): a light window like the ones in the hero collage – light title bar (--bar) with red /
    yellow / green dots, hairline edge – with the collage's shadow: a soft navy shadow all round that lifts the window
@@ -534,6 +541,8 @@ section[id] { scroll-margin-top: 80px; }
 .is-swapping .features__photo img { opacity: 0; transform: scale(1.05); }
 .features__photo { transition: opacity .35s var(--ease), visibility .35s; }
 .features__visual.is-nophoto .features__photo { opacity: 0; visibility: hidden; }   /* the AI Assistant tab has no photo */
+.features__screen { transition: opacity .2s var(--ease); }
+.features__visual.is-moving > * { opacity: 0; }   /* stacked: the whole picture fades out while it moves under the new tab */
 
 /* =========================================================
    WHY / POSITIONING
