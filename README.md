@@ -119,6 +119,10 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   wider than the others, so app background is added under it and the sidebar's scrollbar is removed; small photo
   `assets/img/features-photo-wms.jpg`, a Gemini picture cropped and sized by `../narzedzia/zdjecie-wms.ps1`).
   Icons: `assets/icons/wms.svg` (orange), `assets/icons/platform/wms.svg` (white).
+- **Equipment and parts sales** (selling machines and parts, plus after-sales service) – every plan: a group in the
+  comparison table after Warehouse (WMS). The two sale rows that used to be in Equipment now live there. A Key features
+  tab “Equipment sales” (after Warehouse (WMS)) waits for a screenshot of the app's “Equipment for Sale” screen and a
+  small photo. Never call it the only system on the market that sells. Icon: `assets/icons/sales.svg` (orange tag).
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
 - **Steps (How it works)** – pinned while the cards scroll; on short screens the pin position adapts so the cards and
