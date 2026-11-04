@@ -77,6 +77,14 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   The window frame is CSS (“ONE window frame” in `style.css`), shared by `.features__screen` and `.gps__map`: a light
   window like the ones in the hero collage – light title bar with red / yellow / green dots, hairline edge, a soft
   navy shadow all round and a violet glow under it.
+- **Key features tab photos** (`data-photo`, the small picture over the screenshot's corner) – 287:186.
+  - Older ones: `features-photo.png` (Offers), `-equipment.png` and `-service.png`, all 287×186 PNG.
+  - Newer ones: 574×372 JPEG (2×) – `-gps.jpg`, `-invoicing.jpg`, `-wms.jpg`, `-transport.jpg`.
+  - The Transport photo's phone shows a real screenshot of the EQrento driver app (light theme). It is warped onto the
+    phone screen by `../narzedzia/telefon-transport.ps1` (`PhoneScreen.cs`). The original photo is kept there as
+    `features-photo-transport-orig.png`.
+  - `-sales.jpg` (Gemini picture, key fob retouched by `../narzedzia/zdjecie-sprzedaz.ps1`) is ready for the coming
+    “Equipment sales” tab.
 - **Hero picture** – a collage of three app windows (equipment list, “Ask AI about your data”, offer) between the
   forklift and the scissor lift; on wide screens (> 1200px) it is 10% larger (70.02% of the stage – the machines
   keep their size and move out with the offer window's edges); on phones (≤ 640px) the whole collage fills the
@@ -121,9 +129,9 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   Icons: `assets/icons/wms.svg` (orange), `assets/icons/platform/wms.svg` (white).
 - **Equipment and parts sales** (selling machines and parts, plus after-sales service) – Enterprise only: a group in
   the comparison table after Warehouse (WMS) and the second line of the Enterprise card. The two sale rows that used to
-  be in Equipment now live there. A Key features
-  tab “Equipment sales” (after Warehouse (WMS)) waits for a screenshot of the app's “Equipment for Sale” screen and a
-  small photo. Never call it the only system on the market that sells. Icon: `assets/icons/sales.svg` (orange tag).
+  be in Equipment now live there. A Key features tab “Equipment sales” (after Warehouse (WMS)) waits for a screenshot
+  of the app's “Equipment for Sale” screen. Its small photo is ready (`assets/img/features-photo-sales.jpg`). Never call
+  it the only system on the market that sells. Icon: `assets/icons/sales.svg` (orange tag).
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
 - **Steps (How it works)** – pinned while the cards scroll; on short screens the pin position adapts so the cards and
