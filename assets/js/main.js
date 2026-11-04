@@ -206,7 +206,9 @@
     }
     window.scrollBy({ top: shift, behavior: reduceMotion ? 'auto' : 'smooth' });
   };
-  addEventListener('resize', resetLevel);
+  // only a new width moves things: phones and tablets fire height-only resizes when the address bar hides or shows
+  let levelW = window.innerWidth;
+  addEventListener('resize', () => { if (window.innerWidth !== levelW) { levelW = window.innerWidth; resetLevel(); } });
   feats.forEach(feat => {
     $('.feat__head', feat).addEventListener('click', () => {
       if (feat.classList.contains('is-open')) return;
