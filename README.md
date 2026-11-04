@@ -26,6 +26,23 @@ Recommended server settings (most hosts do this by default):
 Open the site through a web server, not by double-clicking `index.html`: some browsers block the self-hosted fonts
 and the video on `file://`.
 
+**OVH move (4 Nov 2026):** the package for the programmer lives outside this repo, in `../eqrento-ovh/`. It holds:
+- `eqrento-strona/` and `.zip` – this repo without `README.md`, `.github` and `.gitignore`;
+- `nginx-eqrento.conf`, tested;
+- `INSTRUKCJA-DLA-PROGRAMISTY.md`, in Polish.
+
+The nginx config sends a **Content-Security-Policy with the SHA-256 hashes of the two inline scripts**:
+- `document.documentElement.classList.add('js')` in `index.html` and both policy pages;
+- the `<base href>` script in `404.html`.
+
+If either script changes, recompute its hash, e.g. with
+`perl -0ne 'print $1 if /<script>(.*?)<\/script>/s' index.html | openssl dgst -sha256 -binary | openssl base64`.
+Then give the new header to the server admin, otherwise browsers block the script.
+
+Never add a new inline script or inline event handler (`onclick="…"`); put the code in `main.js` instead.
+
+The config also sends every old-site language path to `/`: `/en`, `/pl`, `/de`, `/es`, `/fr`, `/it`, `/nl`, `/sv`, `/pt` and everything under them.
+
 ## Structure
 
 ```
