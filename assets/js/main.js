@@ -171,6 +171,29 @@
       featGrid.appendChild(visual);
     }
   };
+  // after a tab opens, make sure its whole picture (the screenshot window plus the small photo that sticks out of it)
+  // is on screen. Side by side: if part of it is hidden, scroll so it sits in the middle of the space under the fixed
+  // header. Stacked (the picture follows the opened item): bring the item's head to the top of that space, or further
+  // when that is needed for the picture to end on screen
+  const showVisual = () => {
+    let { top, bottom } = $('.features__screen', visual).getBoundingClientRect();
+    if (!visual.classList.contains('is-nophoto')) {
+      const p = $('.features__photo', visual).getBoundingClientRect();
+      top = Math.min(top, p.top); bottom = Math.max(bottom, p.bottom);
+    }
+    const from = $('.header').getBoundingClientRect().bottom + 16, to = window.innerHeight - 16;
+    if (top >= from && bottom <= to) return;
+    const room = to - from, h = bottom - top;
+    let shift;
+    if (stacked.matches) {
+      const open = feats.find(f => f.classList.contains('is-open'));
+      shift = $('.feat__head', open).getBoundingClientRect().top - from;
+      if (bottom - shift > to) shift = h <= room ? bottom - to : top - from;
+    } else {
+      shift = h <= room ? top - from - (room - h) / 2 : top - from;
+    }
+    window.scrollBy({ top: shift, behavior: reduceMotion ? 'auto' : 'smooth' });
+  };
   feats.forEach(feat => {
     $('.feat__head', feat).addEventListener('click', () => {
       if (feat.classList.contains('is-open')) return;
@@ -193,9 +216,10 @@
           screen.alt = `EQrento app – ${name}`;
         }
       };
-      if (reduceMotion) { swap(); placeVisual(); return; }
+      if (reduceMotion) { swap(); placeVisual(); setTimeout(showVisual, 50); return; }
       visual.classList.add('is-swapping');
       setTimeout(() => { swap(); placeVisual(); visual.classList.remove('is-swapping'); }, 320);
+      setTimeout(showVisual, 560);   // the item has finished opening (0.5s): the picture is in its final place
     });
   });
 
