@@ -113,6 +113,9 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   `../narzedzia/zrzut-ai.ps1` from the raw screenshot; the tab has no `data-photo`, so `main.js` adds `.is-nophoto` and
   the small photo is hidden), the comparison table (group “AI Assistant”, cells “Paid add-on”), a box under the pricing
   cards and an FAQ question. Icons: `assets/icons/ai.svg` (orange) and `assets/icons/platform/ai.svg` (white).
+- **Warehouse (WMS)** – Enterprise only: a group in the comparison table, the One platform chip in the former “Map”
+  slot (`data-node="br"`) and the first line of the Enterprise card. Icons: `assets/icons/wms.svg` (orange),
+  `assets/icons/platform/wms.svg` (white).
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
 - **Steps (How it works)** – pinned while the cards scroll; on short screens the pin position adapts so the cards and
