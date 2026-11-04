@@ -44,6 +44,15 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   window.addEventListener('resize', () => { if (window.innerWidth > 1200) setMenu(false); });
 
+  /* ---------- the policy pages (privacy-policy.html, cookie-policy.html) share only the header, the footer and the
+     cookie banner with the home page: they need just the scrolled header, not the rest of this block ---------- */
+  if (!$('#steps')) {
+    const onScrollPlain = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScrollPlain, { passive: true });
+    onScrollPlain();
+    return;
+  }
+
   const navLinks = $$('.nav__link');
   const spyTargets = navLinks.map(a => $(a.getAttribute('href'))).filter(Boolean);
 
@@ -529,7 +538,8 @@
 /* ---------- cookie consent ----------
    The choice is kept in localStorage (strictly necessary, so it needs no consent itself).
    To load a tool only after consent:  window.eqOnConsent('analytics', () => { …load the analytics script… });
-   Bump VERSION when the Cookie Policy changes – everybody is asked again. */
+   Bump VERSION when the Cookie Policy changes – everybody is asked again (the policy promises it).
+   VERSION 1 = the Cookie Policy of 4 November 2026. */
 (() => {
   const banner = document.getElementById('cookie-banner');
   if (!banner) return;
@@ -782,4 +792,35 @@
       setSending(false);
     }
   });
+})();
+
+/* ---------- policy pages: the “On this page” list is built from the h2 headings of the text, so a renamed or a new
+   section needs no second edit. On wide screens it stays in view beside the text and marks the section being read. */
+(() => {
+  const toc = document.querySelector('.legal__toc');
+  const heads = [...document.querySelectorAll('.legal__doc h2[id]')];
+  if (!toc || heads.length < 2) return;
+  const title = Object.assign(document.createElement('p'), { className: 'legal__toc-title', textContent: 'On this page' });
+  title.setAttribute('aria-hidden', 'true');   // the nav's aria-label already says it
+  const list = document.createElement('ol');
+  const links = heads.map(h => {
+    const a = Object.assign(document.createElement('a'), { href: '#' + h.id, textContent: h.textContent });
+    list.appendChild(document.createElement('li')).appendChild(a);
+    return a;
+  });
+  toc.append(title, list);
+  toc.hidden = false;
+
+  // the section being read: the last heading above the upper third of the window
+  let ticking = false;
+  const mark = () => {
+    ticking = false;
+    const line = window.innerHeight * 0.3;
+    let current = -1;
+    heads.forEach((h, i) => { if (h.getBoundingClientRect().top <= line) current = i; });
+    links.forEach((a, i) => a.classList.toggle('is-active', i === current));
+  };
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(mark); } }, { passive: true });
+  window.addEventListener('resize', mark);
+  mark();
 })();

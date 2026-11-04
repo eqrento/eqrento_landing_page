@@ -1309,6 +1309,129 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 @media (prefers-reduced-motion: reduce) { .demo[open] .demo__panel, .demo[open]::backdrop { animation: none; } }
 
 /* =========================================================
+   POLICY PAGES – privacy-policy.html, cookie-policy.html
+   The same header, footer and cookie banner as the home page. The text is one reading column (about 80 characters
+   a line); on wide screens the “On this page” list (main.js builds it from the h2s) stays in view on its left.
+   The tables turn into one card per row on tablets and phones.
+   ========================================================= */
+.legal {
+  display: grid; grid-template-columns: minmax(0, 760px); justify-content: center; align-items: start; row-gap: 32px;
+  padding: calc(var(--header-h) + 40px) var(--gutter) var(--sec-y);
+}
+.legal__head { padding-bottom: 32px; border-bottom: 1px solid rgba(23, 15, 4, .1); }
+.legal__head .kicker { margin-bottom: 0; }
+.legal__title { margin-top: 12px; font-size: var(--h2); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); }
+.legal__date { margin-top: 16px; font-size: 15px; color: var(--gray-2); }
+
+/* “On this page” */
+.legal__toc[hidden] { display: none; }
+.legal__toc-title { font-size: 13px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--label-violet-ink); }
+.legal__toc ol { margin-top: 12px; }
+.legal__toc a {
+  display: block; padding: 6px 0;
+  font-size: 14px; line-height: 1.4; color: var(--gray-2);
+  transition: color .25s var(--ease), border-color .25s var(--ease);
+}
+.legal__toc a:hover { color: var(--ink); }
+@media (min-width: 1201px) {
+  .legal { grid-template-columns: 220px minmax(0, 760px); column-gap: 80px; }
+  .legal__head, .legal__doc { grid-column: 2; }
+  .legal__toc {
+    grid-column: 1; grid-row: 1 / span 2; position: sticky; top: 116px;   /* 32px under the scrolled header */
+    max-height: calc(100vh - 140px); overflow-y: auto; overscroll-behavior: contain;
+  }
+  .legal__toc ol { border-left: 1px solid rgba(23, 15, 4, .12); }
+  .legal__toc a { margin-left: -1px; padding-left: 16px; border-left: 2px solid transparent; }
+  .legal__toc a.is-active { color: var(--ink); border-left-color: var(--label-violet); }
+}
+/* tablets and phones: a box between the title and the text */
+@media (max-width: 1200px) {
+  .legal__toc { padding: 20px 24px; border-radius: 16px; background: var(--white); box-shadow: 0 0 0 1px rgba(23, 15, 4, .06); }
+  .legal__toc ol { columns: 2; column-gap: 32px; }
+  .legal__toc li { break-inside: avoid; }
+}
+
+/* the text */
+.legal__doc { font-size: 16px; line-height: 1.75; color: var(--gray-2); }
+.legal__doc p, .legal__doc ul { margin-top: 16px; }
+.legal__doc h2 {
+  margin-top: 56px; font-size: 24px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; color: var(--ink);
+  scroll-margin-top: 116px;
+}
+.legal__doc > :first-child { margin-top: 0; }
+.legal__doc li { position: relative; padding-left: 26px; }
+.legal__doc li + li { margin-top: 8px; }
+.legal__doc li::before {
+  content: ""; position: absolute; left: 8px; top: calc(.875em - 3px);   /* in the middle of the first line */
+  width: 6px; height: 6px; border-radius: 50%; background: var(--marker);
+}
+.legal__doc strong { font-weight: 600; color: var(--ink); }
+.legal__doc a, .legal__cookie-btn {
+  color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+  text-decoration-color: rgba(28, 26, 23, .35);
+  transition: color .25s var(--ease), text-decoration-color .25s var(--ease);
+}
+.legal__doc a:hover, .legal__cookie-btn:hover { color: var(--label-violet-ink); text-decoration-color: currentColor; }
+.legal__cookie-btn { font-weight: 600; }   /* “Cookie settings” in the Cookie Policy text: opens the cookie banner */
+.legal__lead { font-size: 18px; line-height: 1.65; color: var(--ink); }
+
+/* tables: a white card; on wide screens the column names stay in view under the page header */
+.legal__table {
+  width: 100%; margin-top: 24px; border-collapse: separate; border-spacing: 0;
+  background: var(--white); border-radius: 16px; box-shadow: 0 0 0 1px rgba(23, 15, 4, .08);
+  font-size: 14px; line-height: 1.6; text-align: left;
+}
+.legal__table + p { margin-top: 24px; }
+.legal__table th, .legal__table td { padding: 14px 16px; vertical-align: top; }
+.legal__table thead th {
+  position: sticky; top: 84px; z-index: 1;
+  background: #f4f4ff; font-weight: 600; line-height: 1.4; color: var(--ink);   /* the labels' violet, very light (opaque: the rows pass under it) */
+}
+.legal__table thead th:first-child { border-top-left-radius: 16px; }
+.legal__table thead th:last-child { border-top-right-radius: 16px; }
+.legal__table tbody > tr > * { border-top: 1px solid rgba(23, 15, 4, .08); }
+.legal__table tbody th { font-weight: 600; color: var(--ink); }
+
+@media (max-width: 1200px) {
+  .legal__doc h2 { scroll-margin-top: 96px; }
+  .legal__table thead th { top: 72px; }
+}
+/* one card per row: the column name is shown above each cell (data-label) */
+@media (max-width: 900px) {
+  .legal__table, .legal__table tbody, .legal__table tr, .legal__table th, .legal__table td { display: block; }
+  .legal__table thead {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap;
+  }
+  .legal__table tbody > tr { padding: 18px 20px; }
+  .legal__table tbody > tr + tr { border-top: 1px solid rgba(23, 15, 4, .08); }
+  .legal__table tbody > tr > * { padding: 0; border: 0; }
+  .legal__table tbody th { font-size: 16px; line-height: 1.45; }
+  .legal__table td { margin-top: 12px; }
+  .legal__table td::before {
+    content: attr(data-label); display: block; margin-bottom: 2px;
+    font-size: 12px; font-weight: 600; line-height: 1.4; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--label-violet-ink);
+  }
+}
+@media (max-width: 640px) {
+  .legal { padding-top: calc(var(--header-h) + 32px); row-gap: 28px; }
+  .legal__toc { padding: 16px 20px; }
+  .legal__toc ol { columns: 1; }
+  .legal__doc h2 { margin-top: 44px; font-size: 21px; scroll-margin-top: 84px; }
+  .legal__lead { font-size: 17px; }
+}
+/* printing (or saving as PDF from the browser): the text only */
+@media print {
+  .header, .mobile-menu, .footer, .cookie, .legal__toc, .skip-link { display: none !important; }
+  body { background: var(--white); }
+  .legal { display: block; padding: 0; }
+  .legal__table { box-shadow: none; border: 1px solid #d8d4cd; }
+  .legal__table thead th { position: static; }
+  .legal__table tr { break-inside: avoid; }
+  .legal__doc h2 { break-after: avoid; }
+}
+
+/* =========================================================
    REVEAL & MOTION
    ========================================================= */
 .js [data-reveal] {

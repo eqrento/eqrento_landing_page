@@ -30,6 +30,8 @@ and the video on `file://`.
 
 ```
 index.html
+privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
+cookie-policy.html     – Cookie Policy
 robots.txt, sitemap.xml – search engines (point to https://eqrento.com/)
 404.html               – page for unknown addresses (GitHub Pages serves it automatically; works from the site root)
 favicon.ico            – browser tab / bookmarks (16, 32, 48 px), made from the EQ mark
@@ -179,13 +181,28 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   analytics: `eq:demo-open`, `eq:demo-request` (on `document`).
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
+- **Privacy Policy and Cookie Policy** – `privacy-policy.html` and `cookie-policy.html`, linked from the footer (on
+  every page), the cookie banner and the demo form (that link opens a new tab, so the form keeps what was typed).
+  - The HTML is the source of truth. Łukasz's Word files of 4 Nov 2026 are only an archive copy, outside the repo in
+    `../dokumenty-prawne/`.
+  - To change a policy, edit the text inside `<article class="legal__doc">`. Every section starts with
+    `<h2 id="…">`; `main.js` builds the “On this page” list from those headings, so the list needs no edit of its own.
+  - With every update: change the “Last updated” date (the text and its `datetime`) and `lastmod` in `sitemap.xml`.
+  - **Cookie Policy changed → raise `VERSION` in the cookie-consent part of `main.js`**, so every visitor is asked
+    again (the policy promises that). A new analytics or marketing tool = a new row in the Cookie Policy table, and
+    the tool loads only through `eqOnConsent`.
+  - The header, mobile menu, footer and cookie banner of both pages are copies of those in `index.html`, with links
+    back to it (`./`, `./#pricing`, `./#book-demo`). When you change them in `index.html`, change them in both policy
+    pages too.
+  - Typography as on the home page: `SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o.`, `&nbsp;–` before a dash,
+    `<span class="nowrap">e-mail</span>`. Tables: each `<td>` has a `data-label` (the column name, shown above the
+    cell when the table turns into cards on tablets and phones). Styles: the `POLICY PAGES` block in `style.css`
+    (it includes a print layout).
 
 ## Before going live – still to do
 
 - Demo request form: put the Apps Script web-app URL (…/exec) into `data-endpoint` of `.demo__form` in `index.html`
   (until then the form falls back to a pre-filled e-mail).
-- “Privacy Policy” and “Cookie Policy” links have `href="#"` – point them to the real documents. Keep the banner text
-  and the Cookie Policy in line with the tools actually used.
 - FAQ answers 2–6 and some Key features descriptions are placeholder copy.
 - Optional: converting large PNG/JPG images to WebP.
 - The free UIcons licence requires attribution (“Uicons by Flaticon”) unless you have a Flaticon subscription.
@@ -194,4 +211,5 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 
 `index.html` loads `style.css` and `main.js` with a version in the address (`?v=20261022b`). Browsers keep those
 files for up to 10 minutes on GitHub Pages, so after changing either file bump the version (e.g. `20261023a`) in both
-links, otherwise visitors may see new HTML with old styles.
+links, otherwise visitors may see new HTML with old styles. The two policy pages load the same files: bump the version
+in `privacy-policy.html` and `cookie-policy.html` too.
