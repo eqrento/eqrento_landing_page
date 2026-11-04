@@ -45,7 +45,7 @@ assets/video/          – testimonial video (mp4 + webm fallback)
 
 ## Sections (in page order) and menu
 
-Hero → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
+Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `display: contents`, see “phones: the collage comes right after the lead” in style.css) → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
 (“One platform…”) → How it works (“Six interconnected stages…”, pinned horizontal scroll) → Key features and
 competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Testimonial → Pricing → FAQ → CTA →
 footer.

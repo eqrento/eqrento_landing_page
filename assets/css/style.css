@@ -1506,12 +1506,20 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   /* phones: four pills would stack one per row, so show them as a compact checklist instead */
   .hero__chips { flex-direction: column; gap: 6px; margin-top: -6px; }
   .hero .hero__chips li { padding: 0; background: none; border: 0; font-size: 14px; }
+  /* phones: the collage comes right after the lead (no wall of text on the first screen), then the checklist and the
+     button. The wrap and the content box step aside (display: contents) so the stage can sit between their items;
+     the gutters become the grid's side columns */
+  .hero { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr) var(--gutter); justify-items: start; row-gap: 24px; padding-bottom: 8px; }
+  .hero__inner, .hero__content { display: contents; }
+  .hero__content > * { grid-column: 2; }
+  .hero__stage { grid-column: 1 / -1; order: 1; }
+  .hero__chips, .hero__content > div:last-child { order: 2; }
   /* phones: the whole collage (all three windows) fills the content width – the windows run from 25.97% to 85.28% of
      the stage. The machines are 25% smaller and stand in its empty bottom corners, both overlapping the offer window
      by the same amount (the forks line up with the windows' left edge) */
   .hero__stage {
     --sw: min(calc((100% - 2 * var(--gutter)) / .5931), 1100px);
-    margin: 32px 0 calc(var(--sw) * -.034) calc(50% - var(--sw) * .5563);   /* smaller machines: less empty room under the wheels */
+    margin: 4px 0 calc(var(--sw) * -.034) calc(50% - var(--sw) * .5563);   /* after the lead (grid gap 24px above); smaller machines: less empty room under the wheels */
   }
   .hero__forklift { left: 20.666%; top: 49.188%; width: 29.085%; }
   .hero__lift { left: 62.224%; top: 48.928%; width: 19.672%; } /* wheels level with the forklift (parallax is gentler here) */
