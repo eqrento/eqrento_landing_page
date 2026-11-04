@@ -109,13 +109,15 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **AI Assistant** (paid add-on, available in every plan – always say “paid add-on”, nothing about tokens or prices)
   appears in: the hero checklist (“Ask AI about your data”), the EQrento card in Why (“Optional AI Assistant…”), the
   One platform diagram (violet chip `.node--ai`, `data-node="t"` on top of the core; its connector is the `t` route in
-  `drawLines()` in `main.js`), Key features (7th tab; screenshot `assets/img/screens/ai-860|1080|1290|1720.png` made by
+  `drawLines()` in `main.js`), Key features (8th, last tab; screenshot `assets/img/screens/ai-860|1080|1290|1720.png` made by
   `../narzedzia/zrzut-ai.ps1` from the raw screenshot; the tab has no `data-photo`, so `main.js` adds `.is-nophoto` and
   the small photo is hidden), the comparison table (group “AI Assistant”, cells “Paid add-on”), a box under the pricing
   cards and an FAQ question. Icons: `assets/icons/ai.svg` (orange) and `assets/icons/platform/ai.svg` (white).
 - **Warehouse (WMS)** – Enterprise only: a group in the comparison table, the One platform chip in the former “Map”
-  slot (`data-node="br"`) and the first line of the Enterprise card. Icons: `assets/icons/wms.svg` (orange),
-  `assets/icons/platform/wms.svg` (white).
+  slot (`data-node="br"`), the first line of the Enterprise card and Key features (6th tab, after Service; screenshot
+  `assets/img/screens/wms-860|1080|1290|1720.png` made by `../narzedzia/zrzut-wms.ps1` – the raw screenshot is much
+  wider than the others, so app background is added under it and the sidebar's scrollbar is removed; no `data-photo`).
+  Icons: `assets/icons/wms.svg` (orange), `assets/icons/platform/wms.svg` (white).
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
 - **Steps (How it works)** – pinned while the cards scroll; on short screens the pin position adapts so the cards and
