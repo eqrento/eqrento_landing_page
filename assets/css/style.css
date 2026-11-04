@@ -1070,34 +1070,32 @@ section[id] { scroll-margin-top: 80px; }
 .footer__col li + li { margin-top: 10px; }
 .footer a { transition: color .25s var(--ease); }
 .footer a:hover { color: var(--white); }
+/* tagline “Crafted with grit in Poland…”: centred above the line, as far above it (24px) as the bottom row is below it,
+   set like the footer text above it (14px); narrow phones: it breaks after “Poland,” (its halves are .nowrap) */
+.footer__tagline { margin-top: 56px; font-size: 14px; text-align: center; text-wrap: balance; }
+.footer__tagline svg { display: inline-block; vertical-align: -1px; }
 .footer__bottom {
-  margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .08);
+  margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .08);
   display: flex; justify-content: space-between; gap: 16px; font-size: 12px;
 }
-/* desktop: copyright – tagline – legal links in one row; space-between puts the tagline midway between the other two */
+/* desktop: copyright on the left, the links on the right – icon credit, Privacy Policy, Cookie Policy, Cookie settings
+   (the free Flaticon licence asks for “Uicons by Flaticon” with a link, near the icons or in the footer) */
 @media (min-width: 1201px) { .footer__bottom > * { white-space: nowrap; } }
-/* tablets and phones: one centred column, from the top: legal links, tagline, copyright */
+/* tablets and phones: one centred column, the links above the copyright */
 @media (max-width: 1200px) {
   .footer__bottom { flex-direction: column-reverse; align-items: center; gap: 12px; text-align: center; }
   .footer__legal { justify-content: center; }
 }
-.footer__bottom p { text-wrap: balance; }   /* narrow phones: the tagline breaks after “Poland,” (its halves are .nowrap) */
 /* the copyright breaks only after “z o.o.”: where it no longer fits on one line, “All Rights Reserved” gets its own line (there is no bullet: “o.o.” already ends with a full stop) */
 @media (max-width: 380px) {
   .footer__rights { display: block; }
 }
-.footer__tagline svg { display: inline-block; vertical-align: -1px; }
 .footer__legal { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .footer__cookie-btn {
   padding: 0; border: 0; background: none; cursor: pointer;
   font: inherit; color: inherit; transition: color .25s var(--ease);
 }
 .footer__cookie-btn:hover { color: var(--white); }
-/* icon licence credit: the free Flaticon licence asks for “Uicons by Flaticon” with a link, near the icons or in the
-   footer. Its own small line, because the bottom row has no room left at 1201px; right under the legal links on
-   desktop, centred last on tablets and phones */
-.footer__credit { margin-top: 10px; font-size: 11px; line-height: 1.5; text-align: right; }
-@media (max-width: 1200px) { .footer__credit { margin-top: 12px; text-align: center; } }
 
 /* =========================================================
    COOKIE BANNER – non-blocking card, bottom left (bottom sheet on phones)
@@ -1700,7 +1698,8 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   .footer__grid { grid-template-columns: 1fr 1fr; row-gap: 8px; }
   .footer__grid > .footer__col:nth-child(2) { grid-column: 1 / -1; }
   .footer__brand img { width: 190px; }
-  .footer__bottom { margin-top: 40px; }
+  .footer__tagline { margin-top: 40px; }
+  .footer__legal { max-width: 300px; }   /* the four links in two even rows (2 + 2), not 3 + 1 */
 }
 /* narrowest phones (320px): the e-mail address sets the Contact column's width, so a smaller column gap
    leaves the System links (“Why EQrento?”, “How it works”, “Key features”) room for one line each */

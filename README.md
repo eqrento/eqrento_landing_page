@@ -182,7 +182,7 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
 - **Icon credit** – the icons are Uicons on the free Flaticon licence, which requires “Uicons by Flaticon” with a link
-  near the icons or in the footer: a small line under the footer's bottom row (`.footer__credit`) on all three pages.
+  near the icons or in the footer: the first of the links in the footer's bottom row (left of “Privacy Policy”), on all three pages.
   Keep it while the site uses Uicons.
 - **Privacy Policy and Cookie Policy** – `privacy-policy.html` and `cookie-policy.html`, linked from the footer (on
   every page), the cookie banner and the demo form (that link opens a new tab, so the form keeps what was typed).
