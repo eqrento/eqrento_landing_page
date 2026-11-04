@@ -531,6 +531,8 @@ section[id] { scroll-margin-top: 80px; }
 .features__photo img { width: 100%; transition: opacity .35s var(--ease), transform .6s var(--ease); }
 .is-swapping .features__screen img { opacity: 0; transform: translateY(10px); }
 .is-swapping .features__photo img { opacity: 0; transform: scale(1.05); }
+.features__photo { transition: opacity .35s var(--ease), visibility .35s; }
+.features__visual.is-nophoto .features__photo { opacity: 0; visibility: hidden; }   /* the AI Assistant tab has no photo */
 
 /* =========================================================
    WHY / POSITIONING
@@ -662,6 +664,16 @@ section[id] { scroll-margin-top: 80px; }
 .node[data-node="br"] { left: 1341.5px; top: 555px; }
 .node[data-node="b1"] { left: 661px;    top: 649px; }
 .node[data-node="b2"] { left: 965.5px;  top: 649px; }
+.node[data-node="t"]  { left: 820px;    top: 124px; }   /* AI Assistant: on top of the core – it reads every module */
+/* the AI chip stands out: violet like the other AI accents, with a soft glow */
+.node.node--ai {
+  background: linear-gradient(90deg, rgba(107, 92, 255, .55), rgba(85, 80, 240, .3));
+  border-color: rgba(151, 118, 254, .75); box-shadow: 0 0 28px -6px rgba(100, 98, 255, .85);
+}
+.node.node--ai:hover {
+  background: linear-gradient(90deg, rgba(107, 92, 255, .75), rgba(85, 80, 240, .45));
+  border-color: rgba(176, 152, 255, .9); box-shadow: 0 0 34px -4px rgba(100, 98, 255, .95);
+}
 
 /* =========================================================
    REVIEWS
@@ -901,6 +913,7 @@ section[id] { scroll-margin-top: 80px; }
   font-size: 15px; line-height: 1.5; color: var(--gray-2);
 }
 .pricing__tracker b { font-weight: 600; color: var(--ink); }
+.pricing__tracker + .pricing__tracker { margin-top: 16px; }   /* the AI Assistant box right under the telemetry box */
 .pricing__note { margin: 20px auto 0; max-width: 760px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-2); }
 @media (min-width: 1201px) { .pricing__note { max-width: none; } }   /* wide screens: the whole note on one line */
 

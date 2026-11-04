@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261103u">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261104b">
 </head>
 <body>
 
@@ -93,6 +93,7 @@
         <p class="hero__lead" data-reveal style="--d:320ms">Offers, contracts, transport, service and invoicing in one connected system&nbsp;– plus telematics that bills every extra&nbsp;hour.</p>
         <ul class="hero__chips" data-reveal style="--d:380ms">
           <li>Offer to invoice, zero re-typing</li>
+          <li>Ask AI about your data</li>
           <li>Telematics that bills overuse</li>
           <li>Driver &amp; mechanic apps</li>
           <li>Live in weeks&nbsp;– we import your&nbsp;data</li>
@@ -184,7 +185,7 @@
             <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Driver and mechanic apps&nbsp;– photos and signatures captured in the&nbsp;field</li>
             <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Unlimited users and branches in every&nbsp;plan</li>
             <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Live in weeks, not months&nbsp;– we import your fleet, customers and price&nbsp;lists</li>
-            <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Direct line to the people who build&nbsp;it</li>
+            <li><img src="assets/icons/check.svg" width="24" height="24" alt="">Optional AI Assistant&nbsp;– ask about your data, get a clear answer in&nbsp;seconds</li>
           </ul>
           <a href="#book-demo" class="btn btn--primary btn--arrow why-card__cta">
             <span>Book a 30-minute demo</span>
@@ -227,6 +228,7 @@
       </div>
 
       <ul class="platform__nodes">
+        <li class="node node--ai" data-node="t" data-reveal="zoom" style="--d:170ms"><img src="assets/icons/platform/ai.svg" width="24" height="24" alt="">AI Assistant</li>
         <li class="node" data-node="tl"   data-reveal="zoom" style="--d:250ms"><img src="assets/icons/platform/excavator.svg" width="24" height="24" alt="">Equipment</li>
         <li class="node" data-node="l1"   data-reveal="zoom" style="--d:330ms"><img src="assets/icons/platform/shipping-fast.svg" width="24" height="24" alt="">Transport</li>
         <li class="node" data-node="l2"   data-reveal="zoom" style="--d:410ms"><img src="assets/icons/platform/service.svg" width="24" height="24" alt="">Service</li>
@@ -388,7 +390,6 @@
             </div>
           </div>
 
-          <!-- no invoicing screenshot yet: shows the offers & contracts screen until the light screenshots arrive -->
           <div data-photo="assets/img/features-photo-invoicing.jpg" data-screen="assets/img/screens/invoicing-1080.png" data-srcset="assets/img/screens/invoicing-860.png 860w, assets/img/screens/invoicing-1080.png 1080w, assets/img/screens/invoicing-1290.png 1290w, assets/img/screens/invoicing-1720.png 1720w" class="feat" data-reveal="left" style="--d:400ms">
             <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-6" id="feat-6-tab">
               <span class="icon-box"><img src="assets/icons/invoice.svg" width="24" height="24" alt=""></span>
@@ -397,6 +398,18 @@
             </button>
             <div class="feat__body" id="feat-6" role="tabpanel" aria-labelledby="feat-6-tab">
               <p>When a rental ends, the invoice is ready&nbsp;– calculated automatically from the contract and the data collected on the way (rental time, delivery, fuel, cleaning and overtime from telematics), and still yours to adjust. It goes to the customer and to your accounting or ERP system, and unpaid invoices are chased automatically with reminder emails and&nbsp;PDFs.</p>
+            </div>
+          </div>
+
+          <!-- no data-photo: the AI screen is shown without the small photo (it would cover the suggested questions) -->
+          <div data-screen="assets/img/screens/ai-1080.png" data-srcset="assets/img/screens/ai-860.png 860w, assets/img/screens/ai-1080.png 1080w, assets/img/screens/ai-1290.png 1290w, assets/img/screens/ai-1720.png 1720w" class="feat" data-reveal="left" style="--d:480ms">
+            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-7" id="feat-7-tab">
+              <span class="icon-box"><img src="assets/icons/ai.svg" width="24" height="24" alt=""></span>
+              <span class="feat__name">AI Assistant</span>
+              <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
+            </button>
+            <div class="feat__body" id="feat-7" role="tabpanel" aria-labelledby="feat-7-tab">
+              <p>Ask about your business in plain language: which machines sat idle, who owes you money, how much each branch earned. The AI Assistant reads all your EQrento data&nbsp;– equipment, orders, transport, service, telematics and invoices&nbsp;– and answers in seconds with a table or a chart, showing where the numbers came from. No reports to build or browse. A paid add-on, available in every&nbsp;plan.</p>
             </div>
           </div>
         </div>
@@ -755,6 +768,11 @@
                 <tr role="row"><th scope="row" role="rowheader">Custom API integrations and development</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
               </tbody>
               <tbody role="rowgroup">
+                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/ai.svg" width="20" height="20" alt=""></span>AI Assistant</th></tr>
+                <tr role="row"><th scope="row" role="rowheader">Questions in plain language about all your data: equipment, orders, transport, service, telematics and invoices</th><td role="cell" class="t t--note">Paid add-on</td><td role="cell" class="t t--note">Paid add-on</td><td role="cell" class="t t--note">Paid add-on</td><td role="cell" class="t t--note">Paid add-on</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Answers in seconds as text, a table or a chart, showing where the data came from</th><td role="cell" class="t t--note">Paid add-on</td><td role="cell" class="t t--note">Paid add-on</td><td role="cell" class="t t--note">Paid add-on</td><td role="cell" class="t t--note">Paid add-on</td></tr>
+              </tbody>
+              <tbody role="rowgroup">
                 <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/mailbox.svg" width="20" height="20" alt=""></span>Mailbox</th></tr>
                 <tr role="row"><th scope="row" role="rowheader">Multiple mailboxes connected</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
                 <tr role="row"><th scope="row" role="rowheader">Customizable email templates for orders, payments, reminders and more</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
@@ -788,6 +806,10 @@
       <div class="pricing__tracker" data-reveal>
         <span class="icon-box"><img src="assets/icons/gps.svg" width="27" height="27" alt=""></span>
         <p><b>Machines without telematics?</b> Add our telemetry device with GPS for $69 per machine, <span class="nowrap">one-time</span>.<br>Already have devices installed? We connect to any telematics system with an&nbsp;API.</p>
+      </div>
+      <div class="pricing__tracker" data-reveal>
+        <span class="icon-box"><img src="assets/icons/ai.svg" width="24" height="24" alt=""></span>
+        <p><b>AI Assistant&nbsp;– a paid add-on, available in every plan.</b><br>Ask about your data in plain language and get a clear answer in seconds&nbsp;– no reports to build or&nbsp;browse.</p>
       </div>
       <p class="pricing__note" data-reveal>Plan prices in USD, excluding VAT. A unit is a machine or device tracked individually&nbsp;– accessories and bulk items don’t count towards the&nbsp;limit.</p>
     </div>
@@ -836,6 +858,16 @@
           </button></h3>
           <div class="qa__a" id="qa-4" role="region" aria-labelledby="qa-4-q"><div>
             <p>Yes. We can integrate with any external software that exposes an API&nbsp;– accounting, ERP, telematics or other tools you already use. Invoices and customer data are pushed to your accounting or ERP system automatically, and we help you set up the&nbsp;connection.</p>
+          </div></div>
+        </div>
+
+        <div class="qa" data-reveal style="--d:210ms">
+          <h3><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-ai" id="qa-ai-q">
+            <span>What does the AI Assistant do?</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="qa-ai" role="region" aria-labelledby="qa-ai-q"><div>
+            <p>It answers questions about everything in EQrento, in plain language. Ask “Which machines earned the most last month?”, “Which customers have overdue invoices?”, “Which machines are idle this week?” or “How many hours did the JLG 600AJ work outside the contract?”&nbsp;– it looks across equipment, orders, transport, service, telematics and invoices and replies in seconds with a clear answer, a table or a chart, showing where the data came from. No reports to build or browse. The AI Assistant is a paid add-on, available in every&nbsp;plan.</p>
           </div></div>
         </div>
 
@@ -1056,6 +1088,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20261103e" defer></script>
+<script src="assets/js/main.js?v=20261104b" defer></script>
 </body>
 </html>

@@ -106,6 +106,13 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   heading has an icon (`<span class="cmp__ico">`, orange on a light tint like Key features) so the groups are easy to
   spot in the long table; `pricing`, `mailbox`, `settings` and `support.svg` were drawn for it, the rest are the
   Key features icons.
+- **AI Assistant** (paid add-on, available in every plan – always say “paid add-on”, nothing about tokens or prices)
+  appears in: the hero checklist (“Ask AI about your data”), the EQrento card in Why (“Optional AI Assistant…”), the
+  One platform diagram (violet chip `.node--ai`, `data-node="t"` on top of the core; its connector is the `t` route in
+  `drawLines()` in `main.js`), Key features (7th tab; screenshot `assets/img/screens/ai-860|1080|1290|1720.png` made by
+  `../narzedzia/zrzut-ai.ps1` from the raw screenshot; the tab has no `data-photo`, so `main.js` adds `.is-nophoto` and
+  the small photo is hidden), the comparison table (group “AI Assistant”, cells “Paid add-on”), a box under the pricing
+  cards and an FAQ question. Icons: `assets/icons/ai.svg` (orange) and `assets/icons/platform/ai.svg` (white).
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
 - **Steps (How it works)** – pinned while the cards scroll; on short screens the pin position adapts so the cards and

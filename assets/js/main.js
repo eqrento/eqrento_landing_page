@@ -186,6 +186,7 @@
       const name = $('.feat__name', feat).textContent.trim();
       const swap = () => {
         if (next && photo.getAttribute('src') !== next) photo.src = next;
+        visual.classList.toggle('is-nophoto', !next);   // a tab without data-photo (AI Assistant) hides the small photo
         if (nextScreen && screen.getAttribute('src') !== nextScreen) {
           screen.srcset = feat.dataset.srcset || '';
           screen.src = nextScreen;
@@ -264,6 +265,7 @@
       br: n => `M${n.l},${n.cy} H${n.l - 70} V${C.b + 82} H${C.r - 83} V${C.b}`,
       b1: n => `M${n.cx},${n.t} V${C.b + 136} H${C.l + 179} V${C.b}`,
       b2: n => `M${n.cx},${n.t} V${C.b + 136} H${C.r - 187} V${C.b}`,
+      t:  n => `M${n.cx},${n.b} V${C.t}`,   // AI Assistant: straight down into the core
     };
     svg.setAttribute('viewBox', `0 0 ${diagram.offsetWidth} ${diagram.offsetHeight}`);
     svg.innerHTML = $$('.node', diagram).map((node, i) => {
