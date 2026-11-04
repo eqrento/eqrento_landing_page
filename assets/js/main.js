@@ -625,7 +625,7 @@
   let trigger = null, source = 'direct link', openedAt = 0, pushed = false, sending = false, downOnBackdrop = false, isOpen = false;
 
   /* where the visitor clicked (“pricing – Complete”, “hero”…) – it lands in the e-mail and the sheet */
-  const AREAS = { header: 'header', 'mobile-menu': 'mobile menu', home: 'hero', why: 'why EQrento card', demo: 'closing call to action' };
+  const AREAS = { header: 'header', 'mobile-menu': 'mobile menu', home: 'hero', why: 'why EQrento card' };
   const sourceOf = el => {
     const plan = el.closest('.plan');
     if (plan) return 'pricing – ' + plan.querySelector('.plan__name').textContent.trim();

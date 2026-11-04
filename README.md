@@ -49,8 +49,8 @@ assets/video/          – testimonial video (mp4 + webm fallback)
 
 Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `display: contents`, see “phones: the collage comes right after the lead” in style.css) → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
 (“One platform…”) → How it works (“Six interconnected stages…”, pinned horizontal scroll) → Key features and
-competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Testimonial → Pricing → FAQ → CTA →
-footer.
+competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Testimonial → Pricing → FAQ →
+footer. (The closing “See it on your kind of fleet” section was removed on 4 Nov 2026 – Łukasz.)
 Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobile menu and footer follow the page order; the Platform section has no menu link).
 
 ## Things worth knowing
@@ -154,8 +154,8 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **Equipment and parts sales** (selling machines and parts, plus after-sales service) – Enterprise only: a group in
   the comparison table after Warehouse (WMS) and the second line of the Enterprise card. The two sale rows that used to
   be in Equipment now live there. Key features: 7th tab “Equipment sales” (after Warehouse (WMS)), with the photo
-  `assets/img/features-photo-sales.jpg`. Its screenshot is TEMPORARILY the Equipment one; when the app's “Equipment for
-  Sale” screenshot arrives, make its four sizes and swap `data-screen` / `data-srcset`. Never call it the only system
+  `assets/img/features-photo-sales.jpg`. Its screenshot is the Equipment one – it stays (Łukasz, 4 Nov 2026); if an
+  “Equipment for Sale” screenshot ever comes, make its four sizes and swap `data-screen` / `data-srcset`. Never call it the only system
   on the market that sells. Icon: `assets/icons/sales.svg` (orange tag).
 - **Testimonial** – the video slot is 4:3 on desktop (the film's own shape); captions are burned into the video and
   are never cropped. Poster: `testimonial-hardy-poster.jpg`; play button logic at the end of `main.js`.
@@ -181,6 +181,9 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   analytics: `eq:demo-open`, `eq:demo-request` (on `document`).
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
+- **Icon credit** – the icons are Uicons on the free Flaticon licence, which requires “Uicons by Flaticon” with a link
+  near the icons or in the footer: a small line under the footer's bottom row (`.footer__credit`) on all three pages.
+  Keep it while the site uses Uicons.
 - **Privacy Policy and Cookie Policy** – `privacy-policy.html` and `cookie-policy.html`, linked from the footer (on
   every page), the cookie banner and the demo form (that link opens a new tab, so the form keeps what was typed).
   - The HTML is the source of truth. Łukasz's Word files of 4 Nov 2026 are only an archive copy, outside the repo in
@@ -205,7 +208,6 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   (until then the form falls back to a pre-filled e-mail).
 - FAQ answers 2–6 and some Key features descriptions are placeholder copy.
 - Optional: converting large PNG/JPG images to WebP.
-- The free UIcons licence requires attribution (“Uicons by Flaticon”) unless you have a Flaticon subscription.
 
 ## Cache busting
 
