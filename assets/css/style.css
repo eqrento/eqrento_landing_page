@@ -452,7 +452,7 @@ section[id] { scroll-margin-top: 80px; }
   margin-top: 64px;
   display: grid; grid-template-columns: minmax(0, 452fr) minmax(0, 844fr); gap: 64px; align-items: center;
 }
-.features__list { display: flex; flex-direction: column; gap: 16px; }
+.features__list { display: flex; flex-direction: column; gap: 16px; align-self: start; }   /* stays at the top when the picture's margin makes the row taller */
 
 .feat {
   border-radius: 24px; background: transparent;
@@ -489,7 +489,7 @@ section[id] { scroll-margin-top: 80px; }
 .feat.is-open .feat__body > p { opacity: 1; padding: 16px 32px 32px; transition-delay: .1s; }
 
 .features__visual { position: relative; }
-.js .features__visual[data-reveal] { transition: opacity .9s var(--ease) var(--d, 0ms), transform 1s var(--ease) var(--d, 0ms), translate .5s var(--ease); }   /* + glides to the opened tab's level (main.js) */
+.js .features__visual[data-reveal] { transition: opacity .9s var(--ease) var(--d, 0ms), transform 1s var(--ease) var(--d, 0ms), margin-top .5s var(--ease); }   /* + glides to the opened tab's level (main.js) */
 /* ONE window frame for the product screenshots (Key features and the telematics map card; the screenshots are raw – no
    frame, no glow baked in): a light window like the ones in the hero collage – light title bar (--bar) with red /
    yellow / green dots, hairline edge – with the collage's shadow: a soft navy shadow all round that lifts the window

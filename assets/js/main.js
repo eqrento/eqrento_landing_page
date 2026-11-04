@@ -171,39 +171,42 @@
       featGrid.appendChild(visual);
     }
   };
-  // after a tab opens, line it up with its picture and with the screen: tabs in the upper half of the list go right
-  // under the fixed header, tabs in the lower half to the bottom of the window. Side by side the picture (screenshot
-  // window plus the small photo that sticks out of it) moves to the tab's level – its top with the tab's top, or its
-  // bottom with the tab's bottom. Stacked, the picture follows the tab, so the pair is lined up as one and the whole
-  // picture stays on screen
+  // after a tab opens, the page lines it up right under the fixed header. Side by side its picture (screenshot window
+  // plus the small photo that sticks out of it) moves to the same level – a top margin in the grid row, so for the
+  // last tabs the row (and the section) simply grows instead of the picture covering the next section. Stacked, the
+  // picture follows the tab: the pair is lined up as one block and the whole picture stays on screen
+  const resetLevel = () => { visual.style.marginTop = visual.style.marginBottom = visual.style.alignSelf = ''; };
   const alignOpen = () => {
     const open = feats.find(f => f.classList.contains('is-open'));
-    const upper = feats.indexOf(open) < feats.length / 2;
     const from = $('.header').getBoundingClientRect().bottom + 16, to = window.innerHeight - 16;
     const screenBox = $('.features__screen', visual), photoBox = $('.features__photo', visual);
-    // the picture's extent inside .features__visual and the visual's place without its own shift (layout offsets,
-    // so neither the shift being animated nor the photo's parallax counts)
-    const picTop = screenBox.offsetTop;
-    const picBottom = Math.max(screenBox.offsetTop + screenBox.offsetHeight,
-      visual.classList.contains('is-nophoto') ? 0 : photoBox.offsetTop + photoBox.offsetHeight);
-    const vTop = visual.offsetParent.getBoundingClientRect().top + visual.offsetTop;
     const tab = open.getBoundingClientRect();
-    let shift;
+    let shift = tab.top - from;
     if (stacked.matches) {
-      visual.style.translate = '';
-      // the tab and its picture as one block; when they don't fit on screen together (tablets held sideways), the
-      // block ends at the screenshot window and only the small photo may stick out below
-      let bottom = vTop + picBottom;
+      resetLevel();
+      // the picture's end (layout offsets, so the photo's parallax doesn't count); when tab and picture don't fit on
+      // screen together (tablets held sideways), the block ends at the screenshot window and only the photo sticks out
+      const vTop = visual.getBoundingClientRect().top;
+      let bottom = vTop + Math.max(screenBox.offsetTop + screenBox.offsetHeight,
+        visual.classList.contains('is-nophoto') ? 0 : photoBox.offsetTop + photoBox.offsetHeight);
       if (bottom - tab.top > to - from) bottom = vTop + screenBox.offsetTop + screenBox.offsetHeight;
-      shift = upper ? Math.max(tab.top - from, bottom - to) : bottom - to;
+      shift = Math.max(shift, bottom - to);
     } else {
-      const level = upper ? tab.top - picTop : tab.bottom - picBottom;   // where the visual's top has to be
-      visual.style.translate = `0 ${(level - vTop).toFixed(1)}px`;
-      shift = upper ? tab.top - from : tab.bottom - to;
+      if (visual.style.alignSelf !== 'start') {   // first time: take over from the centred place without a jump
+        visual.style.transition = 'none';
+        visual.style.marginTop = `${visual.getBoundingClientRect().top - featGrid.getBoundingClientRect().top}px`;
+        visual.style.alignSelf = 'start';
+        void visual.offsetHeight;
+        visual.style.transition = '';
+      }
+      visual.style.marginTop = `${(tab.top - featGrid.getBoundingClientRect().top - screenBox.offsetTop).toFixed(1)}px`;
+      // room in the row for the small photo that sticks out below the visual's box
+      const over = visual.classList.contains('is-nophoto') ? 0 : photoBox.offsetTop + photoBox.offsetHeight - visual.offsetHeight;
+      visual.style.marginBottom = `${Math.max(0, over)}px`;
     }
     window.scrollBy({ top: shift, behavior: reduceMotion ? 'auto' : 'smooth' });
   };
-  addEventListener('resize', () => { if (stacked.matches) visual.style.translate = ''; });
+  addEventListener('resize', resetLevel);
   feats.forEach(feat => {
     $('.feat__head', feat).addEventListener('click', () => {
       if (feat.classList.contains('is-open')) return;
