@@ -1905,7 +1905,7 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
    (to undo: delete this block, use a light-lettered logo in the header, theme-color #0b0805)
    ========================================================= */
 .header.is-scrolled { background: rgba(255, 255, 255, .88); border-color: rgba(23, 15, 4, .08); }
-.nav__link { color: var(--ink); opacity: .6; }
+.nav__link { color: var(--ink); opacity: .66; }   /* .66, not .6: at .6 the links were 4.48:1 on the page colour, just under the 4.5:1 minimum (PageSpeed, 5 Nov 2026) */
 .nav__link:hover, .nav__link.is-active { opacity: 1; }
 .burger { border-color: rgba(23, 15, 4, .14) !important; background: rgba(23, 15, 4, .03) !important; }
 .burger span { background: var(--ink) !important; }
