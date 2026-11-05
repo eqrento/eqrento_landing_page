@@ -225,15 +225,21 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
     - `zoomlion.svg`, `comarch.svg`, `wapro.svg`, `snelstart.svg`: the logo files in the headers of en.zoomlion.com,
       comarch.com, wapro.pl and snelstart.nl.
     - `google.svg`: Google's own `googlelogo_clr_74x24px.svg` (gstatic.com).
-    - `exact.jpg`: the logo named in exact.com's structured data, a 640×480 JPG with the logo on white. The CSS
-      (`.int-tile__logo--exact`) shows only the logo band and blends the white away; the file is unchanged.
-  - Still names: **KSeF** (no KSeF logo exists; the national emblem and the Ministry of Finance logo are not KSeF's)
-    and **Microsoft Azure** (the only official Azure file comes in Microsoft's icon set, whose terms allow it only in
-    diagrams and documentation).
+    - `exact.jpg`: the logo named in exact.com's structured data, a 640×480 JPG with the logo on white.
+    - `ksef.jpg` (341×148, the blue “KSeF” box) and `microsoft-azure.png` (1024×576, transparent): graphics Łukasz
+      supplied himself on 5 Nov 2026. The KSeF site offers no logo file, and Microsoft's own Azure files come with
+      terms for diagrams only.
+  - A logo that sits in a band across a larger picture (Exact, Microsoft Azure) gets `class="int-tile__logo--band"`
+    and `--band` (picture width / band height) and `--band-y` (the band's centre) in its `style`: the picture is
+    cropped to the band and the file stays unchanged. A picture on white (Exact) also gets `int-tile__logo--on-white`,
+    which blends the white into the tile.
+  - Order (Łukasz, 5 Nov 2026): Teltonika, Trackunit, Zoomlion · Exact, SnelStart, Comarch, Asseco Wapro, KSeF ·
+    Google, Microsoft Azure, + Your system.
   - Permission (checked 5 Nov 2026, details in `../eqrento-landing-ustalenia.md`): only Teltonika's rules cover this
     use. Trackunit's media library is for non-commercial use, Exact licenses its logo to App Store partners, Wapro to
-    portal partners, Comarch on request, Google after an approved request. Łukasz decided to show them anyway, on his
-    own responsibility („Na moją odpowiedzialność”). Remove a logo at once if a company objects.
+    portal partners, Comarch on request, Google after an approved request, Microsoft only under licence. Łukasz decided
+    to show them anyway, on his own responsibility („Na moją odpowiedzialność”). Remove a logo at once if a company
+    objects.
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
 - **Icon credit** – the icons are Uicons on the free Flaticon licence, which requires “Uicons by Flaticon” with a link

@@ -912,10 +912,13 @@ section[id] { scroll-margin-top: 80px; }
    Wapro logo 50, because its lettering is only a third of its height */
 .int-tile img { width: auto; height: calc(var(--lh, 34) * 1px); max-width: 100%; object-fit: contain; }
 .int-tile:has(img) .int-tile__name { display: none; }
-/* Exact: its only logo file is a 640×480 JPG with the logo in a band across the middle (rows 172–294) on white.
-   The file stays as it is: the box has the band's shape, so the picture is cropped to it, and multiply melts the
-   white into the tile colour (on the white hover background the logo is exactly as in the file) */
-.int-tile img.int-tile__logo--exact { aspect-ratio: 640 / 134; object-fit: cover; object-position: 50% 48%; mix-blend-mode: multiply; }
+/* a logo that sits in a band across a larger picture (Exact: 640×480 JPG, rows 172–294; Microsoft Azure: 1024×576 PNG,
+   rows 199–372). The file stays as it is: the box gets the band's shape (--band: picture width / band height) and the
+   picture is cropped to it, centred on the band (--band-y) */
+.int-tile img.int-tile__logo--band { aspect-ratio: var(--band); object-fit: cover; object-position: 50% var(--band-y, 50%); }
+/* …on a white background (Exact): multiply melts the white into the tile colour (on the white hover background the
+   logo is exactly as in the file) */
+.int-tile img.int-tile__logo--on-white { mix-blend-mode: multiply; }
 /* “+ Your system”: opens the demo form */
 .int-tile--more { background: transparent; border: 1.5px dashed rgba(23, 15, 4, .22); }
 .int-tile--more .int-tile__name { font-size: 15px; }
