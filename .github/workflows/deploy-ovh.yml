@@ -1,0 +1,127 @@
+# Publishes the site to https://eqrento.com/ (SOLTIX's own OVH server). Never runs by itself – only by hand:
+#   GitHub → Actions → "Publish to eqrento.com (OVH)" → Run workflow (untick "Dry run" to really publish),
+#   or by Claude:  gh workflow run deploy-ovh.yml -f dry_run=false
+#
+# It copies this repository to the server with rsync over SSH – without README.md, .github and .gitignore – and
+# deletes files that are no longer in the repository, except the server-only files protected below. Only files whose
+# content changed are sent (checksums). Then it clears the Cloudflare cache (if those secrets exist) and checks that
+# eqrento.com serves the new version.
+#
+# Repository secrets (Settings → Secrets and variables → Actions):
+#   OVH_HOST          the server's real address (not eqrento.com – Cloudflare only passes HTTP/HTTPS)
+#   OVH_PORT          SSH port (optional, default 22)
+#   OVH_USER          the deploy user (write access to the site folder only)
+#   OVH_PATH          the site folder on the server, e.g. /var/www/eqrento ("/" if the key is limited with rrsync)
+#   OVH_SSH_KEY       that user's private key (ed25519, no passphrase)
+#   OVH_KNOWN_HOSTS   the server's host key line(s): ssh-keyscan -p <port> <host>
+#   CF_ZONE_ID, CF_API_TOKEN   optional, only while eqrento.com goes through the Cloudflare proxy
+#                              (token permission: Zone → Cache Purge, zone eqrento.com)
+#
+# The GitHub Pages preview (static.yml) is separate and still updates on every push to main.
+name: Publish to eqrento.com (OVH)
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run – only list what would change, copy nothing"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-ovh
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OVH_HOST: ${{ secrets.OVH_HOST }}
+      OVH_PORT: ${{ secrets.OVH_PORT || '22' }}
+      OVH_USER: ${{ secrets.OVH_USER }}
+      OVH_PATH: ${{ secrets.OVH_PATH }}
+      DRY_RUN: ${{ inputs.dry_run }}
+    steps:
+      - name: Check the settings
+        env:
+          HAS_KEY: ${{ secrets.OVH_SSH_KEY != '' }}
+          HAS_KNOWN_HOSTS: ${{ secrets.OVH_KNOWN_HOSTS != '' }}
+        run: |
+          missing=""
+          [ -n "$OVH_HOST" ] || missing="$missing OVH_HOST"
+          [ -n "$OVH_USER" ] || missing="$missing OVH_USER"
+          [ -n "$OVH_PATH" ] || missing="$missing OVH_PATH"
+          [ "$HAS_KEY" = "true" ] || missing="$missing OVH_SSH_KEY"
+          [ "$HAS_KNOWN_HOSTS" = "true" ] || missing="$missing OVH_KNOWN_HOSTS"
+          if [ -n "$missing" ]; then
+            echo "::error::Missing repository secrets:$missing – add them in Settings → Secrets and variables → Actions"
+            exit 1
+          fi
+          echo "Server: $OVH_USER@<host>:$OVH_PATH (port $OVH_PORT) · dry run: $DRY_RUN"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        env:
+          OVH_SSH_KEY: ${{ secrets.OVH_SSH_KEY }}
+          OVH_KNOWN_HOSTS: ${{ secrets.OVH_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$OVH_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$OVH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Copy the site to the server
+        run: |
+          set -euo pipefail
+          opts=(--recursive --links --checksum --compress --perms --chmod=D755,F644
+                --delete --delete-delay --itemize-changes --human-readable --stats
+                --exclude=/.git/ --exclude=/.github/ --exclude=/README.md --exclude=/.gitignore --exclude=/.claude/
+                --filter='P /.well-known/' --filter='P /google*.html' --filter='P /BingSiteAuth.xml'
+                --filter='P /yandex_*.html')
+          if [ "$DRY_RUN" = "true" ]; then
+            opts+=(--dry-run)
+            echo "DRY RUN – nothing is copied or deleted. Lines starting with '<f' = file to send, '*deleting' = file to remove."
+          fi
+          rsync "${opts[@]}" \
+            -e "ssh -p $OVH_PORT -i $HOME/.ssh/deploy_key -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts" \
+            ./ "$OVH_USER@$OVH_HOST:${OVH_PATH%/}/"
+
+      - name: Clear the Cloudflare cache
+        if: ${{ !inputs.dry_run }}
+        env:
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          if [ -z "$CF_ZONE_ID" ] || [ -z "$CF_API_TOKEN" ]; then
+            echo "No Cloudflare secrets – skipped (not needed without the Cloudflare proxy)."
+            exit 0
+          fi
+          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+               -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" \
+               --data '{"purge_everything":true}' | grep -q '"success":true'
+          echo "Cloudflare cache cleared."
+
+      - name: Check the live site
+        if: ${{ !inputs.dry_run }}
+        run: |
+          ver=$(grep -o 'assets/css/style.css?v=[^"]*' index.html | head -1)
+          for i in 1 2 3 4 5 6; do
+            if curl -fsS "https://eqrento.com/?check=$GITHUB_RUN_ID-$i" | grep -qF "$ver"; then
+              echo "OK – https://eqrento.com/ serves this version ($ver)."
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::https://eqrento.com/ does not show $ver yet – check the server and the Cloudflare cache."
+          exit 1
+
+      - name: Remove the key from the runner
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
