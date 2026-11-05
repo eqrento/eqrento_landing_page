@@ -91,6 +91,11 @@ of the home page (`./#why` etc. on the other pages).
 - **Address:** https://eqrento.com/pricing. The OVH server answers `/pricing` with pricing.html (`try_files $uri $uri.html`),
   and so does GitHub Pages. All paths and links are relative, like on the other pages, because the GitHub preview lives
   under `/eqrento_landing_page/`.
+- **Old addresses** of the previous site, `/en/pricing`, `/pl/pricing` and `/de/pricing` (5 Nov 2026):
+  - `en/`, `pl/` and `de/pricing.html` are one identical page with an instant `<meta http-equiv="refresh">` to
+    `../pricing` and a canonical to https://eqrento.com/pricing.
+  - The relative link also works on the preview. No script is used, because of the CSP.
+  - A real 301 needs the server: the nginx rule is ready in `../eqrento-ovh/nginx-eqrento.conf`, above the language rule.
 - **Order:**
   1. H1 + switch: one state for the cards and the table header (pricing.js).
   2. The four plan cards.
