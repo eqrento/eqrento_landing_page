@@ -333,7 +333,7 @@
       feats.forEach(f => {
         const on = f === feat;
         f.classList.toggle('is-open', on);
-        $('.feat__head', f).setAttribute('aria-selected', String(on));
+        $('.feat__head', f).setAttribute('aria-expanded', String(on));   // an accordion for screen readers, like the FAQ (tabs would need the panels outside the tab list)
       });
       if (side) {
         glideSide(feat);

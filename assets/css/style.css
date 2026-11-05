@@ -400,6 +400,9 @@ section[id] { scroll-margin-top: 80px; }
   color: var(--gray); opacity: .25;
   transition: opacity .6s var(--ease), color .6s var(--ease);
 }
+/* the big pale number is decoration (the order is in the list and the “01 / 06” counter): it is drawn from data-num,
+   so it is neither read out (aria-hidden) nor counted as low-contrast text */
+.step__num::before { content: attr(data-num); }
 .step__foot { display: flex; align-items: center; gap: 16px; margin-top: auto; }
 .step__desc {
   display: grid; grid-template-rows: 0fr;
@@ -1559,6 +1562,21 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 .js.is-loaded .header { transform: none; }
 [data-parallax] { will-change: translate; }
 
+/* hero: its entrance plays from the CSS at first paint and does not wait for main.js. On a slow phone the script runs
+   late, and the collage is the page's largest element, whose paint time is the LCP (PageSpeed, 5 Nov 2026: 5.5 s on
+   mobile, because the collage stayed transparent until the script revealed it). So the collage is never transparent:
+   it only settles from 96% to full size; the text and the two machines fade and slide in as before (same delays). */
+@keyframes hero-in { from { opacity: 0; transform: var(--from); } }
+@keyframes hero-settle { from { transform: scale(.96); } }
+.js .hero [data-reveal] {
+  --from: translate3d(0, 40px, 0);
+  opacity: 1; transform: none; transition: none;
+  animation: hero-in 1s var(--ease) var(--d, 0ms) both;
+}
+.js .hero [data-reveal="left"]  { --from: translate3d(-60px, 0, 0); }
+.js .hero [data-reveal="right"] { --from: translate3d(60px, 0, 0); }
+.js .hero [data-reveal="zoom"]  { animation: hero-settle 1.2s var(--ease) both; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0ms !important; }
@@ -1860,7 +1878,10 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 .step.is-active .icon-box img, .step:hover .icon-box img { filter: brightness(0); }
 .step__glow { top: 300px; left: -90px; background: #ffa41b; }
 .step.is-active .step__glow, .step:hover .step__glow { opacity: .5; }
-.steps__count b { color: #ffa41b; }
+/* counter “01 / 06”: dark enough to read (PageSpeed contrast check, 5 Nov 2026: grey #a39d95 and orange #ffa41b on the
+   page colour were only ~2.5:1); the current step in the darkest ink, the rest in the text grey */
+.steps__progress { color: var(--gray-2); }
+.steps__count b { color: var(--ink); }
 .steps__bar i { background: linear-gradient(90deg, #ffd23f, #ffa41b); }
 /* key features: open tab = button gradient + dark icon */
 .feat__head:hover .icon-box { background: rgba(255, 210, 63, .32); }

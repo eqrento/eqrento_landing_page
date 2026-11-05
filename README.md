@@ -242,6 +242,24 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
     objects.
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
+  - Exception: the hero plays its entrance from the CSS at first paint (`hero-in` / `hero-settle` keyframes), without
+    waiting for main.js, and its collage is never transparent – it only settles from 96%. The collage is the page's
+    largest element, so its paint time is the LCP.
+- **Speed (PageSpeed, 5 Nov 2026: mobile 75, LCP 5.5 s; desktop 97)** – what was done and what to keep doing:
+  - The hero entrance above.
+  - WebP made in the browser's own encoder (canvas `toDataURL('image/webp')`; no extra tools). The PNG/JPG masters
+    stay in the repo, so a new WebP is always made from the master, not from another WebP:
+    - hero machines `hero-forklift-510|340.webp`, `hero-lift-490|330.webp` (q 0.85, `srcset` + measured `sizes`);
+    - client logos and the testimonial logo `logo-*.webp` (q 0.9; `logo-rops.png` stays, the PNG is smaller);
+    - footer logo `assets/icons/logo-light.webp` (740 px wide, used on all pages and in 404.html);
+    - video poster `testimonial-hardy-poster.webp`.
+  - The testimonial video has `preload="none"`: nothing is downloaded until “Watch the video” (it was 5.9 MB on load).
+  - Key features is an accordion for screen readers (`aria-expanded` on the buttons, like the FAQ). There is no tab
+    list, because tab panels may not sit inside it.
+  - The big pale step numbers in How it works are decoration, drawn from `data-num` (`aria-hidden`). The
+    “01 / 06” counter is dark enough to read.
+  - Cloudflare adds its Web Analytics beacon and the e-mail obfuscation script to the live site. Those are switches
+    in Cloudflare, not in this repo.
 - **Icon credit** – the icons are Uicons on the free Flaticon licence, which requires “Uicons by Flaticon” with a link
   near the icons or in the footer: the last of the links in the footer's bottom row (after “Cookie settings”), on all three pages.
   Keep it while the site uses Uicons.
@@ -268,7 +286,8 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - Demo request form: put the Apps Script web-app URL (…/exec) into `data-endpoint` of `.demo__form` in `index.html`
   (until then the form falls back to a pre-filled e-mail).
 - FAQ answers 2–6 and some Key features descriptions are placeholder copy.
-- Optional: converting large PNG/JPG images to WebP.
+- Optional: WebP for the remaining pictures (Key features photos, How it works photos, the telematics images; the
+  hero machines, logos, poster and footer logo are done – see “Speed”).
 
 ## Cache busting
 

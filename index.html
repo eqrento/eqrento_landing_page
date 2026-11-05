@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261105d">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261105e">
 </head>
 <body>
 
@@ -119,10 +119,18 @@
              width="1842" height="1377" alt="" fetchpriority="high">
       </div>
       <div class="hero__forklift" data-reveal="left" style="--d:600ms">
-        <img src="assets/img/hero-forklift.png" width="510" height="426" alt="" data-parallax="0.12">
+        <!-- WebP made from hero-forklift.png / hero-lift.png (the masters, kept in assets/img): full size + a smaller copy
+             for phones. "sizes" = the machine's width in each layout (measured 5 Nov 2026) -->
+        <img src="assets/img/hero-forklift-510.webp"
+             srcset="assets/img/hero-forklift-340.webp 340w, assets/img/hero-forklift-510.webp 510w"
+             sizes="(max-width: 640px) calc(49vw - 20px), (max-width: 1200px) min(calc(45.3vw + 8px), 427px), (max-width: 1440px) 24.8vw, min(26.6vw, 510px)"
+             width="510" height="426" alt="" data-parallax="0.12">
       </div>
       <div class="hero__lift" data-reveal="right" style="--d:700ms">
-        <img src="assets/img/hero-lift.png" width="490" height="563" alt="" data-parallax="0.12">
+        <img src="assets/img/hero-lift-490.webp"
+             srcset="assets/img/hero-lift-330.webp 330w, assets/img/hero-lift-490.webp 490w"
+             sizes="(max-width: 640px) calc(33.2vw - 13px), (max-width: 1200px) min(calc(30.6vw + 5px), 289px), (max-width: 1440px) 16.8vw, min(18vw, 345px)"
+             width="490" height="563" alt="" data-parallax="0.12">
       </div>
     </div>
   </section>
@@ -134,15 +142,15 @@
     <h2 class="logos__title" id="logos-title" data-reveal>Trusted by equipment rental companies all&nbsp;around&nbsp;the&nbsp;world</h2>
     <div class="wrap-narrow">
       <ul class="logos__list">
-        <li data-reveal style="--d:0ms"><img src="assets/img/logo-bac.png" width="226" height="70" style="--lh:40.9" alt="BAC Polska" loading="lazy"></li>
-        <li data-reveal style="--d:70ms"><img src="assets/img/logo-emrent.png" width="318" height="94" style="--lh:37.4" alt="EM Rent" loading="lazy"></li>
+        <li data-reveal style="--d:0ms"><img src="assets/img/logo-bac.webp" width="226" height="70" style="--lh:40.9" alt="BAC Polska" loading="lazy"></li>
+        <li data-reveal style="--d:70ms"><img src="assets/img/logo-emrent.webp" width="318" height="94" style="--lh:37.4" alt="EM Rent" loading="lazy"></li>
         <li data-reveal style="--d:140ms"><img src="assets/img/logo-rops.png" width="469" height="54" style="--lh:24.9" alt="ROPS Verhuur" loading="lazy"></li>
-        <li data-reveal style="--d:210ms"><img src="assets/img/logo-eurorent.png" width="229" height="134" style="--lh:48.7" alt="Eurorent" loading="lazy"></li>
-        <li data-reveal style="--d:280ms"><img src="assets/img/logo-podnosniki.png" width="515" height="87" style="--lh:34.6" alt="Podnosniki.pl" loading="lazy"></li>
-        <li data-reveal style="--d:350ms"><img src="assets/img/logo-tenge.png" width="228" height="98" style="--lh:39.4; --logo-gray: url(#logo-gray-red)" alt="Tenge Rent" loading="lazy"></li>
+        <li data-reveal style="--d:210ms"><img src="assets/img/logo-eurorent.webp" width="229" height="134" style="--lh:48.7" alt="Eurorent" loading="lazy"></li>
+        <li data-reveal style="--d:280ms"><img src="assets/img/logo-podnosniki.webp" width="515" height="87" style="--lh:34.6" alt="Podnosniki.pl" loading="lazy"></li>
+        <li data-reveal style="--d:350ms"><img src="assets/img/logo-tenge.webp" width="228" height="98" style="--lh:39.4; --logo-gray: url(#logo-gray-red)" alt="Tenge Rent" loading="lazy"></li>
         <li data-reveal style="--d:420ms"><img src="assets/img/logo-pcaban.svg" width="924" height="398" style="--lh:51.1" alt="PCaban" loading="lazy"></li>
-        <li data-reveal style="--d:490ms"><img src="assets/img/logo-hardy-carts-light-bg.png" width="307" height="84" style="--lh:42.3" alt="Hardy Carts &amp; Equipment" loading="lazy"></li>
-        <li data-reveal style="--d:560ms"><img src="assets/img/logo-ewheelz.png" width="448" height="63" style="--lh:31.4; --tone:.75" alt="eWheelz Golf Carts" loading="lazy"></li>
+        <li data-reveal style="--d:490ms"><img src="assets/img/logo-hardy-carts-light-bg.webp" width="307" height="84" style="--lh:42.3" alt="Hardy Carts &amp; Equipment" loading="lazy"></li>
+        <li data-reveal style="--d:560ms"><img src="assets/img/logo-ewheelz.webp" width="448" height="63" style="--lh:31.4; --tone:.75" alt="eWheelz Golf Carts" loading="lazy"></li>
       </ul>
     </div>
   </section>
@@ -254,7 +262,7 @@
         <ol class="steps__track">
           <li class="step" data-step="0">
             <div class="step__media"><img src="assets/img/step-1.png" width="293" height="200" alt="" loading="lazy"></div>
-            <span class="step__num">01</span>
+            <span class="step__num" data-num="01" aria-hidden="true"></span>
             <div class="step__foot">
               <span class="icon-box"><img src="assets/icons/offer.svg" width="19" height="24" alt=""></span>
               <h3 class="step__title">Offer</h3>
@@ -265,7 +273,7 @@
           <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
           <li class="step" data-step="1">
             <div class="step__media"><img src="assets/img/step-2.png" width="293" height="200" alt="" loading="lazy"></div>
-            <span class="step__num">02</span>
+            <span class="step__num" data-num="02" aria-hidden="true"></span>
             <div class="step__foot">
               <span class="icon-box"><img src="assets/icons/contract.svg" width="24" height="24" alt=""></span>
               <h3 class="step__title">Contract</h3>
@@ -276,7 +284,7 @@
           <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
           <li class="step" data-step="2">
             <div class="step__media"><img src="assets/img/step-3.jpg?v=2" width="293" height="200" alt="" loading="lazy"></div>
-            <span class="step__num">03</span>
+            <span class="step__num" data-num="03" aria-hidden="true"></span>
             <div class="step__foot">
               <span class="icon-box"><img src="assets/icons/transport.svg" width="26" height="24" alt=""></span>
               <h3 class="step__title">Transport</h3>
@@ -287,7 +295,7 @@
           <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
           <li class="step" data-step="3">
             <div class="step__media"><img src="assets/img/step-4.jpg" width="293" height="200" alt="" loading="lazy"></div>
-            <span class="step__num">04</span>
+            <span class="step__num" data-num="04" aria-hidden="true"></span>
             <div class="step__foot">
               <span class="icon-box"><img src="assets/icons/handover.svg" width="24" height="24" alt=""></span>
               <h3 class="step__title">Handover</h3>
@@ -298,7 +306,7 @@
           <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
           <li class="step" data-step="4">
             <div class="step__media"><img src="assets/img/step-5.png" width="293" height="200" alt="" loading="lazy"></div>
-            <span class="step__num">05</span>
+            <span class="step__num" data-num="05" aria-hidden="true"></span>
             <div class="step__foot">
               <span class="icon-box"><img src="assets/icons/gps.svg" width="27" height="27" alt=""></span>
               <h3 class="step__title">Telematics &amp; GPS</h3>
@@ -309,7 +317,7 @@
           <li class="step__arrow" aria-hidden="true"><img src="assets/icons/arrow-step.svg" width="24" height="6" alt=""></li>
           <li class="step" data-step="5">
             <div class="step__media"><img src="assets/img/step-6.png" width="293" height="200" alt="" loading="lazy"></div>
-            <span class="step__num">06</span>
+            <span class="step__num" data-num="06" aria-hidden="true"></span>
             <div class="step__foot">
               <span class="icon-box"><img src="assets/icons/invoice.svg" width="24" height="24" alt=""></span>
               <h3 class="step__title">Invoice</h3>
@@ -333,104 +341,104 @@
       <h2 class="h2 features__title" data-reveal>Key features <br>and competitive differentiators</h2>
 
       <div class="features__grid">
-        <div class="features__list" role="tablist" aria-label="Key features and competitive differentiators">
+        <div class="features__list">
           <div data-photo="assets/img/features-photo.png" data-screen="assets/img/screens/offers-1080.png" data-srcset="assets/img/screens/offers-860.png 860w, assets/img/screens/offers-1080.png 1080w, assets/img/screens/offers-1290.png 1290w, assets/img/screens/offers-1720.png 1720w" class="feat is-open" data-reveal="left" style="--d:0ms">
-            <button class="feat__head" type="button" role="tab" aria-selected="true" aria-controls="feat-1" id="feat-1-tab">
+            <button class="feat__head" type="button" aria-expanded="true" aria-controls="feat-1" id="feat-1-tab">
               <span class="icon-box"><img src="assets/icons/offer.svg" width="19" height="24" alt=""></span>
               <span class="feat__name">Offers &amp; contracts</span>
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
-            <div class="feat__body" id="feat-1" role="tabpanel" aria-labelledby="feat-1-tab">
+            <div class="feat__body" id="feat-1">
               <p>Build an offer in under a minute from live fleet availability&nbsp;– machines are picked and priced for you from day-range and monthly price lists, with discounts and any additional costs you need. One click turns it into a contract, signed electronically on&nbsp;mobile.</p>
             </div>
           </div>
 
           <div data-photo="assets/img/features-photo-equipment.png" data-screen="assets/img/screens/equipment-1080.png" data-srcset="assets/img/screens/equipment-860.png 860w, assets/img/screens/equipment-1080.png 1080w, assets/img/screens/equipment-1290.png 1290w, assets/img/screens/equipment-1720.png 1720w" class="feat" data-reveal="left" style="--d:80ms">
-            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-2" id="feat-2-tab">
+            <button class="feat__head" type="button" aria-expanded="false" aria-controls="feat-2" id="feat-2-tab">
               <span class="icon-box"><img src="assets/icons/excavator.svg" width="24" height="24" alt=""></span>
               <span class="feat__name">Equipment</span>
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
-            <div class="feat__body" id="feat-2" role="tabpanel" aria-labelledby="feat-2-tab">
+            <div class="feat__body" id="feat-2">
               <p>Your whole fleet at a glance: what’s out, what’s back and what’s ready for the next job. Every unit has a <span class="nowrap">drag-and-drop</span> calendar, its documents and full history&nbsp;– plus a QR code that opens its file on&nbsp;site. You get automatic reminders when an inspection is due or a document needs&nbsp;updating.</p>
             </div>
           </div>
 
           <div data-photo="assets/img/features-photo-transport.jpg?v=3" data-screen="assets/img/screens/transport-1080.png" data-srcset="assets/img/screens/transport-860.png 860w, assets/img/screens/transport-1080.png 1080w, assets/img/screens/transport-1290.png 1290w, assets/img/screens/transport-1720.png 1720w" class="feat" data-reveal="left" style="--d:160ms">
-            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-3" id="feat-3-tab">
+            <button class="feat__head" type="button" aria-expanded="false" aria-controls="feat-3" id="feat-3-tab">
               <span class="icon-box"><img src="assets/icons/feat-transport.svg" width="26" height="19" alt=""></span>
               <span class="feat__name">Transport</span>
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
-            <div class="feat__body" id="feat-3" role="tabpanel" aria-labelledby="feat-3-tab">
+            <div class="feat__body" id="feat-3">
               <p>Deliveries and pickups are created automatically once a contract is signed or paid, planned in the transport calendar and sent to the driver’s app. Handovers are recorded on site with photos and a signature&nbsp;– nothing gets lost between the office and the&nbsp;yard.</p>
             </div>
           </div>
 
           <div data-photo="assets/img/features-photo-gps.jpg" data-screen="assets/img/screens/gps-1080.jpg" data-srcset="assets/img/screens/gps-860.jpg 860w, assets/img/screens/gps-1080.jpg 1080w, assets/img/screens/gps-1290.jpg 1290w, assets/img/screens/gps-1720.jpg 1720w" class="feat" data-reveal="left" style="--d:240ms">
-            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-4" id="feat-4-tab">
+            <button class="feat__head" type="button" aria-expanded="false" aria-controls="feat-4" id="feat-4-tab">
               <span class="icon-box"><img src="assets/icons/gps.svg" width="27" height="27" alt=""></span>
               <span class="feat__name">GPS &amp; Telematics</span>
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
-            <div class="feat__body" id="feat-4" role="tabpanel" aria-labelledby="feat-4-tab">
+            <div class="feat__body" id="feat-4">
               <p>Every machine on a live map, with engine hours checked against the contract. Work outside agreed hours, on weekends or outside the permitted area is detected and added to the invoice automatically, with a PDF report as proof. Works with your telematics or our telemetry device with&nbsp;GPS.</p>
             </div>
           </div>
 
           <div data-photo="assets/img/features-photo-service.png" data-screen="assets/img/screens/service-1080.png" data-srcset="assets/img/screens/service-860.png 860w, assets/img/screens/service-1080.png 1080w, assets/img/screens/service-1290.png 1290w, assets/img/screens/service-1720.png 1720w" class="feat" data-reveal="left" style="--d:320ms">
-            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-5" id="feat-5-tab">
+            <button class="feat__head" type="button" aria-expanded="false" aria-controls="feat-5" id="feat-5-tab">
               <span class="icon-box"><img src="assets/icons/service.svg" width="21" height="21" alt=""></span>
               <span class="feat__name">Service</span>
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
-            <div class="feat__body" id="feat-5" role="tabpanel" aria-labelledby="feat-5-tab">
+            <div class="feat__body" id="feat-5">
               <p>Every return creates a checklist, so no machine goes out unchecked. Maintenance is scheduled with reminders, repairs are assigned to technicians and logged in the mechanic app with photos and signatures&nbsp;– and downtime shows before it blocks a&nbsp;booking.</p>
             </div>
           </div>
 
           <div data-photo="assets/img/features-photo-wms.jpg" data-screen="assets/img/screens/wms-1080.png" data-srcset="assets/img/screens/wms-860.png 860w, assets/img/screens/wms-1080.png 1080w, assets/img/screens/wms-1290.png 1290w, assets/img/screens/wms-1720.png 1720w" class="feat" data-reveal="left" style="--d:400ms">
-            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-6" id="feat-6-tab">
+            <button class="feat__head" type="button" aria-expanded="false" aria-controls="feat-6" id="feat-6-tab">
               <span class="icon-box"><img src="assets/icons/wms.svg" width="24" height="24" alt=""></span>
               <span class="feat__name">Warehouse (WMS)</span>
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
-            <div class="feat__body" id="feat-6" role="tabpanel" aria-labelledby="feat-6-tab">
+            <div class="feat__body" id="feat-6">
               <p>Spare parts and products in every warehouse, with stock levels and value always up to date. Stock coming in, going out and moving between warehouses is recorded as it happens, parts taken for a service order are booked to that repair, and you’re alerted when an item falls below its minimum level. Stocktaking keeps the numbers right, with opening and closing balances for your&nbsp;books.</p>
             </div>
           </div>
 
           <!-- screenshot: the Equipment one – it stays (Łukasz, 4 Nov 2026); if an "Equipment for Sale" screenshot ever comes, make its four sizes and swap data-screen / data-srcset -->
           <div data-photo="assets/img/features-photo-sales.jpg" data-screen="assets/img/screens/equipment-1080.png" data-srcset="assets/img/screens/equipment-860.png 860w, assets/img/screens/equipment-1080.png 1080w, assets/img/screens/equipment-1290.png 1290w, assets/img/screens/equipment-1720.png 1720w" class="feat" data-reveal="left" style="--d:480ms">
-            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-7" id="feat-7-tab">
+            <button class="feat__head" type="button" aria-expanded="false" aria-controls="feat-7" id="feat-7-tab">
               <span class="icon-box"><img src="assets/icons/sales.svg" width="24" height="24" alt=""></span>
               <span class="feat__name">Equipment sales</span>
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
-            <div class="feat__body" id="feat-7" role="tabpanel" aria-labelledby="feat-7-tab">
+            <div class="feat__body" id="feat-7">
               <p>Sell machines from your fleet and spare parts in the same system you rent with. Sales offers, contracts and invoices are handled there too, and a machine out on rent can be sold straight to its renter. Every sold machine keeps its buyer, serial number, documents and warranty, and <span class="nowrap">after-sales</span> service carries on&nbsp;– service orders and inspection reminders, just like for your own&nbsp;fleet.</p>
             </div>
           </div>
 
           <div data-photo="assets/img/features-photo-invoicing.jpg" data-screen="assets/img/screens/invoicing-1080.png" data-srcset="assets/img/screens/invoicing-860.png 860w, assets/img/screens/invoicing-1080.png 1080w, assets/img/screens/invoicing-1290.png 1290w, assets/img/screens/invoicing-1720.png 1720w" class="feat" data-reveal="left" style="--d:560ms">
-            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-8" id="feat-8-tab">
+            <button class="feat__head" type="button" aria-expanded="false" aria-controls="feat-8" id="feat-8-tab">
               <span class="icon-box"><img src="assets/icons/invoice.svg" width="24" height="24" alt=""></span>
               <span class="feat__name">Invoicing</span>
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
-            <div class="feat__body" id="feat-8" role="tabpanel" aria-labelledby="feat-8-tab">
+            <div class="feat__body" id="feat-8">
               <p>When a rental ends, the invoice is ready&nbsp;– calculated automatically from the contract and the data collected on the way (rental time, delivery, fuel, cleaning and overtime from telematics), and still yours to adjust. It goes to the customer and to your accounting or ERP system, and unpaid invoices are chased automatically with reminder emails and&nbsp;PDFs.</p>
             </div>
           </div>
 
           <!-- no data-photo: the AI screen is shown without the small photo (it would cover the suggested questions) -->
           <div data-screen="assets/img/screens/ai-1080.png" data-srcset="assets/img/screens/ai-860.png 860w, assets/img/screens/ai-1080.png 1080w, assets/img/screens/ai-1290.png 1290w, assets/img/screens/ai-1720.png 1720w" class="feat" data-reveal="left" style="--d:640ms">
-            <button class="feat__head" type="button" role="tab" aria-selected="false" aria-controls="feat-9" id="feat-9-tab">
+            <button class="feat__head" type="button" aria-expanded="false" aria-controls="feat-9" id="feat-9-tab">
               <span class="icon-box"><img src="assets/icons/ai.svg" width="24" height="24" alt=""></span>
               <span class="feat__name">AI Assistant</span>
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
-            <div class="feat__body" id="feat-9" role="tabpanel" aria-labelledby="feat-9-tab">
+            <div class="feat__body" id="feat-9">
               <p>Ask about your business in plain language: which machines sat idle, who owes you money, how much each branch earned. The AI Assistant reads all your EQrento data&nbsp;– equipment, orders, transport, service, telematics and invoices&nbsp;– and answers in seconds with a table or a chart, showing where the numbers came from. No reports to build or&nbsp;browse.</p>
             </div>
           </div>
@@ -638,8 +646,8 @@
         <!-- Customer video. Captions are burned into the video, so the slot never crops them
              (CSS switches from cover to contain when the slot gets too narrow). -->
         <div class="testimonial__media">
-          <img class="testimonial__backdrop" src="assets/img/testimonial-hardy-poster.jpg" width="960" height="720" alt="" aria-hidden="true">
-          <video class="testimonial__video" controls playsinline preload="metadata" poster="assets/img/testimonial-hardy-poster.jpg" aria-label="Video testimonial: Andrea Hardy, owner of Hardy Carts &amp; Equipment">
+          <img class="testimonial__backdrop" src="assets/img/testimonial-hardy-poster.webp" width="960" height="720" alt="" aria-hidden="true">
+          <video class="testimonial__video" controls playsinline preload="none" poster="assets/img/testimonial-hardy-poster.webp" aria-label="Video testimonial: Andrea Hardy, owner of Hardy Carts &amp; Equipment">
             <source src="assets/video/hardy-carts.mp4" type="video/mp4">
             <source src="assets/video/hardy-carts.webm" type="video/webm">
           </video>
@@ -654,7 +662,7 @@
         <div class="testimonial__body">
           <span class="testimonial__blob testimonial__blob--a" aria-hidden="true"></span>
           <span class="testimonial__blob testimonial__blob--b" aria-hidden="true"></span>
-          <img class="testimonial__logo" src="assets/img/logo-hardy-carts.png" width="560" height="146" alt="Hardy Carts &amp; Equipment">
+          <img class="testimonial__logo" src="assets/img/logo-hardy-carts.webp" width="560" height="146" alt="Hardy Carts &amp; Equipment">
           <blockquote class="testimonial__quote">“They’ve been extremely supportive and creative and coming up with solutions. That is something I’ve never experienced with other rental softwares we’ve used or other rental softwares we overlooked in favor of choosing <b>EQrento</b>.”</blockquote>
           <!-- a <p>, not <figcaption>: a figcaption must be a direct child of the <figure>, and this one sits inside the body -->
           <p class="testimonial__author">
@@ -1033,7 +1041,7 @@
   <div class="wrap-narrow">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a href="#home" aria-label="EQrento – back to top"><img src="assets/icons/logo-light.png?v=2" width="246" height="49" alt="EQrento"></a>
+        <a href="#home" aria-label="EQrento – back to top"><img src="assets/icons/logo-light.webp" width="246" height="49" alt="EQrento"></a>
         <p>The EQrento service and brand are owned by SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o.</p>
         <p>Get in touch with us for details on implementation and to learn how EQrento can help your rental business grow.</p>
       </div>
@@ -1194,6 +1202,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20261105a" defer></script>
+<script src="assets/js/main.js?v=20261105b" defer></script>
 </body>
 </html>
