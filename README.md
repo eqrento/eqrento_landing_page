@@ -68,7 +68,7 @@ assets/js/main.js      – interactions and animations
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos, og-image.png (1200×630 link-preview picture)
 assets/icons/          – SVG icons, logo-light.png (footer logo, all white), icon-192/512 and icon-maskable-512 PNGs
-assets/logos/          – partner logos for the Integrations section (official files only, unchanged; teltonika.svg so far)
+assets/logos/          – partner logos for the Integrations section (the companies' own files, unchanged)
 assets/video/          – testimonial video (mp4 + webm fallback)
 ```
 
@@ -215,16 +215,25 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   - Partner logos: **official files only**, never redrawn or recoloured, in `assets/logos/` named `zoomlion`,
     `teltonika`, `trackunit`, `ksef`, `comarch`, `wapro`, `exact`, `snelstart`, `microsoft-azure`, `google` (SVG, or
     PNG at least 120px tall on a transparent background). Until a company's file is there, its tile shows the name.
-  - To show a logo, put `<img src="assets/logos/NAME.svg" width="…" height="…" alt="Company" loading="lazy">` in front
-    of the name inside its `.int-tile`: the CSS hides the name and keeps the logo at most 34px tall. No `onerror`
-    handlers (the server's CSP blocks inline JavaScript) – add the `<img>` only once the file is in the folder.
-  - In place: `teltonika.svg` – Teltonika's own `TELTONIKA-LOGO-BLUE-RGB.svg` (from the LOGO link on
-    teltonika-iot-group.com/brand-guidelines, 5 Nov 2026), byte for byte. Teltonika allows its materials only “to
-    publish information about our company”, with no false association; the tile links to teltonika.lt.
-  - Checked on 5 Nov 2026, the others need the company's consent or partner status (details in
-    `../eqrento-landing-ustalenia.md`): Trackunit's media library is for non-commercial use only (the “Works With”
-    badge is for programme partners), Microsoft and Google need a licence or an approved request, Exact gives its logo
-    to approved App Store partners, Wapro to partners in its portal, Comarch on request; KSeF and Zoomlion offer none.
+  - To show a logo, put `<img src="assets/logos/NAME.svg" width="…" height="…" style="--lh:30" alt="Company"
+    loading="lazy">` in front of the name inside its `.int-tile`: the CSS hides the name. `--lh` = the logo's height
+    in px, chosen by eye so the logos look equally heavy (20% less on phones). No `onerror` handlers (the server's CSP
+    blocks inline JavaScript) – add the `<img>` only once the file is in the folder.
+  - In place (5 Nov 2026), each file byte for byte as published by the company itself:
+    - `teltonika.svg`: `TELTONIKA-LOGO-BLUE-RGB.svg` from the LOGO link on teltonika-iot-group.com/brand-guidelines.
+    - `trackunit.png`: `trackunit_logotype_rgb_red.png` from trackunit.com/media-library.
+    - `zoomlion.svg`, `comarch.svg`, `wapro.svg`, `snelstart.svg`: the logo files in the headers of en.zoomlion.com,
+      comarch.com, wapro.pl and snelstart.nl.
+    - `google.svg`: Google's own `googlelogo_clr_74x24px.svg` (gstatic.com).
+    - `exact.jpg`: the logo named in exact.com's structured data, a 640×480 JPG with the logo on white. The CSS
+      (`.int-tile__logo--exact`) shows only the logo band and blends the white away; the file is unchanged.
+  - Still names: **KSeF** (no KSeF logo exists; the national emblem and the Ministry of Finance logo are not KSeF's)
+    and **Microsoft Azure** (the only official Azure file comes in Microsoft's icon set, whose terms allow it only in
+    diagrams and documentation).
+  - Permission (checked 5 Nov 2026, details in `../eqrento-landing-ustalenia.md`): only Teltonika's rules cover this
+    use. Trackunit's media library is for non-commercial use, Exact licenses its logo to App Store partners, Wapro to
+    portal partners, Comarch on request, Google after an approved request. Łukasz decided to show them anyway, on his
+    own responsibility („Na moją odpowiedzialność”). Remove a logo at once if a company objects.
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
 - **Icon credit** – the icons are Uicons on the free Flaticon licence, which requires “Uicons by Flaticon” with a link

@@ -907,9 +907,15 @@ section[id] { scroll-margin-top: 80px; }
 }
 .int-tile:hover { background: var(--white); border-color: rgba(23, 15, 4, .12); transform: translateY(-2px); }
 .int-tile__name { font-size: 16px; font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
-/* an official logo, once its file is in assets/logos/: original colours, at most 34px tall; the name then hides */
-.int-tile img { width: auto; max-width: 100%; max-height: 34px; object-fit: contain; }
+/* an official logo from assets/logos/, in its original colours; the name then hides. Optical balance: each logo's
+   height in px is set on the <img> as --lh: wide or heavy logos lower (Comarch 19), compact ones 30–34; the stacked
+   Wapro logo 50, because its lettering is only a third of its height */
+.int-tile img { width: auto; height: calc(var(--lh, 34) * 1px); max-width: 100%; object-fit: contain; }
 .int-tile:has(img) .int-tile__name { display: none; }
+/* Exact: its only logo file is a 640×480 JPG with the logo in a band across the middle (rows 172–294) on white.
+   The file stays as it is: the box has the band's shape, so the picture is cropped to it, and multiply melts the
+   white into the tile colour (on the white hover background the logo is exactly as in the file) */
+.int-tile img.int-tile__logo--exact { aspect-ratio: 640 / 134; object-fit: cover; object-position: 50% 48%; mix-blend-mode: multiply; }
 /* “+ Your system”: opens the demo form */
 .int-tile--more { background: transparent; border: 1.5px dashed rgba(23, 15, 4, .22); }
 .int-tile--more .int-tile__name { font-size: 15px; }
@@ -938,6 +944,7 @@ section[id] { scroll-margin-top: 80px; }
   .int-group__tiles > li:last-child:nth-child(odd) { grid-column: 1 / -1; }   /* an odd last tile fills its row */
   .int-tile { height: 72px; }
   .int-tile:has(img) { padding-inline: 8px; }   /* narrow tiles: a wide logo gets almost the whole width (Teltonika ≈ 100px at 320px) */
+  .int-tile img { height: calc(var(--lh, 34) * .8px); }   /* logos 20% smaller in the smaller phone tiles */
   .int-tile__name { font-size: 15px; }
 }
 @media (max-width: 380px) {
