@@ -1,0 +1,65 @@
+# Connection check to the OVH server – CHANGES NOTHING there. Run by hand (Actions → "Check connection to OVH (SSH)"
+# → Run workflow) or by Claude:  gh workflow run check-ovh-ssh.yml
+# Shows, step by step: is the private key usable, is the SSH port reachable from GitHub, the server's host keys
+# (the value for the OVH_KNOWN_HOSTS secret), does the key log in, does the site folder exist and is it writable,
+# is rsync installed, what is in the folder now. Uses the same secrets as deploy-ovh.yml (OVH_KNOWN_HOSTS not needed).
+name: Check connection to OVH (SSH)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      OVH_HOST: ${{ secrets.OVH_HOST }}
+      OVH_PORT: ${{ secrets.OVH_PORT || '22' }}
+      OVH_USER: ${{ secrets.OVH_USER }}
+      OVH_PATH: ${{ secrets.OVH_PATH }}
+    steps:
+      - name: Private key
+        env:
+          OVH_SSH_KEY: ${{ secrets.OVH_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$OVH_SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          if ssh-keygen -y -P "" -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub 2>/dev/null; then
+            echo "Key OK, no passphrase: $(ssh-keygen -lf ~/.ssh/deploy_key.pub)"
+          else
+            echo "::error::OVH_SSH_KEY is not a usable private key – paste the whole file (with the BEGIN/END lines); it must have no passphrase"
+            exit 1
+          fi
+
+      - name: SSH port reachable from GitHub
+        run: |
+          if timeout 15 bash -c "exec 3<>/dev/tcp/$OVH_HOST/$OVH_PORT" 2>/dev/null; then
+            echo "Port $OVH_PORT is reachable from GitHub."
+          else
+            echo "::error::Port $OVH_PORT is NOT reachable from GitHub – it is closed or filtered, or SSH runs on another port (then set the OVH_PORT secret)"
+            exit 1
+          fi
+
+      - name: Server host keys (value for OVH_KNOWN_HOSTS)
+        run: |
+          ssh-keyscan -T 15 -p "$OVH_PORT" "$OVH_HOST" 2>/dev/null > ~/.ssh/known_hosts
+          if [ ! -s ~/.ssh/known_hosts ]; then echo "::error::The server sent no SSH host keys"; exit 1; fi
+          echo "----- host key lines (the address is shown as *** because it is a secret) -----"
+          cat ~/.ssh/known_hosts
+          echo "----- fingerprints -----"
+          ssh-keygen -lf ~/.ssh/known_hosts
+
+      - name: Log in and check the site folder
+        run: |
+          ssh -p "$OVH_PORT" -i ~/.ssh/deploy_key -o BatchMode=yes -o ConnectTimeout=15 \
+              -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              "$OVH_USER@$OVH_HOST" \
+              "echo LOGIN_OK as \$(whoami); test -d '$OVH_PATH' && echo FOLDER_EXISTS || echo FOLDER_MISSING; test -w '$OVH_PATH' && echo FOLDER_WRITABLE || echo FOLDER_NOT_WRITABLE; command -v rsync >/dev/null && echo RSYNC_INSTALLED || echo RSYNC_MISSING; echo '--- folder contents (top level) ---'; ls -A '$OVH_PATH' | head -60"
+
+      - name: Remove the key from the runner
+        if: always()
+        run: rm -f ~/.ssh/deploy_key ~/.ssh/deploy_key.pub
