@@ -87,7 +87,10 @@ jobs:
       - name: Copy the site to the server
         run: |
           set -euo pipefail
-          opts=(--recursive --links --checksum --compress --perms --chmod=D755,F644
+          # No --perms / --chmod / --times: the files on the server belong to another user (ubuntu, group-writable),
+          # and only the owner may change modes. Updated files keep their mode; new files get the repo's 644/755
+          # through the server's umask 0002 – readable by nginx.
+          opts=(--recursive --links --checksum --compress
                 --delete --delete-delay --itemize-changes --human-readable --stats
                 --exclude=/.git/ --exclude=/.github/ --exclude=/README.md --exclude=/.gitignore --exclude=/.claude/
                 --filter='P /.well-known/' --filter='P /google*.html' --filter='P /BingSiteAuth.xml'
