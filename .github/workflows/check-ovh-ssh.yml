@@ -58,7 +58,7 @@ jobs:
           ssh -p "$OVH_PORT" -i ~/.ssh/deploy_key -o BatchMode=yes -o ConnectTimeout=15 \
               -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
               "$OVH_USER@$OVH_HOST" \
-              "echo LOGIN_OK as \$(whoami); test -d '$OVH_PATH' && echo FOLDER_EXISTS || echo FOLDER_MISSING; test -w '$OVH_PATH' && echo FOLDER_WRITABLE || echo FOLDER_NOT_WRITABLE; command -v rsync >/dev/null && echo RSYNC_INSTALLED || echo RSYNC_MISSING; echo '--- folder contents (top level) ---'; ls -A '$OVH_PATH' | head -60"
+              "echo LOGIN_OK as \$(whoami); test -d '$OVH_PATH' && echo FOLDER_EXISTS || echo FOLDER_MISSING; test -w '$OVH_PATH' && echo FOLDER_WRITABLE || echo FOLDER_NOT_WRITABLE; command -v rsync >/dev/null && echo RSYNC_INSTALLED || echo RSYNC_MISSING; echo UMASK \$(umask); echo NOT_OWNED_BY_ME \$(find '$OVH_PATH' ! -user \"\$(whoami)\" | wc -l); echo NOT_WRITABLE_DIRS \$(find '$OVH_PATH' -type d ! -writable | wc -l); echo NOT_WRITABLE_FILES \$(find '$OVH_PATH' -type f ! -writable | wc -l); echo '--- owners and modes (count  owner:group  mode  type) ---'; find '$OVH_PATH' -printf '%u:%g %m %y\n' | sort | uniq -c; echo '--- folder contents (top level) ---'; ls -A '$OVH_PATH' | head -60"
 
       - name: Remove the key from the runner
         if: always()
