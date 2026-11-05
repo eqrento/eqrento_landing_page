@@ -44,8 +44,9 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   window.addEventListener('resize', () => { if (window.innerWidth > 1200) setMenu(false); });
 
-  /* ---------- the policy pages (privacy-policy.html, cookie-policy.html) share only the header, the footer and the
-     cookie banner with the home page: they need just the scrolled header, not the rest of this block ---------- */
+  /* ---------- the other pages (pricing.html, privacy-policy.html, cookie-policy.html) share the header, the footer and the
+     cookie banner with the home page: they need just the scrolled header, not the rest of this block (the FAQ
+     accordion, the demo dialog and the cookie banner are blocks of their own below) ---------- */
   if (!$('#steps')) {
     const onScrollPlain = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
     window.addEventListener('scroll', onScrollPlain, { passive: true });
@@ -349,36 +350,8 @@
     });
   });
 
-  /* ---------- FAQ accordion ---------- */
-  const qas = $$('.qa');
-  qas.forEach(qa => {
-    const btn = $('.qa__q', qa);
-    btn.addEventListener('click', () => {
-      const open = !qa.classList.contains('is-open');
-      qas.forEach(o => {
-        const on = o === qa ? open : false;
-        o.classList.toggle('is-open', on);
-        $('.qa__q', o).setAttribute('aria-expanded', String(on));
-      });
-    });
-  });
-
-  /* ---------- pricing: yearly / monthly prices + full comparison ---------- */
-  const billingOpts = $$('.billing__opt');
-  billingOpts.forEach(opt => opt.addEventListener('click', () => {
-    const mode = opt.dataset.billing;   // "yearly" | "monthly": every price carries both texts
-    billingOpts.forEach(o => o.setAttribute('aria-pressed', String(o === opt)));
-    $$('[data-yearly][data-monthly]').forEach(el => { el.textContent = el.dataset[mode]; });
-  }));
-  const cmp = $('.cmp');
-  if (cmp) {
-    const cmpBtn = $('.cmp__toggle', cmp);
-    cmpBtn.addEventListener('click', () => {
-      const open = !cmp.classList.contains('is-open');
-      cmp.classList.toggle('is-open', open);
-      cmpBtn.setAttribute('aria-expanded', String(open));
-    });
-  }
+  /* (the FAQ accordion is a block of its own further down: the pricing page has one too;
+     the plans, the yearly / monthly switch and the comparison table live on pricing.html – pricing.js) */
 
   /* ---------- platform diagram: scale + connector lines ---------- */
   const diagram = $('.platform__diagram');
@@ -518,6 +491,21 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(onResize);
   onResize();
 })();
+/* ---------- FAQ accordion (home page and pricing page): one answer open at a time ---------- */
+(() => {
+  const qas = Array.from(document.querySelectorAll('.qa'));
+  qas.forEach(qa => {
+    qa.querySelector('.qa__q').addEventListener('click', () => {
+      const open = !qa.classList.contains('is-open');
+      qas.forEach(o => {
+        const on = o === qa ? open : false;
+        o.classList.toggle('is-open', on);
+        o.querySelector('.qa__q').setAttribute('aria-expanded', String(on));
+      });
+    });
+  });
+})();
+
 /* ---------- testimonial video: big play button until the first play ---------- */
 (() => {
   const video = document.querySelector('.testimonial__video');
@@ -625,7 +613,7 @@
   let trigger = null, source = 'direct link', openedAt = 0, pushed = false, sending = false, downOnBackdrop = false, isOpen = false;
 
   /* where the visitor clicked (“pricing – Complete”, “hero”…) – it lands in the e-mail and the sheet */
-  const AREAS = { header: 'header', 'mobile-menu': 'mobile menu', home: 'hero', why: 'why EQrento card' };
+  const AREAS = { header: 'header', 'mobile-menu': 'mobile menu', home: 'hero', why: 'why EQrento card', pricing: 'pricing teaser' };
   const sourceOf = el => {
     if (el.dataset.demoSource) return el.dataset.demoSource;   // a button can name itself (data-demo-source, e.g. in Integrations)
     const plan = el.closest('.plan');

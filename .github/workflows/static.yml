@@ -31,6 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      # the prices are written in index.html (teaser) and pricing.html: no preview while they differ
+      - name: Check that the prices match on both pages
+        run: bash .github/scripts/check-prices.sh
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

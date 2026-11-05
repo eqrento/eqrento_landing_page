@@ -1065,54 +1065,28 @@ section[id] { scroll-margin-top: 80px; }
 .pricing__note { margin: 20px auto 0; max-width: 760px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-2); }
 @media (min-width: 1201px) { .pricing__note { max-width: none; } }   /* wide screens: the whole note on one line */
 
-/* ---------- full feature comparison, collapsed until asked for ---------- */
-.cmp { margin-top: 40px; }
-/* the toggle is the way to the full plan comparison, so it is a solid dark button (a secondary action next to the
-   yellow demo buttons): white text, yellow plus, a soft shadow and the same 64px height as the other large buttons */
-.cmp__toggle {
-  display: flex; align-items: center; gap: 14px; margin-inline: auto;
-  height: 64px; padding: 0 36px; border-radius: 999px;
-  font-size: 17px; font-weight: 600; color: var(--white);
-  background: var(--black); box-shadow: 0 18px 40px -18px rgba(23, 15, 4, .55), 0 1px 1px rgba(0, 0, 0, .2);
-  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
-}
-.cmp__toggle:hover { transform: translateY(-2px); box-shadow: 0 24px 44px -16px rgba(23, 15, 4, .6), 0 1px 1px rgba(0, 0, 0, .2); }
-.cmp__toggle span:first-child { white-space: nowrap; }
-@media (max-width: 640px) { .cmp__toggle { height: 60px; padding: 0 28px; font-size: 16px; } }
-/* “Compare all EQrento features” is 242px of text at 16px: on the narrowest phones it has to shrink to stay on one line */
-@media (max-width: 380px) { .cmp__toggle { padding: 0 24px; gap: 12px; font-size: 15px; } }
-@media (max-width: 340px) { .cmp__toggle { padding: 0 20px; font-size: 13.5px; } }
-.cmp__icon { position: relative; flex: none; width: 20px; height: 20px; }
-.cmp__icon::before, .cmp__icon::after {
-  content: ""; position: absolute; left: 3px; right: 3px; top: 9px; height: 2px; border-radius: 2px;
-  background: #ffa41b; transition: transform .4s var(--ease);
-}
-.cmp__icon::after { transform: rotate(90deg); }
-.cmp.is-open .cmp__icon::after { transform: rotate(0deg); }
-.cmp__body {
-  display: grid; grid-template-rows: 0fr; visibility: hidden;
-  transition: grid-template-rows .6s var(--ease), visibility 0s .6s;
-}
-.cmp.is-open .cmp__body { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .6s var(--ease), visibility 0s; }
-/* clip rather than hidden: a clipping box is not a scroll container, so the table header can still stick under the page header */
-/* position: relative makes this box the containing block of the table's visually hidden (.sr-only, absolute) labels,
-   so they are clipped with it; otherwise they escape the clip and stretch the page far below the footer */
-.cmp__body > div { position: relative; min-height: 0; overflow: hidden; }
-@supports (overflow: clip) { .cmp__body > div { overflow: clip; } }
+/* ---------- full feature comparison (pricing.html, always open) ----------
+   No clipping box around the table: the header row sticks under the page header while the table scrolls by. The card is
+   position: relative, so the visually hidden (.sr-only, absolute) labels inside stay within it. */
 .cmp__card {
-  margin-top: 32px; padding: 8px 16px 16px; border-radius: 24px;
+  position: relative;
+  margin-top: 24px; padding: 8px 16px 16px; border-radius: 24px;
   background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 /* separate borders: with collapsed borders the lines would not travel with the sticky header */
 .cmp__table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 15px; line-height: 1.45; color: var(--ink); }
 .cmp__table th, .cmp__table td { padding: 13px 16px; border-bottom: 1px solid rgba(23, 15, 4, .07); }
 .cmp__table thead th {
-  position: sticky; top: 84px; z-index: 1;   /* right under the scrolled page header */
-  padding: 20px 16px 16px; background: var(--white);
-  font-size: 16px; font-weight: 600; text-align: center;
+  position: sticky; top: 84px; z-index: 1;   /* right under the scrolled page header (84 / 72 / 64px, see the breakpoints) */
+  padding: 18px 10px 14px; background: var(--white);
+  font-size: 16px; font-weight: 600; text-align: center; vertical-align: top;
   border-bottom-color: rgba(23, 15, 4, .14);
 }
-.cmp__table thead small { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--gray-2); }
+/* plan, price (swapped with the yearly / monthly switch) and a small demo button in each column head */
+.cmp__plan, .cmp__price { display: block; }
+.cmp__price { margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--gray-2); }
+.cmp__table thead .cmp__cta { margin-top: 10px; height: 34px; padding: 0 14px; gap: 0; font-size: 13px; }
+.cmp__table [hidden] { display: none; }   /* “Show only differences” hides rows and whole categories */
 .cmp__table th[scope="row"] { width: 40%; font-weight: 400; text-align: left; text-wrap: pretty; }
 .cmp__table td { width: 15%; text-align: center; }
 .cmp__group th {
@@ -1140,6 +1114,100 @@ section[id] { scroll-margin-top: 80px; }
 /* notes in plan cells (“Without checklists”, “$69 per device, one-time”) look like the feature names: regular weight, same size */
 .cmp__table td.t--note { font-size: inherit; font-weight: 400; line-height: inherit; }
 @media (max-width: 640px) { .cmp__table td.t--note { font-size: 14px; line-height: 1.35; } }
+
+/* ---------- pricing page (pricing.html) ---------- */
+.pricing--page { padding-top: calc(var(--header-h) + 40px); }   /* starts under the fixed header, like the policy pages */
+.compare { padding: var(--sec-join) 0; background: var(--soft); }
+.compare__title { text-align: center; }
+.compare__tools { margin-top: 32px; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+/* “Show only differences”: a pill with a small switch; on = the button gradient */
+.compare__diff {
+  display: inline-flex; align-items: center; gap: 12px; height: 44px; padding: 0 18px 0 10px; border-radius: 999px;
+  font-size: 15px; font-weight: 600; color: var(--ink); white-space: nowrap;
+  background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 0 0 1px rgba(23, 15, 4, .08);
+}
+.compare__diff::before {
+  content: ""; flex: none; width: 38px; height: 22px; border-radius: 999px;
+  background: radial-gradient(circle at 11px 50%, #fff 7px, transparent 7.5px), rgba(23, 15, 4, .2);
+}
+.compare__diff[aria-pressed="true"]::before { background: radial-gradient(circle at 27px 50%, #fff 7px, transparent 7.5px), var(--gradient); }
+/* the plan switch above the table – phones only (a segmented control, like the yearly / monthly switch) */
+.seg {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 999px;
+  background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 0 0 1px rgba(23, 15, 4, .08);
+}
+.seg__opt { height: 40px; padding: 0 4px; border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--gray-2); white-space: nowrap; }
+.seg__opt[aria-pressed="true"] { background: var(--gradient); color: #170f04; }
+.compare__plans { display: none; }
+/* the FAQ is followed by the closing button here, so it gets the join spacing below */
+.faq--pricing { padding-bottom: var(--sec-join); }
+.pricing-cta { display: flex; justify-content: center; padding: var(--sec-join) var(--gutter) var(--sec-y); background: var(--soft); }
+
+/* tablets: five columns stay, the feature column gives up room so the small buttons fit the plan columns */
+@media (max-width: 1023px) {
+  .cmp__table th[scope="row"] { width: 36%; }
+  .cmp__table td { width: 16%; }
+  .cmp__table th, .cmp__table td { padding-inline: 8px; }
+  .cmp__table thead th { padding-inline: 6px; }
+  .cmp__table thead .cmp__cta { padding: 0 9px; font-size: 12px; }
+}
+/* phones: the features and ONE plan (data-plan on the table, 1–4, Complete to start with; pricing.js) */
+@media (max-width: 767px) {
+  .compare__tools { flex-direction: column; align-items: stretch; }
+  .compare__plans { display: grid; }
+  .compare__diff { align-self: center; }
+  .cmp__card { padding: 0 8px 8px; }
+  .cmp__table th[scope="row"] { width: 58%; }
+  .cmp__table thead th:not(:first-child), .cmp__table td { display: none; width: auto; }
+  .cmp__table[data-plan="1"] tr > :nth-child(2), .cmp__table[data-plan="2"] tr > :nth-child(3),
+  .cmp__table[data-plan="3"] tr > :nth-child(4), .cmp__table[data-plan="4"] tr > :nth-child(5) { display: table-cell; }
+  .cmp__table thead .cmp__cta { padding: 0 14px; font-size: 13px; }
+}
+/* the narrowest phones: “Enterprise” and “Connected” must fit a quarter of the plan switch */
+@media (max-width: 360px) {
+  .seg { gap: 2px; }
+  .seg__opt { padding: 0 2px; font-size: 11.5px; letter-spacing: -.01em; }
+}
+
+/* ---------- home page teaser: four mini tiles and the way to pricing.html ---------- */
+.tiers { margin-top: 56px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.tier {
+  position: relative; display: flex; flex-direction: column;
+  padding: 32px 28px 28px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.tier__name { font-size: 22px; font-weight: 600; line-height: 1.25; color: var(--ink); }
+.tier__price {
+  margin-top: 14px; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px;
+  font-size: 14px; line-height: 1.4; color: var(--gray-2);
+}
+.tier__price b { font-size: 38px; font-weight: 600; line-height: 1.1; letter-spacing: -.02em; color: var(--ink); }
+.tier__price--quote b { font-size: 28px; letter-spacing: -.01em; }
+.tier__limit { margin-top: auto; padding-top: 16px; font-size: 14px; font-weight: 600; color: var(--ink); }
+/* Complete: the recommended plan, navy like its card on pricing.html, with the same badge */
+.tier--hero { box-shadow: var(--shadow-brand); }
+.tier--hero .tier__name, .tier--hero .tier__price b, .tier--hero .tier__limit { color: var(--white); }
+.tier--hero .tier__price { color: #b3afd6; }
+.tiers__ctas { margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.tiers__demo { padding-inline: 36px; }
+@media (max-width: 1200px) { .tier { padding: 28px 22px 24px; } .tier__price b { font-size: 34px; } }
+/* 2 × 2 from 900px down (the price and “/month, billed yearly” need the room) */
+@media (max-width: 900px) { .tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; max-width: 680px; margin-inline: auto; } }
+@media (max-width: 640px) {
+  .tiers { margin-top: 40px; gap: 28px 12px; }
+  .tier { padding: 26px 16px 18px; border-radius: 20px; }
+  .tier__name { font-size: 18px; }
+  .tier__price { margin-top: 10px; font-size: 13px; }
+  .tier__price b { font-size: 28px; }
+  .tier__price--quote b { font-size: 20px; }
+  .tier__limit { font-size: 13px; }
+  .tiers__ctas { flex-direction: column; align-items: stretch; }
+  .tiers__ctas .btn { width: 100%; }
+}
+/* 320px: “Compare plans and features” needs smaller type and arrow to fit the 280px button (as the EQrento card's CTA) */
+@media (max-width: 340px) {
+  .tiers__ctas .btn--arrow { padding-left: 18px; gap: 6px; font-size: 14px; }
+  .tiers__ctas .btn__icon { width: 40px; height: 40px; }
+}
 
 /* =========================================================
    FAQ
@@ -1720,19 +1788,6 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   .node.node--ai { order: 0; }
   .platform__nodes::before { content: ""; order: 1; flex-basis: 100%; height: 0; }
 
-  /* pricing table: each feature name on its own line, above its four plan cells
-     (explicit ARIA roles in the markup keep it a table for screen readers) */
-  .cmp__card { padding: 0 8px 8px; }
-  .cmp__table, .cmp__table thead, .cmp__table tbody { display: block; }
-  .cmp__table tr { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .cmp__table thead { position: sticky; top: 72px; z-index: 1; }
-  .cmp__table thead th { position: static; padding: 14px 2px 10px; }
-  .cmp__table thead th:first-child { display: none; }
-  .cmp__table th[scope="row"] { grid-column: 1 / -1; width: auto; padding: 14px 8px 4px; border-bottom: 0; }
-  .cmp__table td { width: auto; padding: 6px 2px 12px; }
-  .cmp__group th { grid-column: 1 / -1; padding: 28px 8px 8px; }
-  .cmp__table tbody:first-of-type .cmp__group th { padding-top: 20px; }
-  .cmp__table tbody tr > :nth-child(3) { background: none; }   /* stacked rows would break the tinted column into blocks: tint only the header */
 }
 
 @media (max-width: 640px) {
@@ -1833,13 +1888,10 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   .plan__price { font-size: 40px; }
   .plan__price--quote { align-self: stretch; }   /* in the stacked flex card "end" would shrink the box to its (size-contained) width: 0 */
   .pricing__tracker { margin-top: 32px; flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px; }
-  .cmp__card { margin-top: 24px; border-radius: 20px; }
-  .cmp__table thead { top: 64px; }
-  .cmp__table thead th { padding-inline: 0; font-size: clamp(11px, 3.4vw, 13px); letter-spacing: -.01em; }   /* “Connected” fits a quarter of a 320px screen */
-  .cmp__table thead small { display: none; }
+  .cmp__card { border-radius: 20px; }
+  .cmp__table thead th { top: 64px; }   /* the scrolled page header is 64px tall here */
   .cmp__table th[scope="row"] { font-size: 14px; }
   .cmp__group th { font-size: 12px; }
-  .cmp__table .t { font-size: 12px; line-height: 1.3; }
 
   .qa__q { padding: 20px; font-size: 17px; line-height: 1.3; gap: 16px; }
   .qa.is-open .qa__q { padding-top: 24px; }
@@ -1982,7 +2034,7 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   --mark-glow: linear-gradient(90deg, #9776fe, #6462ff);    /* left and right half of the mark */
   --shadow-brand: 0 24px 70px -15px rgba(100, 98, 255, .42);
 }
-.why-card--hero, .platform, .plan--hero, .cmp__toggle, .footer,
+.why-card--hero, .platform, .plan--hero, .tier--hero, .footer,
 .step.is-active, .step:hover { background: var(--mark-navy); }
 /* testimonial: the navy sits on the text half only. A background on the rounded card itself shows as a dark rim along the anti-aliased
    corners of the photo/video (card background + clipped child blend at the curve); without it the corners blend with the page instead */
@@ -2002,10 +2054,8 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 /* how it works: the photo on the active card fades into navy */
 .step__media::after { background: linear-gradient(to bottom, rgba(27, 21, 98, 0), var(--mark-navy)); }
 
-/* testimonial card and compare button: navy shadows instead of the warm ones */
+/* testimonial card: navy shadow instead of the warm one */
 .testimonial { box-shadow: 0 32px 80px -40px rgba(27, 21, 98, .55); }
-.cmp__toggle { box-shadow: 0 18px 40px -18px rgba(27, 21, 98, .6), 0 1px 1px rgba(0, 0, 0, .2); }
-.cmp__toggle:hover { box-shadow: 0 24px 44px -16px rgba(27, 21, 98, .65), 0 1px 1px rgba(0, 0, 0, .2); }
 
 /* ticks in the Complete card: cool light grey */
 .plan--hero .plan__list li::before { background: #dcd9f2; }

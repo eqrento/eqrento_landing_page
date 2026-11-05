@@ -66,6 +66,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # the prices are written in index.html (teaser) and pricing.html: nothing is published while they differ
+      - name: Check that the prices match on both pages
+        run: bash .github/scripts/check-prices.sh
+
       - name: Set up SSH
         env:
           OVH_SSH_KEY: ${{ secrets.OVH_SSH_KEY }}

@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261105f">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261105g">
 </head>
 <body>
 
@@ -47,7 +47,7 @@
         <li><a class="nav__link" href="#why">Why EQrento</a></li>
         <li><a class="nav__link" href="#steps">How it works</a></li>
         <li><a class="nav__link" href="#features">Key features</a></li>
-        <li><a class="nav__link" href="#pricing">Pricing</a></li>
+        <li><a class="nav__link" href="pricing">Pricing</a></li>
         <li><a class="nav__link" href="#faq">FAQ</a></li>
       </ul>
     </nav>
@@ -68,7 +68,7 @@
     <li><a href="#why">Why EQrento</a></li>
     <li><a href="#steps">How it works</a></li>
     <li><a href="#features">Key features</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="#book-demo" class="btn btn--primary btn--arrow mobile-menu__cta">
@@ -674,283 +674,47 @@
     </div>
   </section>
 
-  <!-- ============ PRICING ============ -->
-  <section class="pricing" id="pricing">
+  <!-- ============ PRICING (teaser – the full plans, the yearly / monthly switch and the comparison are on pricing.html) ============ -->
+  <!-- id="pricing" stays, so old links to /#pricing still land here. The yearly prices below are also on pricing.html
+       (cards and table header): .github/scripts/check-prices.sh stops the preview and the publish if they differ -->
+  <section class="pricing pricing--teaser" id="pricing">
     <div class="wrap-narrow">
       <div class="section-head pricing__head">
         <h2 class="h2" data-reveal style="--d:80ms">Pricing that grows <br>with your fleet</h2>
-        <p class="lead" data-reveal style="--d:160ms">Every plan includes unlimited users and branches. Choose by fleet size and the modules you&nbsp;need.</p>
-        <!-- every price below carries data-yearly / data-monthly; main.js swaps them -->
-        <div class="billing" role="group" aria-label="Billing period" data-reveal style="--d:240ms">
-          <button class="billing__opt" type="button" aria-pressed="true" data-billing="yearly">Yearly <span class="billing__save">−20%</span></button>
-          <button class="billing__opt" type="button" aria-pressed="false" data-billing="monthly">Monthly</button>
-        </div>
+        <p class="lead" data-reveal style="--d:160ms">Every plan includes unlimited users and branches.</p>
       </div>
 
-      <!-- each card is a subgrid of 8 rows (name, text, price, billing, limits, button, intro, list), so the rows line up across the cards -->
-      <div class="plans">
-        <article class="plan" data-reveal style="--d:0ms">
-          <h3 class="plan__name">Essential</h3>
-          <p class="plan__desc">Fleet, offers, contracts and invoices in one&nbsp;place&nbsp;– for smaller fleets leaving spreadsheets&nbsp;behind.</p>
-          <p class="plan__price"><span data-yearly="$199" data-monthly="$249">$199</span><small>/month</small></p>
-          <p class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</p>
-          <ul class="plan__limits">
-            <li><b>Up to 50</b> units</li>
-            <li><b>Unlimited</b> users and&nbsp;branches</li>
-          </ul>
-          <a href="#book-demo" class="btn btn--primary plan__cta">Book a demo</a>
-          <p class="plan__intro">What’s included:</p>
-          <ul class="plan__list">
-            <li>Offers built from live fleet availability</li>
-            <li>Contracts in one click, signed electronically</li>
-            <li>Equipment calendar with history per machine</li>
-            <li>Automatic pricing and discounts</li>
-            <li>Service reminders and fault reporting</li>
-            <li>Invoices sent to your accounting system</li>
-          </ul>
-        </article>
-
-        <article class="plan plan--hero" data-reveal="zoom" style="--d:80ms">
-          <span class="plan__glows" aria-hidden="true"><span class="plan__blob plan__blob--a"></span><span class="plan__blob plan__blob--b"></span></span>
+      <ul class="tiers">
+        <li class="tier" data-reveal style="--d:0ms">
+          <h3 class="tier__name">Essential</h3>
+          <p class="tier__price"><b data-price="essential">$199</b><span>/month, <span class="nowrap">billed yearly</span></span></p>
+          <p class="tier__limit">Up to 50 units</p>
+        </li>
+        <li class="tier tier--hero" data-reveal style="--d:80ms">
           <span class="plan__badge">Recommended</span>
-          <h3 class="plan__name">Complete</h3>
-          <p class="plan__desc">The full rental cycle, from offer to invoice, with transport, service and the driver &amp; mechanic&nbsp;app.</p>
-          <p class="plan__price"><span data-yearly="$399" data-monthly="$499">$399</span><small>/month</small></p>
-          <p class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</p>
-          <ul class="plan__limits">
-            <li><b>Up to 200</b> units</li>
-            <li><b>Unlimited</b> users and&nbsp;branches</li>
-          </ul>
-          <a href="#book-demo" class="btn btn--primary plan__cta">Book a demo</a>
-          <p class="plan__intro">Everything in Essential, plus:</p>
-          <ul class="plan__list">
-            <li>Transport planning with the driver app</li>
-            <li>Full service module with the mechanic app</li>
-            <li>Handover and repair protocols with photos and signatures</li>
-            <li>QR codes on every machine</li>
-            <li>Weekend and date pricing rules</li>
-            <li>User permissions and multiple currencies</li>
-          </ul>
-        </article>
+          <h3 class="tier__name">Complete</h3>
+          <p class="tier__price"><b data-price="complete">$399</b><span>/month, <span class="nowrap">billed yearly</span></span></p>
+          <p class="tier__limit">Up to 200 units</p>
+        </li>
+        <li class="tier" data-reveal style="--d:160ms">
+          <h3 class="tier__name">Connected</h3>
+          <p class="tier__price"><b data-price="connected">$799</b><span>/month, <span class="nowrap">billed yearly</span></span></p>
+          <p class="tier__limit">Up to 500 units</p>
+        </li>
+        <li class="tier" data-reveal style="--d:240ms">
+          <h3 class="tier__name">Enterprise</h3>
+          <p class="tier__price tier__price--quote"><b>Ask for a quote</b></p>
+          <p class="tier__limit">Unlimited units</p>
+        </li>
+      </ul>
 
-        <article class="plan" data-reveal style="--d:160ms">
-          <h3 class="plan__name">Connected</h3>
-          <p class="plan__desc">Telematics and GPS that bill every extra hour automatically.</p>
-          <p class="plan__price"><span data-yearly="$799" data-monthly="$999">$799</span><small>/month</small></p>
-          <p class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</p>
-          <ul class="plan__limits">
-            <li><b>Up to 500</b> units</li>
-            <li><b>Unlimited</b> users and&nbsp;branches</li>
-          </ul>
-          <a href="#book-demo" class="btn btn--primary plan__cta">Book a demo</a>
-          <p class="plan__intro">Everything in Complete, plus:</p>
-          <ul class="plan__list">
-            <li>Live GPS map of the whole fleet</li>
-            <li>Engine hours checked against contract limits</li>
-            <li>Overtime, weekend and <span class="nowrap">out-of-area</span> work billed automatically</li>
-            <li>Fuel and cleaning charges added automatically</li>
-            <li>Supervisor approvals and activity logs</li>
-            <li>Priority support</li>
-          </ul>
-        </article>
-
-        <article class="plan" data-reveal style="--d:240ms">
-          <h3 class="plan__name">Enterprise</h3>
-          <p class="plan__desc">Unlimited fleet, custom integrations and a dedicated&nbsp;team.</p>
-          <p class="plan__price plan__price--quote"><span>Ask for a quote</span></p>
-          <p class="plan__billing">tailored to your fleet</p>
-          <ul class="plan__limits">
-            <li><b>Unlimited</b> units</li>
-            <li><b>Unlimited</b> users and&nbsp;branches</li>
-          </ul>
-          <a href="mailto:contact@eqrento.com?subject=EQrento%20Enterprise%20quote" class="btn btn--ghost plan__cta">Contact us</a>
-          <p class="plan__intro">Everything in Connected, plus:</p>
-          <ul class="plan__list">
-            <li>Warehouse (WMS) for parts and products</li>
-            <li>Equipment and parts sales with after-sales service</li>
-            <li>Custom API integrations and development</li>
-            <li>Dedicated account manager</li>
-            <li>Service level agreement (SLA)</li>
-            <li>Migration of your fleet, history and open&nbsp;contracts</li>
-            <li><span class="nowrap">On-site</span> training for your team</li>
-          </ul>
-        </article>
+      <div class="tiers__ctas" data-reveal style="--d:120ms">
+        <a href="pricing" class="btn btn--primary btn--arrow">
+          <span>Compare plans and features</span>
+          <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+        </a>
+        <a href="#book-demo" class="btn btn--ghost tiers__demo">Book a demo</a>
       </div>
-
-      <!-- full comparison (right under the plan cards; the telemetry box and the price note follow it): collapsed by default; below 900px every row stacks the feature name above the four plans.
-           Cells: class="y" included, "n" not included (both with screen-reader text), "t" text. -->
-      <div class="cmp" data-reveal>
-        <button class="cmp__toggle" type="button" aria-expanded="false" aria-controls="cmp-body">
-          <span>Compare all EQrento features</span>
-          <span class="cmp__icon" aria-hidden="true"></span>
-        </button>
-        <div class="cmp__body" id="cmp-body"><div>
-          <div class="cmp__card">
-            <table class="cmp__table" role="table">
-              <caption class="sr-only">All features by plan</caption>
-              <thead role="rowgroup">
-                <tr role="row">
-                  <th scope="col" role="columnheader"><span class="sr-only">Feature</span></th>
-                  <th scope="col" role="columnheader">Essential <small data-yearly="$199/mo" data-monthly="$249/mo">$199/mo</small></th>
-                  <th scope="col" role="columnheader">Complete <small data-yearly="$399/mo" data-monthly="$499/mo">$399/mo</small></th>
-                  <th scope="col" role="columnheader">Connected <small data-yearly="$799/mo" data-monthly="$999/mo">$799/mo</small></th>
-                  <th scope="col" role="columnheader">Enterprise <small>Ask for a quote</small></th>
-                </tr>
-              </thead>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/forklift.svg" width="20" height="20" alt=""></span>Fleet, users and branches</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Fleet size</th><td role="cell" class="t">Up to 50 units</td><td role="cell" class="t">Up to 200 units</td><td role="cell" class="t">Up to 500 units</td><td role="cell" class="t">Unlimited</td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Users</th><td role="cell" class="t">Unlimited</td><td role="cell" class="t">Unlimited</td><td role="cell" class="t">Unlimited</td><td role="cell" class="t">Unlimited</td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Branches</th><td role="cell" class="t">Unlimited</td><td role="cell" class="t">Unlimited</td><td role="cell" class="t">Unlimited</td><td role="cell" class="t">Unlimited</td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/offer.svg" width="20" height="20" alt=""></span>Offers, contracts and orders</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Offers built from live fleet availability</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Contracts from approved offers in one click</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Electronic signature on mobile</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Automatic equipment selection by category, with manual override</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Equipment availability shown while you create an order</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Automatic rental pricing, with manual override</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Individual equipment discounts, percentage or fixed</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Additional costs of any kind added to a contract</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Custom fields builder for order forms</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Advanced order filtering</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Easy order copy</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Order export to CSV</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Customer database</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Salesperson or sales agent assigned to an order</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/pricing.svg" width="20" height="20" alt=""></span>Pricing</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Price lists by day ranges (e.g. 1–3 or 4–7&nbsp;days) and monthly rates</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Dynamic pricing rules, e.g. for weekends and specific dates</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Multiple VAT rates</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Multiple currencies</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/excavator.svg" width="20" height="20" alt=""></span>Equipment</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Advanced equipment filtering and search</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Customizable equipment list (custom fields)</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Equipment duplication</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Equipment status with client and location</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Flexible custom fields</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Order, quote and contract history per machine</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Repair history, service checklists and recurring service in one place for every machine</th><td role="cell" class="t t--note">Without checklists</td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Equipment calendar with quick view and <span class="nowrap">drag-and-drop</span> editing</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Equipment analytics and statistics</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Custom product hierarchies</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Automatic QR codes, with client access to machine files</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Every machine can be connected to a telemetry device with GPS</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/feat-transport.svg" width="20" height="20" alt=""></span>Transport</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Transport fleet management</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Deliveries created automatically on payment or contract signing</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Transport calendar with driver assignment</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Delivery and pickup protocols with custom fields, photos and signatures</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Driver app: transport tickets sent straight to drivers’ phones</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Automatic extra charges for fuel and cleaning</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/service.svg" width="20" height="20" alt=""></span>Service</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Recurring service scheduling with reminders</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Fault reporting and repair management</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Full service and maintenance history</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Checklists for handover and the next rental</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Checklist created automatically after each return</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Service scheduler and technician tasks</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Repair protocols with photos and client signatures</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Customizable repair reports (custom fields)</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Mechanic app: service work, photos and signatures on mobile</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Service and repair approval by a supervisor</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/wms.svg" width="20" height="20" alt=""></span>Warehouse (WMS)</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Stock levels and stock value of parts and products, across multiple warehouses</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Goods receipts, goods issues and transfers between warehouses</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Purchase history and purchase values of parts and products</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Full control of parts and products moving in and out of the warehouse</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Minimum stock alerts</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Parts taken from the warehouse for service orders</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Opening and closing stock balances</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Stocktaking (inventory counts)</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/sales.svg" width="20" height="20" alt=""></span>Equipment and parts sales</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Sales offers and sales contracts for machines</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Selling a rented machine to its renter</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Sale of spare parts and products</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Sales invoices for machines and parts</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Register of sold machines: buyer, serial number and documents</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Warranty and after-sales service details kept for every sold machine</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Service orders and inspection reminders for sold machines</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/gps.svg" width="20" height="20" alt=""></span>Telematics and GPS</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">GPS system integration</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Live map of the whole fleet</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Engine hours checked against contract limits</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Detection of work outside agreed hours, on weekends and on holidays, or outside the permitted area</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Overtime and penalties added to the invoice automatically</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Report on overtime and unusual usage (PDF)</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Connection to the telematics you already use (any system with an API)</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Telemetry device with GPS for machines without telematics</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="t t--note">$69 per device, <span class="nowrap">one-time</span></td><td role="cell" class="t t--note">$69 per device, <span class="nowrap">one-time</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/invoice.svg" width="20" height="20" alt=""></span>Invoicing and integrations</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Invoices calculated fully automatically from contract terms, with manual override</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Purchase invoices (supplier bills) recorded in the system</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Bank transfer batches ready to upload to your bank</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Bank statements imported to match payments</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Automatic payment reminders: reminder emails with invoice PDFs</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Integration with ERP and accounting systems: invoices and customer data sent automatically (any system with an API)</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Custom API integrations and development</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/ai.svg" width="20" height="20" alt=""></span>AI Assistant</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Questions in plain language about all your data: equipment, orders, transport, service, telematics and invoices</th><td role="cell" class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td role="cell" class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td role="cell" class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td role="cell" class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Answers in seconds as text, a table or a chart, showing where the data came from</th><td role="cell" class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td role="cell" class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td role="cell" class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td role="cell" class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/mailbox.svg" width="20" height="20" alt=""></span>Mailbox</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Multiple mailboxes connected</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Customizable email templates for orders, payments, reminders and more</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Automated emails per order, switched on or off</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Customer email history in every order</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/settings.svg" width="20" height="20" alt=""></span>Settings and administration</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Dashboard</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Settings per branch: transport rates, VAT, opening hours, extra costs</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Flexible custom fields for equipment, orders, transport and service</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Customizable date, time and currency formats</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Multiple languages</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">User management with granular permissions</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">System activity logs</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-              <tbody role="rowgroup">
-                <tr role="row" class="cmp__group"><th scope="rowgroup" colspan="5" role="rowheader"><span class="cmp__ico"><img src="assets/icons/support.svg" width="20" height="20" alt=""></span>Support</th></tr>
-                <tr role="row"><th scope="row" role="rowheader">Direct line to the people who build EQrento</th><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Priority support</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Dedicated account manager</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Service level agreement (SLA)</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Migration of your fleet, history and open contracts from your current system</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-                <tr role="row"><th scope="row" role="rowheader"><span class="nowrap">On-site</span> training</th><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="n"><span class="sr-only">Not included</span></td><td role="cell" class="y"><span class="sr-only">Included</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div></div>
-      </div>
-
-      <div class="pricing__tracker" data-reveal>
-        <span class="icon-box"><img src="assets/icons/gps.svg" width="27" height="27" alt=""></span>
-        <p><b>Machines without telematics?</b><br>Add our telemetry device with GPS for $69 per machine, <span class="nowrap">one-time</span>, in the Connected and Enterprise&nbsp;plans.<br>Already have devices installed? We connect to any telematics system with an&nbsp;API.</p>
-      </div>
-      <div class="pricing__tracker" data-reveal>
-        <span class="icon-box"><img src="assets/icons/ai.svg" width="24" height="24" alt=""></span>
-        <p><b>AI Assistant&nbsp;– a paid add-on, available in every plan.</b><br>Ask about your data in plain language and get a clear answer in seconds&nbsp;– no reports to build or&nbsp;browse.</p>
-      </div>
-      <p class="pricing__note" data-reveal>Plan prices in USD, excluding VAT. A unit is a machine or device tracked individually&nbsp;– accessories and bulk items don’t count toward the&nbsp;limit.</p>
     </div>
   </section>
 
@@ -1016,7 +780,7 @@
             <span class="qa__icon" aria-hidden="true"></span>
           </button></h3>
           <div class="qa__a" id="qa-5" role="region" aria-labelledby="qa-5-q"><div>
-            <p>Plans start at $199 a month, billed yearly, and every plan includes unlimited users and branches. The price depends on your fleet size and the modules you need&nbsp;– compare the <a href="#pricing">plans and prices</a>&nbsp;above.</p>
+            <p>Plans start at $199 a month, billed yearly, and every plan includes unlimited users and branches. The price depends on your fleet size and the modules you need&nbsp;– compare the <a href="pricing">plans and prices</a>.</p>
           </div></div>
         </div>
 
@@ -1063,7 +827,7 @@
           <li><a href="#why">Why EQrento?</a></li>
           <li><a href="#steps">How it works</a></li>
           <li><a href="#features">Key features</a></li>
-          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
@@ -1202,6 +966,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20261105b" defer></script>
+<script src="assets/js/main.js?v=20261105c" defer></script>
 </body>
 </html>

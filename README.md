@@ -56,6 +56,7 @@ The config also sends every old-site language path to `/`: `/en`, `/pl`, `/de`, 
 
 ```
 index.html
+pricing.html           – the pricing page, https://eqrento.com/pricing (see “Pricing page” below)
 privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
 cookie-policy.html     – Cookie Policy
 robots.txt, sitemap.xml – search engines (point to https://eqrento.com/)
@@ -64,7 +65,9 @@ favicon.ico            – browser tab / bookmarks (16, 32, 48 px), made from th
 apple-touch-icon.png   – iOS home screen (180 px)
 site.webmanifest       – Android home-screen icons (round 192 / 512 px + maskable)
 assets/css/style.css   – all styles; design tokens at the top (:root)
-assets/js/main.js      – interactions and animations
+assets/js/main.js      – interactions and animations (all pages)
+assets/js/pricing.js   – pricing page only: yearly / monthly, “Show only differences”, the plan shown on phones
+.github/scripts/check-prices.sh – stops the preview and the publish when the prices on the two pages differ
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos, og-image.png (1200×630 link-preview picture)
 assets/icons/          – SVG icons, logo-light.png (footer logo, all white), icon-192/512 and icon-maskable-512 PNGs
@@ -77,8 +80,41 @@ assets/video/          – testimonial video (mp4 + webm fallback)
 Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `display: contents`, see “phones: the collage comes right after the lead” in style.css) → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
 (“One platform…”) → How it works (“Six interconnected stages…”, pinned horizontal scroll) → Key features and
 competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Integrations (“Open API first.
-Connectors included.”, added 5 Nov 2026 from Wojtek's design) → Testimonial → Pricing → FAQ → footer. (The closing “See it on your kind of fleet” section was removed on 4 Nov 2026 – Łukasz.)
+Connectors included.”, added 5 Nov 2026 from Wojtek's design) → Testimonial → Pricing teaser (`id="pricing"`, four mini
+tiles and the way to pricing.html) → FAQ → footer. (The closing “See it on your kind of fleet” section was removed on 4 Nov 2026 – Łukasz.)
 Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobile menu and footer follow the page order; the Platform section has no menu link).
+“Pricing” in the menu and the footer leads to the pricing page (`pricing`, a relative link); the other items are sections
+of the home page (`./#why` etc. on the other pages).
+
+## Pricing page (pricing.html, since 5 Nov 2026)
+
+- **Address:** https://eqrento.com/pricing. The OVH server answers `/pricing` with pricing.html (`try_files $uri $uri.html`),
+  and so does GitHub Pages. All paths and links are relative, like on the other pages, because the GitHub preview lives
+  under `/eqrento_landing_page/`.
+- **Order:**
+  1. H1 + switch: one state for the cards and the table header (pricing.js).
+  2. The four plan cards.
+  3. “Compare all EQrento features” (`id="compare"`), always open.
+  4. The telemetry and AI Assistant notes, then the USD / VAT / unit note.
+  5. Pricing FAQ: only questions with an answer in the existing copy; the four without an answer were left out.
+  6. The closing “Book a 30-minute demo”.
+- **Table:**
+  - `thead` holds plan, price and a small button, and sticks under the page header (84 / 72 / 64px).
+  - “Show only differences” (`aria-pressed`) hides the rows where all four plans have the same value and the categories
+    left empty – worked out from the cells (`y`, `n` or the text). No row is marked by hand, so new rows need nothing extra.
+  - Below 768px: the features and one plan, chosen with the switch above the table (`data-plan` 1–4 on the table,
+    Complete to start with).
+- **Copied parts:** the header, mobile menu, footer, cookie banner and the demo dialog are copies of the ones in index.html
+  (relative links back to the home page). Change them in every page.
+- **Prices:**
+  - They are in two pages: index.html (teaser, yearly, `<b data-price="…">`) and pricing.html (cards and table header,
+    `data-price` + `data-yearly` + `data-monthly`).
+  - The Essential price is also in pricing.html's title and descriptions (“from $199/month”) and in the home FAQ (“Plans
+    start at $199 a month”).
+  - Change a price in every place. `bash .github/scripts/check-prices.sh` checks them and runs before every preview and
+    publish – a difference stops both.
+- **Demo requests:** from pricing.html the `page` field is `/pricing`. The table buttons send `source` “pricing table –
+  <plan>”, the bottom button “pricing page – bottom”, and the home teaser “pricing teaser”.
 
 ## Things worth knowing
 
@@ -156,15 +192,13 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **Telematics section** – machine → map → GPS report card → invoice card, one row above 1200px, a column below.
   The cards are HTML/CSS sized in container units (`cqi`) so they scale like a picture; the two documents are inline
   SVG. Arrows between stages are CSS masks.
-- **Pricing** (`#pricing`) – four plans: Essential, Complete (recommended, dark card), Connected, Enterprise. Each card is
-  a CSS subgrid of 8 rows, so names, prices, buttons and lists line up across the cards (4 in a row above 1200px, 2×2
-  down to 641px, one column on phones). Yearly / monthly switch: every price has `data-yearly` and `data-monthly`, and
-  `main.js` swaps the texts. Order below the cards: “Compare all EQrento features” (opens the full table, whose header sticks under the page header), the telemetry-device box, the price note.
-  Below 900px each row shows the feature name above its four plan cells (the explicit ARIA roles in the table markup
-  keep it a table for screen readers). Cells: `class="y"` included, `"n"` not included, `"t"` text. Every group
-  heading has an icon (`<span class="cmp__ico">`, orange on a light tint like Key features) so the groups are easy to
-  spot in the long table; `pricing`, `mailbox`, `settings` and `support.svg` were drawn for it, the rest are the
-  Key features icons.
+- **Pricing** (on pricing.html since 5 Nov 2026; the home page keeps a teaser) – four plans: Essential, Complete
+  (recommended, dark card), Connected, Enterprise. Each card is a CSS subgrid of 8 rows, so names, prices, buttons and
+  lists line up across the cards (4 in a row above 1200px, 2×2 down to 641px, one column on phones). Yearly / monthly
+  switch: every price has `data-yearly` and `data-monthly`, and `pricing.js` swaps the texts. Comparison table cells:
+  `class="y"` included, `"n"` not included, `"t"` text. Every group heading has an icon (`<span class="cmp__ico">`,
+  orange on a light tint like Key features) so the groups are easy to spot in the long table; `pricing`, `mailbox`,
+  `settings` and `support.svg` were drawn for it, the rest are the Key features icons. More in “Pricing page” above.
 - **AI Assistant** (paid add-on, available in every plan – always say “paid add-on”, nothing about tokens or prices)
   appears in: the hero checklist (“Ask AI about your data”), the EQrento card in Why (“Optional AI Assistant…”), the
   One platform diagram (violet chip `.node--ai`, `data-node="t"` on top of the core; its connector is the `t` route in
@@ -274,8 +308,8 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
     again (the policy promises that). A new analytics or marketing tool = a new row in the Cookie Policy table, and
     the tool loads only through `eqOnConsent`.
   - The header, mobile menu, footer and cookie banner of both pages are copies of those in `index.html`, with links
-    back to it (`./`, `./#pricing`, `./#book-demo`). When you change them in `index.html`, change them in both policy
-    pages too.
+    back to it (`./`, `./#why`, `./#book-demo`) and to `pricing`. When you change them in `index.html`, change them in
+    both policy pages and in pricing.html too.
   - Typography as on the home page: `SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o.`, `&nbsp;–` before a dash,
     `<span class="nowrap">e-mail</span>`. Tables: each `<td>` has a `data-label` (the column name, shown above the
     cell when the table turns into cards on tablets and phones). Styles: the `POLICY PAGES` block in `style.css`

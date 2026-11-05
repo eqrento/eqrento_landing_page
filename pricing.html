@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EQrento Pricing – Plans from $199/month | Equipment Rental Software</title>
+  <meta name="description" content="Compare EQrento plans: Essential, Complete, Connected and Enterprise. Unlimited users and branches in every plan. Plans from $199/month, billed yearly.">
+  <link rel="canonical" href="https://eqrento.com/pricing">
+  <!-- link previews: as on the home page, with this page's own address, title and description (same picture) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EQrento">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://eqrento.com/pricing">
+  <meta property="og:title" content="EQrento Pricing – Plans from $199/month | Equipment Rental Software">
+  <meta property="og:description" content="Compare EQrento plans: Essential, Complete, Connected and Enterprise. Unlimited users and branches in every plan. Plans from $199/month, billed yearly.">
+  <meta property="og:image" content="https://eqrento.com/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="EQrento – your rental business, automated end to end">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EQrento Pricing – Plans from $199/month | Equipment Rental Software">
+  <meta name="twitter:description" content="Compare EQrento plans: Essential, Complete, Connected and Enterprise. Unlimited users and branches in every plan. Plans from $199/month, billed yearly.">
+  <meta name="twitter:image" content="https://eqrento.com/assets/img/og-image.png">
+  <meta name="theme-color" content="#f8f7f5">
+  <link rel="icon" href="favicon.ico?v=2" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+  <link rel="manifest" href="site.webmanifest">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css?v=20261105g">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ HEADER, MOBILE MENU, FOOTER, COOKIE BANNER, DEMO DIALOG – copies of the ones in index.html, with their
+     links pointing back to the home page (./#…). When you change them in index.html, change them here too (the header,
+     menu, footer and banner are also in privacy-policy.html and cookie-policy.html). Paths are relative on purpose: the
+     GitHub preview lives under /eqrento_landing_page/, and this page sits in the root next to index.html. ============ -->
+<header class="header" id="header">
+  <div class="wrap header__inner">
+    <a href="./" class="header__logo" aria-label="EQrento – home">
+      <img src="assets/img/logo-eqrento.webp" width="246" height="49" alt="EQrento">
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="./">Home</a></li>
+        <li><a class="nav__link" href="./#why">Why EQrento</a></li>
+        <li><a class="nav__link" href="./#steps">How it works</a></li>
+        <li><a class="nav__link" href="./#features">Key features</a></li>
+        <li><a class="nav__link is-active" href="pricing" aria-current="page">Pricing</a></li>
+        <li><a class="nav__link" href="./#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <a href="#book-demo" class="btn btn--primary header__cta">Book a demo</a>
+
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+</header>
+
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <ul class="mobile-menu__list">
+    <li><a href="./">Home</a></li>
+    <li><a href="./#why">Why EQrento</a></li>
+    <li><a href="./#steps">How it works</a></li>
+    <li><a href="./#features">Key features</a></li>
+    <li><a href="pricing" aria-current="page">Pricing</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+  </ul>
+  <a href="#book-demo" class="btn btn--primary btn--arrow mobile-menu__cta">
+    <span>Book a 30-minute demo</span>
+    <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+  </a>
+</div>
+
+<main id="main" class="pricing-page">
+
+  <!-- ============ PLANS ============ -->
+  <section class="pricing pricing--page" id="plans">
+    <div class="wrap-narrow">
+      <div class="section-head pricing__head">
+        <h1 class="h2">Pricing that grows <br>with your fleet</h1>
+        <p class="lead">Every plan includes unlimited users and branches. Choose by fleet size and the modules you&nbsp;need.</p>
+        <!-- every price on this page carries data-yearly / data-monthly: pricing.js swaps them all at once (cards and table
+             header share one state). The yearly prices are also in the home page teaser; .github/scripts/check-prices.sh
+             stops the preview and the publish if the two pages ever differ -->
+        <div class="billing" role="group" aria-label="Billing period">
+          <button class="billing__opt" type="button" aria-pressed="true" data-billing="yearly">Yearly <span class="billing__save">−20%</span></button>
+          <button class="billing__opt" type="button" aria-pressed="false" data-billing="monthly">Monthly</button>
+        </div>
+      </div>
+
+      <!-- each card is a subgrid of 8 rows (name, text, price, billing, limits, button, intro, list), so the rows line up across the cards -->
+      <div class="plans">
+        <article class="plan">
+          <h2 class="plan__name">Essential</h2>
+          <p class="plan__desc">Fleet, offers, contracts and invoices in one&nbsp;place&nbsp;– for smaller fleets leaving spreadsheets&nbsp;behind.</p>
+          <p class="plan__price"><span data-price="essential" data-yearly="$199" data-monthly="$249">$199</span><small>/month</small></p>
+          <p class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</p>
+          <ul class="plan__limits">
+            <li><b>Up to 50</b> units</li>
+            <li><b>Unlimited</b> users and&nbsp;branches</li>
+          </ul>
+          <a href="#book-demo" class="btn btn--primary plan__cta">Book a demo</a>
+          <p class="plan__intro">What’s included:</p>
+          <ul class="plan__list">
+            <li>Offers built from live fleet availability</li>
+            <li>Contracts in one click, signed electronically</li>
+            <li>Equipment calendar with history per machine</li>
+            <li>Automatic pricing and discounts</li>
+            <li>Service reminders and fault reporting</li>
+            <li>Invoices sent to your accounting system</li>
+          </ul>
+        </article>
+
+        <article class="plan plan--hero">
+          <span class="plan__glows" aria-hidden="true"><span class="plan__blob plan__blob--a"></span><span class="plan__blob plan__blob--b"></span></span>
+          <span class="plan__badge">Recommended</span>
+          <h2 class="plan__name">Complete</h2>
+          <p class="plan__desc">The full rental cycle, from offer to invoice, with transport, service and the driver &amp; mechanic&nbsp;app.</p>
+          <p class="plan__price"><span data-price="complete" data-yearly="$399" data-monthly="$499">$399</span><small>/month</small></p>
+          <p class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</p>
+          <ul class="plan__limits">
+            <li><b>Up to 200</b> units</li>
+            <li><b>Unlimited</b> users and&nbsp;branches</li>
+          </ul>
+          <a href="#book-demo" class="btn btn--primary plan__cta">Book a demo</a>
+          <p class="plan__intro">Everything in Essential, plus:</p>
+          <ul class="plan__list">
+            <li>Transport planning with the driver app</li>
+            <li>Full service module with the mechanic app</li>
+            <li>Handover and repair protocols with photos and signatures</li>
+            <li>QR codes on every machine</li>
+            <li>Weekend and date pricing rules</li>
+            <li>User permissions and multiple currencies</li>
+          </ul>
+        </article>
+
+        <article class="plan">
+          <h2 class="plan__name">Connected</h2>
+          <p class="plan__desc">Telematics and GPS that bill every extra hour automatically.</p>
+          <p class="plan__price"><span data-price="connected" data-yearly="$799" data-monthly="$999">$799</span><small>/month</small></p>
+          <p class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</p>
+          <ul class="plan__limits">
+            <li><b>Up to 500</b> units</li>
+            <li><b>Unlimited</b> users and&nbsp;branches</li>
+          </ul>
+          <a href="#book-demo" class="btn btn--primary plan__cta">Book a demo</a>
+          <p class="plan__intro">Everything in Complete, plus:</p>
+          <ul class="plan__list">
+            <li>Live GPS map of the whole fleet</li>
+            <li>Engine hours checked against contract limits</li>
+            <li>Overtime, weekend and <span class="nowrap">out-of-area</span> work billed automatically</li>
+            <li>Fuel and cleaning charges added automatically</li>
+            <li>Supervisor approvals and activity logs</li>
+            <li>Priority support</li>
+          </ul>
+        </article>
+
+        <article class="plan">
+          <h2 class="plan__name">Enterprise</h2>
+          <p class="plan__desc">Unlimited fleet, custom integrations and a dedicated&nbsp;team.</p>
+          <p class="plan__price plan__price--quote"><span>Ask for a quote</span></p>
+          <p class="plan__billing">tailored to your fleet</p>
+          <ul class="plan__limits">
+            <li><b>Unlimited</b> units</li>
+            <li><b>Unlimited</b> users and&nbsp;branches</li>
+          </ul>
+          <a href="mailto:contact@eqrento.com?subject=EQrento%20Enterprise%20quote" class="btn btn--ghost plan__cta">Contact us</a>
+          <p class="plan__intro">Everything in Connected, plus:</p>
+          <ul class="plan__list">
+            <li>Warehouse (WMS) for parts and products</li>
+            <li>Equipment and parts sales with after-sales service</li>
+            <li>Custom API integrations and development</li>
+            <li>Dedicated account manager</li>
+            <li>Service level agreement (SLA)</li>
+            <li>Migration of your fleet, history and open&nbsp;contracts</li>
+            <li><span class="nowrap">On-site</span> training for your team</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FULL COMPARISON ============ -->
+  <section class="compare" id="compare" aria-labelledby="compare-title">
+    <div class="wrap-narrow">
+      <h2 class="h2 compare__title" id="compare-title">Compare all EQrento features</h2>
+
+      <div class="compare__tools">
+        <!-- phones (below 768px): the table shows the features and one plan, chosen here (pricing.js sets data-plan on the table) -->
+        <div class="seg compare__plans" role="group" aria-label="Plan shown in the table">
+          <button class="seg__opt" type="button" aria-pressed="false" data-plan="1">Essential</button>
+          <button class="seg__opt" type="button" aria-pressed="true" data-plan="2">Complete</button>
+          <button class="seg__opt" type="button" aria-pressed="false" data-plan="3">Connected</button>
+          <button class="seg__opt" type="button" aria-pressed="false" data-plan="4">Enterprise</button>
+        </div>
+        <!-- hides the rows where all four plans have the same value, and the categories left empty (worked out from the cells) -->
+        <button class="compare__diff" type="button" aria-pressed="false">Show only differences</button>
+      </div>
+
+      <!-- Cells: class="y" included, "n" not included (both with screen-reader text), "t" text. The header row (plan, price,
+           a small button) sticks under the page header while the table scrolls by. -->
+      <div class="cmp__card">
+        <table class="cmp__table" data-plan="2">
+          <caption class="sr-only">All features by plan</caption>
+          <thead>
+            <tr>
+              <th scope="col"><span class="sr-only">Feature</span></th>
+              <th scope="col"><span class="cmp__plan">Essential</span> <span class="cmp__price" data-price="essential" data-yearly="$199/mo" data-monthly="$249/mo">$199/mo</span> <a href="#book-demo" class="btn btn--primary cmp__cta" data-demo-source="pricing table – Essential">Book a demo</a></th>
+              <th scope="col"><span class="cmp__plan">Complete</span> <span class="cmp__price" data-price="complete" data-yearly="$399/mo" data-monthly="$499/mo">$399/mo</span> <a href="#book-demo" class="btn btn--primary cmp__cta" data-demo-source="pricing table – Complete">Book a demo</a></th>
+              <th scope="col"><span class="cmp__plan">Connected</span> <span class="cmp__price" data-price="connected" data-yearly="$799/mo" data-monthly="$999/mo">$799/mo</span> <a href="#book-demo" class="btn btn--primary cmp__cta" data-demo-source="pricing table – Connected">Book a demo</a></th>
+              <th scope="col"><span class="cmp__plan">Enterprise</span> <span class="cmp__price">Ask for a quote</span> <a href="mailto:contact@eqrento.com?subject=EQrento%20Enterprise%20quote" class="btn btn--ghost cmp__cta">Contact us</a></th>
+            </tr>
+          </thead>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/forklift.svg" width="20" height="20" alt=""></span>Fleet, users and branches</th></tr>
+                <tr><th scope="row">Fleet size</th><td class="t">Up to 50 units</td><td class="t">Up to 200 units</td><td class="t">Up to 500 units</td><td class="t">Unlimited</td></tr>
+                <tr><th scope="row">Users</th><td class="t">Unlimited</td><td class="t">Unlimited</td><td class="t">Unlimited</td><td class="t">Unlimited</td></tr>
+                <tr><th scope="row">Branches</th><td class="t">Unlimited</td><td class="t">Unlimited</td><td class="t">Unlimited</td><td class="t">Unlimited</td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/offer.svg" width="20" height="20" alt=""></span>Offers, contracts and orders</th></tr>
+                <tr><th scope="row">Offers built from live fleet availability</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Contracts from approved offers in one click</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Electronic signature on mobile</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Automatic equipment selection by category, with manual override</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Equipment availability shown while you create an order</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Automatic rental pricing, with manual override</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Individual equipment discounts, percentage or fixed</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Additional costs of any kind added to a contract</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Custom fields builder for order forms</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Advanced order filtering</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Easy order copy</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Order export to CSV</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Customer database</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Salesperson or sales agent assigned to an order</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/pricing.svg" width="20" height="20" alt=""></span>Pricing</th></tr>
+                <tr><th scope="row">Price lists by day ranges (e.g. 1–3 or 4–7&nbsp;days) and monthly rates</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Dynamic pricing rules, e.g. for weekends and specific dates</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Multiple VAT rates</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Multiple currencies</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/excavator.svg" width="20" height="20" alt=""></span>Equipment</th></tr>
+                <tr><th scope="row">Advanced equipment filtering and search</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Customizable equipment list (custom fields)</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Equipment duplication</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Equipment status with client and location</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Flexible custom fields</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Order, quote and contract history per machine</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Repair history, service checklists and recurring service in one place for every machine</th><td class="t t--note">Without checklists</td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Equipment calendar with quick view and <span class="nowrap">drag-and-drop</span> editing</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Equipment analytics and statistics</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Custom product hierarchies</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Automatic QR codes, with client access to machine files</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Every machine can be connected to a telemetry device with GPS</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/feat-transport.svg" width="20" height="20" alt=""></span>Transport</th></tr>
+                <tr><th scope="row">Transport fleet management</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Deliveries created automatically on payment or contract signing</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Transport calendar with driver assignment</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Delivery and pickup protocols with custom fields, photos and signatures</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Driver app: transport tickets sent straight to drivers’ phones</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Automatic extra charges for fuel and cleaning</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/service.svg" width="20" height="20" alt=""></span>Service</th></tr>
+                <tr><th scope="row">Recurring service scheduling with reminders</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Fault reporting and repair management</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Full service and maintenance history</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Checklists for handover and the next rental</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Checklist created automatically after each return</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Service scheduler and technician tasks</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Repair protocols with photos and client signatures</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Customizable repair reports (custom fields)</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Mechanic app: service work, photos and signatures on mobile</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Service and repair approval by a supervisor</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/wms.svg" width="20" height="20" alt=""></span>Warehouse (WMS)</th></tr>
+                <tr><th scope="row">Stock levels and stock value of parts and products, across multiple warehouses</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Goods receipts, goods issues and transfers between warehouses</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Purchase history and purchase values of parts and products</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Full control of parts and products moving in and out of the warehouse</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Minimum stock alerts</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Parts taken from the warehouse for service orders</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Opening and closing stock balances</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Stocktaking (inventory counts)</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/sales.svg" width="20" height="20" alt=""></span>Equipment and parts sales</th></tr>
+                <tr><th scope="row">Sales offers and sales contracts for machines</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Selling a rented machine to its renter</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Sale of spare parts and products</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Sales invoices for machines and parts</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Register of sold machines: buyer, serial number and documents</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Warranty and after-sales service details kept for every sold machine</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Service orders and inspection reminders for sold machines</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/gps.svg" width="20" height="20" alt=""></span>Telematics and GPS</th></tr>
+                <tr><th scope="row">GPS system integration</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Live map of the whole fleet</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Engine hours checked against contract limits</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Detection of work outside agreed hours, on weekends and on holidays, or outside the permitted area</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Overtime and penalties added to the invoice automatically</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Report on overtime and unusual usage (PDF)</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Connection to the telematics you already use (any system with an API)</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Telemetry device with GPS for machines without telematics</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="t t--note">$69 per device, <span class="nowrap">one-time</span></td><td class="t t--note">$69 per device, <span class="nowrap">one-time</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/invoice.svg" width="20" height="20" alt=""></span>Invoicing and integrations</th></tr>
+                <tr><th scope="row">Invoices calculated fully automatically from contract terms, with manual override</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Purchase invoices (supplier bills) recorded in the system</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Bank transfer batches ready to upload to your bank</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Bank statements imported to match payments</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Automatic payment reminders: reminder emails with invoice PDFs</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Integration with ERP and accounting systems: invoices and customer data sent automatically (any system with an API)</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Custom API integrations and development</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/ai.svg" width="20" height="20" alt=""></span>AI Assistant</th></tr>
+                <tr><th scope="row">Questions in plain language about all your data: equipment, orders, transport, service, telematics and invoices</th><td class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td></tr>
+                <tr><th scope="row">Answers in seconds as text, a table or a chart, showing where the data came from</th><td class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td><td class="t t--note">Paid<br class="br-phone"> <span class="nowrap">add-on</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/mailbox.svg" width="20" height="20" alt=""></span>Mailbox</th></tr>
+                <tr><th scope="row">Multiple mailboxes connected</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Customizable email templates for orders, payments, reminders and more</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Automated emails per order, switched on or off</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Customer email history in every order</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/settings.svg" width="20" height="20" alt=""></span>Settings and administration</th></tr>
+                <tr><th scope="row">Dashboard</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Settings per branch: transport rates, VAT, opening hours, extra costs</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Flexible custom fields for equipment, orders, transport and service</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Customizable date, time and currency formats</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Multiple languages</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">User management with granular permissions</th><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">System activity logs</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+              <tbody>
+                <tr class="cmp__group"><th scope="rowgroup" colspan="5"><span class="cmp__ico"><img src="assets/icons/support.svg" width="20" height="20" alt=""></span>Support</th></tr>
+                <tr><th scope="row">Direct line to the people who build EQrento</th><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Priority support</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Dedicated account manager</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Service level agreement (SLA)</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row">Migration of your fleet, history and open contracts from your current system</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+                <tr><th scope="row"><span class="nowrap">On-site</span> training</th><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="n"><span class="sr-only">Not included</span></td><td class="y"><span class="sr-only">Included</span></td></tr>
+              </tbody>
+        </table>
+      </div>
+
+      <div class="pricing__tracker">
+        <span class="icon-box"><img src="assets/icons/gps.svg" width="27" height="27" alt=""></span>
+        <p><b>Machines without telematics?</b><br>Add our telemetry device with GPS for $69 per machine, <span class="nowrap">one-time</span>, in the Connected and Enterprise&nbsp;plans.<br>Already have devices installed? We connect to any telematics system with an&nbsp;API.</p>
+      </div>
+      <div class="pricing__tracker">
+        <span class="icon-box"><img src="assets/icons/ai.svg" width="24" height="24" alt=""></span>
+        <p><b>AI Assistant&nbsp;– a paid add-on, available in every plan.</b><br>Ask about your data in plain language and get a clear answer in seconds&nbsp;– no reports to build or&nbsp;browse.</p>
+      </div>
+      <p class="pricing__note">Plan prices in USD, excluding VAT. A unit is a machine or device tracked individually&nbsp;– accessories and bulk items don’t count toward the&nbsp;limit.</p>
+    </div>
+  </section>
+
+  <!-- ============ PRICING FAQ (the same accordion as the FAQ on the home page; main.js) ============ -->
+  <section class="faq faq--pricing" id="pricing-faq">
+    <div class="wrap-narrow faq__grid">
+      <h2 class="h2 faq__title">Pricing FAQ</h2>
+
+      <div class="faq__list">
+        <div class="qa is-open">
+          <h3><button class="qa__q" type="button" aria-expanded="true" aria-controls="pqa-1" id="pqa-1-q">
+            <span>What counts as a unit?</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="pqa-1" role="region" aria-labelledby="pqa-1-q"><div>
+            <p>A unit is a machine or device tracked individually&nbsp;– accessories and bulk items don’t count toward the&nbsp;limit.</p>
+          </div></div>
+        </div>
+
+        <div class="qa">
+          <h3><button class="qa__q" type="button" aria-expanded="false" aria-controls="pqa-2" id="pqa-2-q">
+            <span>Do all plans include unlimited users and branches?</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="pqa-2" role="region" aria-labelledby="pqa-2-q"><div>
+            <p>Yes. Every plan includes unlimited users and&nbsp;branches.</p>
+          </div></div>
+        </div>
+
+        <div class="qa">
+          <h3><button class="qa__q" type="button" aria-expanded="false" aria-controls="pqa-3" id="pqa-3-q">
+            <span>Can I use the telematics I already have?</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="pqa-3" role="region" aria-labelledby="pqa-3-q"><div>
+            <p>Yes. We connect to any telematics system with an API, in the Connected and Enterprise&nbsp;plans.</p>
+          </div></div>
+        </div>
+
+        <div class="qa">
+          <h3><button class="qa__q" type="button" aria-expanded="false" aria-controls="pqa-4" id="pqa-4-q">
+            <span>Are prices including VAT?</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="qa__a" id="pqa-4" role="region" aria-labelledby="pqa-4-q"><div>
+            <p>No. Plan prices are in USD, excluding&nbsp;VAT.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING CALL TO ACTION ============ -->
+  <section class="pricing-cta">
+    <a href="#book-demo" class="btn btn--primary btn--arrow" data-demo-source="pricing page – bottom">
+      <span>Book a 30-minute demo</span>
+      <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+    </a>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <span class="glow glow--footer" aria-hidden="true"></span>
+  <div class="wrap-narrow">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="./" aria-label="EQrento – home"><img src="assets/icons/logo-light.webp" width="246" height="49" alt="EQrento"></a>
+        <p>The EQrento service and brand are owned by SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o.</p>
+        <p>Get in touch with us for details on implementation and to learn how EQrento can help your rental business grow.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Company</h3>
+        <address>SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o.<br>ul. Gen. Władysława Sikorskiego 19<br>65-454 Zielona Góra, Poland<br>NIP / VAT ID: PL9292077160<br>KRS / National Court Register: 0001036416</address>
+      </div>
+      <div class="footer__col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:contact@eqrento.com">contact@eqrento.com</a></li>
+          <li><a href="tel:+48693629446">+48 693 629 446</a></li>
+          <li><a href="tel:+48603197858">+48 603 197 858</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3>System</h3>
+        <ul>
+          <li><a href="./#why">Why EQrento?</a></li>
+          <li><a href="./#steps">How it works</a></li>
+          <li><a href="./#features">Key features</a></li>
+          <li><a href="pricing" aria-current="page">Pricing</a></li>
+          <li><a href="./#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- icons are inline SVG, not emoji: Windows shows the flag emoji as the letters "PL" -->
+    <p class="footer__tagline">Crafted with grit in <span class="nowrap"><svg class="footer__flag" width="14" height="9" viewBox="0 0 16 10" aria-hidden="true" focusable="false"><path d="M1.5 0h13A1.5 1.5 0 0 1 16 1.5V5H0V1.5A1.5 1.5 0 0 1 1.5 0z" fill="#fff"/><path d="M0 5h16v3.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 8.5z" fill="#dc143c"/></svg>&nbsp;Poland,</span> <span class="nowrap">delivered with grace to the <svg class="footer__globe" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.5" fill="#3d8ef7"/><g fill="#45c46c"><path d="M7.2 5.6c1.1-1.3 3-2 4.8-1.9 1.4.1 2.6.6 3.4 1.5-.6.6-1.5.8-2.3 1.1-.7.3-1.2.9-1.9 1.1-.9.3-1.9-.1-2.6-.6-.5-.3-1-.8-1.4-1.2z"/><path d="M9 9.6c1.5-.7 3.6-.9 5.3-.5 1.2.3 2.1 1 2.5 2 .4 1-.1 2-.6 2.9-.6 1.1-.7 2.4-1.4 3.4-.6.9-1.2 1.9-2 2.4-.5.3-1 0-1.1-.6-.2-1.1-.1-2.3-.6-3.3-.5-.9-1.5-1.4-2-2.3-.6-1-.8-2.5-.1-3.7z"/><path d="M17.4 7.6c1.2-.3 2.6.1 3.6.9.6.5 1 1.3.9 2.1-.8.2-1.6-.1-2.3 0-.7.2-1.3.8-2 .6-.6-.2-.8-.9-.8-1.5 0-.8.2-1.8.6-2.1z"/><path d="M2.6 13.4c1-.4 2.2-.2 2.9.6.5.7.4 1.6 0 2.4-.4.9-1 1.7-1.6 2.4-.7-1.1-1.2-2.5-1.4-3.8 0-.6 0-1.2.1-1.6z"/></g></svg>&nbsp;world.</span></p>
+    <div class="footer__bottom">
+      <p class="footer__copyright"><span class="nowrap">Copyright © 2026 SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o.</span> <span class="nowrap footer__rights">All Rights Reserved</span></p>
+      <ul class="footer__legal">
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        <li><button type="button" class="footer__cookie-btn" data-cookie-open>Cookie settings</button></li>
+        <!-- icon licence (free Flaticon licence): keep this credit while the site uses Uicons -->
+        <li>Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ DEMO REQUEST – every “Book a demo” button links to #book-demo and opens this dialog (main.js);
+     eqrento.com/#book-demo opens it straight away. The form sends JSON to data-endpoint (Google Apps Script web app
+     URL, see README); with no endpoint, or when sending fails, the visitor gets a ready-made e-mail instead. ============ -->
+<dialog class="demo" id="book-demo" aria-labelledby="demo-title">
+  <div class="demo__panel">
+    <button type="button" class="demo__close" data-demo-close aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
+    <div class="demo__view" data-demo-view="form">
+      <h2 class="demo__title" id="demo-title" tabindex="-1">Book a 30-minute demo</h2>
+      <p class="demo__lead">Tell us a little about your fleet and we’ll tailor the demo to it. It takes about a minute.</p>
+
+      <form class="demo__form" novalidate data-endpoint="">
+        <fieldset class="demo__group" data-demo-required="rents">
+          <legend class="demo__label">What do you rent? <span class="demo__hint">Select all that apply</span></legend>
+          <div class="demo__chips">
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Construction machinery"><span>Construction machinery</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Access platforms &amp; lifts"><span>Access platforms &amp; lifts</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Forklifts &amp; telehandlers"><span>Forklifts &amp; telehandlers</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Tools &amp; small equipment"><span>Tools &amp; small equipment</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Power &amp; climate"><span>Power &amp; climate</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Vehicles &amp; carts"><span>Vehicles &amp; carts</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Event equipment"><span>Event equipment</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Other" data-demo-other><span>Other</span></label>
+          </div>
+          <input class="demo__input demo__other" type="text" name="rents_other" maxlength="120" placeholder="What else do you rent?" aria-label="What else do you rent?" hidden>
+          <p class="demo__error" hidden>Choose at least one.</p>
+        </fieldset>
+
+        <fieldset class="demo__group" data-demo-required="fleet_size">
+          <legend class="demo__label">Fleet size <span class="demo__hint">Units = machines or devices you track individually</span></legend>
+          <div class="demo__chips">
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="Up to 50"><span>Up to 50</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="51–200"><span>51–200</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="201–500"><span>201–500</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="501–1,000"><span>501–1,000</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="Over 1,000"><span>Over 1,000</span></label>
+          </div>
+          <p class="demo__error" hidden>Choose your fleet size.</p>
+        </fieldset>
+
+        <div class="demo__grid">
+          <div class="demo__field">
+            <label class="demo__label" for="demo-company">Company name</label>
+            <input class="demo__input" id="demo-company" name="company" type="text" autocomplete="organization" maxlength="120" required>
+            <p class="demo__error" hidden>Enter your company name.</p>
+          </div>
+          <div class="demo__field">
+            <label class="demo__label" for="demo-name">Your name</label>
+            <input class="demo__input" id="demo-name" name="name" type="text" autocomplete="name" maxlength="80" required>
+            <p class="demo__error" hidden>Enter your name.</p>
+          </div>
+          <div class="demo__field">
+            <label class="demo__label" for="demo-email">Email</label>
+            <input class="demo__input" id="demo-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" required>
+            <p class="demo__error" hidden>Enter a valid email address.</p>
+          </div>
+          <div class="demo__field">
+            <label class="demo__label" for="demo-phone">Phone <span class="demo__optional">(optional)</span></label>
+            <input class="demo__input" id="demo-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40">
+          </div>
+        </div>
+
+        <details class="demo__more">
+          <summary>Add a note for our team <span class="demo__optional">(optional)</span></summary>
+          <label class="sr-only" for="demo-message">Anything you’d like us to cover?</label>
+          <textarea class="demo__input" id="demo-message" name="message" rows="3" maxlength="1500" placeholder="Anything you’d like us to cover? E.g. we work in spreadsheets today and want GPS-based billing for our lifts"></textarea>
+        </details>
+
+        <!-- spam trap: people never see this field, bots fill it in -->
+        <div class="demo__trap" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+        <button type="submit" class="btn btn--primary btn--arrow demo__submit">
+          <span data-demo-label>Request my demo</span>
+          <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+        </button>
+        <p class="demo__privacy">We’ll use your details to arrange your demo and follow up on&nbsp;it. More in our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.</p>
+        <p class="demo__status" role="alert" hidden></p>
+      </form>
+    </div>
+
+    <div class="demo__view demo__done" data-demo-view="done" hidden>
+      <span class="demo__done-icon" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </span>
+      <h2 class="demo__title" tabindex="-1" data-demo-done-title>Thank you – request received!</h2>
+      <p class="demo__lead">We’ll get back to you<span data-demo-done-email></span> within one business day to pick a time for your 30-minute demo.</p>
+      <button type="button" class="btn btn--ghost demo__done-close" data-demo-close>Close</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- ============ COOKIE BANNER (shown by main.js until the visitor makes a choice) ============ -->
+<div class="cookie" id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-text" hidden>
+  <p class="cookie__title" id="cookie-title">We use cookies</p>
+  <p class="cookie__text" id="cookie-text">We use cookies that are necessary for this site to work. With your consent, we may also use analytics and marketing cookies. You can change your choice at any time via “Cookie settings” in the footer. <a href="cookie-policy.html">Cookie Policy</a></p>
+  <div class="cookie__prefs" hidden>
+    <label class="cookie__opt">
+      <span><b>Necessary</b><small>Required for the site to work. Always on.</small></span>
+      <input type="checkbox" checked disabled>
+    </label>
+    <label class="cookie__opt">
+      <span><b>Analytics</b><small>Help us understand how visitors use the site.</small></span>
+      <input type="checkbox" data-category="analytics">
+    </label>
+    <label class="cookie__opt">
+      <span><b>Marketing</b><small>Measure our campaigns and show relevant offers.</small></span>
+      <input type="checkbox" data-category="marketing">
+    </label>
+  </div>
+  <div class="cookie__actions">
+    <button type="button" class="cookie__btn cookie__btn--primary cookie__btn--wide" data-cookie="save" hidden>Save my choices</button>
+    <button type="button" class="cookie__btn cookie__btn--primary" data-cookie="accept">Accept all</button>
+    <button type="button" class="cookie__btn" data-cookie="reject">Reject all</button>
+    <button type="button" class="cookie__btn cookie__btn--link" data-cookie="customize">Customize</button>
+  </div>
+</div>
+
+<script src="assets/js/main.js?v=20261105c" defer></script>
+<script src="assets/js/pricing.js?v=20261105a" defer></script>
+</body>
+</html>
