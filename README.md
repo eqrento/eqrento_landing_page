@@ -26,6 +26,15 @@ Recommended server settings (most hosts do this by default):
 Open the site through a web server, not by double-clicking `index.html`: some browsers block the self-hosted fonts
 and the video on `file://`.
 
+**Live site = https://eqrento.com/ on SOLTIX's OVH server (since 5 Nov 2026).**
+- A push to `main` still updates only the GitHub Pages **preview** (`static.yml`).
+- The live site is updated only by the workflow **“Publish to eqrento.com (OVH)”** (`.github/workflows/deploy-ovh.yml`). It is manual, with a dry run by default.
+  - Run it with `gh workflow run deploy-ovh.yml -f dry_run=false`, or from Actions → Run workflow, and **only after Łukasz's OK**.
+  - It copies the repo (without `README.md`, `.github`, `.gitignore`) with `rsync` over SSH, sending only changed files. It deletes files that are gone from the repo, except server-only ones (`.well-known/`, `google*.html`, `BingSiteAuth.xml`, `yandex_*.html`).
+  - It clears the Cloudflare cache when `CF_ZONE_ID` and `CF_API_TOKEN` exist, and checks that eqrento.com serves the new `style.css?v=`.
+- Required secrets: `OVH_HOST`, `OVH_PORT` (optional), `OVH_USER`, `OVH_PATH`, `OVH_SSH_KEY`, `OVH_KNOWN_HOSTS`. The server side is described in `../eqrento-ovh/INSTRUKCJA-2-DOKONCZENIE-I-PUBLIKACJA.md`.
+- While eqrento.com goes through the Cloudflare proxy with Email Obfuscation, the live HTML differs from the repo (mailto links rewritten). Verify with CSS/JS checksums or the `?v=` string instead.
+
 **OVH move (4 Nov 2026):** the package for the programmer lives outside this repo, in `../eqrento-ovh/`. It holds:
 - `eqrento-strona/` and `.zip` – this repo without `README.md`, `.github` and `.gitignore`;
 - `nginx-eqrento.conf`, tested;
@@ -199,7 +208,7 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
 - **Icon credit** – the icons are Uicons on the free Flaticon licence, which requires “Uicons by Flaticon” with a link
-  near the icons or in the footer: the first of the links in the footer's bottom row (left of “Privacy Policy”), on all three pages.
+  near the icons or in the footer: the last of the links in the footer's bottom row (after “Cookie settings”), on all three pages.
   Keep it while the site uses Uicons.
 - **Privacy Policy and Cookie Policy** – `privacy-policy.html` and `cookie-policy.html`, linked from the footer (on
   every page), the cookie banner and the demo form (that link opens a new tab, so the form keeps what was typed).

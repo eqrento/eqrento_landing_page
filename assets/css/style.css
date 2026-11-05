@@ -1078,7 +1078,7 @@ section[id] { scroll-margin-top: 80px; }
   margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .08);
   display: flex; justify-content: space-between; gap: 16px; font-size: 12px;
 }
-/* desktop: copyright on the left, the links on the right – icon credit, Privacy Policy, Cookie Policy, Cookie settings
+/* desktop: copyright on the left, the links on the right – Privacy Policy, Cookie Policy, Cookie settings, icon credit
    (the free Flaticon licence asks for “Uicons by Flaticon” with a link, near the icons or in the footer) */
 @media (min-width: 1201px) { .footer__bottom > * { white-space: nowrap; } }
 /* tablets and phones: one centred column, the links above the copyright */
