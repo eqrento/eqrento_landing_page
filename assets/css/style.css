@@ -831,6 +831,127 @@ section[id] { scroll-margin-top: 80px; }
 .gps__card p { margin-top: 1.8cqi; font-size: 4.1cqi; line-height: 1.5; color: var(--gray-2); }
 
 /* =========================================================
+   INTEGRATIONS (Wojtek's section, 5 Nov 2026)
+   The API card is navy like the other dark cards; partner tiles sit in white cards.
+   Wide screens: two columns (API card | three groups of tiles). ≤1200px: one column.
+   ========================================================= */
+.integrations { padding: var(--sec-join) 0; background: var(--soft); }
+.integrations__lead { max-width: 860px; }
+.integrations__grid {
+  margin-top: 64px;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: stretch;
+}
+
+/* ---------- API card ---------- */
+.api-card {
+  --gray: #b3afd6;   /* secondary text on navy, as on the other dark cards */
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
+  padding: 48px; border-radius: 24px;
+  color: var(--gray); background: var(--mark-navy); border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: var(--shadow-brand);
+}
+.api-card__glow {
+  position: absolute; z-index: -1; right: -170px; top: -170px; width: 360px; height: 360px;
+  border-radius: 50%; background: var(--mark-glow); filter: blur(61px); opacity: .32; pointer-events: none;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+.api-card__badge {
+  display: inline-flex; align-items: center; gap: 10px; height: 36px; padding: 0 16px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: var(--white);
+  background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .14);
+}
+.api-card__badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); }
+.api-card__title { font-size: 30px; font-weight: 600; line-height: 1.25; letter-spacing: -.01em; color: var(--white); text-wrap: balance; }
+.api-card__text { font-size: 16px; line-height: 1.6; text-wrap: pretty; }
+.api-card__list { display: flex; flex-direction: column; gap: 12px; }
+.api-card__list li { position: relative; padding-left: 30px; font-size: 15px; line-height: 1.45; color: rgba(255, 255, 255, .88); text-wrap: pretty; }
+.api-card__list li::before {   /* the plans' tick, light as in the Complete card */
+  content: ""; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; background: #dcd9f2;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+/* sample API response: no scrolling (it is hidden from screen readers, and a scroll box would take keyboard focus),
+   so the type gets smaller on narrow cards instead */
+.api-card__code {
+  align-self: stretch; overflow: hidden;
+  margin: 0; padding: 16px 20px; border-radius: 14px;   /* margin: <pre> has 1em above and below by default */
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 13px; line-height: 1.7; white-space: pre; color: #e4e2f5;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .1);
+}
+.api-card__code .c { color: #9a96c4; }   /* comment */
+.api-card__code .k { color: #c9c0ff; }   /* keys */
+.api-card__code .s { color: #a8e0b4; }   /* text values */
+.api-card__cta { margin-top: auto; }     /* the button sits at the bottom when the card is taller than its content */
+
+/* ---------- partner groups and tiles ---------- */
+.integrations__groups { display: flex; flex-direction: column; gap: 24px; }
+.int-group {
+  flex: auto;   /* the three cards share any height the API card adds; tiles stay centred in them */
+  display: flex; flex-direction: column; justify-content: center; gap: 18px;
+  padding: 32px; border-radius: 24px; background: var(--white);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.int-group__title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--gray-2);
+}
+.int-group__icon { flex: none; width: 20px; height: 20px; color: var(--label-violet-ink); }
+.int-group__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.int-tile {
+  height: 84px; padding: 12px 16px; border-radius: 14px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  text-align: center; color: var(--ink); background: var(--soft); border: 1px solid transparent;
+  transition: background-color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+}
+.int-tile:hover { background: var(--white); border-color: rgba(23, 15, 4, .12); transform: translateY(-2px); }
+.int-tile__name { font-size: 16px; font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
+/* an official logo, once its file is in assets/logos/: original colours, at most 34px tall; the name then hides */
+.int-tile img { width: auto; max-width: 100%; max-height: 34px; object-fit: contain; }
+.int-tile:has(img) .int-tile__name { display: none; }
+/* “+ Your system”: opens the demo form */
+.int-tile--more { background: transparent; border: 1.5px dashed rgba(23, 15, 4, .22); }
+.int-tile--more .int-tile__name { font-size: 15px; }
+.int-tile--more small { font-size: 13px; line-height: 1.3; color: var(--gray-2); }
+.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
+
+@media (max-width: 1440px) {
+  .api-card { padding: 40px 36px; }
+  .api-card__cta { padding-left: 28px; gap: 12px; font-size: 17px; }   /* as the CTA in the EQrento card */
+  .int-group { padding: 28px; }
+}
+/* tablets: one column (API card, then the groups), as narrow as the testimonial */
+@media (max-width: 1200px) {
+  .integrations__grid { grid-template-columns: minmax(0, 1fr); max-width: 760px; margin-inline: auto; }
+}
+@media (max-width: 640px) {
+  .integrations__grid { margin-top: 40px; gap: 16px; }
+  .integrations__groups { gap: 16px; }
+  .api-card { gap: 20px; padding: 28px 24px; border-radius: 20px; }
+  .api-card__title { font-size: 24px; }
+  .api-card__text { font-size: 15px; }
+  .api-card__code { padding: 14px 16px; font-size: 12px; }
+  .api-card__cta { align-self: stretch; min-width: 0; }
+  .int-group { gap: 16px; padding: 24px 20px; border-radius: 20px; }
+  .int-group__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .int-group__tiles > li:last-child:nth-child(odd) { grid-column: 1 / -1; }   /* an odd last tile fills its row */
+  .int-tile { height: 72px; }
+  .int-tile__name { font-size: 15px; }
+}
+@media (max-width: 380px) {
+  .api-card { padding-inline: 20px; }
+  .api-card__code { padding: 12px 14px; font-size: 11px; }
+  .int-group { padding-inline: 16px; }
+}
+/* 320px: the button is only 238px wide – smaller type and arrow, as the CTA in the EQrento card
+   (.api-card in front: it must beat the site-wide 340px rule for .btn--arrow, which comes later in this file) */
+@media (max-width: 340px) {
+  .api-card .api-card__cta { padding-left: 18px; gap: 6px; font-size: 14px; }
+  .api-card__cta .btn__icon { width: 40px; height: 40px; }
+}
+
+/* =========================================================
    PRICING
    ========================================================= */
 .pricing { padding: var(--sec-join) 0; background: var(--soft); }

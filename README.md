@@ -68,6 +68,7 @@ assets/js/main.js      – interactions and animations
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos, og-image.png (1200×630 link-preview picture)
 assets/icons/          – SVG icons, logo-light.png (footer logo, all white), icon-192/512 and icon-maskable-512 PNGs
+assets/logos/          – partner logos for the Integrations section (official files only; created with the first logo)
 assets/video/          – testimonial video (mp4 + webm fallback)
 ```
 
@@ -75,8 +76,8 @@ assets/video/          – testimonial video (mp4 + webm fallback)
 
 Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `display: contents`, see “phones: the collage comes right after the lead” in style.css) → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
 (“One platform…”) → How it works (“Six interconnected stages…”, pinned horizontal scroll) → Key features and
-competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Testimonial → Pricing → FAQ →
-footer. (The closing “See it on your kind of fleet” section was removed on 4 Nov 2026 – Łukasz.)
+competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Integrations (“Open API first.
+Connectors included.”, added 5 Nov 2026 from Wojtek's design) → Testimonial → Pricing → FAQ → footer. (The closing “See it on your kind of fleet” section was removed on 4 Nov 2026 – Łukasz.)
 Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobile menu and footer follow the page order; the Platform section has no menu link).
 
 ## Things worth knowing
@@ -199,12 +200,26 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   (chips, several allowed, “Other” adds a text box), fleet size (chips matching the plan limits), company, name,
   email, phone (optional), note (optional, folded). The form posts JSON as `text/plain` (no CORS preflight) to the
   URL in the form's `data-endpoint` – a Google Apps Script web app that adds a row to a Google Sheet and e-mails
-  contact@eqrento.com (code and set-up guide are kept outside this public repo: `../formularz-demo/`). Body:
+  the team (address: `NOTIFY_TO` in the script; code and set-up guide are kept outside this public repo:
+  `../formularz-demo/`). Body:
   `rents` (array), `rents_other`, `fleet_size`, `company`, `name`, `email`, `phone`, `message`, `website` (spam
-  trap, must stay empty), `source` (which button), `page`, `referrer`, `utm`, `timezone`, `language`, `seconds`;
+  trap, must stay empty), `source` (which button: the button's `data-demo-source` if it has one, else the plan or
+  the section it sits in), `page`, `referrer`, `utm`, `timezone`, `language`, `seconds`;
   expected answer `{"ok":true}` – any endpoint that does this (e.g. PHP on the own server) can replace Apps Script.
   No endpoint, or sending fails → the visitor gets a pre-filled e-mail to contact@eqrento.com instead. Events for
   analytics: `eq:demo-open`, `eq:demo-request` (on `document`).
+- **Integrations section** – Wojtek's design (5 Nov 2026) rebuilt in the site's styles (`INTEGRATIONS` block in
+  `style.css`): the navy API card and three white cards of partner tiles. “Ask about API access” and “+ Your system”
+  open the demo form (`source`: “integrations – API access” / “integrations – your system”). KSeF is shown on
+  purpose (Łukasz, 5 Nov 2026: “na razie”), although the site otherwise targets the EU and the US.
+  - Partner logos: **official files only**, never redrawn or recoloured, in `assets/logos/` named `zoomlion`,
+    `teltonika`, `trackunit`, `ksef`, `comarch`, `wapro`, `exact`, `snelstart`, `microsoft-azure`, `google` (SVG, or
+    PNG at least 120px tall on a transparent background). Until a company's file is there, its tile shows the name.
+  - To show a logo, put `<img src="assets/logos/NAME.svg" width="…" height="…" alt="Company" loading="lazy">` in front
+    of the name inside its `.int-tile`: the CSS hides the name and keeps the logo at most 34px tall. No `onerror`
+    handlers (the server's CSP blocks inline JavaScript) – add the `<img>` only once the file is in the folder.
+  - Microsoft, Google and Trackunit have strict rules for their marks (Trackunit's “Works With” badge is for programme
+    partners only); Teltonika's guidelines ask for the full-colour logo linking to teltonika.lt (the tile already links there).
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
 - **Icon credit** – the icons are Uicons on the free Flaticon licence, which requires “Uicons by Flaticon” with a link

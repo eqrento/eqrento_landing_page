@@ -627,6 +627,7 @@
   /* where the visitor clicked (“pricing – Complete”, “hero”…) – it lands in the e-mail and the sheet */
   const AREAS = { header: 'header', 'mobile-menu': 'mobile menu', home: 'hero', why: 'why EQrento card' };
   const sourceOf = el => {
+    if (el.dataset.demoSource) return el.dataset.demoSource;   // a button can name itself (data-demo-source, e.g. in Integrations)
     const plan = el.closest('.plan');
     if (plan) return 'pricing – ' + plan.querySelector('.plan__name').textContent.trim();
     const area = el.closest('[id]');

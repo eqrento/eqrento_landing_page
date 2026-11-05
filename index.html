@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261104l">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261105a">
 </head>
 <body>
 
@@ -538,6 +538,90 @@
             </div>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTEGRATIONS ============ -->
+  <!-- Wojtek's “Integrations” section (5 Nov 2026), rebuilt in the site's own styles: the API card on the left, partner tiles on the right.
+       Partner logos: official files only (never redrawn or recoloured), in assets/logos/ under these names: zoomlion, teltonika,
+       trackunit, ksef, comarch, wapro, exact, snelstart, microsoft-azure, google (.svg, or .png at least 120px tall, transparent).
+       Until a company's file is there, its tile shows the name. To show a logo, put
+       <img src="assets/logos/NAME.svg" width="…" height="…" alt="Company" loading="lazy"> in front of the name in its tile:
+       the CSS then hides the name and keeps the logo at most 34px tall, in its original colours. -->
+  <section class="integrations" id="integrations" aria-labelledby="integrations-title">
+    <div class="wrap-narrow">
+      <div class="section-head">
+        <p class="kicker" data-reveal style="--d:0ms">Integrations</p>
+        <h2 class="h2" id="integrations-title" data-reveal style="--d:80ms">Open API first. <br>Connectors included.</h2>
+        <p class="lead integrations__lead" data-reveal style="--d:160ms">EQrento exposes an open API, so you can plug in any system your business runs on. On top of that, we connect out of the box with the telematics, accounting and <span class="nowrap">e-invoicing</span> tools rental companies already&nbsp;use.</p>
+      </div>
+
+      <div class="integrations__grid">
+        <article class="api-card" data-reveal="left" style="--d:100ms">
+          <span class="api-card__glow" aria-hidden="true"></span>
+          <p class="api-card__badge">Open API</p>
+          <h3 class="api-card__title">Your data, accessible to any&nbsp;system</h3>
+          <p class="api-card__text">Build your own integrations or let your IT partner connect EQrento with your ERP, BI tools or customer portal. No&nbsp;<span class="nowrap">lock-in</span>.</p>
+          <ul class="api-card__list">
+            <li>Equipment, contracts, service and invoices available via&nbsp;API</li>
+            <li>Connect your own ERP, BI or customer&nbsp;portal</li>
+            <li>Support from our team during&nbsp;integration</li>
+          </ul>
+          <!-- an illustration only, hidden from screen readers (to match to the real EQrento API fields) -->
+<pre class="api-card__code" aria-hidden="true"><span class="c">// example response</span>
+{
+  <span class="k">"unit"</span>: <span class="s">"Telehandler 4017"</span>,
+  <span class="k">"status"</span>: <span class="s">"on_rent"</span>,
+  <span class="k">"engine_hours"</span>: 1243,
+  <span class="k">"gps"</span>: <span class="s">"Teltonika"</span>
+}</pre>
+          <a href="#book-demo" class="btn btn--primary btn--arrow api-card__cta" data-demo-source="integrations – API access">
+            <span>Ask about API access</span>
+            <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+          </a>
+        </article>
+
+        <div class="integrations__groups">
+          <div class="int-group" data-reveal style="--d:150ms">
+            <h3 class="int-group__title">
+              <svg class="int-group__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <span>GPS &amp; telematics</span>
+            </h3>
+            <ul class="int-group__tiles">
+              <li><a class="int-tile" href="https://www.zoomlion.com" target="_blank" rel="noopener"><span class="int-tile__name">Zoomlion</span></a></li>
+              <li><a class="int-tile" href="https://www.teltonika.lt" target="_blank" rel="noopener"><span class="int-tile__name">Teltonika</span></a></li>
+              <li><a class="int-tile" href="https://trackunit.com" target="_blank" rel="noopener"><span class="int-tile__name">Trackunit</span></a></li>
+            </ul>
+          </div>
+
+          <div class="int-group" data-reveal style="--d:250ms">
+            <h3 class="int-group__title">
+              <svg class="int-group__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+              <span>Accounting, ERP &amp; <span class="nowrap">e-invoicing</span></span>
+            </h3>
+            <ul class="int-group__tiles">
+              <li><a class="int-tile" href="https://ksef.podatki.gov.pl" target="_blank" rel="noopener"><span class="int-tile__name">KSeF</span></a></li>
+              <li><a class="int-tile" href="https://www.comarch.com" target="_blank" rel="noopener"><span class="int-tile__name">Comarch</span></a></li>
+              <li><a class="int-tile" href="https://wapro.pl" target="_blank" rel="noopener"><span class="int-tile__name">Wapro ERP</span></a></li>
+              <li><a class="int-tile" href="https://www.exact.com" target="_blank" rel="noopener"><span class="int-tile__name">Exact</span></a></li>
+              <li><a class="int-tile" href="https://www.snelstart.nl" target="_blank" rel="noopener"><span class="int-tile__name">SnelStart</span></a></li>
+            </ul>
+          </div>
+
+          <div class="int-group" data-reveal style="--d:350ms">
+            <h3 class="int-group__title">
+              <svg class="int-group__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8.5a4.5 4.5 0 0 1-.5 9.5H7z"/></svg>
+              <span>Cloud &amp; platforms</span>
+            </h3>
+            <ul class="int-group__tiles">
+              <li><a class="int-tile" href="https://azure.microsoft.com" target="_blank" rel="noopener"><span class="int-tile__name">Microsoft Azure</span></a></li>
+              <li><a class="int-tile" href="https://developers.google.com" target="_blank" rel="noopener"><span class="int-tile__name">Google APIs</span></a></li>
+              <!-- opens the demo form, like “Ask about API access” -->
+              <li><a class="int-tile int-tile--more" href="#book-demo" data-demo-source="integrations – your system"><span class="int-tile__name">+&nbsp;Your system</span><small>via open API</small></a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1107,6 +1191,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20261104k" defer></script>
+<script src="assets/js/main.js?v=20261105a" defer></script>
 </body>
 </html>
