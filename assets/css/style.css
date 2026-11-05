@@ -986,15 +986,15 @@ section[id] { scroll-margin-top: 80px; }
 .billing__opt[aria-pressed="true"] { background: var(--gradient); color: #170f04; }
 .billing__save { padding: 2px 8px; border-radius: 999px; font-size: 12px; line-height: 1.4; background: rgba(23, 15, 4, .08); }
 
-/* four cards in a row; each card is a subgrid of 8 rows (name, text, price, billing, limits,
-   button, intro, list), so prices, buttons and lists line up across the cards */
+/* four cards in a row; each card is a subgrid of 7 rows (name, text, price with its billing note,
+   limits, button, intro, list), so prices, buttons and lists line up across the cards */
 .plans {
   margin-top: 56px;
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 20px;
 }
 .plan {
   position: relative; isolation: isolate;
-  grid-row: span 8; display: grid; grid-template-rows: subgrid; row-gap: 0;
+  grid-row: span 7; display: grid; grid-template-rows: subgrid; row-gap: 0;
   padding: 36px 32px; border-radius: 24px; background: var(--white);
   box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
@@ -1008,17 +1008,20 @@ section[id] { scroll-margin-top: 80px; }
   box-shadow: 0 8px 20px -8px rgba(255, 164, 27, .7);
 }
 .plan__desc { margin-top: 10px; font-size: 15px; line-height: 1.5; color: var(--gray-2); text-wrap: balance; }
+/* the price with “/month” and, right under it, “billed yearly” beside the figure (Łukasz, 5 Nov 2026) */
 .plan__price {
-  margin-top: 28px; display: flex; align-items: baseline; gap: 4px;
+  align-self: start;   /* top of the price row: level with “Ask for a quote”, whose note makes that row taller */
+  margin-top: 28px; display: flex; align-items: center; gap: 10px;
   font-size: 44px; font-weight: 600; line-height: 1.1; letter-spacing: -.02em; color: var(--ink);
 }
+.plan__per { display: flex; flex-direction: column; line-height: 1.3; letter-spacing: 0; }
 .plan__price small { font-size: 16px; font-weight: 400; letter-spacing: 0; color: var(--gray-2); }
-/* “Ask for a quote” is set like the prices (same size, weight, tracking) and sits at the bottom of the price row, level with the figures.
+.plan__price small.plan__billing { font-size: 14px; }
+/* “Ask for a quote” is set like the prices (same size, weight, tracking), with “tailored to your fleet” under it.
    It is wider than “$799 /month”, so on one line it only fits the card at the price size when the card is wide (tablet / phone);
    in the narrow four-column row the span shrinks to the card’s inner width (100cqi of the <p>, 7.45em = the text’s width in em). */
-.plan__price--quote { align-self: end; container-type: inline-size; }
+.plan__price--quote { container-type: inline-size; flex-direction: column; align-items: flex-start; gap: 4px; }
 .plan__price--quote span { display: block; white-space: nowrap; font-size: min(1em, calc(100cqi / 7.45)); }
-.plan__billing { margin-top: 4px; font-size: 14px; line-height: 1.5; color: var(--gray-2); }
 .plan__limits {
   margin-top: 24px; padding: 14px 16px; border-radius: 14px;
   display: flex; flex-direction: column; gap: 4px;
@@ -1082,10 +1085,9 @@ section[id] { scroll-margin-top: 80px; }
   font-size: 16px; font-weight: 600; text-align: center; vertical-align: top;
   border-bottom-color: rgba(23, 15, 4, .14);
 }
-/* plan, price (swapped with the yearly / monthly switch) and a small demo button in each column head */
+/* plan and price (swapped with the yearly / monthly switch) in each column head */
 .cmp__plan, .cmp__price { display: block; }
 .cmp__price { margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--gray-2); }
-.cmp__table thead .cmp__cta { margin-top: 10px; height: 34px; padding: 0 14px; gap: 0; font-size: 13px; }
 .cmp__table [hidden] { display: none; }   /* “Show only differences” hides rows and whole categories */
 .cmp__table th[scope="row"] { width: 40%; font-weight: 400; text-align: left; text-wrap: pretty; }
 .cmp__table td { width: 15%; text-align: center; }
@@ -1143,13 +1145,12 @@ section[id] { scroll-margin-top: 80px; }
 .faq--pricing { padding-bottom: var(--sec-join); }
 .pricing-cta { display: flex; justify-content: center; padding: var(--sec-join) var(--gutter) var(--sec-y); background: var(--soft); }
 
-/* tablets: five columns stay, the feature column gives up room so the small buttons fit the plan columns */
+/* tablets: five columns stay, the feature column gives up room so “Connected” fits its column head */
 @media (max-width: 1023px) {
   .cmp__table th[scope="row"] { width: 36%; }
   .cmp__table td { width: 16%; }
   .cmp__table th, .cmp__table td { padding-inline: 8px; }
   .cmp__table thead th { padding-inline: 6px; }
-  .cmp__table thead .cmp__cta { padding: 0 9px; font-size: 12px; }
 }
 /* phones: the features and ONE plan (data-plan on the table, 1–4, Complete to start with; pricing.js) */
 @media (max-width: 767px) {
@@ -1161,7 +1162,6 @@ section[id] { scroll-margin-top: 80px; }
   .cmp__table thead th:not(:first-child), .cmp__table td { display: none; width: auto; }
   .cmp__table[data-plan="1"] tr > :nth-child(2), .cmp__table[data-plan="2"] tr > :nth-child(3),
   .cmp__table[data-plan="3"] tr > :nth-child(4), .cmp__table[data-plan="4"] tr > :nth-child(5) { display: table-cell; }
-  .cmp__table thead .cmp__cta { padding: 0 14px; font-size: 13px; }
 }
 /* the narrowest phones: “Enterprise” and “Connected” must fit a quarter of the plan switch */
 @media (max-width: 360px) {
@@ -1176,32 +1176,46 @@ section[id] { scroll-margin-top: 80px; }
   padding: 32px 28px 28px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 .tier__name { font-size: 22px; font-weight: 600; line-height: 1.25; color: var(--ink); }
+/* the price and, beside it, “/month” with “billed yearly” right under it (as on the pricing cards); on phones the pair
+   goes under the figure (see the 640px rule), still one line under the other */
 .tier__price {
-  margin-top: 14px; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px;
-  font-size: 14px; line-height: 1.4; color: var(--gray-2);
+  margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px;
+  font-size: 14px; line-height: 1.3; color: var(--gray-2);
 }
 .tier__price b { font-size: 38px; font-weight: 600; line-height: 1.1; letter-spacing: -.02em; color: var(--ink); }
+.tier__per { display: flex; flex-direction: column; }
 .tier__price--quote b { font-size: 28px; letter-spacing: -.01em; }
-.tier__limit { margin-top: auto; padding-top: 16px; font-size: 14px; font-weight: 600; color: var(--ink); }
+/* fleet limit and “Unlimited users and branches”, set like the limits on the pricing cards */
+.tier__limits {
+  margin-top: auto; padding-top: 16px; display: flex; flex-direction: column; gap: 4px;
+  font-size: 14px; line-height: 1.4; color: var(--gray-2);
+}
+.tier__limits b { font-weight: 600; color: var(--ink); }
 /* Complete: the recommended plan, navy like its card on pricing.html, with the same badge */
 .tier--hero { box-shadow: var(--shadow-brand); }
-.tier--hero .tier__name, .tier--hero .tier__price b, .tier--hero .tier__limit { color: var(--white); }
-.tier--hero .tier__price { color: #b3afd6; }
+.tier--hero .tier__name, .tier--hero .tier__price b, .tier--hero .tier__limits b { color: var(--white); }
+.tier--hero .tier__price, .tier--hero .tier__limits { color: #b3afd6; }
 .tiers__ctas { margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-.tiers__demo { padding-inline: 36px; }
 @media (max-width: 1200px) { .tier { padding: 28px 22px 24px; } .tier__price b { font-size: 34px; } }
-/* 2 × 2 from 900px down (the price and “/month, billed yearly” need the room) */
-@media (max-width: 900px) { .tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; max-width: 680px; margin-inline: auto; } }
+/* 2 × 2 from 1100px down: in four narrower tiles “/month” + “billed yearly” would fit beside some prices and not others */
+@media (max-width: 1100px) { .tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; max-width: 680px; margin-inline: auto; } }
 @media (max-width: 640px) {
   .tiers { margin-top: 40px; gap: 28px 12px; }
   .tier { padding: 26px 16px 18px; border-radius: 20px; }
   .tier__name { font-size: 18px; }
-  .tier__price { margin-top: 10px; font-size: 13px; }
+  /* phone tiles are too narrow for the note beside the figure: in every tile it goes under it, “billed yearly” still right under “/month” */
+  .tier__price { margin-top: 10px; flex-direction: column; align-items: flex-start; gap: 2px; font-size: 13px; }
   .tier__price b { font-size: 28px; }
   .tier__price--quote b { font-size: 20px; }
-  .tier__limit { font-size: 13px; }
+  .tier__limits { font-size: 13px; }
   .tiers__ctas { flex-direction: column; align-items: stretch; }
   .tiers__ctas .btn { width: 100%; }
+}
+/* the narrowest phones: a little less padding and type, so “Up to 50 units” keeps one line and “Unlimited users and
+   branches” two */
+@media (max-width: 360px) {
+  .tier { padding-inline: 14px; }
+  .tier__price, .tier__limits { font-size: 12px; }
 }
 /* 320px: “Compare plans and features” needs smaller type and arrow to fit the 280px button (as the EQrento card's CTA) */
 @media (max-width: 340px) {

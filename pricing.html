@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261105g">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261105h">
 </head>
 <body>
 
@@ -96,13 +96,12 @@
         </div>
       </div>
 
-      <!-- each card is a subgrid of 8 rows (name, text, price, billing, limits, button, intro, list), so the rows line up across the cards -->
+      <!-- each card is a subgrid of 7 rows (name, text, price with its billing note, limits, button, intro, list), so the rows line up across the cards -->
       <div class="plans">
         <article class="plan">
           <h2 class="plan__name">Essential</h2>
           <p class="plan__desc">Fleet, offers, contracts and invoices in one&nbsp;place&nbsp;– for smaller fleets leaving spreadsheets&nbsp;behind.</p>
-          <p class="plan__price"><span data-price="essential" data-yearly="$199" data-monthly="$249">$199</span><small>/month</small></p>
-          <p class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</p>
+          <p class="plan__price"><span data-price="essential" data-yearly="$199" data-monthly="$249">$199</span><span class="plan__per"><small>/month</small><small class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</small></span></p>
           <ul class="plan__limits">
             <li><b>Up to 50</b> units</li>
             <li><b>Unlimited</b> users and&nbsp;branches</li>
@@ -124,8 +123,7 @@
           <span class="plan__badge">Recommended</span>
           <h2 class="plan__name">Complete</h2>
           <p class="plan__desc">The full rental cycle, from offer to invoice, with transport, service and the driver &amp; mechanic&nbsp;app.</p>
-          <p class="plan__price"><span data-price="complete" data-yearly="$399" data-monthly="$499">$399</span><small>/month</small></p>
-          <p class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</p>
+          <p class="plan__price"><span data-price="complete" data-yearly="$399" data-monthly="$499">$399</span><span class="plan__per"><small>/month</small><small class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</small></span></p>
           <ul class="plan__limits">
             <li><b>Up to 200</b> units</li>
             <li><b>Unlimited</b> users and&nbsp;branches</li>
@@ -145,8 +143,7 @@
         <article class="plan">
           <h2 class="plan__name">Connected</h2>
           <p class="plan__desc">Telematics and GPS that bill every extra hour automatically.</p>
-          <p class="plan__price"><span data-price="connected" data-yearly="$799" data-monthly="$999">$799</span><small>/month</small></p>
-          <p class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</p>
+          <p class="plan__price"><span data-price="connected" data-yearly="$799" data-monthly="$999">$799</span><span class="plan__per"><small>/month</small><small class="plan__billing" data-yearly="billed yearly" data-monthly="billed monthly">billed yearly</small></span></p>
           <ul class="plan__limits">
             <li><b>Up to 500</b> units</li>
             <li><b>Unlimited</b> users and&nbsp;branches</li>
@@ -166,8 +163,7 @@
         <article class="plan">
           <h2 class="plan__name">Enterprise</h2>
           <p class="plan__desc">Unlimited fleet, custom integrations and a dedicated&nbsp;team.</p>
-          <p class="plan__price plan__price--quote"><span>Ask for a quote</span></p>
-          <p class="plan__billing">tailored to your fleet</p>
+          <p class="plan__price plan__price--quote"><span>Ask for a quote</span><small class="plan__billing">tailored to your fleet</small></p>
           <ul class="plan__limits">
             <li><b>Unlimited</b> units</li>
             <li><b>Unlimited</b> users and&nbsp;branches</li>
@@ -205,18 +201,18 @@
         <button class="compare__diff" type="button" aria-pressed="false">Show only differences</button>
       </div>
 
-      <!-- Cells: class="y" included, "n" not included (both with screen-reader text), "t" text. The header row (plan, price,
-           a small button) sticks under the page header while the table scrolls by. -->
+      <!-- Cells: class="y" included, "n" not included (both with screen-reader text), "t" text. The header row (plan and price)
+           sticks under the page header while the table scrolls by. -->
       <div class="cmp__card">
         <table class="cmp__table" data-plan="2">
           <caption class="sr-only">All features by plan</caption>
           <thead>
             <tr>
               <th scope="col"><span class="sr-only">Feature</span></th>
-              <th scope="col"><span class="cmp__plan">Essential</span> <span class="cmp__price" data-price="essential" data-yearly="$199/mo" data-monthly="$249/mo">$199/mo</span> <a href="#book-demo" class="btn btn--primary cmp__cta" data-demo-source="pricing table – Essential">Book a demo</a></th>
-              <th scope="col"><span class="cmp__plan">Complete</span> <span class="cmp__price" data-price="complete" data-yearly="$399/mo" data-monthly="$499/mo">$399/mo</span> <a href="#book-demo" class="btn btn--primary cmp__cta" data-demo-source="pricing table – Complete">Book a demo</a></th>
-              <th scope="col"><span class="cmp__plan">Connected</span> <span class="cmp__price" data-price="connected" data-yearly="$799/mo" data-monthly="$999/mo">$799/mo</span> <a href="#book-demo" class="btn btn--primary cmp__cta" data-demo-source="pricing table – Connected">Book a demo</a></th>
-              <th scope="col"><span class="cmp__plan">Enterprise</span> <span class="cmp__price">Ask for a quote</span> <a href="mailto:contact@eqrento.com?subject=EQrento%20Enterprise%20quote" class="btn btn--ghost cmp__cta">Contact us</a></th>
+              <th scope="col"><span class="cmp__plan">Essential</span> <span class="cmp__price" data-price="essential" data-yearly="$199/mo" data-monthly="$249/mo">$199/mo</span></th>
+              <th scope="col"><span class="cmp__plan">Complete</span> <span class="cmp__price" data-price="complete" data-yearly="$399/mo" data-monthly="$499/mo">$399/mo</span></th>
+              <th scope="col"><span class="cmp__plan">Connected</span> <span class="cmp__price" data-price="connected" data-yearly="$799/mo" data-monthly="$999/mo">$799/mo</span></th>
+              <th scope="col"><span class="cmp__plan">Enterprise</span> <span class="cmp__price">Ask for a quote</span></th>
             </tr>
           </thead>
               <tbody>

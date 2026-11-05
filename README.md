@@ -99,7 +99,10 @@ of the home page (`./#why` etc. on the other pages).
   5. Pricing FAQ: only questions with an answer in the existing copy; the four without an answer were left out.
   6. The closing “Book a 30-minute demo”.
 - **Table:**
-  - `thead` holds plan, price and a small button, and sticks under the page header (84 / 72 / 64px).
+  - `thead` holds the plan and its price (no buttons – Łukasz, 5 Nov 2026) and sticks under the page header
+    (84 / 72 / 64px).
+- **Cards:** the price with “/month” and, right under it, “billed yearly” / “billed monthly” beside the figure; Enterprise
+  has “tailored to your fleet” under “Ask for a quote”. Each card is a subgrid of 7 rows.
   - “Show only differences” (`aria-pressed`) hides the rows where all four plans have the same value and the categories
     left empty – worked out from the cells (`y`, `n` or the text). No row is marked by hand, so new rows need nothing extra.
   - Below 768px: the features and one plan, chosen with the switch above the table (`data-plan` 1–4 on the table,
@@ -113,8 +116,12 @@ of the home page (`./#why` etc. on the other pages).
     start at $199 a month”).
   - Change a price in every place. `bash .github/scripts/check-prices.sh` checks them and runs before every preview and
     publish – a difference stops both.
-- **Demo requests:** from pricing.html the `page` field is `/pricing`. The table buttons send `source` “pricing table –
-  <plan>”, the bottom button “pricing page – bottom”, and the home teaser “pricing teaser”.
+- **Demo requests:** from pricing.html the `page` field is `/pricing`. The card buttons send `source` “pricing – <plan>”,
+  the bottom button “pricing page – bottom”.
+- **Home teaser:** four tiles (plan, price with “/month” over “billed yearly” beside it, fleet limit, “Unlimited users and
+  branches”) and one button, “Compare plans and features” (Łukasz removed the “Book a demo” next to it on 5 Nov 2026).
+  Four in a row above 1100px, 2 × 2 below. On phones the “/month · billed yearly” pair sits under the figure in every
+  tile, because the tiles are too narrow to keep it beside the price.
 
 ## Things worth knowing
 
