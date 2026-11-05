@@ -68,7 +68,7 @@ assets/js/main.js      – interactions and animations
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos, og-image.png (1200×630 link-preview picture)
 assets/icons/          – SVG icons, logo-light.png (footer logo, all white), icon-192/512 and icon-maskable-512 PNGs
-assets/logos/          – partner logos for the Integrations section (official files only; created with the first logo)
+assets/logos/          – partner logos for the Integrations section (official files only, unchanged; teltonika.svg so far)
 assets/video/          – testimonial video (mp4 + webm fallback)
 ```
 
@@ -218,8 +218,13 @@ Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobil
   - To show a logo, put `<img src="assets/logos/NAME.svg" width="…" height="…" alt="Company" loading="lazy">` in front
     of the name inside its `.int-tile`: the CSS hides the name and keeps the logo at most 34px tall. No `onerror`
     handlers (the server's CSP blocks inline JavaScript) – add the `<img>` only once the file is in the folder.
-  - Microsoft, Google and Trackunit have strict rules for their marks (Trackunit's “Works With” badge is for programme
-    partners only); Teltonika's guidelines ask for the full-colour logo linking to teltonika.lt (the tile already links there).
+  - In place: `teltonika.svg` – Teltonika's own `TELTONIKA-LOGO-BLUE-RGB.svg` (from the LOGO link on
+    teltonika-iot-group.com/brand-guidelines, 5 Nov 2026), byte for byte. Teltonika allows its materials only “to
+    publish information about our company”, with no false association; the tile links to teltonika.lt.
+  - Checked on 5 Nov 2026, the others need the company's consent or partner status (details in
+    `../eqrento-landing-ustalenia.md`): Trackunit's media library is for non-commercial use only (the “Works With”
+    badge is for programme partners), Microsoft and Google need a licence or an approved request, Exact gives its logo
+    to approved App Store partners, Wapro to partners in its portal, Comarch on request; KSeF and Zoomlion offer none.
 - **Reveal on scroll** – any element with `data-reveal` (`up` default, `left`, `right`, `zoom`, `fade`); delay via
   `style="--d:200ms"`. **Parallax** – `data-parallax="0.1"`. All animations are off with “reduce motion”.
 - **Icon credit** – the icons are Uicons on the free Flaticon licence, which requires “Uicons by Flaticon” with a link

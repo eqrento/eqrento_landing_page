@@ -937,6 +937,7 @@ section[id] { scroll-margin-top: 80px; }
   .int-group__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .int-group__tiles > li:last-child:nth-child(odd) { grid-column: 1 / -1; }   /* an odd last tile fills its row */
   .int-tile { height: 72px; }
+  .int-tile:has(img) { padding-inline: 8px; }   /* narrow tiles: a wide logo gets almost the whole width (Teltonika ≈ 100px at 320px) */
   .int-tile__name { font-size: 15px; }
 }
 @media (max-width: 380px) {
