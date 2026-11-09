@@ -82,8 +82,8 @@ Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `disp
 competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Integrations (“Open API first.
 Connectors included.”, added 5 Nov 2026 from Wojtek's design) → Testimonial → Pricing teaser (`id="pricing"`, four mini
 tiles and the way to pricing.html) → FAQ → footer. (The closing “See it on your kind of fleet” section was removed on 4 Nov 2026 – Łukasz.)
-Menu: Home, Why EQrento, How it works, Key features, Pricing, Case study, FAQ (header, mobile menu and footer follow the page order; the Platform section has no menu link).
-“Pricing” and “Case study” in the menu and the footer lead to their pages (`pricing`, `case-study` – relative links); the
+Menu: Home, Why EQrento, How it works, Key features, Case study, Pricing, FAQ (header, mobile menu and footer follow the page order; the Platform section has no menu link).
+“Case study” and “Pricing” in the menu and the footer lead to their pages (`case-study`, `pricing` – relative links); the
 other items are sections of the home page (`./#why` etc. on the other pages). With 7 links the gaps between them are
 40px, 24px up to 1440px and 20px up to 1320px, so the header logo keeps its 246px from ~1320px up (238px at 1280, 196px
 at 1201).

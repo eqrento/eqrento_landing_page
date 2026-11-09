@@ -1408,9 +1408,11 @@ section[id] { scroll-margin-top: 80px; }
 .case-person small { font-size: 14px; color: var(--gray-2); }
 .case-card--values { background: rgba(101, 97, 255, .06); box-shadow: inset 0 0 0 1px rgba(101, 97, 255, .16); }
 .case-card__title { font-size: 14px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--label-violet-ink); }
-.case-vals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 28px; }
-.case-vals li { display: flex; flex-direction: column; gap: 3px; }
-.case-vals span { font-size: 13px; font-weight: 600; letter-spacing: .06em; color: var(--label-violet-ink); }
+.case-vals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 28px; }
+/* the number and the title on one line, the description under the title (Łukasz, 9 Nov 2026: a shorter card) */
+.case-vals li { display: grid; grid-template-columns: 26px minmax(0, 1fr); align-content: start; align-items: baseline; gap: 3px 6px; }   /* start: a taller neighbour in the row must not pull the description away from its title */
+.case-vals span { grid-row: 1; font-size: 13px; font-weight: 600; letter-spacing: .06em; color: var(--label-violet-ink); }
+.case-vals b, .case-vals small { grid-column: 2; }
 .case-vals b { font-size: 16px; font-weight: 600; line-height: 1.35; color: var(--ink); }
 .case-vals small { font-size: 14px; line-height: 1.45; color: var(--gray-2); }
 
@@ -1471,7 +1473,15 @@ section[id] { scroll-margin-top: 80px; }
   .case-chapter { gap: 16px; }
   .case-chapter + .case-chapter { margin-top: 64px; }
   .case-chapter > p:not(.kicker) { font-size: 16px; }
-  .case-flow__step { padding: 18px 16px; }
+  /* the step's title beside its icon, as in the How it works cards on the home page (Łukasz, 9 Nov 2026) */
+  .case-flow__step {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "num num" "icon title" "text text";
+    align-items: center; gap: 10px 12px; padding: 18px 16px;
+  }
+  .case-flow__num { grid-area: num; }
+  .case-flow__step .icon-box { grid-area: icon; margin: 0; }
+  .case-flow__step b { grid-area: title; }
+  .case-flow__text { grid-area: text; }
   /* the drawn screen: each rental on two lines (machine and hours, then what was detected and the decision), no contract column */
   .case-ui { --bar: 26px; border-radius: 10px; font-size: 13px; }
   .case-ui__title { left: 64px; font-size: 11px; }

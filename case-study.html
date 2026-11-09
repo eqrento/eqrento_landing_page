@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261109c">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261109d">
 </head>
 <body>
 
@@ -50,8 +50,8 @@
         <li><a class="nav__link" href="./#why">Why EQrento</a></li>
         <li><a class="nav__link" href="./#steps">How it works</a></li>
         <li><a class="nav__link" href="./#features">Key features</a></li>
-        <li><a class="nav__link" href="pricing">Pricing</a></li>
         <li><a class="nav__link is-active" href="case-study" aria-current="page">Case study</a></li>
+        <li><a class="nav__link" href="pricing">Pricing</a></li>
         <li><a class="nav__link" href="./#faq">FAQ</a></li>
       </ul>
     </nav>
@@ -71,8 +71,8 @@
     <li><a href="./#why">Why EQrento</a></li>
     <li><a href="./#steps">How it works</a></li>
     <li><a href="./#features">Key features</a></li>
-    <li><a href="pricing">Pricing</a></li>
     <li><a href="case-study" aria-current="page">Case study</a></li>
+    <li><a href="pricing">Pricing</a></li>
     <li><a href="./#faq">FAQ</a></li>
   </ul>
   <a href="#book-demo" class="btn btn--primary btn--arrow mobile-menu__cta">
@@ -106,7 +106,7 @@
         <aside class="case-facts" aria-label="About BAC Polska">
           <div class="case-facts__client">
             <img class="case-facts__logo" src="assets/img/logo-bac.webp" width="226" height="70" alt="BAC Polska">
-            <p><b>BAC Polska</b><span>Equipment rental · Poland</span></p>
+            <p><b>BAC Polska</b><span>Mobile work platforms rental · Poland</span></p>
           </div>
           <dl class="case-facts__list">
             <div><dt>On EQrento since</dt><dd>2024</dd></div>
@@ -129,7 +129,7 @@
         <div class="case-live" role="img" aria-label="Illustrative example: a boom lift on contract #2481 flagged for 5.4 hours of Saturday work, waiting for the office to decide">
           <div class="case-live__row"><b>Boom lift · contract #2481</b><span class="case-tag case-tag--flag">Flagged</span></div>
           <div class="case-live__bar"><i style="width:72%"></i><i class="is-over" style="width:18%"></i></div>
-          <div class="case-live__row"><small>Contract: <span class="nowrap">Mon–Fri</span>, 8&nbsp;h/day</small><small class="is-over">Sat · 5.4&nbsp;h</small></div>
+          <div class="case-live__row"><small>Contract: <span class="nowrap">Mon-Fri</span>, 8&nbsp;hrs/day</small><small class="is-over">Sat · 5.4&nbsp;hrs</small></div>
           <div class="case-live__row case-live__foot"><small>Example&nbsp;– illustrative data</small><span class="case-tag case-tag--review">Office review</span></div>
         </div>
       </div>
@@ -263,6 +263,7 @@
             <li><span>Warehouse (WMS)</span></li>
             <li><span>Equipment sales</span></li>
             <li><span>Reports</span></li>
+            <li><span>AI Assistant</span></li>
           </ul>
         </article>
 
@@ -361,9 +362,10 @@
           </div>
         </div>
         <ol class="case-audit">
-          <li><span class="case-audit__num" aria-hidden="true">1</span>You share GPS data for <span class="nowrap">5–10</span> machines and their&nbsp;contracts</li>
-          <li><span class="case-audit__num" aria-hidden="true">2</span>We run them through EQrento’s contract&nbsp;check</li>
-          <li><span class="case-audit__num" aria-hidden="true">3</span>You get a short report: flagged days, hours and their&nbsp;value</li>
+          <!-- the text sits in one span: in the flex row a bare text run beside the .nowrap span would split into separate columns -->
+          <li><span class="case-audit__num" aria-hidden="true">1</span><span>You share GPS data for <span class="nowrap">5-10</span> machines and their&nbsp;contracts</span></li>
+          <li><span class="case-audit__num" aria-hidden="true">2</span><span>We run them through EQrento’s contract&nbsp;check</span></li>
+          <li><span class="case-audit__num" aria-hidden="true">3</span><span>You get a short report: flagged days, hours and their&nbsp;value</span></li>
         </ol>
       </div>
     </div>
@@ -399,8 +401,8 @@
           <li><a href="./#why">Why EQrento?</a></li>
           <li><a href="./#steps">How it works</a></li>
           <li><a href="./#features">Key features</a></li>
-          <li><a href="pricing">Pricing</a></li>
           <li><a href="case-study" aria-current="page">Case study</a></li>
+          <li><a href="pricing">Pricing</a></li>
           <li><a href="./#faq">FAQ</a></li>
         </ul>
       </div>
