@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EQrento</title>
+  <!-- The old site's language versions (/en/, /pl/, /de/, /es/, /fr/, /it/, /nl/, /sv/, /pt/ – the same file in each
+       folder) send visitors straight to the home page: the site is in English only (Łukasz, 9 Nov 2026). Without this
+       file the server answered /en/, /pl/ and /de/ with "403 Forbidden" (those folders hold the old pricing addresses).
+       An instant meta refresh, which Google treats as a permanent redirect; a 301 on the server (the language rule in
+       nginx) does the same job even better. The link is relative, so it also works on the GitHub preview. No script:
+       the server's CSP allows no inline JS. -->
+  <meta http-equiv="refresh" content="0; url=../">
+  <link rel="canonical" href="https://eqrento.com/">
+</head>
+<body>
+  <p>This page has moved: <a href="../">EQrento</a>.</p>
+</body>
+</html>
