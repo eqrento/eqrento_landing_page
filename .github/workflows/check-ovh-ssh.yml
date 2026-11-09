@@ -60,6 +60,25 @@ jobs:
               "$OVH_USER@$OVH_HOST" \
               "echo LOGIN_OK as \$(whoami); test -d '$OVH_PATH' && echo FOLDER_EXISTS || echo FOLDER_MISSING; test -w '$OVH_PATH' && echo FOLDER_WRITABLE || echo FOLDER_NOT_WRITABLE; command -v rsync >/dev/null && echo RSYNC_INSTALLED || echo RSYNC_MISSING; echo UMASK \$(umask); echo NOT_OWNED_BY_ME \$(find '$OVH_PATH' ! -user \"\$(whoami)\" | wc -l); echo NOT_WRITABLE_DIRS \$(find '$OVH_PATH' -type d ! -writable | wc -l); echo NOT_WRITABLE_FILES \$(find '$OVH_PATH' -type f ! -writable | wc -l); echo '--- owners and modes (count  owner:group  mode  type) ---'; find '$OVH_PATH' -printf '%u:%g %m %y\n' | sort | uniq -c; echo '--- folder contents (top level) ---'; ls -A '$OVH_PATH' | head -60"
 
+      # Read-only, and it prints only yes/no facts and file names (this repository is public, so are its logs): can this
+      # user change the web server's settings (sudo without a password), where is the eqrento.com server block, may this
+      # user write it, and does it already hold the old-language rule and the 404 page.
+      - name: Web server settings (read-only)
+        run: |
+          ssh -p "$OVH_PORT" -i ~/.ssh/deploy_key -o BatchMode=yes -o ConnectTimeout=15 \
+              -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              "$OVH_USER@$OVH_HOST" '
+            if sudo -n true 2>/dev/null; then echo "SUDO_WITHOUT_PASSWORD yes"; else echo "SUDO_WITHOUT_PASSWORD no"; fi
+            command -v nginx >/dev/null && echo "NGINX $(nginx -v 2>&1 | cut -d/ -f2)" || echo "NGINX not on PATH"
+            files=$(grep -rlE "server_name[^;]*[[:space:]]eqrento\.com" /etc/nginx/ 2>/dev/null)
+            [ -n "$files" ] || echo "SERVER_BLOCK not found (or not readable)"
+            for f in $files; do
+              echo "SERVER_BLOCK $f"
+              [ -w "$f" ] && echo "  WRITABLE_BY_ME yes" || echo "  WRITABLE_BY_ME no"
+              grep -qE "\(en\|pl\|de" "$f" && echo "  OLD_LANGUAGE_RULE present" || echo "  OLD_LANGUAGE_RULE absent"
+              grep -qE "error_page[[:space:]]+404" "$f" && echo "  ERROR_PAGE_404 present" || echo "  ERROR_PAGE_404 absent"
+            done'
+
       - name: Remove the key from the runner
         if: always()
         run: rm -f ~/.ssh/deploy_key ~/.ssh/deploy_key.pub
