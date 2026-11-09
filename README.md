@@ -103,8 +103,11 @@ at 1201).
     https://eqrento.com/.
   - Before it, `/pl/`, `/en/` and `/de/` answered “403 Forbidden”: the folders exist for the old pricing addresses but
     had no index page. The live server does not have the language rule from `nginx-eqrento.conf` (`/es/` was a 404).
-    With that rule in place, the server would also send deeper old pages (e.g. `/pl/kontakt`, now a 404) home with a
-    real 301.
+  - Deeper old pages (`/pl/kontakt`, `/en/contact` …) get the 404 page, and `assets/js/old-address.js` on it sends any
+    address under those nine folders to the home page (9 Nov 2026, live). Other unknown addresses keep the 404 page.
+  - A real 301 for all of them needs the language rule on the server. The publishing account cannot add it (no sudo;
+    the site's nginx config is not reachable from it – see the read-only step in `check-ovh-ssh.yml`). The
+    instructions for the server administrator are in `../eqrento-ovh/INSTRUKCJA-3-STARE-ADRESY-NGINX.md`.
 - **Order:**
   1. H1 + switch: one state for the cards and the table header (pricing.js).
   2. The four plan cards.
