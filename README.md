@@ -98,6 +98,13 @@ at 1201).
     `../pricing` and a canonical to https://eqrento.com/pricing.
   - The relative link also works on the preview. No script is used, because of the CSP.
   - A real 301 needs the server: the nginx rule is ready in `../eqrento-ovh/nginx-eqrento.conf`, above the language rule.
+- **Old language versions** `/en/`, `/pl/`, `/de/`, `/es/`, `/fr/`, `/it/`, `/nl/`, `/sv/`, `/pt/` (9 Nov 2026, live):
+  - Each folder has the same `index.html`: an instant meta refresh to `../` (the home page) and a canonical to
+    https://eqrento.com/.
+  - Before it, `/pl/`, `/en/` and `/de/` answered “403 Forbidden”: the folders exist for the old pricing addresses but
+    had no index page. The live server does not have the language rule from `nginx-eqrento.conf` (`/es/` was a 404).
+    With that rule in place, the server would also send deeper old pages (e.g. `/pl/kontakt`, now a 404) home with a
+    real 301.
 - **Order:**
   1. H1 + switch: one state for the cards and the table header (pricing.js).
   2. The four plan cards.
