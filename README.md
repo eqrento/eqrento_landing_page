@@ -77,7 +77,7 @@ assets/video/          – testimonial video (mp4 + webm fallback)
 
 ## Sections (in page order) and menu
 
-Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `display: contents`, see “phones: the collage comes right after the lead” in style.css; the violet label above the headline has the button's height, type and padding there, both on the left – Łukasz, 9 Nov 2026) → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
+Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `display: contents`, see “phones: the collage comes right after the lead” in style.css; the violet label above the headline has the button's height, type and padding there, both centred – Łukasz, 9 Nov 2026) → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
 (“One platform…”) → How it works (“Six interconnected stages…”, pinned horizontal scroll) → Key features and
 competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Integrations (“Open API first.
 Connectors included.”, added 5 Nov 2026 from Wojtek's design) → Testimonial → Pricing teaser (`id="pricing"`, four mini

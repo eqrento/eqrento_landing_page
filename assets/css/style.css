@@ -1814,9 +1814,10 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   .hero { padding-top: calc(var(--header-h) + 32px); }
   .hero__content { gap: 24px; }
   /* the label above the headline: the height, type and padding of the “Book a 30-minute demo” button at the end of the
-     hero (56px, 16px semibold, 28px sides), in its own violet. Both stay on the left, with the headline, lead and
-     checklist (Łukasz, 9 Nov 2026) */
+     hero (56px, 16px semibold, 28px sides), in its own violet. Both are centred; the headline, lead and checklist stay
+     on the left (Łukasz, 9 Nov 2026) */
   .hero .pill--dark { height: 56px; padding: 0 28px; font-size: 16px; font-weight: 600; }
+  .hero .pill--dark, .hero__content > div:last-child { justify-self: center; }
   .hero__lead { font-size: 16px; }
   .hero__title { font-size: min(34px, calc((100vw - 2 * var(--gutter)) / 11.9)); }   /* the longer headline line (“automated end to end.”, 11.5em) fits one line */
   /* phones: four pills would stack one per row, so show them as a compact checklist instead */
