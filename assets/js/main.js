@@ -622,10 +622,38 @@
     return area ? AREAS[area.id] || area.id : 'page';
   };
 
+  /* a button can ask for another kind of request (data-demo-kind – case-study.html: the free hours audit): the same
+     form under its own heading, button and e-mail wording. Any other button brings back the demo texts, which are read
+     from the page, so they stay in the HTML */
+  const formTitle = views.form.querySelector('.demo__title'), formLead = views.form.querySelector('.demo__lead');
+  const doneEmail = views.done.querySelector('[data-demo-done-email]');
+  const doneNext = doneEmail && doneEmail.nextSibling && doneEmail.nextSibling.nodeType === 3 ? doneEmail.nextSibling : null;   // “ within one business day to …”
+  const DEMO = {
+    title: formTitle.textContent, lead: formLead.textContent, label: LABEL, next: doneNext ? doneNext.textContent : '',
+    subject: 'Demo request – ', line: 'I’d like to book a 30-minute demo.'
+  };
+  const KINDS = {
+    audit: {
+      title: 'Request a free hours audit',
+      lead: 'Tell us a little about your fleet and we’ll get back to you to set up the audit. It takes about a minute.',
+      label: 'Request my audit', next: ' within one business day to set up your free hours audit.',
+      subject: 'Free hours audit request – ', line: 'I’d like a free hours audit.'
+    }
+  };
+  let kind = DEMO;
+  const setKind = name => {
+    kind = KINDS[name] || DEMO;
+    formTitle.textContent = kind.title;
+    formLead.textContent = kind.lead;
+    if (!sending) submit.querySelector('[data-demo-label]').textContent = kind.label;
+    if (doneNext) doneNext.textContent = kind.next;
+  };
+
   const showView = name => Object.entries(views).forEach(([key, view]) => { view.hidden = key !== name; });
   const open = el => {
     trigger = el;
     source = el ? sourceOf(el) : 'direct link';
+    setKind(el && el.dataset.demoKind);
     showView('form');
     if (!dialog.open) dialog.showModal();
     isOpen = true;
@@ -725,7 +753,7 @@
   const setSending = on => {
     sending = on;
     submit.disabled = on;
-    submit.querySelector('[data-demo-label]').textContent = on ? 'Sending…' : LABEL;
+    submit.querySelector('[data-demo-label]').textContent = on ? 'Sending…' : kind.label;
     form.setAttribute('aria-busy', String(on));
   };
   const done = data => {
@@ -743,13 +771,13 @@
   const link = (text, href) => Object.assign(document.createElement('a'), { textContent: text, href });
   const fail = data => {
     const body = [
-      'Hello EQrento team,', '', 'I’d like to book a 30-minute demo.', '',
+      'Hello EQrento team,', '', kind.line, '',
       `Company: ${data.company}`, `Name: ${data.name}`, `Email: ${data.email}`, `Phone: ${data.phone || '–'}`,
       `Fleet size: ${data.fleet_size} units`,
       `We rent: ${data.rents.join(', ')}${data.rents_other ? ` (${data.rents_other})` : ''}`,
       '', data.message
     ].join('\n').trim();
-    const mail = `mailto:${CONTACT}?subject=${encodeURIComponent('Demo request – ' + data.company)}&body=${encodeURIComponent(body)}`;
+    const mail = `mailto:${CONTACT}?subject=${encodeURIComponent(kind.subject + data.company)}&body=${encodeURIComponent(body)}`;
     status.replaceChildren('Your request couldn’t be sent just now. ', link('Send it by email instead', mail),
       ' – everything you entered is already filled in – or write to ', link(CONTACT, 'mailto:' + CONTACT), '.');
     status.hidden = false;

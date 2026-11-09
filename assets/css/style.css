@@ -201,7 +201,7 @@ section[id] { scroll-margin-top: 80px; }
 }
 .header__logo img { width: 246px; transition: width .4s var(--ease); }
 .header.is-scrolled .header__logo img { width: 196px; }
-.nav__list { display: flex; gap: 48px; }
+.nav__list { display: flex; gap: 40px; }   /* 7 links since the case study (9 Nov 2026): the gaps shrink below 1440px, so the logo keeps its size */
 .nav__link {
   position: relative; display: block; padding: 8px 0;
   font-size: 16px; line-height: 1.1; color: var(--white); opacity: .5;
@@ -1202,6 +1202,304 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 /* =========================================================
+   CASE STUDY (case-study.html) – Wojtek's BAC Polska story (9 Nov 2026), rebuilt in the site's own styles: white cards
+   on the page grey, navy (the logo mark) for the highlighted card, violet labels, orange only for action and money (the
+   buttons, the flagged overuse). No reveal animations: main.js plays them on the home page only.
+   ========================================================= */
+.case-hero { padding: calc(var(--header-h) + 40px) 0 var(--sec-join); }   /* starts under the fixed header, like the pricing page */
+.case-hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: end; }
+.case-hero__text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.case-hero__title { font-size: var(--h1); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); text-wrap: balance; }
+.case-hero__title em { font-style: normal; color: var(--label-violet-ink); }
+.case-hero__text .lead { max-width: 660px; }
+.case-actions { display: flex; flex-wrap: wrap; gap: 12px 16px; margin-top: 8px; }
+
+/* the client card: the BAC logo from the client logos on the home page, the name and four facts */
+.case-facts { padding: 28px 32px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05); }
+.case-facts__client { display: flex; align-items: center; gap: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(23, 15, 4, .08); }
+.case-facts__logo { flex: none; width: 132px; }
+.case-facts__client p { display: flex; flex-direction: column; gap: 2px; }
+.case-facts__client b { font-size: 18px; font-weight: 600; color: var(--ink); }
+.case-facts__client span { font-size: 14px; color: var(--gray-2); }
+.case-facts__list { margin: 0; padding-top: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.4; }
+.case-facts__list div { display: flex; justify-content: space-between; gap: 16px; }
+.case-facts__list dt { color: var(--gray-2); }
+.case-facts__list dd { margin: 0; font-weight: 600; text-align: right; color: var(--ink); }
+
+/* the yard photo (2:1; on phones its own 4:5 crop) with an example of a flagged rental on it */
+.case-photo { position: relative; margin-top: 56px; aspect-ratio: 2 / 1; border-radius: 24px; overflow: hidden; background: #d9dde2; }
+.case-photo picture, .case-photo img { display: block; width: 100%; height: 100%; }
+.case-photo img { object-fit: cover; }
+.case-live {
+  position: absolute; right: 28px; bottom: 28px; width: min(340px, calc(100% - 56px));
+  display: flex; flex-direction: column; gap: 10px; padding: 18px 20px; border-radius: 16px;
+  background: rgba(255, 255, 255, .96); box-shadow: 0 1px 3px rgba(7, 10, 27, .08), 0 24px 60px -20px rgba(7, 10, 27, .45);
+  font-size: 13px; line-height: 1.4; color: var(--gray-2);
+}
+.case-live__row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.case-live__row b { font-size: 15px; font-weight: 600; color: var(--ink); }
+.case-live small { font-size: 13px; }
+.case-live small.is-over { font-weight: 600; color: #a85600; }
+.case-live__bar { display: flex; height: 8px; border-radius: 99px; overflow: hidden; background: #ecebf3; }
+.case-live__bar i { display: block; height: 100%; background: var(--mark-navy); }
+.case-live__bar i.is-over { background: #ffa41b; }
+.case-live__foot { padding-top: 10px; border-top: 1px solid rgba(23, 15, 4, .08); }
+/* status labels: orange for the overuse (money), violet for the office's part */
+.case-tag {
+  display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
+}
+.case-tag--flag { color: #8a4600; background: #fff1d6; }
+.case-tag--review, .case-tag--done { color: var(--label-violet-ink); background: rgba(101, 97, 255, .1); }
+
+/* results: four cards, the first one navy with the drifting glows of the recommended plan */
+.case-stats { padding: var(--sec-join) 0; }
+.case-stats__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.case-stat {
+  position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 8px;
+  padding: 32px 28px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.case-stat__num { font-size: clamp(40px, 1.6vw + 24px, 54px); font-weight: 600; line-height: 1.05; letter-spacing: -.03em; color: var(--ink); }
+.case-stat__pct { margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--label-violet-ink); }
+.case-stat__text { font-size: 15px; line-height: 1.5; color: var(--gray-2); }
+.case-stat--key { background: var(--mark-navy); border: 1px solid rgba(255, 255, 255, .1); box-shadow: var(--shadow-brand); }
+.case-stat--key .case-stat__num { color: var(--white); }
+.case-stat--key .case-stat__pct { color: #cfcbff; }
+.case-stat--key .case-stat__text { color: #b3afd6; }
+.case-note { margin: 24px auto 0; max-width: 980px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-2); }
+
+/* the story: the chapter list stays in view on the left (wide screens), the chapters on the right */
+.case-story { padding: var(--sec-join) 0; }
+.case-story__grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 8fr); gap: 64px; align-items: start; }
+.case-toc { position: sticky; top: 116px; display: flex; flex-direction: column; }   /* under the scrolled header (84px) */
+.case-toc a {
+  padding: 10px 0 10px 18px; border-left: 2px solid rgba(23, 15, 4, .1);
+  font-size: 15px; font-weight: 600; line-height: 1.3; color: var(--gray-2);
+  transition: color .3s var(--ease), border-color .3s var(--ease);
+}
+.case-toc a:hover { color: var(--ink); border-color: var(--label-violet); }
+.case-story__body { max-width: 860px; }
+.case-chapter { display: flex; flex-direction: column; gap: 18px; scroll-margin-top: 108px; }
+.case-chapter + .case-chapter { margin-top: 80px; }
+.case-chapter > .kicker { margin-bottom: -6px; }
+.case-chapter__title { font-size: clamp(26px, .8vw + 18px, 32px); font-weight: 600; line-height: 1.25; letter-spacing: -.01em; color: var(--ink); text-wrap: balance; }
+.case-chapter > p:not(.kicker) { font-size: 17px; line-height: 1.65; color: var(--gray-2); }
+/* ticks: the neutral marker of the plan lists */
+.case-list { display: flex; flex-direction: column; gap: 12px; }
+.case-list li, .case-ba__col li { position: relative; padding-left: 32px; text-wrap: pretty; }
+.case-list li { font-size: 16px; line-height: 1.5; color: var(--ink); }
+.case-list li::before, .case-ba__col li::before {
+  content: ""; position: absolute; left: 0; top: 2px; width: 20px; height: 20px; background: var(--marker);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* how it works: four steps, the flagging one navy */
+.case-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 6px; }
+.case-flow__step {
+  display: flex; flex-direction: column; gap: 8px; padding: 20px;
+  border-radius: 20px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.case-flow__num { font-size: 13px; font-weight: 600; letter-spacing: .08em; color: var(--label-violet-ink); }
+.case-flow__step .icon-box { width: 44px; height: 44px; margin: 2px 0 4px; }
+.case-flow__step b { font-size: 16px; font-weight: 600; line-height: 1.3; color: var(--ink); }
+.case-flow__text { font-size: 14px; line-height: 1.45; color: var(--gray-2); }
+.case-flow__step--key { background: var(--mark-navy); box-shadow: var(--shadow-brand); }
+.case-flow__step--key .case-flow__num { color: #cfcbff; }
+.case-flow__step--key .icon-box { background: rgba(255, 255, 255, .1); }
+.case-flow__step--key b { color: var(--white); }
+.case-flow__step--key .case-flow__text { color: #b3afd6; }
+
+/* the drawn EQrento screen: the window frame of the product screenshots (light title bar, three dots, hairline edge,
+   soft navy shadow with a violet glow) around a made-up list of flagged rentals */
+.case-ui {
+  --bar: 32px;
+  position: relative; isolation: isolate; overflow: hidden; margin-top: 10px;
+  padding-top: var(--bar); border-radius: 12px; background: linear-gradient(#edeef5 var(--bar), #fff 0);
+  box-shadow: 0 1px 3px rgba(7, 10, 27, .08), 0 16px 48px -8px rgba(7, 10, 27, .2), 0 40px 110px -30px rgba(100, 98, 255, .45);
+  font-size: 14px; line-height: 1.35; color: var(--gray-2);
+}
+.case-ui::before { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px #d3d7e8; }
+.case-ui::after {
+  content: ""; position: absolute; z-index: 2;
+  --dot: calc(var(--bar) * .3);
+  top: calc((var(--bar) - var(--dot)) / 2); left: calc(var(--bar) * .55);
+  width: var(--dot); height: var(--dot); border-radius: 50%;
+  background: #ff5f57; box-shadow: calc(var(--dot) * 1.8) 0 #febc2e, calc(var(--dot) * 3.6) 0 #28c840;
+}
+.case-ui__title {
+  position: absolute; top: 0; left: 76px; right: 16px; height: var(--bar);
+  display: flex; align-items: center; font-size: 12px; color: #6d6a86; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.case-ui__row {
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, .8fr) minmax(0, 1.3fr) minmax(0, .7fr) 136px;
+  align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid #efedf5;
+}
+.case-ui__row--head { padding-block: 12px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #8a86a3; }
+.case-ui__machine { font-weight: 600; color: var(--ink); }
+.case-ui__contract, .case-ui__over { font-variant-numeric: tabular-nums; }
+.case-ui__over { font-weight: 600; color: #a85600; }
+.case-ui__acts { display: flex; gap: 6px; }
+.case-ui__btn {
+  display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 8px;
+  font-size: 12px; font-weight: 600; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(23, 15, 4, .14);
+}
+.case-ui__btn--bill { color: #170f04; background: var(--gradient); box-shadow: none; }
+.case-ui__note { padding: 10px 20px; font-size: 12px; color: #8a86a3; background: #fafafc; }
+
+.case-figure { margin-top: 6px; }
+.case-figure img { width: 100%; border-radius: 20px; }
+.case-figure figcaption { margin-top: 12px; font-size: 14px; line-height: 1.5; color: var(--gray-2); }
+
+/* one system: the rental's steps as chips with arrows (the invoice in navy), the other modules in dashed chips */
+.case-mods { display: flex; flex-wrap: wrap; align-items: center; row-gap: 10px; }
+.case-mods li { display: flex; align-items: center; }
+.case-mods li + li::before { content: "→"; content: "→" / ""; width: 28px; text-align: center; font-size: 16px; color: var(--marker-soft); }
+.case-mods span {
+  display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 999px;
+  font-size: 14px; font-weight: 600; color: var(--ink); white-space: nowrap;
+  background: var(--white); box-shadow: inset 0 0 0 1px rgba(23, 15, 4, .08);
+}
+.case-mods__key span { color: var(--white); background: var(--mark-navy); box-shadow: none; }
+.case-mods--more { gap: 8px; }
+.case-mods--more li + li::before { content: none; }
+.case-mods--more span { font-weight: 500; color: var(--gray-2); background: transparent; box-shadow: none; border: 1px dashed rgba(23, 15, 4, .25); }
+
+/* before / with EQrento */
+.case-ba { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 6px; }
+.case-ba__col { padding: 26px 28px; border-radius: 20px; }
+.case-ba__col h3 { margin-bottom: 16px; font-size: 13px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; }
+.case-ba__col ul { display: flex; flex-direction: column; gap: 12px; }
+.case-ba__col li { font-size: 15px; line-height: 1.45; }
+.case-ba__col--before { background: rgba(28, 26, 23, .05); }
+.case-ba__col--before h3, .case-ba__col--before li { color: var(--gray-2); }
+.case-ba__col--before li::before {
+  background: #a39d95;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7 7 17'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7 7 17'/%3E%3C/svg%3E");
+}
+.case-ba__col--after { background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05); }
+.case-ba__col--after h3 { color: var(--label-violet-ink); }
+.case-ba__col--after li { color: var(--ink); }
+
+/* the owner's words: a navy card like the testimonial on the home page, with his photo */
+.case-owner { padding: var(--sec-join) 0; }
+.case-quote {
+  position: relative; isolation: isolate; display: grid; grid-template-columns: 300px minmax(0, 1fr); align-items: center; gap: 64px;
+  padding: 56px 72px 56px 56px; border-radius: 24px; background: var(--mark-navy); box-shadow: 0 32px 80px -40px rgba(27, 21, 98, .55);
+}
+.case-quote__photo { width: 100%; border-radius: 20px; }
+.case-quote__body { display: flex; flex-direction: column; gap: 28px; }
+.case-quote__text p { font-size: clamp(22px, .9vw + 14px, 30px); font-weight: 500; line-height: 1.45; letter-spacing: -.01em; color: var(--white); text-wrap: pretty; }
+.case-quote__who { display: flex; flex-direction: column; gap: 6px; padding-top: 24px; border-top: 1px solid rgba(229, 225, 219, .2); }
+.case-quote__who b { font-size: 20px; font-weight: 600; color: var(--white); }
+.case-quote__who span { font-size: 16px; color: #b3afd6; }
+.case-quote__note { margin-top: -8px; font-size: 14px; line-height: 1.5; color: #b3afd6; }
+
+/* the rental desk: a quote card and the team's list (violet tint, like the hero label) */
+.case-voices { padding: var(--sec-join) 0; }
+.case-voices__grid { margin-top: 48px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.case-card { display: flex; flex-direction: column; gap: 28px; padding: 40px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05); }
+.case-card blockquote p { font-size: 20px; line-height: 1.55; letter-spacing: -.01em; color: var(--ink); text-wrap: pretty; }
+.case-person { margin-top: auto; display: flex; align-items: center; gap: 14px; padding-top: 24px; border-top: 1px solid rgba(23, 15, 4, .08); }
+.case-person img { flex: none; width: 56px; height: 56px; border-radius: 50%; }
+.case-person span { display: flex; flex-direction: column; gap: 2px; }
+.case-person b { font-size: 16px; font-weight: 600; color: var(--ink); }
+.case-person small { font-size: 14px; color: var(--gray-2); }
+.case-card--values { background: rgba(101, 97, 255, .06); box-shadow: inset 0 0 0 1px rgba(101, 97, 255, .16); }
+.case-card__title { font-size: 14px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--label-violet-ink); }
+.case-vals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 28px; }
+.case-vals li { display: flex; flex-direction: column; gap: 3px; }
+.case-vals span { font-size: 13px; font-weight: 600; letter-spacing: .06em; color: var(--label-violet-ink); }
+.case-vals b { font-size: 16px; font-weight: 600; line-height: 1.35; color: var(--ink); }
+.case-vals small { font-size: 14px; line-height: 1.45; color: var(--gray-2); }
+
+/* the free hours audit: the offer and its three steps; the last section before the footer, so the full spacing below */
+.case-cta { padding: var(--sec-join) 0 var(--sec-y); }
+.case-cta__box {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; gap: 56px;
+  padding: 64px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.case-cta__text { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.case-audit { display: flex; flex-direction: column; gap: 18px; padding: 28px; border-radius: 20px; background: var(--soft); }
+.case-audit li { display: flex; align-items: flex-start; gap: 14px; font-size: 15px; line-height: 1.5; color: var(--ink); }
+.case-audit__num {
+  flex: none; display: grid; place-items: center; width: 32px; height: 32px; margin-top: -4px; border-radius: 50%;
+  font-size: 14px; font-weight: 600; color: var(--white); background: var(--mark-navy);
+}
+
+@media (max-width: 1200px) {
+  .case-story__grid { grid-template-columns: minmax(0, 1fr); }
+  .case-toc { display: none; }
+  .case-story__body { width: 100%; margin-inline: auto; }
+  .case-quote { grid-template-columns: 240px minmax(0, 1fr); gap: 48px; padding: 48px; }
+  .case-cta__box { gap: 40px; padding: 48px; }
+}
+/* up to 1100px the hero and the audit box stack: beside the client card the two buttons no longer fit one row */
+@media (max-width: 1100px) {
+  .case-hero__grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .case-facts { max-width: 560px; }
+  .case-stats__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case-cta__box { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 960px) {
+  .case-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case-voices__grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .case-ba { grid-template-columns: minmax(0, 1fr); }
+  .case-quote { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 32px 28px 36px; }
+  .case-quote__photo { width: 200px; }
+}
+@media (max-width: 640px) {
+  .case-hero { padding-top: calc(var(--header-h) + 24px); }
+  .case-hero__text { gap: 16px; }
+  .case-hero__title { font-size: 30px; }
+  .case-actions { flex-direction: column; align-items: stretch; align-self: stretch; }
+  .case-facts { padding: 24px; border-radius: 20px; }
+  .case-facts__client { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .case-facts__logo { width: 112px; }
+  /* phones: the 4:5 photo, and the example card half over its bottom edge and half under it (on top of the photo it
+     would cover most of the machine) */
+  .case-photo { margin-top: 40px; aspect-ratio: auto; overflow: visible; border-radius: 0; background: none; }
+  .case-photo picture { height: auto; }
+  .case-photo img { height: auto; aspect-ratio: 4 / 5; border-radius: 20px; background: #d9dde2; }
+  .case-live { position: relative; right: auto; bottom: auto; width: auto; margin: -64px 12px 0; padding: 14px 16px; }
+  .case-live small.is-over { white-space: nowrap; }
+  .case-stats__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .case-stat { padding: 28px 24px; border-radius: 20px; }
+  .case-chapter { gap: 16px; }
+  .case-chapter + .case-chapter { margin-top: 64px; }
+  .case-chapter > p:not(.kicker) { font-size: 16px; }
+  .case-flow__step { padding: 18px 16px; }
+  /* the drawn screen: each rental on two lines (machine and hours, then what was detected and the decision), no contract column */
+  .case-ui { --bar: 26px; border-radius: 10px; font-size: 13px; }
+  .case-ui__title { left: 64px; font-size: 11px; }
+  .case-ui__row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "machine over" "detected acts"; gap: 6px 12px; padding: 12px 16px; }
+  .case-ui__row--head, .case-ui__contract { display: none; }
+  .case-ui__machine { grid-area: machine; }
+  .case-ui__over { grid-area: over; text-align: right; }
+  .case-ui__detected { grid-area: detected; }
+  .case-ui__acts { grid-area: acts; justify-self: end; }
+  .case-ui__note { padding-inline: 16px; }
+  .case-figure img { border-radius: 16px; }
+  .case-ba__col { padding: 22px 20px; }
+  .case-quote__text p { font-size: 20px; }
+  .case-voices__grid { margin-top: 32px; gap: 16px; }
+  .case-card { padding: 28px 24px; border-radius: 20px; }
+  .case-card blockquote p { font-size: 18px; }
+  .case-cta__box { gap: 28px; padding: 32px 24px; border-radius: 20px; }
+  .case-audit { padding: 22px 20px; }
+}
+@media (max-width: 480px) {
+  .case-flow, .case-vals { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 360px) {
+  .case-hero__title { font-size: 28px; }
+  .case-facts__list { font-size: 14px; }   /* “Telematics … Teltonika · Zoomlion” stays on one line at 320px */
+}
+
+/* =========================================================
    FAQ
    ========================================================= */
 /* the FAQ is the last section before the dark footer: the full section spacing below it, not the join spacing */
@@ -1649,7 +1947,8 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
    ========================================================= */
 @media (max-width: 1440px) {
   :root { --gutter: 40px; --section-y: 88px; }
-  .nav__list { gap: 32px; }
+  .nav__list { gap: 24px; }
+  @media (max-width: 1320px) { .nav__list { gap: 20px; } }   /* small laptops: the 7 links still leave the logo its full width from ~1300px up */
   .hero__stage { --sw: min(64vw, 1315px); }
   .hero__content { width: 520px; }
   .why-card { padding: 40px 36px; }

@@ -82,9 +82,11 @@ Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `disp
 competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Integrations (“Open API first.
 Connectors included.”, added 5 Nov 2026 from Wojtek's design) → Testimonial → Pricing teaser (`id="pricing"`, four mini
 tiles and the way to pricing.html) → FAQ → footer. (The closing “See it on your kind of fleet” section was removed on 4 Nov 2026 – Łukasz.)
-Menu: Home, Why EQrento, How it works, Key features, Pricing, FAQ (header, mobile menu and footer follow the page order; the Platform section has no menu link).
-“Pricing” in the menu and the footer leads to the pricing page (`pricing`, a relative link); the other items are sections
-of the home page (`./#why` etc. on the other pages).
+Menu: Home, Why EQrento, How it works, Key features, Pricing, Case study, FAQ (header, mobile menu and footer follow the page order; the Platform section has no menu link).
+“Pricing” and “Case study” in the menu and the footer lead to their pages (`pricing`, `case-study` – relative links); the
+other items are sections of the home page (`./#why` etc. on the other pages). With 7 links the gaps between them are
+40px, 24px up to 1440px and 20px up to 1320px, so the header logo keeps its 246px from ~1320px up (238px at 1280, 196px
+at 1201).
 
 ## Pricing page (pricing.html, since 5 Nov 2026)
 
@@ -131,6 +133,30 @@ of the home page (`./#why` etc. on the other pages).
   branches”) and one button, “Compare plans and features” (Łukasz removed the “Book a demo” next to it on 5 Nov 2026).
   Four in a row above 1100px, 2 × 2 below, and on phones (≤ 640px) one under another at full width, as the plan cards
   were before (Łukasz, 9 Nov 2026) – with larger type and the “/month · billed yearly” pair beside the figure.
+
+## Case study page (case-study.html, since 9 Nov 2026)
+
+- **NOT on eqrento.com until Łukasz approves it** („Stronę umieść tylko w Github dopóki nie uznam, że może zostać
+  opublikowana”). An OVH publish sends the whole main branch, so before any „publikuj” ask whether the case study (and
+  the “Case study” links in the menus and footers) may go live too.
+- **What:** Wojtek's BAC Polska case study (`bac-case-study.zip`, 5 Nov 2026), rebuilt in the site's own styles: white
+  cards on the page grey, navy (the logo mark) for the highlighted cards, violet labels, orange only for the buttons and
+  the flagged overuse. His texts, with the site's typography (curly quotes, `&nbsp;`) and “telemetry data” for the data.
+- **Address:** `/case-study` (case-study.html, served like /pricing); in sitemap.xml. Header, menu, footer, cookie banner and
+  demo dialog are copies, as on the pricing page.
+- **Drafts:** the quotes of Gerben Slooijer and Rafał Lenartowicz must be approved by them word for word before the page
+  goes live (Wojtek's note) – marked “DRAFT” in the HTML.
+- **Order:** hero (label, H1, lead, two buttons, the client card with the BAC logo from the client logos) → yard photo with
+  an example of a flagged rental → four results → the story (chapter list sticky on the left above 1200px; challenge, how
+  it works with four steps and a drawn EQrento screen, control, one system, what changed) → the owner's quote (navy
+  card) → the rental desk (a quote and what the team values) → free hours audit.
+- **Photos:** Wojtek's JPGs as WebP in `assets/img/case-bac/`. The yard photo has two crops in a `<picture>`: 2:1 from
+  641px up (1024 / 1536px) and 4:5 on phones (720px; there the example card sits half over its bottom edge). Site photo
+  4:3 at 700 / 900 / 1350px, Gerben 4:5, Rafał a 168px square. The JPG masters stay in Wojtek's zip, not in the repo.
+- **Free hours audit:** “Request a free audit” opens the demo form as an audit request – `data-demo-kind="audit"`
+  (main.js, `KINDS`) swaps the heading, lead, button, thank-you line and e-mail wording; any other button brings back the
+  demo texts. `source` “case study – free hours audit”. “Get a free hours audit” in the hero only scrolls to that box.
+- **No reveal animations and no page script** (main.js plays the reveals on the home page only).
 
 ## Things worth knowing
 

@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case Study: BAC Polska – GPS Hours Checked Against Every Rental Contract | EQrento</title>
+  <meta name="description" content="How BAC Polska uses EQrento to compare GPS engine hours with every rental contract – and decides what to bill.">
+  <link rel="canonical" href="https://eqrento.com/case-study">
+  <!-- link previews: as on the home page, with this page's own address, title and description (same picture) -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="EQrento">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://eqrento.com/case-study">
+  <meta property="og:title" content="Case Study: BAC Polska – GPS Hours Checked Against Every Rental Contract | EQrento">
+  <meta property="og:description" content="How BAC Polska uses EQrento to compare GPS engine hours with every rental contract – and decides what to bill.">
+  <meta property="og:image" content="https://eqrento.com/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="EQrento – your rental business, automated end to end">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Case Study: BAC Polska – GPS Hours Checked Against Every Rental Contract | EQrento">
+  <meta name="twitter:description" content="How BAC Polska uses EQrento to compare GPS engine hours with every rental contract – and decides what to bill.">
+  <meta name="twitter:image" content="https://eqrento.com/assets/img/og-image.png">
+  <meta name="theme-color" content="#f8f7f5">
+  <link rel="icon" href="favicon.ico?v=2" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+  <link rel="manifest" href="site.webmanifest">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css?v=20261109c">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ HEADER, MOBILE MENU, FOOTER, COOKIE BANNER, DEMO DIALOG – copies of the ones in index.html, with their
+     links pointing back to the home page (./#…). When you change them in index.html, change them here too (the header,
+     menu, footer and banner are also in privacy-policy.html and cookie-policy.html). Paths are relative on purpose: the
+     GitHub preview lives under /eqrento_landing_page/, and this page sits in the root next to index.html. ============ -->
+<header class="header" id="header">
+  <div class="wrap header__inner">
+    <a href="./" class="header__logo" aria-label="EQrento – home">
+      <img src="assets/img/logo-eqrento.webp" width="246" height="49" alt="EQrento">
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="./">Home</a></li>
+        <li><a class="nav__link" href="./#why">Why EQrento</a></li>
+        <li><a class="nav__link" href="./#steps">How it works</a></li>
+        <li><a class="nav__link" href="./#features">Key features</a></li>
+        <li><a class="nav__link" href="pricing">Pricing</a></li>
+        <li><a class="nav__link is-active" href="case-study" aria-current="page">Case study</a></li>
+        <li><a class="nav__link" href="./#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <a href="#book-demo" class="btn btn--primary header__cta">Book a demo</a>
+
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+</header>
+
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <ul class="mobile-menu__list">
+    <li><a href="./">Home</a></li>
+    <li><a href="./#why">Why EQrento</a></li>
+    <li><a href="./#steps">How it works</a></li>
+    <li><a href="./#features">Key features</a></li>
+    <li><a href="pricing">Pricing</a></li>
+    <li><a href="case-study" aria-current="page">Case study</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+  </ul>
+  <a href="#book-demo" class="btn btn--primary btn--arrow mobile-menu__cta">
+    <span>Book a 30-minute demo</span>
+    <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+  </a>
+</div>
+
+<main id="main" class="case-page">
+
+  <!-- ============ HERO: the story in one line, the client's facts and the yard photo with an example of a flagged rental ============
+       Wojtek's BAC Polska case study (zip of 5 Nov 2026), rebuilt in the site's own styles. The texts are his; the two quotes
+       are DRAFTS until Gerben and Rafał approve them word for word (his note) – see “DRAFT” below. -->
+  <section class="case-hero">
+    <div class="wrap-narrow">
+      <div class="case-hero__grid">
+        <div class="case-hero__text">
+          <p class="kicker">Case study · GPS vs&nbsp;contract</p>
+          <h1 class="case-hero__title">Every hour on site, <em>seen.</em> Every invoice, their&nbsp;call.</h1>
+          <p class="lead">BAC Polska runs its entire rental business in EQrento, from offer and transport to service, warehouse and invoicing. GPS engine hours are checked against every contract; the office decides what to&nbsp;bill.</p>
+          <div class="case-actions">
+            <a href="#audit" class="btn btn--primary btn--arrow">
+              <span>Get a free hours audit</span>
+              <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+            </a>
+            <a href="#story" class="btn btn--ghost">Read the story</a>
+          </div>
+        </div>
+
+        <!-- the BAC logo is the one from the client logos on the home page (assets/img/logo-bac.webp), not the file in Wojtek's zip -->
+        <aside class="case-facts" aria-label="About BAC Polska">
+          <div class="case-facts__client">
+            <img class="case-facts__logo" src="assets/img/logo-bac.webp" width="226" height="70" alt="BAC Polska">
+            <p><b>BAC Polska</b><span>Equipment rental · Poland</span></p>
+          </div>
+          <dl class="case-facts__list">
+            <div><dt>On EQrento since</dt><dd>2024</dd></div>
+            <div><dt>Modules</dt><dd>All of them</dd></div>
+            <div><dt>Workflow</dt><dd>Offer → invoice</dd></div>
+            <div><dt>Telematics</dt><dd>Teltonika · Zoomlion</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <!-- two crops of Wojtek's bac-hero.jpg: 2:1 from 641px up, 4:5 on phones (WebP; the JPG masters stay outside the repo) -->
+      <div class="case-photo">
+        <picture>
+          <source media="(max-width: 640px)" srcset="assets/img/case-bac/hero-tall-720.webp" width="720" height="900">
+          <img src="assets/img/case-bac/hero-wide-1536.webp"
+               srcset="assets/img/case-bac/hero-wide-1024.webp 1024w, assets/img/case-bac/hero-wide-1536.webp 1536w"
+               sizes="(max-width: 1200px) calc(100vw - 64px), (max-width: 1456px) calc(100vw - 96px), 1360px"
+               width="1536" height="768" alt="BAC Polska’s Zoomlion boom lift in the yard" fetchpriority="high">
+        </picture>
+        <div class="case-live" role="img" aria-label="Illustrative example: a boom lift on contract #2481 flagged for 5.4 hours of Saturday work, waiting for the office to decide">
+          <div class="case-live__row"><b>Boom lift · contract #2481</b><span class="case-tag case-tag--flag">Flagged</span></div>
+          <div class="case-live__bar"><i style="width:72%"></i><i class="is-over" style="width:18%"></i></div>
+          <div class="case-live__row"><small>Contract: <span class="nowrap">Mon–Fri</span>, 8&nbsp;h/day</small><small class="is-over">Sat · 5.4&nbsp;h</small></div>
+          <div class="case-live__row case-live__foot"><small>Example&nbsp;– illustrative data</small><span class="case-tag case-tag--review">Office review</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section class="case-stats" aria-labelledby="results-title">
+    <div class="wrap-narrow">
+      <h2 class="sr-only" id="results-title">Results at BAC Polska</h2>
+      <ul class="case-stats__grid">
+        <li class="case-stat case-stat--key">
+          <span class="plan__glows" aria-hidden="true"><span class="plan__blob plan__blob--a"></span><span class="plan__blob plan__blob--b"></span></span>
+          <b class="case-stat__num">1 in&nbsp;5</b>
+          <span class="case-stat__pct">19.1% of machines</span>
+          <span class="case-stat__text">worked on days outside the contract: weekends or public&nbsp;holidays</span>
+        </li>
+        <li class="case-stat">
+          <b class="case-stat__num">1 in&nbsp;9</b>
+          <span class="case-stat__pct">11.2% of machines</span>
+          <span class="case-stat__text">worked beyond the agreed daily limit, e.g. more than 10&nbsp;hours a&nbsp;day</span>
+        </li>
+        <li class="case-stat">
+          <b class="case-stat__num">1 in&nbsp;23</b>
+          <span class="case-stat__pct">4.3% of machines</span>
+          <span class="case-stat__text">kept working after the customer reported it ready for pickup. Reported on Friday, collected on Monday, busy all&nbsp;weekend.</span>
+        </li>
+        <li class="case-stat">
+          <b class="case-stat__num">100%</b>
+          <span class="case-stat__pct">no manual checks</span>
+          <span class="case-stat__text">of GPS-equipped rentals compared with the contract automatically, every billing&nbsp;period</span>
+        </li>
+      </ul>
+      <p class="case-note">BAC Polska, last 12 months. Measured per machine per invoice. Up to 30 minutes a day is ignored automatically, so loading and transport don’t count. These are flagged cases; BAC’s office decides case by case what is&nbsp;billed.</p>
+    </div>
+  </section>
+
+  <!-- ============ THE STORY: chapters, with their list on the left (wide screens only, it stays in view) ============ -->
+  <section class="case-story" id="story" aria-label="The story">
+    <div class="wrap-narrow case-story__grid">
+      <nav class="case-toc" aria-label="Chapters">
+        <a href="#challenge">The challenge</a>
+        <a href="#solution">How it works</a>
+        <a href="#control">Control, not autopilot</a>
+        <a href="#workflow">One system, every stage</a>
+        <a href="#changes">What changed</a>
+      </nav>
+
+      <div class="case-story__body">
+        <article class="case-chapter" id="challenge" aria-labelledby="challenge-title">
+          <p class="kicker">The challenge</p>
+          <h2 class="case-chapter__title" id="challenge-title">Machines don’t stop working at 5&nbsp;pm on&nbsp;Friday.</h2>
+          <p>A rental contract says five days, eight hours a day. What actually happens on site is another story: a Saturday shift to catch up, a second crew in the evening, a machine kept running “just for an&nbsp;hour”.</p>
+          <p>Before EQrento, BAC Polska worked across several separate systems. Telemetry data lived in one place, contracts in another, and someone had to compare them by hand. Extra hours were noticed by chance, if at&nbsp;all.</p>
+        </article>
+
+        <article class="case-chapter" id="solution" aria-labelledby="solution-title">
+          <p class="kicker">How it works</p>
+          <h2 class="case-chapter__title" id="solution-title">GPS hours checked against every contract, automatically.</h2>
+          <ol class="case-flow">
+            <li class="case-flow__step">
+              <span class="case-flow__num" aria-hidden="true">01</span>
+              <span class="icon-box"><img src="assets/icons/gps.svg" width="27" height="27" alt=""></span>
+              <b>GPS logs engine hours</b>
+              <span class="case-flow__text">Telematics on every machine reports when it actually&nbsp;works.</span>
+            </li>
+            <li class="case-flow__step">
+              <span class="case-flow__num" aria-hidden="true">02</span>
+              <span class="icon-box"><img src="assets/icons/contract.svg" width="27" height="27" alt=""></span>
+              <b>Compared with the contract</b>
+              <span class="case-flow__text">Agreed days, daily hour limit, rental&nbsp;period.</span>
+            </li>
+            <li class="case-flow__step case-flow__step--key">
+              <span class="case-flow__num" aria-hidden="true">03</span>
+              <span class="icon-box"><img src="assets/icons/platform/reports.svg" width="27" height="27" alt=""></span>
+              <b>Overuse flagged</b>
+              <span class="case-flow__text">Weekends, extra hours. Under 30&nbsp;min/day is&nbsp;ignored.</span>
+            </li>
+            <li class="case-flow__step">
+              <span class="case-flow__num" aria-hidden="true">04</span>
+              <span class="icon-box"><img src="assets/icons/invoice.svg" width="27" height="27" alt=""></span>
+              <b>Office decides</b>
+              <span class="case-flow__text">Bill it, waive it, or bring it up with the&nbsp;customer.</span>
+            </li>
+          </ol>
+
+          <!-- a drawn screen, not a screenshot: made-up rows (the first one is the rental in the card on the photo) -->
+          <div class="case-ui" role="img" aria-label="Illustrative EQrento screen: three rentals flagged for work outside the contract, two waiting for the office to bill or waive the hours, one already billed">
+            <p class="case-ui__title">EQrento · GPS vs contract · flagged for review</p>
+            <div class="case-ui__row case-ui__row--head"><span>Machine</span><span>Contract</span><span>Detected</span><span>Over</span><span>Decision</span></div>
+            <div class="case-ui__row"><span class="case-ui__machine">Boom lift 14&nbsp;m</span><span class="case-ui__contract">#2481</span><span class="case-ui__detected">Sat, weekend</span><span class="case-ui__over">5.4&nbsp;h</span><span class="case-ui__acts"><span class="case-ui__btn case-ui__btn--bill">Bill</span><span class="case-ui__btn">Waive</span></span></div>
+            <div class="case-ui__row"><span class="case-ui__machine">Telehandler 14&nbsp;m</span><span class="case-ui__contract">#2475</span><span class="case-ui__detected">Over daily limit</span><span class="case-ui__over">2.1&nbsp;h</span><span class="case-ui__acts"><span class="case-ui__btn case-ui__btn--bill">Bill</span><span class="case-ui__btn">Waive</span></span></div>
+            <div class="case-ui__row"><span class="case-ui__machine">Boom lift 16&nbsp;m</span><span class="case-ui__contract">#2463</span><span class="case-ui__detected">Sun, weekend</span><span class="case-ui__over">3.0&nbsp;h</span><span class="case-ui__acts"><span class="case-tag case-tag--done">Billed</span></span></div>
+            <p class="case-ui__note">Illustrative example&nbsp;– not BAC customer data.</p>
+          </div>
+        </article>
+
+        <article class="case-chapter" id="control" aria-labelledby="control-title">
+          <p class="kicker">Control, not autopilot</p>
+          <h2 class="case-chapter__title" id="control-title">Nothing lands on an invoice without a human decision.</h2>
+          <p>EQrento doesn’t add charges by itself. BAC’s office sees every flagged case and decides. A loyal customer running two hours over? Maybe let it go. A machine working every Saturday on a weekday contract? That’s a conversation, and now there’s data behind&nbsp;it.</p>
+          <ul class="case-list">
+            <li>Full visibility of work outside the contract, per machine and per customer</li>
+            <li><span class="nowrap">Built-in</span> <span class="nowrap">30-minute</span> daily tolerance, so loading and transport never trigger a&nbsp;flag</li>
+            <li>Hard numbers for customer conversations, even when the hours aren’t billed</li>
+          </ul>
+          <figure class="case-figure">
+            <img src="assets/img/case-bac/site-900.webp"
+                 srcset="assets/img/case-bac/site-700.webp 700w, assets/img/case-bac/site-900.webp 900w, assets/img/case-bac/site-1350.webp 1350w"
+                 sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1200px) min(860px, calc(100vw - 64px)), min(860px, calc(66.7vw - 101px))"
+                 width="1350" height="1012" alt="A BAC Polska scissor lift loaded on a trailer for transport" loading="lazy">
+            <figcaption>On the way to the next job: transport is planned and tracked in&nbsp;EQrento.</figcaption>
+          </figure>
+        </article>
+
+        <article class="case-chapter" id="workflow" aria-labelledby="workflow-title">
+          <p class="kicker">One system, every stage</p>
+          <h2 class="case-chapter__title" id="workflow-title">No paper, no retyping, no “who has the latest&nbsp;version?”</h2>
+          <p>BAC Polska uses every EQrento module. Each step hands its data to the next, so nothing is typed twice and nothing gets lost between&nbsp;departments.</p>
+          <ol class="case-mods" aria-label="The rental, step by step">
+            <li><span>Offers</span></li>
+            <li><span>Contracts</span></li>
+            <li><span>Transport</span></li>
+            <li><span>Handover</span></li>
+            <li><span>GPS &amp; hours</span></li>
+            <li><span>Return</span></li>
+            <li class="case-mods__key"><span>Invoice</span></li>
+          </ol>
+          <ul class="case-mods case-mods--more" aria-label="Also in use">
+            <li><span>Service &amp; inspections</span></li>
+            <li><span>Warehouse (WMS)</span></li>
+            <li><span>Equipment sales</span></li>
+            <li><span>Reports</span></li>
+          </ul>
+        </article>
+
+        <article class="case-chapter" id="changes" aria-labelledby="changes-title">
+          <p class="kicker">What changed</p>
+          <h2 class="case-chapter__title" id="changes-title">From paper and WhatsApp to one source of&nbsp;truth.</h2>
+          <div class="case-ba">
+            <div class="case-ba__col case-ba__col--before">
+              <h3>Before</h3>
+              <ul>
+                <li>Everything on paper: contracts, notes, checklists</li>
+                <li>Handover and return photos scattered across WhatsApp</li>
+                <li>Paper handover protocols</li>
+                <li>GPS hours compared with contracts by hand</li>
+                <li>No automation between departments</li>
+              </ul>
+            </div>
+            <div class="case-ba__col case-ba__col--after">
+              <h3>With EQrento</h3>
+              <ul>
+                <li>Every rental in one system, from offer to invoice</li>
+                <li>Photos attached to each handover and return</li>
+                <li>Digital handover protocols</li>
+                <li>GPS hours checked against every contract automatically</li>
+                <li>Invoices calculated automatically and sent to the ERP on set&nbsp;days</li>
+              </ul>
+            </div>
+          </div>
+          <p>A typical case: the customer reports a machine ready for pickup on Friday. Logistics collects it on Monday. In between, GPS shows it working all weekend. Before, nobody would have known. Now the office sees it on the next invoice run and decides what to&nbsp;do.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE OWNER'S WORDS ============ -->
+  <section class="case-owner" aria-label="What the owner of BAC Polska says">
+    <div class="wrap-narrow">
+      <figure class="case-quote">
+        <span class="plan__glows" aria-hidden="true"><span class="plan__blob plan__blob--a"></span><span class="plan__blob plan__blob--b"></span></span>
+        <img class="case-quote__photo" src="assets/img/case-bac/gerben.webp" width="512" height="640" alt="Gerben Slooijer, owner of BAC Polska, on a boom lift platform" loading="lazy">
+        <div class="case-quote__body">
+          <!-- DRAFT: Gerben approves this quote word for word before the page is published -->
+          <blockquote class="case-quote__text"><p>“From the first offer to the final invoice, everything runs in one system. Fewer mistakes, no paperwork on the desks, and I can see what every machine is&nbsp;doing.”</p></blockquote>
+          <p class="case-quote__who"><b>Gerben Slooijer</b><span>Owner, BAC Polska</span></p>
+          <p class="case-quote__note">BAC Polska has been EQrento’s launch partner since day one and helped shape the&nbsp;product.</p>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ THE RENTAL DESK ============ -->
+  <section class="case-voices" aria-labelledby="voices-title">
+    <div class="wrap-narrow">
+      <div class="section-head">
+        <p class="kicker">From the rental desk</p>
+        <h2 class="h2" id="voices-title">Beyond GPS: what the people using it every day&nbsp;say.</h2>
+      </div>
+      <div class="case-voices__grid">
+        <figure class="case-card case-card--quote">
+          <!-- DRAFT: Rafał approves this quote word for word before the page is published -->
+          <blockquote><p>“The interface is simple and the whole workflow runs automatically, from contract to invoice. I move through every stage without thinking about where to click, and when we need help, support reacts&nbsp;fast.”</p></blockquote>
+          <figcaption class="case-person">
+            <img src="assets/img/case-bac/rafal.webp" width="168" height="168" alt="" loading="lazy">
+            <span><b>Rafał Lenartowicz</b><small>Rental Manager, BAC Polska</small></span>
+          </figcaption>
+        </figure>
+        <div class="case-card case-card--values">
+          <h3 class="case-card__title">What the rental team values most</h3>
+          <ol class="case-vals">
+            <li><span aria-hidden="true">01</span><b>Simple interface</b><small>Clear screens, easy to pick up</small></li>
+            <li><span aria-hidden="true">02</span><b>Automated workflow</b><small>Offer → contract → handover → invoice</small></li>
+            <li><span aria-hidden="true">03</span><b>Clear invoicing</b><small>Calculated automatically, sent to the ERP on set&nbsp;days</small></li>
+            <li><span aria-hidden="true">04</span><b>Intuitive at every stage</b><small>From booking to return</small></li>
+            <li><span aria-hidden="true">05</span><b>Personal user profiles</b><small>Each user tailors their own profile</small></li>
+            <li><span aria-hidden="true">06</span><b>Responsive support</b><small>Critical issues within 2&nbsp;hours, smaller changes within&nbsp;days</small></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FREE HOURS AUDIT: “Request a free audit” opens the demo form as an audit request (data-demo-kind, main.js) ============ -->
+  <section class="case-cta" id="audit" aria-labelledby="audit-title">
+    <div class="wrap-narrow">
+      <div class="case-cta__box">
+        <div class="case-cta__text">
+          <p class="kicker">Free hours audit</p>
+          <h2 class="h2" id="audit-title">How many hours does your fleet work <span class="nowrap">off-contract?</span></h2>
+          <p class="lead">Send us telemetry data from a few machines and the matching contracts. We’ll show you what EQrento would have flagged. No&nbsp;commitment.</p>
+          <div class="case-actions">
+            <a href="#book-demo" class="btn btn--primary btn--arrow" data-demo-kind="audit" data-demo-source="case study – free hours audit">
+              <span>Request a free audit</span>
+              <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+            </a>
+            <a href="#book-demo" class="btn btn--ghost" data-demo-source="case study – bottom">Book a demo</a>
+          </div>
+        </div>
+        <ol class="case-audit">
+          <li><span class="case-audit__num" aria-hidden="true">1</span>You share GPS data for <span class="nowrap">5–10</span> machines and their&nbsp;contracts</li>
+          <li><span class="case-audit__num" aria-hidden="true">2</span>We run them through EQrento’s contract&nbsp;check</li>
+          <li><span class="case-audit__num" aria-hidden="true">3</span>You get a short report: flagged days, hours and their&nbsp;value</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <span class="glow glow--footer" aria-hidden="true"></span>
+  <div class="wrap-narrow">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="./" aria-label="EQrento – home"><img src="assets/icons/logo-light.webp" width="246" height="49" alt="EQrento"></a>
+        <p>The EQrento service and brand are owned by SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o.</p>
+        <p>Get in touch with us for details on implementation and to learn how EQrento can help your rental business grow.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Company</h3>
+        <address>SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o.<br>ul. Gen. Władysława Sikorskiego 19<br>65-454 Zielona Góra, Poland<br>NIP / VAT ID: PL9292077160<br>KRS / National Court Register: 0001036416</address>
+      </div>
+      <div class="footer__col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:contact@eqrento.com">contact@eqrento.com</a></li>
+          <li><a href="tel:+48693629446">+48 693 629 446</a></li>
+          <li><a href="tel:+48603197858">+48 603 197 858</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3>System</h3>
+        <ul>
+          <li><a href="./#why">Why EQrento?</a></li>
+          <li><a href="./#steps">How it works</a></li>
+          <li><a href="./#features">Key features</a></li>
+          <li><a href="pricing">Pricing</a></li>
+          <li><a href="case-study" aria-current="page">Case study</a></li>
+          <li><a href="./#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- icons are inline SVG, not emoji: Windows shows the flag emoji as the letters "PL" -->
+    <p class="footer__tagline">Crafted with grit in <span class="nowrap"><svg class="footer__flag" width="14" height="9" viewBox="0 0 16 10" aria-hidden="true" focusable="false"><path d="M1.5 0h13A1.5 1.5 0 0 1 16 1.5V5H0V1.5A1.5 1.5 0 0 1 1.5 0z" fill="#fff"/><path d="M0 5h16v3.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 8.5z" fill="#dc143c"/></svg>&nbsp;Poland,</span> <span class="nowrap">delivered with grace to the <svg class="footer__globe" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11.5" fill="#3d8ef7"/><g fill="#45c46c"><path d="M7.2 5.6c1.1-1.3 3-2 4.8-1.9 1.4.1 2.6.6 3.4 1.5-.6.6-1.5.8-2.3 1.1-.7.3-1.2.9-1.9 1.1-.9.3-1.9-.1-2.6-.6-.5-.3-1-.8-1.4-1.2z"/><path d="M9 9.6c1.5-.7 3.6-.9 5.3-.5 1.2.3 2.1 1 2.5 2 .4 1-.1 2-.6 2.9-.6 1.1-.7 2.4-1.4 3.4-.6.9-1.2 1.9-2 2.4-.5.3-1 0-1.1-.6-.2-1.1-.1-2.3-.6-3.3-.5-.9-1.5-1.4-2-2.3-.6-1-.8-2.5-.1-3.7z"/><path d="M17.4 7.6c1.2-.3 2.6.1 3.6.9.6.5 1 1.3.9 2.1-.8.2-1.6-.1-2.3 0-.7.2-1.3.8-2 .6-.6-.2-.8-.9-.8-1.5 0-.8.2-1.8.6-2.1z"/><path d="M2.6 13.4c1-.4 2.2-.2 2.9.6.5.7.4 1.6 0 2.4-.4.9-1 1.7-1.6 2.4-.7-1.1-1.2-2.5-1.4-3.8 0-.6 0-1.2.1-1.6z"/></g></svg>&nbsp;world.</span></p>
+    <div class="footer__bottom">
+      <p class="footer__copyright"><span class="nowrap">Copyright © 2026 SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o.</span> <span class="nowrap footer__rights">All Rights Reserved</span></p>
+      <ul class="footer__legal">
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        <li><button type="button" class="footer__cookie-btn" data-cookie-open>Cookie settings</button></li>
+        <!-- icon licence (free Flaticon licence): keep this credit while the site uses Uicons -->
+        <li>Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ DEMO REQUEST – every “Book a demo” button links to #book-demo and opens this dialog (main.js);
+     eqrento.com/#book-demo opens it straight away. The form sends JSON to data-endpoint (Google Apps Script web app
+     URL, see README); with no endpoint, or when sending fails, the visitor gets a ready-made e-mail instead. ============ -->
+<dialog class="demo" id="book-demo" aria-labelledby="demo-title">
+  <div class="demo__panel">
+    <button type="button" class="demo__close" data-demo-close aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
+    <div class="demo__view" data-demo-view="form">
+      <h2 class="demo__title" id="demo-title" tabindex="-1">Book a 30-minute demo</h2>
+      <p class="demo__lead">Tell us a little about your fleet and we’ll tailor the demo to it. It takes about a minute.</p>
+
+      <form class="demo__form" novalidate data-endpoint="">
+        <fieldset class="demo__group" data-demo-required="rents">
+          <legend class="demo__label">What do you rent? <span class="demo__hint">Select all that apply</span></legend>
+          <div class="demo__chips">
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Construction machinery"><span>Construction machinery</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Access platforms &amp; lifts"><span>Access platforms &amp; lifts</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Forklifts &amp; telehandlers"><span>Forklifts &amp; telehandlers</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Tools &amp; small equipment"><span>Tools &amp; small equipment</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Power &amp; climate"><span>Power &amp; climate</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Vehicles &amp; carts"><span>Vehicles &amp; carts</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Event equipment"><span>Event equipment</span></label>
+            <label class="demo__chip"><input type="checkbox" name="rents" value="Other" data-demo-other><span>Other</span></label>
+          </div>
+          <input class="demo__input demo__other" type="text" name="rents_other" maxlength="120" placeholder="What else do you rent?" aria-label="What else do you rent?" hidden>
+          <p class="demo__error" hidden>Choose at least one.</p>
+        </fieldset>
+
+        <fieldset class="demo__group" data-demo-required="fleet_size">
+          <legend class="demo__label">Fleet size <span class="demo__hint">Units = machines or devices you track individually</span></legend>
+          <div class="demo__chips">
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="Up to 50"><span>Up to 50</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="51–200"><span>51–200</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="201–500"><span>201–500</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="501–1,000"><span>501–1,000</span></label>
+            <label class="demo__chip"><input type="radio" name="fleet_size" value="Over 1,000"><span>Over 1,000</span></label>
+          </div>
+          <p class="demo__error" hidden>Choose your fleet size.</p>
+        </fieldset>
+
+        <div class="demo__grid">
+          <div class="demo__field">
+            <label class="demo__label" for="demo-company">Company name</label>
+            <input class="demo__input" id="demo-company" name="company" type="text" autocomplete="organization" maxlength="120" required>
+            <p class="demo__error" hidden>Enter your company name.</p>
+          </div>
+          <div class="demo__field">
+            <label class="demo__label" for="demo-name">Your name</label>
+            <input class="demo__input" id="demo-name" name="name" type="text" autocomplete="name" maxlength="80" required>
+            <p class="demo__error" hidden>Enter your name.</p>
+          </div>
+          <div class="demo__field">
+            <label class="demo__label" for="demo-email">Email</label>
+            <input class="demo__input" id="demo-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" required>
+            <p class="demo__error" hidden>Enter a valid email address.</p>
+          </div>
+          <div class="demo__field">
+            <label class="demo__label" for="demo-phone">Phone <span class="demo__optional">(optional)</span></label>
+            <input class="demo__input" id="demo-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40">
+          </div>
+        </div>
+
+        <details class="demo__more">
+          <summary>Add a note for our team <span class="demo__optional">(optional)</span></summary>
+          <label class="sr-only" for="demo-message">Anything you’d like us to cover?</label>
+          <textarea class="demo__input" id="demo-message" name="message" rows="3" maxlength="1500" placeholder="Anything you’d like us to cover? E.g. we work in spreadsheets today and want GPS-based billing for our lifts"></textarea>
+        </details>
+
+        <!-- spam trap: people never see this field, bots fill it in -->
+        <div class="demo__trap" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+        <button type="submit" class="btn btn--primary btn--arrow demo__submit">
+          <span data-demo-label>Request my demo</span>
+          <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+        </button>
+        <p class="demo__privacy">We’ll use your details to arrange your demo and follow up on&nbsp;it. More in our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.</p>
+        <p class="demo__status" role="alert" hidden></p>
+      </form>
+    </div>
+
+    <div class="demo__view demo__done" data-demo-view="done" hidden>
+      <span class="demo__done-icon" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </span>
+      <h2 class="demo__title" tabindex="-1" data-demo-done-title>Thank you – request received!</h2>
+      <p class="demo__lead">We’ll get back to you<span data-demo-done-email></span> within one business day to pick a time for your 30-minute demo.</p>
+      <button type="button" class="btn btn--ghost demo__done-close" data-demo-close>Close</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- ============ COOKIE BANNER (shown by main.js until the visitor makes a choice) ============ -->
+<div class="cookie" id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-text" hidden>
+  <p class="cookie__title" id="cookie-title">We use cookies</p>
+  <p class="cookie__text" id="cookie-text">We use cookies that are necessary for this site to work. With your consent, we may also use analytics and marketing cookies. You can change your choice at any time via “Cookie settings” in the footer. <a href="cookie-policy.html">Cookie Policy</a></p>
+  <div class="cookie__prefs" hidden>
+    <label class="cookie__opt">
+      <span><b>Necessary</b><small>Required for the site to work. Always on.</small></span>
+      <input type="checkbox" checked disabled>
+    </label>
+    <label class="cookie__opt">
+      <span><b>Analytics</b><small>Help us understand how visitors use the site.</small></span>
+      <input type="checkbox" data-category="analytics">
+    </label>
+    <label class="cookie__opt">
+      <span><b>Marketing</b><small>Measure our campaigns and show relevant offers.</small></span>
+      <input type="checkbox" data-category="marketing">
+    </label>
+  </div>
+  <div class="cookie__actions">
+    <button type="button" class="cookie__btn cookie__btn--primary cookie__btn--wide" data-cookie="save" hidden>Save my choices</button>
+    <button type="button" class="cookie__btn cookie__btn--primary" data-cookie="accept">Accept all</button>
+    <button type="button" class="cookie__btn" data-cookie="reject">Reject all</button>
+    <button type="button" class="cookie__btn cookie__btn--link" data-cookie="customize">Customize</button>
+  </div>
+</div>
+
+<script src="assets/js/main.js?v=20261109a" defer></script>
+</body>
+</html>
