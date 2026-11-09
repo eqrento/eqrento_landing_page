@@ -11,6 +11,8 @@
   <script>
     document.write('<base href="' + (location.hostname.slice(-10) === 'github.io' ? '/eqrento_landing_page/' : '/') + '">');
   </script>
+  <!-- old pages under /en/, /pl/, /de/ … go to the home page (an external file: the inline script above has its own CSP hash) -->
+  <script src="assets/js/old-address.js?v=20261109a"></script>
   <link rel="icon" href="favicon.ico?v=2" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
   <style>
