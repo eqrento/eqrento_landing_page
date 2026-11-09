@@ -77,7 +77,7 @@ assets/video/          – testimonial video (mp4 + webm fallback)
 
 ## Sections (in page order) and menu
 
-Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `display: contents`, see “phones: the collage comes right after the lead” in style.css) → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
+Hero (on phones: headline, lead, collage, checklist, button – CSS grid + `display: contents`, see “phones: the collage comes right after the lead” in style.css; the violet label above the headline has the button's height, type and padding there, both on the left – Łukasz, 9 Nov 2026) → client logos → Why EQrento (“Between a basic spreadsheet and a complex ERP system”) → Platform
 (“One platform…”) → How it works (“Six interconnected stages…”, pinned horizontal scroll) → Key features and
 competitive differentiators → Telematics (“Telematics that safeguards your billing”) → Integrations (“Open API first.
 Connectors included.”, added 5 Nov 2026 from Wojtek's design) → Testimonial → Pricing teaser (`id="pricing"`, four mini
@@ -100,18 +100,22 @@ of the home page (`./#why` etc. on the other pages).
   1. H1 + switch: one state for the cards and the table header (pricing.js).
   2. The four plan cards.
   3. “Compare all EQrento features” (`id="compare"`), always open.
-  4. The telemetry and AI Assistant notes, then the USD / VAT / unit note.
+  4. The telemetry and AI Assistant notes, then the USD / VAT / unit note. Each note's title and text are separate
+     paragraphs (a grid): on phones the title sits beside the icon and the text runs under both (Łukasz, 9 Nov 2026).
   5. Pricing FAQ: only questions with an answer in the existing copy; the four without an answer were left out.
   6. The closing “Book a 30-minute demo”.
 - **Table:**
   - `thead` holds the plan and its price (no buttons – Łukasz, 5 Nov 2026) and sticks under the page header
     (84 / 72 / 64px).
-- **Cards:** the price with “/month” and, right under it, “billed yearly” / “billed monthly” beside the figure; Enterprise
-  has “tailored to your fleet” under “Ask for a quote”. Each card is a subgrid of 7 rows.
   - “Show only differences” (`aria-pressed`) hides the rows where all four plans have the same value and the categories
     left empty – worked out from the cells (`y`, `n` or the text). No row is marked by hand, so new rows need nothing extra.
-  - Below 768px: the features and one plan, chosen with the switch above the table (`data-plan` 1–4 on the table,
-    Complete to start with).
+  - Below 768px all four plans stay in one view, as the home page's table was before the pricing page (Łukasz, 9 Nov
+    2026; it replaced a one-plan switch): each feature name on its own line above its four plan cells, the plan names
+    stuck under the page header (their prices hidden below 641px – they are on the cards right above). CSS only. The
+    explicit ARIA roles in the markup (`role="table"`, `rowgroup`, `row`, `columnheader`, `rowheader`, `cell`) keep it a
+    table for screen readers – give new rows the same roles.
+- **Cards:** the price with “/month” and, right under it, “billed yearly” / “billed monthly” beside the figure; Enterprise
+  has “tailored to your fleet” under “Ask for a quote”. Each card is a subgrid of 7 rows.
 - **Copied parts:** the header, mobile menu, footer, cookie banner and the demo dialog are copies of the ones in index.html
   (relative links back to the home page). Change them in every page.
 - **Prices:**
@@ -125,8 +129,8 @@ of the home page (`./#why` etc. on the other pages).
   the bottom button “pricing page – bottom”.
 - **Home teaser:** four tiles (plan, price with “/month” over “billed yearly” beside it, fleet limit, “Unlimited users and
   branches”) and one button, “Compare plans and features” (Łukasz removed the “Book a demo” next to it on 5 Nov 2026).
-  Four in a row above 1100px, 2 × 2 below. On phones the “/month · billed yearly” pair sits under the figure in every
-  tile, because the tiles are too narrow to keep it beside the price.
+  Four in a row above 1100px, 2 × 2 below, and on phones (≤ 640px) one under another at full width, as the plan cards
+  were before (Łukasz, 9 Nov 2026) – with larger type and the “/month · billed yearly” pair beside the figure.
 
 ## Things worth knowing
 

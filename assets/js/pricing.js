@@ -1,5 +1,6 @@
-/* EQrento – pricing page (pricing.html): yearly / monthly prices, "Show only differences", the plan shown on phones.
-   main.js runs here too (header, menu, FAQ accordion, cookie banner, demo dialog). No dependencies. */
+/* EQrento – pricing page (pricing.html): yearly / monthly prices and "Show only differences". On phones the table shows
+   all four plans too (CSS only). main.js runs here too (header, menu, FAQ accordion, cookie banner, demo dialog).
+   No dependencies. */
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
@@ -29,11 +30,4 @@
     alike.forEach(tr => { tr.hidden = on; });
     $$('tbody', table).forEach(tb => { tb.hidden = on && $$('tr:not(.cmp__group)', tb).every(tr => tr.hidden); });
   });
-
-  /* ---------- phones: the features and one plan (Complete to start with); CSS shows the column in data-plan ---------- */
-  const planOpts = $$('.compare__plans .seg__opt');
-  planOpts.forEach(opt => opt.addEventListener('click', () => {
-    planOpts.forEach(o => o.setAttribute('aria-pressed', String(o === opt)));
-    table.dataset.plan = opt.dataset.plan;
-  }));
 })();

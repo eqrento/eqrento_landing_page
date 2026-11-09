@@ -1057,13 +1057,18 @@ section[id] { scroll-margin-top: 80px; }
 .plan__blob--a { width: 300px; height: 300px; right: -150px; top: -150px; animation: drift 14s ease-in-out infinite alternate; }
 .plan__blob--b { width: 320px; height: 320px; left: -190px; bottom: -200px; animation: drift 17s ease-in-out infinite alternate-reverse; }
 
+/* the telemetry and AI Assistant notes under the comparison: the icon, and beside it the title with the text right under
+   it. On phones the title sits beside the icon and the text runs under both (Łukasz, 9 Nov 2026; see the 640px rules) */
 .pricing__tracker {
   margin: 40px auto 0; max-width: 940px;
-  display: flex; align-items: center; gap: 20px;
+  display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "icon title" "icon text";
+  align-items: center; column-gap: 20px;
   padding: 20px 28px; border-radius: 20px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
   font-size: 15px; line-height: 1.5; color: var(--gray-2);
 }
-.pricing__tracker b { font-weight: 600; color: var(--ink); }
+.pricing__tracker .icon-box { grid-area: icon; }
+.pricing__tracker-title { grid-area: title; align-self: end; font-weight: 600; color: var(--ink); }
+.pricing__tracker-text { grid-area: text; align-self: start; }
 .pricing__tracker + .pricing__tracker { margin-top: 16px; }   /* the AI Assistant box right under the telemetry box */
 .pricing__note { margin: 20px auto 0; max-width: 760px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-2); }
 @media (min-width: 1201px) { .pricing__note { max-width: none; } }   /* wide screens: the whole note on one line */
@@ -1115,7 +1120,7 @@ section[id] { scroll-margin-top: 80px; }
 .cmp__table .t { font-size: 14px; font-weight: 600; }
 /* notes in plan cells (“Without checklists”, “$69 per device, one-time”) look like the feature names: regular weight, same size */
 .cmp__table td.t--note { font-size: inherit; font-weight: 400; line-height: inherit; }
-@media (max-width: 640px) { .cmp__table td.t--note { font-size: 14px; line-height: 1.35; } }
+@media (max-width: 640px) { .cmp__table td.t--note { font-size: 12px; line-height: 1.3; } }   /* phones: four narrow plan cells side by side, like the other text cells */
 
 /* ---------- pricing page (pricing.html) ---------- */
 .pricing--page { padding-top: calc(var(--header-h) + 40px); }   /* starts under the fixed header, like the policy pages */
@@ -1133,14 +1138,6 @@ section[id] { scroll-margin-top: 80px; }
   background: radial-gradient(circle at 11px 50%, #fff 7px, transparent 7.5px), rgba(23, 15, 4, .2);
 }
 .compare__diff[aria-pressed="true"]::before { background: radial-gradient(circle at 27px 50%, #fff 7px, transparent 7.5px), var(--gradient); }
-/* the plan switch above the table – phones only (a segmented control, like the yearly / monthly switch) */
-.seg {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 999px;
-  background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 0 0 1px rgba(23, 15, 4, .08);
-}
-.seg__opt { height: 40px; padding: 0 4px; border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--gray-2); white-space: nowrap; }
-.seg__opt[aria-pressed="true"] { background: var(--gradient); color: #170f04; }
-.compare__plans { display: none; }
 /* the FAQ is followed by the closing button here, so it gets the join spacing below */
 .faq--pricing { padding-bottom: var(--sec-join); }
 .pricing-cta { display: flex; justify-content: center; padding: var(--sec-join) var(--gutter) var(--sec-y); background: var(--soft); }
@@ -1152,22 +1149,7 @@ section[id] { scroll-margin-top: 80px; }
   .cmp__table th, .cmp__table td { padding-inline: 8px; }
   .cmp__table thead th { padding-inline: 6px; }
 }
-/* phones: the features and ONE plan (data-plan on the table, 1–4, Complete to start with; pricing.js) */
-@media (max-width: 767px) {
-  .compare__tools { flex-direction: column; align-items: stretch; }
-  .compare__plans { display: grid; }
-  .compare__diff { align-self: center; }
-  .cmp__card { padding: 0 8px 8px; }
-  .cmp__table th[scope="row"] { width: 58%; }
-  .cmp__table thead th:not(:first-child), .cmp__table td { display: none; width: auto; }
-  .cmp__table[data-plan="1"] tr > :nth-child(2), .cmp__table[data-plan="2"] tr > :nth-child(3),
-  .cmp__table[data-plan="3"] tr > :nth-child(4), .cmp__table[data-plan="4"] tr > :nth-child(5) { display: table-cell; }
-}
-/* the narrowest phones: “Enterprise” and “Connected” must fit a quarter of the plan switch */
-@media (max-width: 360px) {
-  .seg { gap: 2px; }
-  .seg__opt { padding: 0 2px; font-size: 11.5px; letter-spacing: -.01em; }
-}
+/* phones (below 768px): see “all four plans in one view” after the 900px block – it must come after the 1200px rules */
 
 /* ---------- home page teaser: four mini tiles and the way to pricing.html ---------- */
 .tiers { margin-top: 56px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
@@ -1199,23 +1181,19 @@ section[id] { scroll-margin-top: 80px; }
 @media (max-width: 1200px) { .tier { padding: 28px 22px 24px; } .tier__price b { font-size: 34px; } }
 /* 2 × 2 from 1100px down: in four narrower tiles “/month” + “billed yearly” would fit beside some prices and not others */
 @media (max-width: 1100px) { .tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; max-width: 680px; margin-inline: auto; } }
+/* phones: one tile under another, each the full width (as the plan cards were before the pricing page – Łukasz, 9 Nov
+   2026), so the type can be larger and “/month” with “billed yearly” sits beside the figure again */
 @media (max-width: 640px) {
-  .tiers { margin-top: 40px; gap: 28px 12px; }
-  .tier { padding: 26px 16px 18px; border-radius: 20px; }
-  .tier__name { font-size: 18px; }
-  /* phone tiles are too narrow for the note beside the figure: in every tile it goes under it, “billed yearly” still right under “/month” */
-  .tier__price { margin-top: 10px; flex-direction: column; align-items: flex-start; gap: 2px; font-size: 13px; }
-  .tier__price b { font-size: 28px; }
-  .tier__price--quote b { font-size: 20px; }
-  .tier__limits { font-size: 13px; }
+  .tiers { margin-top: 40px; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .tier { padding: 28px 24px 24px; border-radius: 20px; }
+  .tier--hero { margin-top: 20px; }   /* room for the badge on its top edge */
+  .tier__name { font-size: 22px; }
+  .tier__price { margin-top: 12px; gap: 4px 12px; }
+  .tier__price b { font-size: 42px; }
+  .tier__price--quote b { font-size: 30px; }
+  .tier__limits { padding-top: 18px; font-size: 15px; }
   .tiers__ctas { flex-direction: column; align-items: stretch; }
   .tiers__ctas .btn { width: 100%; }
-}
-/* the narrowest phones: a little less padding and type, so “Up to 50 units” keeps one line and “Unlimited users and
-   branches” two */
-@media (max-width: 360px) {
-  .tier { padding-inline: 14px; }
-  .tier__price, .tier__limits { font-size: 12px; }
 }
 /* 320px: “Compare plans and features” needs smaller type and arrow to fit the 280px button (as the EQrento card's CTA) */
 @media (max-width: 340px) {
@@ -1804,6 +1782,25 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 
 }
 
+/* pricing.html, phones (below 768px): all four plans in one view, as the comparison on the home page was before the
+   pricing page (Łukasz, 9 Nov 2026) – each feature name on its own line, above its four plan cells. Explicit ARIA roles
+   in the markup keep it a table for screen readers. After the 1200px block on purpose: its column widths must not win
+   here. The plan names stick under the page header (72px; 64px from 640px down, see below) */
+@media (max-width: 767px) {
+  .compare__tools { justify-content: center; }
+  .cmp__card { padding: 0 8px 8px; }
+  .cmp__table, .cmp__table thead, .cmp__table tbody { display: block; }
+  .cmp__table tr { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .cmp__table thead { position: sticky; top: 72px; z-index: 1; }
+  .cmp__table thead th { position: static; padding: 14px 2px 10px; }
+  .cmp__table thead th:first-child { display: none; }
+  .cmp__table th[scope="row"] { grid-column: 1 / -1; width: auto; padding: 14px 8px 4px; border-bottom: 0; }
+  .cmp__table td { width: auto; padding: 6px 2px 12px; }
+  .cmp__group th { grid-column: 1 / -1; padding: 28px 8px 8px; }
+  .cmp__table tbody:first-of-type .cmp__group th { padding-top: 20px; }
+  .cmp__table tbody tr > :nth-child(3) { background: none; }   /* stacked rows would break the tinted column into blocks: tint only the header */
+}
+
 @media (max-width: 640px) {
   :root { --gutter: 20px; --header-h: 80px; --section-y: 64px; --lead: 16px; }
   .header__logo img { width: 206px; }   /* ~42 px tall: level with the tallest client logos */
@@ -1816,7 +1813,10 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 
   .hero { padding-top: calc(var(--header-h) + 32px); }
   .hero__content { gap: 24px; }
-  .pill--dark { height: 44px; font-size: 14px; padding: 0 18px; }
+  /* the label above the headline: the height, type and padding of the “Book a 30-minute demo” button at the end of the
+     hero (56px, 16px semibold, 28px sides), in its own violet. Both stay on the left, with the headline, lead and
+     checklist (Łukasz, 9 Nov 2026) */
+  .hero .pill--dark { height: 56px; padding: 0 28px; font-size: 16px; font-weight: 600; }
   .hero__lead { font-size: 16px; }
   .hero__title { font-size: min(34px, calc((100vw - 2 * var(--gutter)) / 11.9)); }   /* the longer headline line (“automated end to end.”, 11.5em) fits one line */
   /* phones: four pills would stack one per row, so show them as a compact checklist instead */
@@ -1901,11 +1901,15 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   .plan__badge { height: 40px; padding: 0 16px; font-size: 13px; }
   .plan__price { font-size: 40px; }
   .plan__price--quote { align-self: stretch; }   /* in the stacked flex card "end" would shrink the box to its (size-contained) width: 0 */
-  .pricing__tracker { margin-top: 32px; flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px; }
+  .pricing__tracker { margin-top: 32px; grid-template-areas: "icon title" "text text"; column-gap: 16px; row-gap: 12px; padding: 20px; }
+  .pricing__tracker-title { align-self: center; line-height: 1.4; }
   .cmp__card { border-radius: 20px; }
-  .cmp__table thead th { top: 64px; }   /* the scrolled page header is 64px tall here */
+  .cmp__table thead { top: 64px; }   /* the scrolled page header is 64px tall here */
+  .cmp__table thead th { padding-inline: 0; font-size: clamp(11px, 3.4vw, 13px); letter-spacing: -.01em; }   /* “Connected” fits a quarter of a 320px screen */
+  .cmp__table .cmp__price { display: none; }   /* only the plan names (as before): the prices are on the cards right above */
   .cmp__table th[scope="row"] { font-size: 14px; }
   .cmp__group th { font-size: 12px; }
+  .cmp__table .t { font-size: 12px; line-height: 1.3; }
 
   .qa__q { padding: 20px; font-size: 17px; line-height: 1.3; gap: 16px; }
   .qa.is-open .qa__q { padding-top: 24px; }
@@ -2080,7 +2084,10 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 
 /* narrowest phones (320px): the “Book a 30-minute demo” arrow buttons are wider than the 280px column
    (in the EQrento card the round arrow stuck out of the button) – a little less padding, gap and type */
-@media (max-width: 340px) { .btn--arrow { padding-left: 20px; gap: 8px; font-size: 15px; } }
+@media (max-width: 340px) {
+  .btn--arrow { padding-left: 20px; gap: 8px; font-size: 15px; }
+  .hero .pill--dark { padding: 0 20px; font-size: 15px; }   /* the hero label keeps matching the button */
+}
 /* …and the EQrento card is only 244px wide inside at 320px: tighter card padding and a smaller arrow so the whole label fits */
 @media (max-width: 340px) {
   .why-card { padding-inline: 18px; }
