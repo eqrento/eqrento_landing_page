@@ -2,7 +2,7 @@
 #   GitHub → Actions → "Publish to eqrento.com (OVH)" → Run workflow (untick "Dry run" to really publish),
 #   or by Claude:  gh workflow run deploy-ovh.yml -f dry_run=false
 #
-# It copies this repository to the server with rsync over SSH – without README.md, .github and .gitignore – and
+# It copies this repository to the server with rsync over SSH – without README.md, .github, .gitignore and server/ – and
 # deletes files that are no longer in the repository, except the server-only files protected below. Only files whose
 # content changed are sent (checksums). Then it clears the Cloudflare cache (if those secrets exist) and checks that
 # eqrento.com serves the new version.
@@ -96,7 +96,7 @@ jobs:
           # through the server's umask 0002 – readable by nginx.
           opts=(--recursive --links --checksum --compress
                 --delete --delete-delay --itemize-changes --human-readable --stats
-                --exclude=/.git/ --exclude=/.github/ --exclude=/README.md --exclude=/.gitignore --exclude=/.claude/
+                --exclude=/.git/ --exclude=/.github/ --exclude=/README.md --exclude=/.gitignore --exclude=/.claude/ --exclude=/server/
                 --filter='P /.well-known/' --filter='P /google*.html' --filter='P /BingSiteAuth.xml'
                 --filter='P /yandex_*.html')
           if [ "$DRY_RUN" = "true" ]; then

@@ -1,0 +1,40 @@
+# Tests of the form-to-e-mail service (server/form-mail). They run on a GitHub machine with a local fake mail server:
+# nothing is sent anywhere and the OVH server is not touched. The service itself is installed by the server
+# administrator (see server/form-mail/README.md); the website publishing does not copy that folder.
+name: Test the form-to-e-mail service
+
+on:
+  push:
+    paths:
+      - "server/**"
+      - ".github/workflows/test-form-mail.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.12"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run the tests
+        working-directory: server/form-mail
+        run: python -m unittest -v test_formmail
+      - name: The script also starts and answers on its health address
+        working-directory: server/form-mail
+        run: |
+          MAIL_TO=sales@example.com MAIL_FROM=website@example.com FORM_PORT=8799 python formmail.py &
+          sleep 1
+          curl -fsS http://127.0.0.1:8799/api/demo-request/health
+          kill %1
