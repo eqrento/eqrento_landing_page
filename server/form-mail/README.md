@@ -7,7 +7,7 @@ e-mail. It stores nothing. Python 3.8+ standard library only.
 does not include it. The web server on the OVH machine serves files only (a `.php` or `.py` file in the site folder is
 handed out as a download, checked 10 Nov 2026), so the service has to be started by the server administrator and one
 address has to be passed to it by nginx. The step-by-step instruction in Polish is in
-`../eqrento-ovh/INSTRUKCJA-4-FORMULARZ-EMAIL.md` (outside this repository).
+`INSTRUKCJA-PL.md` in this folder.
 
 ## How it fits together
 

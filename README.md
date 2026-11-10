@@ -299,7 +299,7 @@ at 1201).
     the OVH server's Python 3.12.3). It is NOT running yet: the OVH web server only serves files (a `.php` in the site
     folder comes back as a download; the publishing account has no sudo, Docker or nginx access), so the server
     administrator has to start it and pass `/api/demo-request` to it – instruction:
-    `../eqrento-ovh/INSTRUKCJA-4-FORMULARZ-EMAIL.md`. Then: `data-endpoint="/api/demo-request"` on `.demo__form` in
+    `server/form-mail/INSTRUKCJA-PL.md`. Then: `data-endpoint="/api/demo-request"` on `.demo__form` in
     index.html, pricing.html and case-study.html, a test on eqrento.com, and the Privacy Policy sentence about Google
     Apps Script and Google Sheets (Łukasz's text) needs his change.
   - `server/` is not part of the website: left out of the OVH publish (rsync exclude) and of the Pages preview.
