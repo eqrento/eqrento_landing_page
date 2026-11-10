@@ -1538,7 +1538,7 @@ html:not(.js) .nav__item:hover .nav__menu, html:not(.js) .nav__item:focus-within
 }
 
 /* =========================================================
-   FEATURE PAGES (offers-contracts.html and the eight to follow) – one page per module of Key features, from Wojtek's
+   FEATURE PAGES (offers-contracts.html and the eight pages built on it) – one page per module of Key features, from Wojtek's
    list of 10 Nov 2026, in the look of the pricing and case-study pages. Order: the benefit with the screenshot → the
    main points → the full list (a plan tag where a feature starts above Essential) → the modules it works with → the
    plan and the demo button. No reveal animations and no page script.
@@ -1546,7 +1546,7 @@ html:not(.js) .nav__item:hover .nav__menu, html:not(.js) .nav__item:focus-within
 .mod-hero { padding: calc(var(--header-h) + 40px) 0 var(--sec-join); }   /* starts under the fixed header, like the pricing page */
 .mod-hero .section-head { gap: 20px; }
 .mod-hero .lead { max-width: 760px; }
-.mod-hero .h2 { text-wrap: balance; }   /* each sentence of the heading (they are split by a <br>) in even lines, also on phones */
+.mod-page .h2 { text-wrap: balance; }   /* every heading in even lines, also on phones: the two sentences of the H1 (split by a <br>), “Part of the Connected plan” without a lone last word */
 .mod-hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 16px; margin-top: 8px; }
 .mod-hero__plan { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; line-height: 1.4; color: var(--gray-2); }
 .mod-hero__plan::before {   /* the tick of the plan lists */
@@ -1613,8 +1613,10 @@ html:not(.js) .nav__item:hover .nav__menu, html:not(.js) .nav__item:focus-within
 
 /* the “More about …” link at the end of a Key features tab on the home page */
 .feat__more { font-weight: 600; color: var(--label-violet-ink); white-space: nowrap; }
-.feat__more::after { content: " →"; content: " →" / ""; }
+.feat__more::after { content: "\00a0→"; content: "\00a0→" / ""; }   /* no-break space: the arrow never starts a line alone */
 .feat__more:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* 320px phones: the longest links (“More about offers and contracts”) are wider than the tab's text, so they may wrap */
+@media (max-width: 359px) { .feat__more { white-space: normal; } }
 
 @media (max-width: 1100px) {
   .mod-points__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

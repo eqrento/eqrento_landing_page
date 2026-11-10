@@ -57,6 +57,10 @@ The config also sends every old-site language path to `/`: `/en`, `/pl`, `/de`, 
 ```
 index.html
 pricing.html           – the pricing page, https://eqrento.com/pricing (see “Pricing page” below)
+case-study.html        – the BAC Polska case study (see “Case study page” below; preview only for now)
+offers-contracts.html, equipment.html, transport.html, gps-telematics.html, service.html, warehouse.html,
+equipment-sales.html, invoicing.html, ai-assistant.html
+                       – the nine feature pages (see “Feature pages” below; preview only for now)
 privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
 cookie-policy.html     – Cookie Policy
 robots.txt, sitemap.xml – search engines (point to https://eqrento.com/)
@@ -145,13 +149,14 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   Four in a row above 1100px, 2 × 2 below, and on phones (≤ 640px) one under another at full width, as the plan cards
   were before (Łukasz, 9 Nov 2026) – with larger type and the “/month · billed yearly” pair beside the figure.
 
-## Feature pages (offers-contracts.html and eight to follow, since 10 Nov 2026)
+## Feature pages (nine pages, since 10 Nov 2026)
 
 - **NOT on eqrento.com until Łukasz approves them** – preview only, like the case study.
 - **What:** one page per module of Key features, from Wojtek's list `EQrento_moduly_funkcje_dla_strony.md` (10 Nov 2026):
   `offers-contracts`, `equipment`, `transport`, `gps-telematics`, `service`, `warehouse`, `equipment-sales`,
-  `invoicing`, `ai-assistant`. **offers-contracts.html is the pattern**; the other eight follow once Łukasz accepts
-  its look. The texts are English drafts written from Wojtek's Polish list, for his check.
+  `invoicing`, `ai-assistant`. **offers-contracts.html is the pattern** (Łukasz accepted its look on 10 Nov 2026); the
+  other eight have the same head, shell and section order, with their own texts. All texts are English drafts written
+  from Wojtek's Polish list, for his check.
 - **Page order** (classes `mod-*`, “FEATURE PAGES” in style.css):
   1. the benefit (H1, class `h2`, as on the pricing page), the lead, two buttons, the plan line and the module's
      screenshot in the Key features window frame (`.features__screen`);
@@ -161,26 +166,62 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   4. “Works with the rest of EQrento” – link cards to the neighbouring modules;
   5. the plan box with the demo button and “Compare plans”.
   No prices on these pages (prices live in index.html and pricing.html only). No reveal animations, no page script.
+  Every heading on these pages is balanced (`.mod-page .h2 { text-wrap: balance }`), so no heading ends in a lone word.
+- **Fixed counts:** every page has four points, three groups in “All features” (the grid has three columns) and three
+  “Works with” cards. Keep the counts, or change the grids in style.css.
+- **Plan of each module** – it appears in the plan line under the buttons, in the lead of “All features” and in the
+  plan box, and must match pricing.html:
+  - Offers & contracts, Equipment, Invoicing – “Included in every plan”; tags mark what starts above Essential
+    (Equipment: QR code = Complete, the GPS map and telemetry devices = Connected; Invoicing: multiple currencies and
+    rental time from the protocols = Complete, fuel, cleaning and approved overtime = Connected; Offers: sales
+    offers = Enterprise).
+  - Transport, Service – “From the Complete plan”; tags mark what starts higher (fuel and cleaning to the invoice, the
+    salesperson in the driver's job, supervisor approval = Connected). The Service plan box also says what is already
+    in Essential (service reminders, fault reporting, repair history – the three rows of the comparison table).
+  - GPS & Telematics – “From the Connected plan”, no tags. The telemetry device is named without its price (“its
+    price is on the Pricing page”).
+  - Warehouse (WMS), Equipment sales – “In the Enterprise plan”, no tags.
+  - AI Assistant – “A paid add-on in every plan”, no price; the third group lists Wojtek's example questions.
+- **Screenshots:** each page shows its module's screenshot from `assets/img/screens/` (the four sizes of the home tab),
+  cropped by CSS to one ratio. Equipment sales has no screenshot of its own and shows the Equipment one, like its tab
+  on the home page.
+- **Icons of the point cards:** `report.svg`, `users.svg` and `telematics.svg` in `assets/icons/` are orange copies
+  (fill `#EDA532`) of the white icons in `assets/icons/platform/` – the same shapes, made for these pages.
+- **The plan line** (`.mod-hero__plan`) is a flex row with the tick: keep its text plain (a `<span>` inside becomes a
+  separate flex item with a gap).
 - **Menu:** “Key features” in the header is a button (`.nav__toggle`) that opens the list of the nine pages
   (`.nav__menu`; main.js: click, Enter or Space; Esc, a click elsewhere or tabbing out close it; without JavaScript it
   opens on hover and focus). In the mobile menu the list folds out (`.mobile-menu__toggle`). The footer has a
   “Key features” column (`.footer__col--features`; a row of columns on tablets and phones). On the home page
   `data-spy="#features"` keeps the button marked while the Key features section is on screen.
-- **Pages not built yet:** their links carry `data-module="<slug>"` and lead to the Key features section
-  (`#features` on the home page, `./#features` elsewhere). When a page is built:
-  - in every page replace `href="…#features" data-module="<slug>"` with `href="<slug>"` (header list, mobile menu,
-    footer column, “Works with” cards);
-  - on the new page mark the button `is-active` and its three links `aria-current="page"`;
-  - add the “More about …” link (`.feat__more`) to its tab in Key features on the home page;
+- **The list of the nine pages is written in every page** – in the header list, the mobile menu and the footer column
+  of index, pricing, case-study, the two policy pages and the nine feature pages (14 files). To add, rename or remove
+  a page:
+  - change the three lists in all 14 files, and the “Works with” cards that point to it;
+  - on the page itself mark the button `is-active` and its three links `aria-current="page"`;
+  - add the “More about …” link (`.feat__more`) to its tab in Key features on the home page. The link stays in one
+    piece; on phones narrower than 360px it may wrap, because the longest ones are wider than the tab's text;
   - add it to sitemap.xml.
+- **The shared shell** (head, header, mobile menu, footer, demo dialog, cookie banner) of the eight newer pages is a
+  copy of the one in offers-contracts.html; only the title, description, address and the current-page marks differ.
+  Change the shell in every page, as for the other copies of index.html's parts.
 - **Copy rules for these pages:**
   - overuse goes on the invoice after the office approves it – never “automatically” (Łukasz, 9 Nov 2026), although
     Wojtek's list says automatic;
   - an offer takes “under a minute”, as on the home page (the list says 30 seconds);
   - the mobile app is Android, plus “protocols via a link on any phone”; no re-rental, customer portal or cash register;
   - AI Assistant is “a paid add-on”, with no price;
-  - plan tags must match pricing.html. Open with Wojtek: equipment sales (Enterprise in his list and on the Enterprise
-    card, all plans in two rows of the comparison table).
+  - plan tags must match pricing.html (the comparison table decides when Wojtek's list says something else).
+- **For Wojtek to confirm** (his list marks most of them “to confirm before publishing”):
+  - GPS page: detection of work “outside the agreed area” and “after the return was reported”;
+  - the mobile app is written as Android only; Comarch and Asseco Wapro are named without products;
+  - Equipment page: “Equipment map with live GPS positions” is tagged Connected (the live map row of the comparison
+    table) – his list has “equipment map” under Equipment with no plan;
+  - Offers page: “Sales offers next to the rental ones” is tagged Enterprise (all sales rows of the comparison table are
+    Enterprise only) – his list has sales offers under Offers (Essential) and again under Equipment sales (Enterprise);
+  - Service page: what Essential already has (taken from the comparison table; his list puts the whole module in
+    Complete);
+  - GPS page: “(Teltonika hardware)” beside EQrento's own telemetry device.
 
 ## Case study page (case-study.html, since 9 Nov 2026)
 
@@ -428,4 +469,5 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
 `index.html` loads `style.css` and `main.js` with a version in the address (`?v=20261022b`). Browsers keep those
 files for up to 10 minutes on GitHub Pages, so after changing either file bump the version (e.g. `20261023a`) in both
 links, otherwise visitors may see new HTML with old styles. The two policy pages load the same files: bump the version
-in `privacy-policy.html` and `cookie-policy.html` too.
+in `privacy-policy.html` and `cookie-policy.html` too – and in `pricing.html`, `case-study.html` and the nine feature
+pages (14 files in all; `grep -l 'style.css?v=' *.html` lists them).

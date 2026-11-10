@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261110a">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261110b">
 </head>
 <body>
 
@@ -47,18 +47,18 @@
         <li><a class="nav__link" href="#why">Why EQrento</a></li>
         <li><a class="nav__link" href="#steps">How it works</a></li>
         <li class="nav__item">
-          <!-- a button, not a link: it opens the list of feature pages (main.js). Pages not built yet lead to the Key features section for now (data-module) -->
+          <!-- a button, not a link: it opens the list of the nine feature pages (main.js) -->
           <button class="nav__link nav__toggle" type="button" aria-expanded="false" aria-controls="features-menu" data-spy="#features">Key features<svg class="nav__chev" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4"/></svg></button>
           <ul class="nav__menu" id="features-menu">
             <li><a class="nav__sublink" href="offers-contracts"><span class="icon-box"><img src="assets/icons/offer.svg" width="19" height="24" alt=""></span>Offers &amp; contracts</a></li>
-            <li><a class="nav__sublink" href="#features" data-module="equipment"><span class="icon-box"><img src="assets/icons/excavator.svg" width="24" height="24" alt=""></span>Equipment</a></li>
-            <li><a class="nav__sublink" href="#features" data-module="transport"><span class="icon-box"><img src="assets/icons/feat-transport.svg" width="26" height="19" alt=""></span>Transport</a></li>
-            <li><a class="nav__sublink" href="#features" data-module="gps-telematics"><span class="icon-box"><img src="assets/icons/gps.svg" width="27" height="27" alt=""></span>GPS &amp; Telematics</a></li>
-            <li><a class="nav__sublink" href="#features" data-module="service"><span class="icon-box"><img src="assets/icons/service.svg" width="21" height="21" alt=""></span>Service</a></li>
-            <li><a class="nav__sublink" href="#features" data-module="warehouse"><span class="icon-box"><img src="assets/icons/wms.svg" width="24" height="24" alt=""></span>Warehouse (WMS)</a></li>
-            <li><a class="nav__sublink" href="#features" data-module="equipment-sales"><span class="icon-box"><img src="assets/icons/sales.svg" width="24" height="24" alt=""></span>Equipment sales</a></li>
-            <li><a class="nav__sublink" href="#features" data-module="invoicing"><span class="icon-box"><img src="assets/icons/invoice.svg" width="24" height="24" alt=""></span>Invoicing</a></li>
-            <li><a class="nav__sublink" href="#features" data-module="ai-assistant"><span class="icon-box"><img src="assets/icons/ai.svg" width="24" height="24" alt=""></span>AI Assistant</a></li>
+            <li><a class="nav__sublink" href="equipment"><span class="icon-box"><img src="assets/icons/excavator.svg" width="24" height="24" alt=""></span>Equipment</a></li>
+            <li><a class="nav__sublink" href="transport"><span class="icon-box"><img src="assets/icons/feat-transport.svg" width="26" height="19" alt=""></span>Transport</a></li>
+            <li><a class="nav__sublink" href="gps-telematics"><span class="icon-box"><img src="assets/icons/gps.svg" width="27" height="27" alt=""></span>GPS &amp; Telematics</a></li>
+            <li><a class="nav__sublink" href="service"><span class="icon-box"><img src="assets/icons/service.svg" width="21" height="21" alt=""></span>Service</a></li>
+            <li><a class="nav__sublink" href="warehouse"><span class="icon-box"><img src="assets/icons/wms.svg" width="24" height="24" alt=""></span>Warehouse (WMS)</a></li>
+            <li><a class="nav__sublink" href="equipment-sales"><span class="icon-box"><img src="assets/icons/sales.svg" width="24" height="24" alt=""></span>Equipment sales</a></li>
+            <li><a class="nav__sublink" href="invoicing"><span class="icon-box"><img src="assets/icons/invoice.svg" width="24" height="24" alt=""></span>Invoicing</a></li>
+            <li><a class="nav__sublink" href="ai-assistant"><span class="icon-box"><img src="assets/icons/ai.svg" width="24" height="24" alt=""></span>AI Assistant</a></li>
           </ul>
         </li>
         <li><a class="nav__link" href="case-study">Case study</a></li>
@@ -86,14 +86,14 @@
       <button class="mobile-menu__toggle" type="button" aria-expanded="false" aria-controls="mobile-features">Key features</button>
       <ul class="mobile-menu__sub" id="mobile-features" hidden>
         <li><a href="offers-contracts">Offers &amp; contracts</a></li>
-        <li><a href="#features" data-module="equipment">Equipment</a></li>
-        <li><a href="#features" data-module="transport">Transport</a></li>
-        <li><a href="#features" data-module="gps-telematics">GPS &amp; Telematics</a></li>
-        <li><a href="#features" data-module="service">Service</a></li>
-        <li><a href="#features" data-module="warehouse">Warehouse (WMS)</a></li>
-        <li><a href="#features" data-module="equipment-sales">Equipment sales</a></li>
-        <li><a href="#features" data-module="invoicing">Invoicing</a></li>
-        <li><a href="#features" data-module="ai-assistant">AI Assistant</a></li>
+        <li><a href="equipment">Equipment</a></li>
+        <li><a href="transport">Transport</a></li>
+        <li><a href="gps-telematics">GPS &amp; Telematics</a></li>
+        <li><a href="service">Service</a></li>
+        <li><a href="warehouse">Warehouse (WMS)</a></li>
+        <li><a href="equipment-sales">Equipment sales</a></li>
+        <li><a href="invoicing">Invoicing</a></li>
+        <li><a href="ai-assistant">AI Assistant</a></li>
       </ul>
     </li>
     <li><a href="case-study">Case study</a></li>
@@ -389,7 +389,7 @@
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
             <div class="feat__body" id="feat-2">
-              <p>Your whole fleet at a glance: what’s out, what’s back and what’s ready for the next job. Every unit has a <span class="nowrap">drag-and-drop</span> calendar, its documents and full history&nbsp;– plus a QR code that opens its file on&nbsp;site. You get automatic reminders when an inspection is due or a document needs&nbsp;updating.</p>
+              <p>Your whole fleet at a glance: what’s out, what’s back and what’s ready for the next job. Every unit has a <span class="nowrap">drag-and-drop</span> calendar, its documents and full history&nbsp;– plus a QR code that opens its file on&nbsp;site. You get automatic reminders when an inspection is due or a document needs&nbsp;updating. <a class="feat__more" href="equipment">More about equipment</a></p>
             </div>
           </div>
 
@@ -400,7 +400,7 @@
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
             <div class="feat__body" id="feat-3">
-              <p>Deliveries and pickups are created automatically once a contract is signed or paid, planned in the transport calendar and sent to the driver’s app. Handovers are recorded on site with photos and a signature&nbsp;– nothing gets lost between the office and the&nbsp;yard.</p>
+              <p>Deliveries and pickups are created automatically once a contract is signed or paid, planned in the transport calendar and sent to the driver’s app. Handovers are recorded on site with photos and a signature&nbsp;– nothing gets lost between the office and the&nbsp;yard. <a class="feat__more" href="transport">More about transport</a></p>
             </div>
           </div>
 
@@ -411,7 +411,7 @@
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
             <div class="feat__body" id="feat-4">
-              <p>Every machine on a live map, with engine hours checked against the contract. Work outside agreed hours, on weekends or outside the permitted area is detected and flagged for your approval, then added to the invoice with a PDF report as proof. Works with your telematics or our telemetry device with&nbsp;GPS.</p>
+              <p>Every machine on a live map, with engine hours checked against the contract. Work outside agreed hours, on weekends or outside the permitted area is detected and flagged for your approval, then added to the invoice with a PDF report as proof. Works with your telematics or our telemetry device with&nbsp;GPS. <a class="feat__more" href="gps-telematics">More about GPS and telematics</a></p>
             </div>
           </div>
 
@@ -422,7 +422,7 @@
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
             <div class="feat__body" id="feat-5">
-              <p>Every return creates a checklist, so no machine goes out unchecked. Maintenance is scheduled with reminders, repairs are assigned to technicians and logged in the mechanic app with photos and signatures&nbsp;– and downtime shows before it blocks a&nbsp;booking.</p>
+              <p>Every return creates a checklist, so no machine goes out unchecked. Maintenance is scheduled with reminders, repairs are assigned to technicians and logged in the mechanic app with photos and signatures&nbsp;– and downtime shows before it blocks a&nbsp;booking. <a class="feat__more" href="service">More about service</a></p>
             </div>
           </div>
 
@@ -433,7 +433,7 @@
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
             <div class="feat__body" id="feat-6">
-              <p>Spare parts and products in every warehouse, with stock levels and value always up to date. Stock coming in, going out and moving between warehouses is recorded as it happens, parts taken for a service order are booked to that repair, and you’re alerted when an item falls below its minimum level. Stocktaking keeps the numbers right, with opening and closing balances for your&nbsp;books.</p>
+              <p>Spare parts and products in every warehouse, with stock levels and value always up to date. Stock coming in, going out and moving between warehouses is recorded as it happens, parts taken for a service order are booked to that repair, and you’re alerted when an item falls below its minimum level. Stocktaking keeps the numbers right, with opening and closing balances for your&nbsp;books. <a class="feat__more" href="warehouse">More about the warehouse</a></p>
             </div>
           </div>
 
@@ -445,7 +445,7 @@
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
             <div class="feat__body" id="feat-7">
-              <p>Sell machines from your fleet and spare parts in the same system you rent with. Sales offers, contracts and invoices are handled there too, and a machine out on rent can be sold straight to its renter. Every sold machine keeps its buyer, serial number, documents and warranty, and <span class="nowrap">after-sales</span> service carries on&nbsp;– service orders and inspection reminders, just like for your own&nbsp;fleet.</p>
+              <p>Sell machines from your fleet and spare parts in the same system you rent with. Sales offers, contracts and invoices are handled there too, and a machine out on rent can be sold straight to its renter. Every sold machine keeps its buyer, serial number, documents and warranty, and <span class="nowrap">after-sales</span> service carries on&nbsp;– service orders and inspection reminders, just like for your own&nbsp;fleet. <a class="feat__more" href="equipment-sales">More about equipment sales</a></p>
             </div>
           </div>
 
@@ -456,7 +456,7 @@
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
             <div class="feat__body" id="feat-8">
-              <p>When a rental ends, the invoice is ready&nbsp;– calculated automatically from the contract and the data collected on the way (rental time, delivery, fuel, cleaning and overtime from telematics), and still yours to adjust. It goes to the customer and to your accounting or ERP system, and unpaid invoices are chased automatically with reminder emails and&nbsp;PDFs.</p>
+              <p>When a rental ends, the invoice is ready&nbsp;– calculated automatically from the contract and the data collected on the way (rental time, delivery, fuel, cleaning and overtime from telematics), and still yours to adjust. It goes to the customer and to your accounting or ERP system, and unpaid invoices are chased automatically with reminder emails and&nbsp;PDFs. <a class="feat__more" href="invoicing">More about invoicing</a></p>
             </div>
           </div>
 
@@ -468,7 +468,7 @@
               <span class="plus-btn" aria-hidden="true"><img src="assets/icons/plus.svg" width="24" height="24" alt=""></span>
             </button>
             <div class="feat__body" id="feat-9">
-              <p>Ask about your business in plain language: which machines sat idle, who owes you money, how much each branch earned. The AI Assistant reads all your EQrento data&nbsp;– equipment, orders, transport, service, telematics and invoices&nbsp;– and answers in seconds with a table or a chart, showing where the numbers came from. No reports to build or&nbsp;browse.</p>
+              <p>Ask about your business in plain language: which machines sat idle, who owes you money, how much each branch earned. The AI Assistant reads all your EQrento data&nbsp;– equipment, orders, transport, service, telematics and invoices&nbsp;– and answers in seconds with a table or a chart, showing where the numbers came from. No reports to build or&nbsp;browse. <a class="feat__more" href="ai-assistant">More about the AI Assistant</a></p>
             </div>
           </div>
         </div>
@@ -864,14 +864,14 @@
         <h3>Key features</h3>
         <ul>
           <li><a href="offers-contracts">Offers &amp; contracts</a></li>
-          <li><a href="#features" data-module="equipment">Equipment</a></li>
-          <li><a href="#features" data-module="transport">Transport</a></li>
-          <li><a href="#features" data-module="gps-telematics">GPS &amp; Telematics</a></li>
-          <li><a href="#features" data-module="service">Service</a></li>
-          <li><a href="#features" data-module="warehouse">Warehouse (WMS)</a></li>
-          <li><a href="#features" data-module="equipment-sales">Equipment sales</a></li>
-          <li><a href="#features" data-module="invoicing">Invoicing</a></li>
-          <li><a href="#features" data-module="ai-assistant">AI Assistant</a></li>
+          <li><a href="equipment">Equipment</a></li>
+          <li><a href="transport">Transport</a></li>
+          <li><a href="gps-telematics">GPS &amp; Telematics</a></li>
+          <li><a href="service">Service</a></li>
+          <li><a href="warehouse">Warehouse (WMS)</a></li>
+          <li><a href="equipment-sales">Equipment sales</a></li>
+          <li><a href="invoicing">Invoicing</a></li>
+          <li><a href="ai-assistant">AI Assistant</a></li>
         </ul>
       </div>
     </div>
