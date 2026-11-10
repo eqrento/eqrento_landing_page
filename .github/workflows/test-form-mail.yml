@@ -1,0 +1,86 @@
+# Tests of the form-to-e-mail service (server/form-mail). They run on a GitHub machine with a local fake mail server:
+# nothing is sent anywhere and the OVH server is not touched. The service itself is installed by the server
+# administrator (see server/form-mail/README.md); the website publishing does not copy that folder.
+#
+# Run by hand with "on_server" ticked, the same tests also run with the OVH server's own Python: the two files are
+# copied to a temporary folder there, the tests use local connections only, and the folder is removed afterwards.
+name: Test the form-to-e-mail service
+
+on:
+  push:
+    paths:
+      - "server/**"
+      - ".github/workflows/test-form-mail.yml"
+  workflow_dispatch:
+    inputs:
+      on_server:
+        description: "Also run the tests with the OVH server's own Python (temporary folder, removed afterwards)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  on-server:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.on_server }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      OVH_HOST: ${{ secrets.OVH_HOST }}
+      OVH_PORT: ${{ secrets.OVH_PORT || '22' }}
+      OVH_USER: ${{ secrets.OVH_USER }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up SSH
+        env:
+          OVH_SSH_KEY: ${{ secrets.OVH_SSH_KEY }}
+          OVH_KNOWN_HOSTS: ${{ secrets.OVH_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$OVH_SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$OVH_KNOWN_HOSTS" | tr -d '\r' > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+      - name: Run the tests with the server's own Python
+        run: |
+          tar -C server/form-mail -cf - formmail.py test_formmail.py | \
+          ssh -p "$OVH_PORT" -i ~/.ssh/deploy_key -o BatchMode=yes -o ConnectTimeout=15 \
+              -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              "$OVH_USER@$OVH_HOST" '
+            set -e
+            dir=$(mktemp -d)
+            trap "rm -rf $dir" EXIT
+            tar -C "$dir" -xf -
+            cd "$dir"
+            echo "SERVER_PYTHON $(python3 --version 2>&1)"
+            python3 -m unittest test_formmail 2>&1 | tail -5'
+      - name: Remove the key from the runner
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.12"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run the tests
+        working-directory: server/form-mail
+        run: python -m unittest -v test_formmail
+      - name: The script also starts and answers on its health address
+        working-directory: server/form-mail
+        run: |
+          MAIL_TO=sales@example.com MAIL_FROM=website@example.com FORM_PORT=8799 python formmail.py &
+          sleep 1
+          curl -fsS http://127.0.0.1:8799/api/demo-request/health
+          kill %1
