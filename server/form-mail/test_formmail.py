@@ -120,6 +120,12 @@ class ServiceCase(unittest.TestCase):
         sender, recipients, data = self.smtp.messages[index]
         return sender, recipients, email.message_from_bytes(data, policy=email.policy.default)
 
+    def text(self, index=0):
+        """The e-mail text with plain line ends (over SMTP the lines end with CR LF)."""
+        return self.mail(index)[2].get_content().replace("
+", "
+")
+
 
 class TestRequests(ServiceCase):
     def test_demo_request_is_sent_as_an_email(self):
@@ -135,7 +141,7 @@ class TestRequests(ServiceCase):
         self.assertEqual(msg['Reply-To'].addresses[0].addr_spec, 'jan@acme.example')
         self.assertEqual(msg['Reply-To'].addresses[0].display_name, 'Jan Kowalski')
         self.assertEqual(msg['Auto-Submitted'], 'auto-generated')
-        text = msg.get_content()
+        text = self.text()
         for expected in ('Demo request from the EQrento website.', 'Company:     ACME Rentals', 'Name:        Jan Kowalski',
                          'E-mail:      jan@acme.example', 'Phone:       +48 600 100 200', 'Fleet size:  51–200 units',
                          'They rent:   Access platforms & lifts, Other (Trailers)',
@@ -149,7 +155,7 @@ class TestRequests(ServiceCase):
     def test_audit_request_has_its_own_subject(self):
         self.request(payload=sample(kind='audit', source='case study – free hours audit'))
         self.assertEqual(self.mail()[2]['Subject'], 'Free hours audit request – ACME Rentals')
-        self.assertIn('Free hours audit request from the EQrento website.', self.mail()[2].get_content())
+        self.assertIn('Free hours audit request from the EQrento website.', self.text())
 
     def test_audit_is_recognised_from_the_button_name_alone(self):
         self.request(payload=sample(source='case study – free hours audit'))
@@ -160,13 +166,13 @@ class TestRequests(ServiceCase):
         _, _, msg = self.mail()
         self.assertEqual(msg['Subject'], 'Demo request – Żuraw Rent Sp. z o.o.')
         self.assertEqual(msg['Reply-To'].addresses[0].display_name, 'Łukasz Żółć')
-        self.assertIn('Zażółć gęślą jaźń – 5 podnośników', msg.get_content())
+        self.assertIn('Zażółć gęślą jaźń – 5 podnośników', self.text())
 
     def test_optional_fields_may_be_missing(self):
         status, reply, _ = self.request(payload={'rents': ['Event equipment'], 'fleet_size': 'Up to 50', 'company': 'Solo',
                                                  'name': 'Ann', 'email': 'ann@solo.example'})
         self.assertEqual((status, reply), (200, {'ok': True}))
-        text = self.mail()[2].get_content()
+        text = self.text()
         self.assertIn('Phone:       –', text)
         self.assertIn('Message:\n–', text)
         self.assertIn('form filled in: –', text)
@@ -204,7 +210,7 @@ class TestRequests(ServiceCase):
     def test_address_that_cannot_be_a_header_still_arrives(self):
         status, reply, _ = self.request(payload=sample(email='jan..kowalski@acme.example'))
         self.assertEqual((status, reply), (200, {'ok': True}))
-        self.assertIn('E-mail:      jan..kowalski@acme.example', self.mail()[2].get_content())
+        self.assertIn('E-mail:      jan..kowalski@acme.example', self.text())
 
     def test_text_plain_body_as_the_page_sends_it(self):
         status, reply, _ = self.request(raw=json.dumps(sample()).encode('utf-8'), headers={'Content-Type': 'text/plain;charset=UTF-8'})
