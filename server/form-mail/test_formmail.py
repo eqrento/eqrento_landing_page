@@ -122,9 +122,7 @@ class ServiceCase(unittest.TestCase):
 
     def text(self, index=0):
         """The e-mail text with plain line ends (over SMTP the lines end with CR LF)."""
-        return self.mail(index)[2].get_content().replace("
-", "
-")
+        return self.mail(index)[2].get_content().replace('\r\n', '\n')
 
 
 class TestRequests(ServiceCase):
