@@ -44,6 +44,34 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   window.addEventListener('resize', () => { if (window.innerWidth > 1200) setMenu(false); });
 
+  /* ---------- “Key features” in the header is a button that opens the list of feature pages (Łukasz, 10 Nov 2026).
+     Click, Enter or Space open and close it; Esc, a click elsewhere or tabbing out of it close it. Not closed when
+     the focus merely leaves to nothing: Safari does not focus a clicked link, and the list would vanish before the
+     click reaches it. In the mobile menu the same list folds out under its own button. ---------- */
+  const featuresToggle = $('.nav__toggle');
+  if (featuresToggle) {
+    const featuresItem = featuresToggle.parentElement;
+    const isOpen = () => featuresToggle.getAttribute('aria-expanded') === 'true';
+    const setFeatures = open => {
+      featuresToggle.setAttribute('aria-expanded', String(open));
+      featuresItem.classList.toggle('is-open', open);
+    };
+    featuresToggle.addEventListener('click', () => setFeatures(!isOpen()));
+    document.addEventListener('click', e => { if (isOpen() && !featuresItem.contains(e.target)) setFeatures(false); });
+    featuresItem.addEventListener('focusout', e => {
+      if (e.relatedTarget && !featuresItem.contains(e.relatedTarget)) setFeatures(false);
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && isOpen()) { setFeatures(false); featuresToggle.focus(); }
+    });
+  }
+  const groupToggle = $('.mobile-menu__toggle');
+  if (groupToggle) groupToggle.addEventListener('click', () => {
+    const open = groupToggle.getAttribute('aria-expanded') !== 'true';
+    groupToggle.setAttribute('aria-expanded', String(open));
+    $('#' + groupToggle.getAttribute('aria-controls')).hidden = !open;
+  });
+
   /* ---------- the other pages (pricing.html, privacy-policy.html, cookie-policy.html) share the header, the footer and the
      cookie banner with the home page: they need just the scrolled header, not the rest of this block (the FAQ
      accordion, the demo dialog and the cookie banner are blocks of their own below) ---------- */
@@ -54,8 +82,10 @@
     return;
   }
 
+  /* the section a menu item stands for: a link's own #address, or data-spy on the “Key features” button */
   const navLinks = $$('.nav__link');
-  const spyTargets = navLinks.map(a => $(a.getAttribute('href'))).filter(Boolean);
+  const spyOf = a => a.getAttribute('href') || a.dataset.spy || '';
+  const spyTargets = navLinks.map(a => spyOf(a).charAt(0) === '#' ? $(spyOf(a)) : null).filter(Boolean);
 
   const updateHeader = () => {
     header.classList.toggle('is-scrolled', window.scrollY > 40);
@@ -65,7 +95,7 @@
       const top = sec.getBoundingClientRect().top;
       if (top <= probe && top > best) { best = top; current = sec; }
     }
-    navLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + current.id));
+    navLinks.forEach(a => a.classList.toggle('is-active', spyOf(a) === '#' + current.id));
   };
 
   /* ---------- reveal on scroll ---------- */

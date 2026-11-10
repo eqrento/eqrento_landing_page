@@ -84,9 +84,10 @@ Connectors included.”, added 5 Nov 2026 from Wojtek's design) → Testimonial 
 tiles and the way to pricing.html) → FAQ → footer. (The closing “See it on your kind of fleet” section was removed on 4 Nov 2026 – Łukasz.)
 Menu: Home, Why EQrento, How it works, Key features, Case study, Pricing, FAQ (header, mobile menu and footer follow the page order; the Platform section has no menu link).
 “Case study” and “Pricing” in the menu and the footer lead to their pages (`case-study`, `pricing` – relative links); the
-other items are sections of the home page (`./#why` etc. on the other pages). With 7 links the gaps between them are
-40px, 24px up to 1440px and 20px up to 1320px, so the header logo keeps its 246px from ~1320px up (238px at 1280, 196px
-at 1201).
+other items are sections of the home page (`./#why` etc. on the other pages). “Key features” in the header is a button
+that opens the list of the feature pages (see “Feature pages”); in the footer's System list it still leads to the
+section. With 7 items, one of them with an arrow, the gaps between them are 36px, 21px up to 1440px and 17px up to
+1320px, so the header logo keeps its 246px from ~1320px up (239px at 1280, 197px at 1201).
 
 ## Pricing page (pricing.html, since 5 Nov 2026)
 
@@ -143,6 +144,43 @@ at 1201).
   branches”) and one button, “Compare plans and features” (Łukasz removed the “Book a demo” next to it on 5 Nov 2026).
   Four in a row above 1100px, 2 × 2 below, and on phones (≤ 640px) one under another at full width, as the plan cards
   were before (Łukasz, 9 Nov 2026) – with larger type and the “/month · billed yearly” pair beside the figure.
+
+## Feature pages (offers-contracts.html and eight to follow, since 10 Nov 2026)
+
+- **NOT on eqrento.com until Łukasz approves them** – preview only, like the case study.
+- **What:** one page per module of Key features, from Wojtek's list `EQrento_moduly_funkcje_dla_strony.md` (10 Nov 2026):
+  `offers-contracts`, `equipment`, `transport`, `gps-telematics`, `service`, `warehouse`, `equipment-sales`,
+  `invoicing`, `ai-assistant`. **offers-contracts.html is the pattern**; the other eight follow once Łukasz accepts
+  its look. The texts are English drafts written from Wojtek's Polish list, for his check.
+- **Page order** (classes `mod-*`, “FEATURE PAGES” in style.css):
+  1. the benefit (H1, class `h2`, as on the pricing page), the lead, two buttons, the plan line and the module's
+     screenshot in the Key features window frame (`.features__screen`);
+  2. “What it does for you” – four points;
+  3. “All features” – one card per group; `.mod-tag` where a feature starts above Essential, `.mod-tag--plain` for a
+     note such as “Poland”;
+  4. “Works with the rest of EQrento” – link cards to the neighbouring modules;
+  5. the plan box with the demo button and “Compare plans”.
+  No prices on these pages (prices live in index.html and pricing.html only). No reveal animations, no page script.
+- **Menu:** “Key features” in the header is a button (`.nav__toggle`) that opens the list of the nine pages
+  (`.nav__menu`; main.js: click, Enter or Space; Esc, a click elsewhere or tabbing out close it; without JavaScript it
+  opens on hover and focus). In the mobile menu the list folds out (`.mobile-menu__toggle`). The footer has a
+  “Key features” column (`.footer__col--features`; a row of columns on tablets and phones). On the home page
+  `data-spy="#features"` keeps the button marked while the Key features section is on screen.
+- **Pages not built yet:** their links carry `data-module="<slug>"` and lead to the Key features section
+  (`#features` on the home page, `./#features` elsewhere). When a page is built:
+  - in every page replace `href="…#features" data-module="<slug>"` with `href="<slug>"` (header list, mobile menu,
+    footer column, “Works with” cards);
+  - on the new page mark the button `is-active` and its three links `aria-current="page"`;
+  - add the “More about …” link (`.feat__more`) to its tab in Key features on the home page;
+  - add it to sitemap.xml.
+- **Copy rules for these pages:**
+  - overuse goes on the invoice after the office approves it – never “automatically” (Łukasz, 9 Nov 2026), although
+    Wojtek's list says automatic;
+  - an offer takes “under a minute”, as on the home page (the list says 30 seconds);
+  - the mobile app is Android, plus “protocols via a link on any phone”; no re-rental, customer portal or cash register;
+  - AI Assistant is “a paid add-on”, with no price;
+  - plan tags must match pricing.html. Open with Wojtek: equipment sales (Enterprise in his list and on the Enterprise
+    card, all plans in two rows of the comparison table).
 
 ## Case study page (case-study.html, since 9 Nov 2026)
 

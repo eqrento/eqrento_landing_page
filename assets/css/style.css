@@ -201,7 +201,7 @@ section[id] { scroll-margin-top: 80px; }
 }
 .header__logo img { width: 246px; transition: width .4s var(--ease); }
 .header.is-scrolled .header__logo img { width: 196px; }
-.nav__list { display: flex; gap: 40px; }   /* 7 links since the case study (9 Nov 2026): the gaps shrink below 1440px, so the logo keeps its size */
+.nav__list { display: flex; gap: 36px; }   /* 7 items, one with an arrow (the Key features list, 10 Nov 2026): the gaps shrink below 1440px, so the logo keeps its size */
 .nav__link {
   position: relative; display: block; padding: 8px 0;
   font-size: 16px; line-height: 1.1; color: var(--white); opacity: .5;
@@ -213,6 +213,34 @@ section[id] { scroll-margin-top: 80px; }
 }
 .nav__link:hover, .nav__link.is-active { opacity: 1; }
 .nav__link.is-active::after { transform: scaleX(1); }
+/* “Key features” is a button with the look of the links: it opens the list of the feature pages (main.js – click,
+   Enter or Space; Esc or a click elsewhere closes it). Two columns, read top to bottom; white card under the item. */
+.nav__item { position: relative; }
+.nav__toggle { display: flex; align-items: center; gap: 7px; }
+.nav__toggle[aria-expanded="true"] { opacity: 1; }
+.nav__chev { flex: none; transition: transform .3s var(--ease); }
+.nav__toggle[aria-expanded="true"] .nav__chev { transform: rotate(180deg); }
+.nav__menu {
+  position: absolute; top: calc(100% + 14px); left: 50%; z-index: 5;
+  display: grid; grid-auto-flow: column; grid-template-rows: repeat(5, auto); grid-auto-columns: minmax(0, 1fr); gap: 2px 6px;
+  width: 500px; padding: 10px; border-radius: 20px;
+  background: var(--white); border: 1px solid rgba(23, 15, 4, .08);
+  box-shadow: 0 1px 2px rgba(7, 10, 27, .06), 0 28px 64px -20px rgba(7, 10, 27, .32);
+  opacity: 0; visibility: hidden; translate: -50% -6px;
+  transition: opacity .25s var(--ease), translate .25s var(--ease), visibility .25s;
+}
+.nav__item.is-open .nav__menu,
+html:not(.js) .nav__item:hover .nav__menu, html:not(.js) .nav__item:focus-within .nav__menu {   /* without JavaScript: hover or keyboard focus */
+  opacity: 1; visibility: visible; translate: -50% 0;
+}
+.nav__sublink {
+  display: flex; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 12px;
+  font-size: 15px; font-weight: 600; line-height: 1.25; color: var(--ink); white-space: nowrap;
+  transition: background-color .25s var(--ease);
+}
+.nav__sublink:hover, .nav__sublink[aria-current="page"] { background: rgba(23, 15, 4, .05); }
+.nav__sublink .icon-box { width: 36px; height: 36px; border-radius: 10px; }
+.nav__sublink .icon-box img { max-width: 20px; max-height: 20px; }
 .header__cta { justify-self: end; width: 202px; padding-inline: 40px; }
 .header.is-scrolled .header__cta { height: 52px; }
 
@@ -1510,6 +1538,116 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 /* =========================================================
+   FEATURE PAGES (offers-contracts.html and the eight to follow) – one page per module of Key features, from Wojtek's
+   list of 10 Nov 2026, in the look of the pricing and case-study pages. Order: the benefit with the screenshot → the
+   main points → the full list (a plan tag where a feature starts above Essential) → the modules it works with → the
+   plan and the demo button. No reveal animations and no page script.
+   ========================================================= */
+.mod-hero { padding: calc(var(--header-h) + 40px) 0 var(--sec-join); }   /* starts under the fixed header, like the pricing page */
+.mod-hero .section-head { gap: 20px; }
+.mod-hero .lead { max-width: 760px; }
+.mod-hero .h2 { text-wrap: balance; }   /* each sentence of the heading (they are split by a <br>) in even lines, also on phones */
+.mod-hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 16px; margin-top: 8px; }
+.mod-hero__plan { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; line-height: 1.4; color: var(--gray-2); }
+.mod-hero__plan::before {   /* the tick of the plan lists */
+  content: ""; flex: none; width: 18px; height: 18px; background: var(--marker);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+/* the module's screenshot in the window frame of Key features (.features__screen gives the title bar, dots and shadow) */
+.mod-shot { margin: 56px auto 0; max-width: 1120px; }
+
+.mod-points, .mod-all, .mod-works { padding: var(--sec-join) 0; }
+.mod-points__grid { margin-top: 48px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.mod-point {
+  display: flex; flex-direction: column; gap: 14px; padding: 28px;
+  border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.mod-point h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); text-wrap: balance; }
+.mod-point p { font-size: 15px; line-height: 1.55; color: var(--gray-2); text-wrap: pretty; }
+
+/* the full list: one card per group, ticks as in the plan lists, a small tag where a feature needs a higher plan */
+.mod-all__grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.mod-group { padding: 32px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05); }
+.mod-group h3 { margin-bottom: 20px; font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
+.mod-list li { position: relative; padding: 0 0 12px 30px; font-size: 15px; line-height: 1.5; color: var(--gray-2); text-wrap: pretty; break-inside: avoid; }
+.mod-list li:last-child { padding-bottom: 0; }
+.mod-list li::before {
+  content: ""; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; background: var(--marker);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.mod-tag {
+  display: inline-block; margin-left: 2px; padding: 0 9px; border-radius: 999px; vertical-align: 1px;
+  font-size: 11px; font-weight: 600; line-height: 20px; letter-spacing: .04em; white-space: nowrap;
+  color: var(--label-violet-ink); background: rgba(101, 97, 255, .1);
+}
+.mod-tag--plain { color: var(--gray-2); background: rgba(23, 15, 4, .06); }   /* not a plan: e.g. “Poland” */
+
+/* works with: the neighbouring modules as link cards */
+.mod-works__grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.mod-link {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 2px 16px;
+  padding: 22px 24px; border-radius: 20px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.mod-link:hover { transform: translateY(-2px); box-shadow: 0 14px 32px -16px rgba(23, 15, 4, .3); }
+.mod-link .icon-box { grid-row: 1 / span 2; }
+.mod-link b { align-self: end; font-size: 17px; font-weight: 600; line-height: 1.3; color: var(--ink); }
+.mod-link__text { grid-column: 2; align-self: start; font-size: 14px; line-height: 1.45; color: var(--gray-2); }
+.mod-link::after {
+  content: "→"; content: "→" / ""; grid-column: 3; grid-row: 1 / span 2;
+  font-size: 18px; color: var(--marker-soft); transition: translate .35s var(--ease);
+}
+.mod-link:hover::after { translate: 4px 0; }
+
+/* the plan and the demo button: the last section before the footer, so the full spacing below */
+.mod-plan { padding: var(--sec-join) 0 var(--sec-y); }
+.mod-plan__box {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 40px;
+  padding: 48px 56px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.mod-plan__text { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.mod-plan__text > p:not(.kicker) { max-width: 660px; font-size: 16px; line-height: 1.6; color: var(--gray-2); }
+.mod-plan__actions { display: flex; flex-direction: column; gap: 12px; }
+
+/* the “More about …” link at the end of a Key features tab on the home page */
+.feat__more { font-weight: 600; color: var(--label-violet-ink); white-space: nowrap; }
+.feat__more::after { content: " →"; content: " →" / ""; }
+.feat__more:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 1100px) {
+  .mod-points__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* one group per row; its list runs in two columns, so the cards stay short */
+  .mod-all__grid { grid-template-columns: minmax(0, 1fr); }
+  .mod-list { columns: 2; column-gap: 32px; }
+  .mod-works__grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .mod-plan__box { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 40px; }
+  .mod-plan__actions { flex-direction: row; flex-wrap: wrap; }
+}
+
+@media (max-width: 640px) {
+  .mod-hero { padding-top: calc(var(--header-h) + 24px); }
+  .mod-hero .section-head { gap: 16px; }
+  .mod-hero__actions { flex-direction: column; align-items: stretch; align-self: stretch; }
+  .mod-shot { margin-top: 40px; }
+  .mod-points__grid, .mod-all__grid { margin-top: 32px; gap: 16px; }
+  .mod-points__grid { grid-template-columns: minmax(0, 1fr); }
+  .mod-point { padding: 24px; border-radius: 20px; }
+  .mod-group { padding: 26px 24px; border-radius: 20px; }
+  .mod-list { columns: 1; }
+  .mod-works__grid { margin-top: 32px; gap: 12px; }
+  .mod-link { padding: 18px 20px; }
+  .mod-plan__box { padding: 28px 24px; border-radius: 20px; }
+  .mod-plan__actions { flex-direction: column; align-items: stretch; }
+}
+/* 320px: the demo button needs smaller type and arrow to fit the box (as the EQrento card's button on the home page) */
+@media (max-width: 340px) {
+  .mod-plan__actions .btn--arrow { padding-left: 18px; gap: 6px; font-size: 14px; }
+  .mod-plan__actions .btn__icon { width: 40px; height: 40px; }
+}
+
+/* =========================================================
    FAQ
    ========================================================= */
 /* the FAQ is the last section before the dark footer: the full section spacing below it, not the join spacing */
@@ -1564,13 +1702,16 @@ section[id] { scroll-margin-top: 80px; }
   z-index: -1; width: 900px; height: 600px; left: 50%; bottom: -380px; translate: -40% 0;
   background: radial-gradient(closest-side, rgba(235, 151, 25, .55), transparent);
 }
-.footer__grid { display: grid; grid-template-columns: 485fr 452fr 309fr auto; gap: 32px; }
+.footer__grid { display: grid; grid-template-columns: 340fr 420fr 240fr auto auto; gap: 32px; }   /* brand, Company, Contact, System, Key features (the feature pages, 10 Nov 2026) */
 .footer__brand img { width: 246px; }
 .footer__brand p { margin-top: 24px; max-width: 320px; }
 .footer__brand p + p { margin-top: 24px; }
 .footer__col { padding-top: 24px; }
 .footer__col h3 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 18px; }
 .footer__col li + li { margin-top: 10px; }
+/* the feature pages: on tablets and phones the list runs in columns across the whole footer, so every item carries its own bottom space */
+.footer__col--features li + li { margin-top: 0; }
+.footer__col--features li { padding-bottom: 10px; break-inside: avoid; }
 .footer a { transition: color .25s var(--ease); }
 .footer a:hover { color: var(--white); }
 /* tagline “Crafted with grit in Poland…”: centred above the line, as far above it (24px) as the bottom row is below it,
@@ -1957,8 +2098,8 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
    ========================================================= */
 @media (max-width: 1440px) {
   :root { --gutter: 40px; --section-y: 88px; }
-  .nav__list { gap: 24px; }
-  @media (max-width: 1320px) { .nav__list { gap: 20px; } }   /* small laptops: the 7 links still leave the logo its full width from ~1300px up */
+  .nav__list { gap: 21px; }
+  @media (max-width: 1320px) { .nav__list { gap: 17px; } }   /* small laptops: the 7 items still leave the logo its full width from ~1300px up */
   .hero__stage { --sw: min(64vw, 1315px); }
   .hero__content { width: 520px; }
   .why-card { padding: 40px 36px; }
@@ -2013,13 +2154,31 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   .mobile-menu.is-open .mobile-menu__list li:nth-child(4) a { transition-delay: .15s; }
   .mobile-menu.is-open .mobile-menu__list li:nth-child(5) a { transition-delay: .2s; }
   .mobile-menu.is-open .mobile-menu__list li:nth-child(6) a { transition-delay: .25s; }
+  /* “Key features” folds out the list of the feature pages: a button with the look of the links around it, an arrow
+     on the right; the pages in smaller type under it */
+  .mobile-menu__toggle {
+    display: flex; align-items: center; justify-content: space-between; width: 100%;
+    padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, .08);
+    font-size: 28px; font-weight: 500; color: var(--white); text-align: left;
+    transform: translateY(16px); opacity: 0; transition: transform .5s var(--ease), opacity .5s var(--ease);
+  }
+  .mobile-menu.is-open .mobile-menu__toggle { transform: none; opacity: 1; transition-delay: .15s; }
+  .mobile-menu__toggle::after {
+    content: ""; flex: none; width: 11px; height: 11px; margin-right: 8px;
+    border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+    rotate: 45deg; translate: 0 -3px; transition: rotate .3s var(--ease), translate .3s var(--ease);
+  }
+  .mobile-menu__toggle[aria-expanded="true"]::after { rotate: -135deg; translate: 0 3px; }
+  .mobile-menu__sub { padding: 8px 0 10px; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  .mobile-menu__list .mobile-menu__sub a { padding: 9px 0 9px 16px; border-bottom: 0; font-size: 19px; }
   .mobile-menu__cta { width: 100%; flex: none; }   /* flex: none – on short screens the column used to squeeze the button below its 56px */
   .mobile-menu { overflow-y: auto; overscroll-behavior: contain; }   /* if the list still does not fit (very short screens, landscape) the menu scrolls instead of squashing anything */
   body.menu-open { overflow: hidden; }
   /* short phone screens (browser bars shown): tighter list so the button keeps its full size without scrolling */
   @media (max-height: 760px) {
     .mobile-menu { gap: 24px; padding-top: calc(var(--header-h) + 16px); padding-bottom: 28px; }
-    .mobile-menu__list a { padding: 10px 0; font-size: 24px; }
+    .mobile-menu__list a, .mobile-menu__toggle { padding: 10px 0; font-size: 24px; }
+    .mobile-menu__list .mobile-menu__sub a { padding: 7px 0 7px 16px; font-size: 18px; }
   }
   /* 320px wide: the label and the round arrow button need a little less padding to fit the 280px button */
   @media (max-width: 340px) { .btn--arrow.mobile-menu__cta { padding-left: 20px; gap: 8px; font-size: 15px; } }
@@ -2058,6 +2217,8 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 
   .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
+  .footer__col--features { grid-column: 1 / -1; }
+  .footer__col--features ul { columns: 3; column-gap: 32px; }
   .footer__brand p { max-width: 520px; }
 
   /* pricing: two cards per row (still a subgrid, so each pair lines up) */
@@ -2227,6 +2388,8 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 
   .footer__grid { grid-template-columns: 1fr 1fr; row-gap: 8px; }
   .footer__grid > .footer__col:nth-child(2) { grid-column: 1 / -1; }
+  .footer__col--features { padding-top: 32px; }
+  .footer__col--features ul { columns: 2; column-gap: 20px; }
   .footer__brand img { width: 190px; }
   .footer__tagline { margin-top: 40px; }
   .footer__legal { max-width: 300px; }   /* the four links in two even rows (2 + 2), not 3 + 1 */
@@ -2290,7 +2453,10 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
 .burger { border-color: rgba(23, 15, 4, .14) !important; background: rgba(23, 15, 4, .03) !important; }
 .burger span { background: var(--ink) !important; }
 .mobile-menu { background: rgba(255, 255, 255, .97); }
-.mobile-menu__list a { color: var(--ink); border-bottom-color: rgba(23, 15, 4, .08); }
+.mobile-menu__list a, .mobile-menu__toggle { color: var(--ink); border-bottom-color: rgba(23, 15, 4, .08); }
+.mobile-menu__sub { border-bottom-color: rgba(23, 15, 4, .08); }
+.mobile-menu__list .mobile-menu__sub a { color: var(--gray-2); }
+.mobile-menu__list .mobile-menu__sub a[aria-current="page"] { font-weight: 600; color: var(--ink); }
 
 .hero { background: var(--soft); }
 /* let the soft shadows under the mockup and machines fade out over the next (same-colour) section
