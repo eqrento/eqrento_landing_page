@@ -294,6 +294,15 @@ at 1201).
   expected answer `{"ok":true}` – any endpoint that does this (e.g. PHP on the own server) can replace Apps Script.
   No endpoint, or sending fails → the visitor gets a pre-filled e-mail to contact@eqrento.com instead. Events for
   analytics: `eq:demo-open`, `eq:demo-request` (on `document`).
+  - **10 Nov 2026 – e-mail only, from the own server (Łukasz: no Google Drive, no Sheets, nothing saved to a file).**
+    The endpoint is ready in `server/form-mail/` (`formmail.py`, Python standard library, tests in GitHub Actions and on
+    the OVH server's Python 3.12.3). It is NOT running yet: the OVH web server only serves files (a `.php` in the site
+    folder comes back as a download; the publishing account has no sudo, Docker or nginx access), so the server
+    administrator has to start it and pass `/api/demo-request` to it – instruction:
+    `../eqrento-ovh/INSTRUKCJA-4-FORMULARZ-EMAIL.md`. Then: `data-endpoint="/api/demo-request"` on `.demo__form` in
+    index.html, pricing.html and case-study.html, a test on eqrento.com, and the Privacy Policy sentence about Google
+    Apps Script and Google Sheets (Łukasz's text) needs his change.
+  - `server/` is not part of the website: left out of the OVH publish (rsync exclude) and of the Pages preview.
 - **Integrations section** – Wojtek's design (5 Nov 2026) rebuilt in the site's styles (`INTEGRATIONS` block in
   `style.css`): the navy API card and three white cards of partner tiles. “Ask about API access” and “+ Your system”
   open the demo form (`source`: “integrations – API access” / “integrations – your system”). KSeF is shown on
@@ -369,7 +378,8 @@ at 1201).
 
 ## Before going live – still to do
 
-- Demo request form: put the Apps Script web-app URL (…/exec) into `data-endpoint` of `.demo__form` in `index.html`
+- Demo request form: once the form-to-e-mail service runs on the server (see “Demo request form” above), put
+  `/api/demo-request` into `data-endpoint` of `.demo__form` in `index.html`, `pricing.html` and `case-study.html`
   (until then the form falls back to a pre-filled e-mail).
 - FAQ answers 2–6 and some Key features descriptions are placeholder copy.
 - Optional: WebP for the remaining pictures (Key features photos, How it works photos, the telematics images; the
