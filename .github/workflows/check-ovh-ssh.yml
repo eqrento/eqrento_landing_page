@@ -79,6 +79,28 @@ jobs:
               grep -qE "error_page[[:space:]]+404" "$f" && echo "  ERROR_PAGE_404 present" || echo "  ERROR_PAGE_404 absent"
             done'
 
+      # Read-only as well, yes/no facts only: what could run a small form-to-e-mail program on this server, how the web
+      # server runs, and whether the server may reach a mail server (asked for the demo / audit forms, 10 Nov 2026).
+      - name: What the server can run and send (read-only)
+        run: |
+          ssh -p "$OVH_PORT" -i ~/.ssh/deploy_key -o BatchMode=yes -o ConnectTimeout=15 \
+              -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              "$OVH_USER@$OVH_HOST" '
+            for t in python3 go node php; do command -v $t >/dev/null 2>&1 && echo "RUNTIME $t yes" || echo "RUNTIME $t no"; done
+            [ "$(ps -eo comm= | grep -c "^php-fpm")" -gt 0 ] && echo "PHP_FPM_RUNNING yes" || echo "PHP_FPM_RUNNING no"
+            p=$(pgrep -x nginx | head -1)
+            [ -n "$p" ] && echo "NGINX_PROCESS yes" || echo "NGINX_PROCESS no"
+            if [ -n "$p" ] && grep -qE "docker|containerd|kubepods" /proc/$p/cgroup 2>/dev/null; then echo "NGINX_IN_CONTAINER yes"; else echo "NGINX_IN_CONTAINER no (or not visible)"; fi
+            docker ps >/dev/null 2>&1 && echo "DOCKER_ACCESS yes" || echo "DOCKER_ACCESS no"
+            command -v sendmail >/dev/null 2>&1 && echo "SENDMAIL yes" || echo "SENDMAIL no"
+            for hp in smtp.gmail.com:587 smtp-relay.gmail.com:587 smtp.gmail.com:465; do
+              h=${hp%:*}; q=${hp#*:}
+              timeout 6 bash -c "exec 3<>/dev/tcp/$h/$q" 2>/dev/null && echo "SMTP_OUT $hp reachable" || echo "SMTP_OUT $hp blocked"
+            done
+            echo "LINGER $(loginctl show-user "$(whoami)" -p Linger 2>/dev/null | cut -d= -f2)"
+            systemctl --user show-environment >/dev/null 2>&1 && echo "SYSTEMD_USER_SESSION yes" || echo "SYSTEMD_USER_SESSION no"
+            crontab -l >/dev/null 2>&1; echo "CRONTAB exit $? (0 has entries, 1 allowed but empty)"'
+
       - name: Remove the key from the runner
         if: always()
         run: rm -f ~/.ssh/deploy_key ~/.ssh/deploy_key.pub
