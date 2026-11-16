@@ -936,7 +936,7 @@ html:not(.js) .nav__item:hover .nav__menu, html:not(.js) .nav__item:focus-within
   text-align: center; color: var(--ink); background: var(--soft); border: 1px solid transparent;
   transition: background-color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
 }
-.int-tile:hover { background: var(--white); border-color: rgba(23, 15, 4, .12); transform: translateY(-2px); }
+a.int-tile:hover { background: var(--white); border-color: rgba(23, 15, 4, .12); transform: translateY(-2px); }   /* only “+ Your system” is a link: the partner logos are not linked (Łukasz, 16 Nov 2026) */
 .int-tile__name { font-size: 16px; font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
 /* an official logo from assets/logos/, in its original colours; the name then hides. Optical balance: each logo's
    height in px is set on the <img> as --lh: wide or heavy logos lower (Comarch 19), compact ones 30–34; the stacked
@@ -947,14 +947,14 @@ html:not(.js) .nav__item:hover .nav__menu, html:not(.js) .nav__item:focus-within
    rows 199–372). The file stays as it is: the box gets the band's shape (--band: picture width / band height) and the
    picture is cropped to it, centred on the band (--band-y) */
 .int-tile img.int-tile__logo--band { aspect-ratio: var(--band); object-fit: cover; object-position: 50% var(--band-y, 50%); }
-/* …on a white background (Exact): multiply melts the white into the tile colour (on the white hover background the
+/* …on a white background (Exact): multiply melts the white into the tile colour (on a white background the
    logo is exactly as in the file) */
 .int-tile img.int-tile__logo--on-white { mix-blend-mode: multiply; }
 /* “+ Your system”: opens the demo form */
 .int-tile--more { background: transparent; border: 1.5px dashed rgba(23, 15, 4, .22); }
 .int-tile--more .int-tile__name { font-size: 15px; }
 .int-tile--more small { font-size: 13px; line-height: 1.3; color: var(--gray-2); }
-.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
+a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
 
 @media (max-width: 1440px) {
   .api-card { padding: 40px 36px; }

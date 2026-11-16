@@ -407,6 +407,8 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
     and `--band` (picture width / band height) and `--band-y` (the band's centre) in its `style`: the picture is
     cropped to the band and the file stays unchanged. A picture on white (Exact) also gets `int-tile__logo--on-white`,
     which blends the white into the tile.
+  - The partner tiles are plain `<div class="int-tile">` – not links (Łukasz, 16 Nov 2026: the logos only show who we
+    connect with). Only “+ Your system” is a link (`a.int-tile`), and only it reacts to hover.
   - Order (Łukasz, 5 Nov 2026): Teltonika, Trackunit, Zoomlion · Exact, SnelStart, Comarch, Asseco Wapro, KSeF ·
     Google, Microsoft Azure, + Your system.
   - Permission (checked 5 Nov 2026, details in `../eqrento-landing-ustalenia.md`): only Teltonika's rules cover this
