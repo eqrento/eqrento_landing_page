@@ -385,8 +385,8 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
 - **Integrations section** – Wojtek's design (5 Nov 2026) rebuilt in the site's styles (`INTEGRATIONS` block in
   `style.css`), reordered on 16 Nov 2026 (Łukasz: the owner must see ready connectors first, the API is a secondary
   element for the IT reader): heading “Connectors included. Open API when you need more.”, the lead, then the three
-  white cards of partner tiles in a row, then the outlined “For your IT team” strip (`.int-group--it`: the group
-  cards' chrome without a fill) with one sentence, the “Ask for API documentation” link (`.feat__more`, mailto until
+  white cards of partner tiles in a row, then the light violet “For your IT team” strip (`.int-group--it`: the group
+  cards' chrome with a violet tint and a violet label – Łukasz chose it from three variants) with one sentence, the “Ask for API documentation” link (`.feat__more`, mailto until
   Łukasz gives the documentation address – then “API documentation” → that URL), a second text link “Ask about API
   access” that opens the demo form (`source`: “integrations – API access”; it replaced the old button at his request)
   and the sample response. The navy API card is gone; “+ Your system” still opens the demo form (`source`:

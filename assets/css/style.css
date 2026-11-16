@@ -917,11 +917,13 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
 .int-group--wide { --cols: 2; }
 .int-group--wide .int-group__tiles > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
-/* ---------- “For your IT team”: the group cards' chrome without a fill – the lightest surface in the section ---------- */
+/* ---------- “For your IT team”: the group cards' chrome with a light violet fill and a violet label (Łukasz, 16 Nov 2026 –
+   the tint of the case study's values card): a separate, technical note that does not compete with the logos ---------- */
 .int-group--it {
   display: grid; grid-template-columns: minmax(0, 1fr) fit-content(440px); align-items: center; gap: 24px 48px;
-  background: transparent; box-shadow: none; border: 1px solid rgba(23, 15, 4, .12);
+  background: rgba(101, 97, 255, .06); box-shadow: none; border: 1px solid rgba(101, 97, 255, .16);
 }
+.int-group--it .int-group__title { color: var(--label-violet-ink); }
 .int-it__text { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .int-it__text p { max-width: 660px; font-size: 16px; line-height: 1.6; color: var(--gray-2); text-wrap: pretty; }
 .int-it__links { display: flex; flex-wrap: wrap; gap: 8px 28px; }   /* the two text links side by side; one under the other on narrow phones */
