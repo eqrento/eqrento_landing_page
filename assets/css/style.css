@@ -925,8 +925,16 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
 }
 .int-group--it .int-group__title { color: var(--label-violet-ink); }
 .int-it__text { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-.int-it__text p { max-width: 660px; font-size: 16px; line-height: 1.6; color: var(--gray-2); text-wrap: pretty; }
-.int-it__links { display: flex; flex-wrap: wrap; gap: 8px 28px; }   /* the two text links side by side; one under the other on narrow phones */
+.int-it__head { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+/* the “Open API” badge of the earlier navy card, in light colours: white with the yellow dot of the buttons */
+.int-it__badge {
+  display: inline-flex; align-items: center; gap: 10px; height: 36px; padding: 0 16px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: var(--ink);
+  background: var(--white); border: 1px solid rgba(23, 15, 4, .1);
+}
+.int-it__badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); }
+.int-it__text > p { max-width: 660px; font-size: 16px; line-height: 1.6; color: var(--gray-2); text-wrap: pretty; }
+.int-it__cta { margin-top: 8px; }   /* the yellow arrow button of the earlier card: a little more air above it than between the texts */
 /* the sample response: real text in <pre><code>, dark on white. A long line scrolls inside the box (min-width: 0 so
    the box never widens the grid); the box is keyboard-focusable, so the markup gives it tabindex and a label */
 .int-it__code {
@@ -936,9 +944,11 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
   background: var(--white); border: 1px solid rgba(23, 15, 4, .1);
 }
 .int-it__code code { font: inherit; }   /* the browser gives <code> its own monospace otherwise */
-.int-it__code .c { color: var(--gray-2); }            /* comment */
-.int-it__code .k { color: var(--label-violet-ink); }  /* keys */
-.int-it__code .s { color: var(--mark-navy); }         /* text values */
+/* no violet in the code (Łukasz, 16 Nov 2026: the strip is violet enough): grey comment, amber keys (the site's amber
+   for text on white, as in the case study), green text values (as in the earlier navy card); all ≥ 4.6:1 on white */
+.int-it__code .c { color: var(--marker-soft); }   /* comment */
+.int-it__code .k { color: #a85600; }              /* keys */
+.int-it__code .s { color: #2e7d32; }              /* text values */
 
 @media (max-width: 1440px) {
   .int-group { padding: 28px; }
@@ -961,11 +971,19 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
   .int-tile { height: 72px; }
   .int-tile img { height: calc(var(--lh, 34) * .8px); }   /* logos 20% smaller in the smaller phone tiles */
   .int-tile__name { font-size: 15px; }
-  .int-it__text p { font-size: 15px; }
+  .int-it__text > p { font-size: 15px; }
   .int-it__code { justify-self: stretch; padding: 12px 14px; font-size: 12px; }
+  /* the button at full width, as on the earlier card. “Ask for API documentation” is longer than the other button labels:
+     slightly smaller type keeps it on one line from 361px up (341px up with the 380px rule below); on narrower screens
+     the label may take two lines instead of sticking out of the button. (.int-group--it in front: it must beat the
+     site-wide phone rules for .btn and .btn--arrow, which come later in this file) */
+  .int-group--it .int-it__cta { align-self: stretch; padding-left: 20px; gap: 8px; font-size: 15px; }   /* two lines of 14–15px still fit the 56px height */
+  .int-it__cta > span:first-child { white-space: normal; text-wrap: balance; }
 }
 @media (max-width: 380px) {
   .int-group { padding-inline: 16px; }
+  .int-group--it .int-it__cta { padding-left: 18px; font-size: 14px; }
+  .int-it__cta .btn__icon { width: 40px; height: 40px; }
 }
 
 /* =========================================================

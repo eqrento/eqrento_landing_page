@@ -386,17 +386,20 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   `style.css`), reordered on 16 Nov 2026 (Łukasz: the owner must see ready connectors first, the API is a secondary
   element for the IT reader): heading “Connectors included. Open API when you need more.”, the lead, then the three
   white cards of partner tiles in a row, then the light violet “For your IT team” strip (`.int-group--it`: the group
-  cards' chrome with a violet tint and a violet label – Łukasz chose it from three variants) with one sentence, the “Ask for API documentation” link (`.feat__more`, mailto until
-  Łukasz gives the documentation address – then “API documentation” → that URL), a second text link “Ask about API
-  access” that opens the demo form (`source`: “integrations – API access”; it replaced the old button at his request)
-  and the sample response. The navy API card is gone; “+ Your system” still opens the demo form (`source`:
+  cards' chrome with a violet tint and a violet label – Łukasz chose it from three variants). In the strip: the
+  “Open API” badge of the earlier navy card (`.int-it__badge`, white with the yellow dot), the label, one sentence,
+  the yellow arrow button “Ask for API documentation” (`.int-it__cta`; mailto until Łukasz gives the documentation
+  address – then “API documentation” → that URL) and the sample response. The navy API card and the “Ask about API
+  access” link are gone (Łukasz, 16 Nov 2026); “+ Your system” is the section's way to the demo form (`source`:
   “integrations – your system”). KSeF is shown on purpose (Łukasz, 5 Nov 2026: “na razie”), although the site
   otherwise targets the EU and the US.
+  - The button's label is longer than the site's other button labels: on phones it is 15px (14px at ≤380px), so it
+    stays on one line from about 345px up, and below that it may take two lines instead of sticking out.
   - Tiles per row come from `--cols` on `.int-group`: 1 on wide screens (`.int-group--wide`, the five-tile Accounting
     card: 2, with KSeF across its last row), so the three cards have three rows each and stay equally tall; 3 on
     tablets (≤1200px, one column); 2 on phones. Only max-width queries – a min/max pair left a sub-pixel gap at
     1201px on screens scaled to 125%. A new tile changes a card's row count: rebalance `--cols`.
-  - The sample response is real text in `<pre class="int-it__code"><code>` (dark on white, keys violet), with
+  - The sample response is real text in `<pre class="int-it__code"><code>` (on white: grey comment, amber keys #a85600, green values #2e7d32 – no violet, Łukasz), with
     `tabindex="0"`, `role="region"` and an `aria-label`, because a box that scrolls sideways (long lines on phones)
     is keyboard-focusable. Its JSON is illustrative until a real EQrento response replaces it (open task).
   - Partner logos: **official files only**, never redrawn or recoloured, in `assets/logos/` named `zoomlion`,
