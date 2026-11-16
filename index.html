@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261116c">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261116d">
 </head>
 <body>
 
@@ -654,7 +654,11 @@
               <span>For your IT team</span>
             </h3>
             <p>Need something custom? Your IT team or integration partner can build it on our open&nbsp;API.</p>
-            <a class="feat__more" href="mailto:contact@eqrento.com?subject=EQrento%20API%20documentation">Ask for API documentation</a>
+            <!-- two text links: the documentation, and the demo form (as the old "Ask about API access" button – Łukasz, 16 Nov 2026) -->
+            <div class="int-it__links">
+              <a class="feat__more" href="mailto:contact@eqrento.com?subject=EQrento%20API%20documentation">Ask for API documentation</a>
+              <a class="feat__more" href="#book-demo" data-demo-source="integrations – API access">Ask about API access</a>
+            </div>
           </div>
 <pre class="int-it__code" tabindex="0" role="region" aria-label="Example API response"><code><span class="c">// example response</span>
 {

@@ -387,8 +387,9 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   element for the IT reader): heading “Connectors included. Open API when you need more.”, the lead, then the three
   white cards of partner tiles in a row, then the outlined “For your IT team” strip (`.int-group--it`: the group
   cards' chrome without a fill) with one sentence, the “Ask for API documentation” link (`.feat__more`, mailto until
-  Łukasz gives the documentation address – then “API documentation” → that URL) and the sample response. The navy
-  API card and its “Ask about API access” button are gone; “+ Your system” still opens the demo form (`source`:
+  Łukasz gives the documentation address – then “API documentation” → that URL), a second text link “Ask about API
+  access” that opens the demo form (`source`: “integrations – API access”; it replaced the old button at his request)
+  and the sample response. The navy API card is gone; “+ Your system” still opens the demo form (`source`:
   “integrations – your system”). KSeF is shown on purpose (Łukasz, 5 Nov 2026: “na razie”), although the site
   otherwise targets the EU and the US.
   - Tiles per row come from `--cols` on `.int-group`: 1 on wide screens (`.int-group--wide`, the five-tile Accounting

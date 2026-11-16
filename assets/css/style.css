@@ -924,6 +924,7 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
 }
 .int-it__text { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .int-it__text p { max-width: 660px; font-size: 16px; line-height: 1.6; color: var(--gray-2); text-wrap: pretty; }
+.int-it__links { display: flex; flex-wrap: wrap; gap: 8px 28px; }   /* the two text links side by side; one under the other on narrow phones */
 /* the sample response: real text in <pre><code>, dark on white. A long line scrolls inside the box (min-width: 0 so
    the box never widens the grid); the box is keyboard-focusable, so the markup gives it tabindex and a label */
 .int-it__code {
