@@ -383,9 +383,21 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
     Apps Script and Google Sheets (Łukasz's text) needs his change.
   - `server/` is not part of the website: left out of the OVH publish (rsync exclude) and of the Pages preview.
 - **Integrations section** – Wojtek's design (5 Nov 2026) rebuilt in the site's styles (`INTEGRATIONS` block in
-  `style.css`): the navy API card and three white cards of partner tiles. “Ask about API access” and “+ Your system”
-  open the demo form (`source`: “integrations – API access” / “integrations – your system”). KSeF is shown on
-  purpose (Łukasz, 5 Nov 2026: “na razie”), although the site otherwise targets the EU and the US.
+  `style.css`), reordered on 16 Nov 2026 (Łukasz: the owner must see ready connectors first, the API is a secondary
+  element for the IT reader): heading “Connectors included. Open API when you need more.”, the lead, then the three
+  white cards of partner tiles in a row, then the outlined “For your IT team” strip (`.int-group--it`: the group
+  cards' chrome without a fill) with one sentence, the “Ask for API documentation” link (`.feat__more`, mailto until
+  Łukasz gives the documentation address – then “API documentation” → that URL) and the sample response. The navy
+  API card and its “Ask about API access” button are gone; “+ Your system” still opens the demo form (`source`:
+  “integrations – your system”). KSeF is shown on purpose (Łukasz, 5 Nov 2026: “na razie”), although the site
+  otherwise targets the EU and the US.
+  - Tiles per row come from `--cols` on `.int-group`: 1 on wide screens (`.int-group--wide`, the five-tile Accounting
+    card: 2, with KSeF across its last row), so the three cards have three rows each and stay equally tall; 3 on
+    tablets (≤1200px, one column); 2 on phones. Only max-width queries – a min/max pair left a sub-pixel gap at
+    1201px on screens scaled to 125%. A new tile changes a card's row count: rebalance `--cols`.
+  - The sample response is real text in `<pre class="int-it__code"><code>` (dark on white, keys violet), with
+    `tabindex="0"`, `role="region"` and an `aria-label`, because a box that scrolls sideways (long lines on phones)
+    is keyboard-focusable. Its JSON is illustrative until a real EQrento response replaces it (open task).
   - Partner logos: **official files only**, never redrawn or recoloured, in `assets/logos/` named `zoomlion`,
     `teltonika`, `trackunit`, `ksef`, `comarch`, `wapro`, `exact`, `snelstart`, `microsoft-azure`, `google` (SVG, or
     PNG at least 120px tall on a transparent background). Until a company's file is there, its tile shows the name.
