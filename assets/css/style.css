@@ -867,7 +867,7 @@ html:not(.js) .nav__item:hover .nav__menu, html:not(.js) .nav__item:focus-within
    sample response. ≤1200px: one column, as narrow as the testimonial, the strip last (so also last on phones).
    ========================================================= */
 .integrations { padding: var(--sec-join) 0; background: var(--soft); }
-.integrations__lead { max-width: 860px; }
+.integrations__lead { max-width: 860px; text-wrap: balance; }   /* two sentences, the second from a new line (Łukasz, 16 Nov 2026); each wraps in even lines on tablets and phones */
 .integrations__grid { margin-top: 64px; display: grid; gap: 24px; }
 
 /* ---------- partner groups and tiles ---------- */
@@ -933,7 +933,9 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
   background: var(--white); border: 1px solid rgba(23, 15, 4, .1);
 }
 .int-it__badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); }
-.int-it__text > p { max-width: 660px; font-size: 16px; line-height: 1.6; color: var(--gray-2); text-wrap: pretty; }
+/* wide screens: the sentence on one line, never broken (Łukasz, 16 Nov 2026) – it needs 722px and the text column has at
+   least 741px from 1201px up (with a 15px scrollbar); tablets and phones wrap it (≤1200px below) */
+.int-it__text > p { font-size: 16px; line-height: 1.6; color: var(--gray-2); white-space: nowrap; }
 .int-it__cta { margin-top: 8px; }   /* the yellow arrow button of the earlier card: a little more air above it than between the texts */
 /* the sample response: real text in <pre><code>, dark on white. A long line scrolls inside the box (min-width: 0 so
    the box never widens the grid); the box is keyboard-focusable, so the markup gives it tabindex and a label */
@@ -960,6 +962,7 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
   .int-group { --cols: 3; }   /* three per row in the 760px cards: 3 · 3 + 2 · 3 */
   .int-group--wide .int-group__tiles > li:last-child:nth-child(odd) { grid-column: auto; }
   .int-group--it { gap: 20px; }
+  .int-it__text > p { max-width: 660px; white-space: normal; text-wrap: pretty; }
   .int-it__code { justify-self: start; max-width: 100%; }
 }
 @media (max-width: 640px) {

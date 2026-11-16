@@ -395,6 +395,9 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   otherwise targets the EU and the US.
   - The button's label is longer than the site's other button labels: on phones it is 15px (14px at ≤380px), so it
     stays on one line from about 345px up, and below that it may take two lines instead of sticking out.
+  - The lead's second sentence starts on a new line (`<br>`, Łukasz, 16 Nov 2026). On wide screens (above 1200px) the
+    IT strip's sentence is on one line, never broken (`white-space: nowrap`): it needs 722px and the text column has at
+    least 741px at 1201px. A longer sentence there needs the nowrap removed (or the code box narrower).
   - Tiles per row come from `--cols` on `.int-group`: 1 on wide screens (`.int-group--wide`, the five-tile Accounting
     card: 2, with KSeF across its last row), so the three cards have three rows each and stay equally tall; 3 on
     tablets (≤1200px, one column); 2 on phones. Only max-width queries – a min/max pair left a sub-pixel gap at
