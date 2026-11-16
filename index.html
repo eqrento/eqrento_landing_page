@@ -28,7 +28,7 @@
   <link rel="manifest" href="site.webmanifest">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261116b">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261116h">
 </head>
 <body>
 
@@ -551,45 +551,25 @@
   </section>
 
   <!-- ============ INTEGRATIONS ============ -->
-  <!-- Wojtek's “Integrations” section (5 Nov 2026), rebuilt in the site's own styles: the API card on the left, partner tiles on the right.
+  <!-- Wojtek's “Integrations” section (5 Nov 2026), rebuilt in the site's own styles; reordered on 16 Nov 2026 (Łukasz):
+       the connectors come first – three white cards of partner tiles in a row – and the open API is a quiet, outlined
+       “For your IT team” strip under them, with the sample response. On phones the strip is the last thing in the section.
        Partner logos: official files only (never redrawn or recoloured), in assets/logos/ under these names: zoomlion, teltonika,
        trackunit, ksef, comarch, wapro, exact, snelstart, microsoft-azure, google (.svg, or .png at least 120px tall, transparent).
        Until a company's file is there, its tile shows the name. To show a logo, put
        <img src="assets/logos/NAME.svg" width="…" height="…" alt="Company" loading="lazy"> in front of the name in its tile:
-       the CSS then hides the name and keeps the logo at most 34px tall, in its original colours. -->
+       the CSS then hides the name and keeps the logo at most 34px tall, in its original colours. The tiles are not links (Łukasz, 16 Nov 2026). -->
   <section class="integrations" id="integrations" aria-labelledby="integrations-title">
     <div class="wrap-narrow">
       <div class="section-head">
         <p class="kicker" data-reveal style="--d:0ms">Integrations</p>
-        <h2 class="h2" id="integrations-title" data-reveal style="--d:80ms">Open API first. <br>Connectors included.</h2>
-        <p class="lead integrations__lead" data-reveal style="--d:160ms">EQrento exposes an open API, so you can plug in any system your business runs on. On top of that, we connect out of the box with the telematics, accounting and <span class="nowrap">e-invoicing</span> tools rental companies already&nbsp;use.</p>
+        <h2 class="h2" id="integrations-title" data-reveal style="--d:80ms">Connectors included. <br>Open API when you need&nbsp;more.</h2>
+        <p class="lead integrations__lead" data-reveal style="--d:160ms">EQrento plugs into the accounting, ERP and telematics systems you already&nbsp;run. <br>No developers needed&nbsp;– our team sets up the connections during&nbsp;onboarding.</p>
       </div>
 
       <div class="integrations__grid">
-        <article class="api-card" data-reveal="left" style="--d:100ms">
-          <span class="api-card__glow" aria-hidden="true"></span>
-          <p class="api-card__badge">Open API</p>
-          <h3 class="api-card__title">Your data, accessible to any&nbsp;system</h3>
-          <p class="api-card__text">Build your own integrations or let your IT partner connect EQrento with your ERP, BI tools or customer portal. No&nbsp;<span class="nowrap">lock-in</span>.</p>
-          <ul class="api-card__list">
-            <li>Equipment, contracts, service and invoices available via&nbsp;API</li>
-            <li>Connect your own ERP, BI or customer&nbsp;portal</li>
-            <li>Support from our team during&nbsp;integration</li>
-          </ul>
-          <!-- an illustration only, hidden from screen readers (to match to the real EQrento API fields) -->
-<pre class="api-card__code" aria-hidden="true"><span class="c">// example response</span>
-{
-  <span class="k">"unit"</span>: <span class="s">"Telehandler 4017"</span>,
-  <span class="k">"status"</span>: <span class="s">"on_rent"</span>,
-  <span class="k">"engine_hours"</span>: 1243,
-  <span class="k">"gps"</span>: <span class="s">"Teltonika"</span>
-}</pre>
-          <a href="#book-demo" class="btn btn--primary btn--arrow api-card__cta" data-demo-source="integrations – API access">
-            <span>Ask about API access</span>
-            <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
-          </a>
-        </article>
-
+        <!-- on wide screens every card has three rows of tiles, so the three are equally tall: one tile per row, the
+             five-tile Accounting card (int-group--wide) two per row with KSeF across its last row -->
         <div class="integrations__groups">
           <div class="int-group" data-reveal style="--d:150ms">
             <h3 class="int-group__title">
@@ -603,7 +583,7 @@
             </ul>
           </div>
 
-          <div class="int-group" data-reveal style="--d:250ms">
+          <div class="int-group int-group--wide" data-reveal style="--d:250ms">
             <h3 class="int-group__title">
               <svg class="int-group__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
               <span>Accounting, ERP &amp; <span class="nowrap">e-invoicing</span></span>
@@ -628,11 +608,40 @@
               <li><div class="int-tile"><img src="assets/logos/google.svg" width="74" height="24" style="--lh:30" alt="Google APIs" loading="lazy"><span class="int-tile__name">Google APIs</span></div></li>
               <!-- Microsoft Azure: the graphic Łukasz supplied on 5 Nov 2026 (1024×576, transparent; CSS shows only the logo band) -->
               <li><div class="int-tile"><img class="int-tile__logo--band" src="assets/logos/microsoft-azure.png" width="1024" height="576" style="--lh:32; --band:1024 / 186; --band-y:49%" alt="Microsoft Azure" loading="lazy"><span class="int-tile__name">Microsoft Azure</span></div></li>
-              <!-- opens the demo form, like “Ask about API access” -->
+              <!-- opens the demo form: the only way to the form from this section -->
               <li><a class="int-tile int-tile--more" href="#book-demo" data-demo-source="integrations – your system"><span class="int-tile__name">+&nbsp;Your system</span><small>via open API</small></a></li>
             </ul>
           </div>
         </div>
+
+        <!-- the open API for the IT reader: the group cards' chrome with a light violet fill, plus the “Open API” badge
+             and the yellow arrow button of the earlier navy API card (Łukasz, 16 Nov 2026). The button asks for the API
+             documentation by e-mail until Łukasz gives its address (then: “API documentation” → that URL). The sample
+             response is real text (to be replaced with a real EQrento response); a long line scrolls inside the box, and
+             a scroll box is keyboard-focusable, hence tabindex and the label. -->
+        <aside class="int-group int-group--it" data-reveal style="--d:450ms" aria-labelledby="int-it-title">
+          <div class="int-it__text">
+            <div class="int-it__head">
+              <p class="int-it__badge">Open API</p>
+              <h3 class="int-group__title" id="int-it-title">
+                <svg class="int-group__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>
+                <span>For your IT team</span>
+              </h3>
+            </div>
+            <p>Need something custom? Your IT team or integration partner can build it on our open&nbsp;API.</p>
+            <a href="mailto:contact@eqrento.com?subject=EQrento%20API%20documentation" class="btn btn--primary btn--arrow int-it__cta">
+              <span>Ask for API documentation</span>
+              <span class="btn__icon"><img src="assets/icons/arrow-btn.svg" width="24" height="24" alt=""></span>
+            </a>
+          </div>
+<pre class="int-it__code" tabindex="0" role="region" aria-label="Example API response"><code><span class="c">// example response</span>
+{
+  <span class="k">"unit"</span>: <span class="s">"Telehandler 4017"</span>,
+  <span class="k">"status"</span>: <span class="s">"on_rent"</span>,
+  <span class="k">"engine_hours"</span>: 1243,
+  <span class="k">"gps"</span>: <span class="s">"Teltonika"</span>
+}</code></pre>
+        </aside>
       </div>
     </div>
   </section>

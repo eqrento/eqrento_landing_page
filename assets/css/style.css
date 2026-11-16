@@ -834,65 +834,19 @@ section[id] { scroll-margin-top: 80px; }
 .gps__card p { margin-top: 1.8cqi; font-size: 4.1cqi; line-height: 1.5; color: var(--gray-2); }
 
 /* =========================================================
-   INTEGRATIONS (Wojtek's section, 5 Nov 2026)
-   The API card is navy like the other dark cards; partner tiles sit in white cards.
-   Wide screens: two columns (API card | three groups of tiles). ≤1200px: one column.
+   INTEGRATIONS (Wojtek's section, 5 Nov 2026; reordered 16 Nov 2026 – Łukasz: the connectors first, the API second)
+   Section head → three white cards of partner tiles in a row → a quiet, outlined “For your IT team” strip with the
+   sample response. ≤1200px: one column, as narrow as the testimonial, the strip last (so also last on phones).
    ========================================================= */
 .integrations { padding: var(--sec-join) 0; background: var(--soft); }
-.integrations__lead { max-width: 860px; }
-.integrations__grid {
-  margin-top: 64px;
-  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: stretch;
-}
-
-/* ---------- API card ---------- */
-.api-card {
-  --gray: #b3afd6;   /* secondary text on navy, as on the other dark cards */
-  position: relative; isolation: isolate; overflow: hidden;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
-  padding: 48px; border-radius: 24px;
-  color: var(--gray); background: var(--mark-navy); border: 1px solid rgba(255, 255, 255, .1);
-  box-shadow: var(--shadow-brand);
-}
-.api-card__glow {
-  position: absolute; z-index: -1; right: -170px; top: -170px; width: 360px; height: 360px;
-  border-radius: 50%; background: var(--mark-glow); filter: blur(61px); opacity: .32; pointer-events: none;
-  animation: drift 14s ease-in-out infinite alternate;
-}
-.api-card__badge {
-  display: inline-flex; align-items: center; gap: 10px; height: 36px; padding: 0 16px; border-radius: 999px;
-  font-size: 13px; font-weight: 600; line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: var(--white);
-  background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .14);
-}
-.api-card__badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); }
-.api-card__title { font-size: 30px; font-weight: 600; line-height: 1.25; letter-spacing: -.01em; color: var(--white); text-wrap: balance; }
-.api-card__text { font-size: 16px; line-height: 1.6; text-wrap: pretty; }
-.api-card__list { display: flex; flex-direction: column; gap: 12px; }
-.api-card__list li { position: relative; padding-left: 30px; font-size: 15px; line-height: 1.45; color: rgba(255, 255, 255, .88); text-wrap: pretty; }
-.api-card__list li::before {   /* the plans' tick, light as in the Complete card */
-  content: ""; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; background: #dcd9f2;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-/* sample API response: no scrolling (it is hidden from screen readers, and a scroll box would take keyboard focus),
-   so the type gets smaller on narrow cards instead */
-.api-card__code {
-  align-self: stretch; overflow: hidden;
-  margin: 0; padding: 16px 20px; border-radius: 14px;   /* margin: <pre> has 1em above and below by default */
-  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 13px; line-height: 1.7; white-space: pre; color: #e4e2f5;
-  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .1);
-}
-.api-card__code .c { color: #9a96c4; }   /* comment */
-.api-card__code .k { color: #c9c0ff; }   /* keys */
-.api-card__code .s { color: #a8e0b4; }   /* text values */
-.api-card__cta { margin-top: auto; }     /* the button sits at the bottom when the card is taller than its content */
+.integrations__lead { max-width: 860px; text-wrap: balance; }   /* two sentences, the second from a new line (Łukasz, 16 Nov 2026); each wraps in even lines on tablets and phones */
+.integrations__grid { margin-top: 64px; display: grid; gap: 24px; }
 
 /* ---------- partner groups and tiles ---------- */
-.integrations__groups { display: flex; flex-direction: column; gap: 24px; }
+.integrations__groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .int-group {
-  flex: auto;   /* the three cards share any height the API card adds; tiles stay centred in them */
-  display: flex; flex-direction: column; justify-content: center; gap: 18px;
+  --cols: 1;   /* tiles per row: 1 on wide screens (2 in the five-tile card), 3 on tablets, 2 on phones */
+  display: flex; flex-direction: column; gap: 18px;
   padding: 32px; border-radius: 24px; background: var(--white);
   box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
@@ -901,7 +855,7 @@ section[id] { scroll-margin-top: 80px; }
   font-size: 13px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--gray-2);
 }
 .int-group__icon { flex: none; width: 20px; height: 20px; color: var(--label-violet-ink); }
-.int-group__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.int-group__tiles { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 12px; }
 .int-tile {
   height: 84px; padding: 12px 16px; border-radius: 14px;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
@@ -914,6 +868,7 @@ a.int-tile:hover { background: var(--white); border-color: rgba(23, 15, 4, .12);
    height in px is set on the <img> as --lh: wide or heavy logos lower (Comarch 19), compact ones 30–34; the stacked
    Wapro logo 50, because its lettering is only a third of its height */
 .int-tile img { width: auto; height: calc(var(--lh, 34) * 1px); max-width: 100%; object-fit: contain; }
+.int-tile:has(img) { padding-inline: 8px; }   /* a wide logo gets almost the whole tile (SnelStart in the two-per-row tiles at 1201px, Teltonika ≈ 100px at 320px) */
 .int-tile:has(img) .int-tile__name { display: none; }
 /* a logo that sits in a band across a larger picture (Exact: 640×480 JPG, rows 172–294; Microsoft Azure: 1024×576 PNG,
    rows 199–372). The file stays as it is: the box gets the band's shape (--band: picture width / band height) and the
@@ -927,42 +882,83 @@ a.int-tile:hover { background: var(--white); border-color: rgba(23, 15, 4, .12);
 .int-tile--more .int-tile__name { font-size: 15px; }
 .int-tile--more small { font-size: 13px; line-height: 1.3; color: var(--gray-2); }
 a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
+/* wide screens: the three cards side by side, each with three rows of tiles so they are equally tall – one tile per
+   row, the five-tile Accounting card (int-group--wide) two per row with KSeF across its last row. A new tile changes
+   a card's row count: rebalance --cols here. (Only max-width queries below, like the rest of the file: a min-width /
+   max-width pair leaves a sub-pixel gap at 1201px on screens scaled to 125%.) */
+.int-group--wide { --cols: 2; }
+.int-group--wide .int-group__tiles > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+/* ---------- “For your IT team”: the group cards' chrome with a light violet fill and a violet label (Łukasz, 16 Nov 2026 –
+   the tint of the case study's values card): a separate, technical note that does not compete with the logos ---------- */
+.int-group--it {
+  display: grid; grid-template-columns: minmax(0, 1fr) fit-content(440px); align-items: center; gap: 24px 48px;
+  background: rgba(101, 97, 255, .06); box-shadow: none; border: 1px solid rgba(101, 97, 255, .16);
+}
+.int-group--it .int-group__title { color: var(--label-violet-ink); }
+.int-it__text { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.int-it__head { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+/* the “Open API” badge of the earlier navy card, in light colours: white with the yellow dot of the buttons */
+.int-it__badge {
+  display: inline-flex; align-items: center; gap: 10px; height: 36px; padding: 0 16px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: var(--ink);
+  background: var(--white); border: 1px solid rgba(23, 15, 4, .1);
+}
+.int-it__badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); }
+/* wide screens: the sentence on one line, never broken (Łukasz, 16 Nov 2026) – it needs 722px and the text column has at
+   least 741px from 1201px up (with a 15px scrollbar); tablets and phones wrap it (≤1200px below) */
+.int-it__text > p { font-size: 16px; line-height: 1.6; color: var(--gray-2); white-space: nowrap; }
+.int-it__cta { margin-top: 8px; }   /* the yellow arrow button of the earlier card: a little more air above it than between the texts */
+/* the sample response: real text in <pre><code>, dark on white. A long line scrolls inside the box (min-width: 0 so
+   the box never widens the grid); the box is keyboard-focusable, so the markup gives it tabindex and a label */
+.int-it__code {
+  min-width: 0; margin: 0; padding: 14px 18px; border-radius: 14px; overflow-x: auto;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 13px; line-height: 1.7; white-space: pre; color: var(--ink);
+  background: var(--white); border: 1px solid rgba(23, 15, 4, .1);
+}
+.int-it__code code { font: inherit; }   /* the browser gives <code> its own monospace otherwise */
+/* no violet in the code (Łukasz, 16 Nov 2026: the strip is violet enough): grey comment, amber keys (the site's amber
+   for text on white, as in the case study), green text values (as in the earlier navy card); all ≥ 4.6:1 on white */
+.int-it__code .c { color: var(--marker-soft); }   /* comment */
+.int-it__code .k { color: #a85600; }              /* keys */
+.int-it__code .s { color: #2e7d32; }              /* text values */
 
 @media (max-width: 1440px) {
-  .api-card { padding: 40px 36px; }
-  .api-card__cta { padding-left: 28px; gap: 12px; font-size: 17px; }   /* as the CTA in the EQrento card */
   .int-group { padding: 28px; }
 }
-/* tablets: one column (API card, then the groups), as narrow as the testimonial */
+/* tablets: one column (the three cards, then the strip), as narrow as the testimonial; the code under its text, at its own width */
 @media (max-width: 1200px) {
-  .integrations__grid { grid-template-columns: minmax(0, 1fr); max-width: 760px; margin-inline: auto; }
+  .integrations__grid { max-width: 760px; margin-inline: auto; }
+  .integrations__groups, .int-group--it { grid-template-columns: minmax(0, 1fr); }
+  .int-group { --cols: 3; }   /* three per row in the 760px cards: 3 · 3 + 2 · 3 */
+  .int-group--wide .int-group__tiles > li:last-child:nth-child(odd) { grid-column: auto; }
+  .int-group--it { gap: 20px; }
+  .int-it__text > p { max-width: 660px; white-space: normal; text-wrap: pretty; }
+  .int-it__code { justify-self: start; max-width: 100%; }
 }
 @media (max-width: 640px) {
   .integrations__grid { margin-top: 40px; gap: 16px; }
   .integrations__groups { gap: 16px; }
-  .api-card { gap: 20px; padding: 28px 24px; border-radius: 20px; }
-  .api-card__title { font-size: 24px; }
-  .api-card__text { font-size: 15px; }
-  .api-card__code { padding: 14px 16px; font-size: 12px; }
-  .api-card__cta { align-self: stretch; min-width: 0; }
-  .int-group { gap: 16px; padding: 24px 20px; border-radius: 20px; }
-  .int-group__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .int-group__tiles > li:last-child:nth-child(odd) { grid-column: 1 / -1; }   /* an odd last tile fills its row */
+  .int-group { --cols: 2; gap: 16px; padding: 24px 20px; border-radius: 20px; }
+  .int-group__tiles { gap: 10px; }
+  .int-group .int-group__tiles > li:last-child:nth-child(odd) { grid-column: 1 / -1; }   /* an odd last tile fills its row (the extra .int-group beats the tablet rule above) */
   .int-tile { height: 72px; }
-  .int-tile:has(img) { padding-inline: 8px; }   /* narrow tiles: a wide logo gets almost the whole width (Teltonika ≈ 100px at 320px) */
   .int-tile img { height: calc(var(--lh, 34) * .8px); }   /* logos 20% smaller in the smaller phone tiles */
   .int-tile__name { font-size: 15px; }
+  .int-it__text > p { font-size: 15px; }
+  .int-it__code { justify-self: stretch; padding: 12px 14px; font-size: 12px; }
+  /* the button at full width, as on the earlier card. “Ask for API documentation” is longer than the other button labels:
+     slightly smaller type keeps it on one line from 361px up (341px up with the 380px rule below); on narrower screens
+     the label may take two lines instead of sticking out of the button. (.int-group--it in front: it must beat the
+     site-wide phone rules for .btn and .btn--arrow, which come later in this file) */
+  .int-group--it .int-it__cta { align-self: stretch; padding-left: 20px; gap: 8px; font-size: 15px; }   /* two lines of 14–15px still fit the 56px height */
+  .int-it__cta > span:first-child { white-space: normal; text-wrap: balance; }
 }
 @media (max-width: 380px) {
-  .api-card { padding-inline: 20px; }
-  .api-card__code { padding: 12px 14px; font-size: 11px; }
   .int-group { padding-inline: 16px; }
-}
-/* 320px: the button is only 238px wide – smaller type and arrow, as the CTA in the EQrento card
-   (.api-card in front: it must beat the site-wide 340px rule for .btn--arrow, which comes later in this file) */
-@media (max-width: 340px) {
-  .api-card .api-card__cta { padding-left: 18px; gap: 6px; font-size: 14px; }
-  .api-card__cta .btn__icon { width: 40px; height: 40px; }
+  .int-group--it .int-it__cta { padding-left: 18px; font-size: 14px; }
+  .int-it__cta .btn__icon { width: 40px; height: 40px; }
 }
 
 /* =========================================================
