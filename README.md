@@ -383,7 +383,8 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
     SMTP account – live only in `formmail.env` on the server, never in this repo.
   - On the GitHub preview the same relative address leads nowhere (github.io has no such service), so there the
     form always ends in the pre-filled e-mail – as before.
-  - Open (Łukasz's text): the Privacy Policy still says the form goes through Google Apps Script and Google Sheets.
+  - Privacy Policy (17 Nov 2026, Łukasz approved the wording): OVH also hosts the service that forwards the form to our
+    e-mail (requests are not stored on it); Google is only the e-mail service (Apps Script and Sheets removed).
   - `server/` is not part of the website: left out of the OVH publish (rsync exclude) and of the Pages preview.
 - **Integrations section** – Wojtek's design (5 Nov 2026) rebuilt in the site's styles (`INTEGRATIONS` block in
   `style.css`), reordered on 16 Nov 2026 (Łukasz: the owner must see ready connectors first, the API is a secondary
