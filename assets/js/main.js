@@ -626,10 +626,10 @@
 
 /* ---------- demo request dialog ----------
    Every link to #book-demo opens it; eqrento.com/#book-demo opens it on arrival (e-mails, ads).
-   The form posts JSON to its data-endpoint: a Google Apps Script web app (README: “Demo request form”).
-   The body goes as text/plain on purpose – that keeps it a “simple” cross-origin request with no CORS
-   preflight, which Apps Script can’t answer. No endpoint yet, or sending failed → the visitor gets a
-   pre-filled e-mail to contact@eqrento.com instead, so no request is lost. */
+   The form posts JSON to its data-endpoint, /api/demo-request: the form-to-e-mail service on the own server
+   (server/form-mail/formmail.py; README: “Demo request form”). The body goes as text/plain, a “simple” request
+   with no CORS preflight. No endpoint, or sending failed (also on the GitHub preview, which has no such
+   service) → the visitor gets a pre-filled e-mail to contact@eqrento.com instead, so no request is lost. */
 (() => {
   const dialog = document.getElementById('book-demo');
   if (!dialog || typeof dialog.showModal !== 'function') return;

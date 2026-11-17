@@ -363,24 +363,26 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   `<dialog id="book-demo">` near the end of `index.html` (styles under “DEMO REQUEST DIALOG”, logic at the end of
   `main.js`); `https://eqrento.com/#book-demo` opens it directly (links in e-mails, ads). Fields: what they rent
   (chips, several allowed, “Other” adds a text box), fleet size (chips matching the plan limits), company, name,
-  email, phone (optional), note (optional, folded). The form posts JSON as `text/plain` (no CORS preflight) to the
-  URL in the form's `data-endpoint` – a Google Apps Script web app that adds a row to a Google Sheet and e-mails
-  the team (address: `NOTIFY_TO` in the script; code and set-up guide are kept outside this public repo:
-  `../formularz-demo/`). Body:
+  email, phone (optional), note (optional, folded). The form posts JSON as `text/plain` to the URL in the form's
+  `data-endpoint`: `/api/demo-request` on every page that has the form (since 17 Nov 2026), answered by the
+  form-to-e-mail service on the own OVH server (`server/form-mail/`, see below). (The earlier plan, a Google Apps
+  Script web app writing to a Google Sheet – `../formularz-demo/` outside this repo – was dropped on 10 Nov 2026.) Body:
   `rents` (array), `rents_other`, `fleet_size`, `company`, `name`, `email`, `phone`, `message`, `website` (spam
   trap, must stay empty), `source` (which button: the button's `data-demo-source` if it has one, else the plan or
   the section it sits in), `page`, `referrer`, `utm`, `timezone`, `language`, `seconds`;
-  expected answer `{"ok":true}` – any endpoint that does this (e.g. PHP on the own server) can replace Apps Script.
+  expected answer `{"ok":true}`.
   No endpoint, or sending fails → the visitor gets a pre-filled e-mail to contact@eqrento.com instead. Events for
   analytics: `eq:demo-open`, `eq:demo-request` (on `document`).
-  - **10 Nov 2026 – e-mail only, from the own server (Łukasz: no Google Drive, no Sheets, nothing saved to a file).**
-    The endpoint is ready in `server/form-mail/` (`formmail.py`, Python standard library, tests in GitHub Actions and on
-    the OVH server's Python 3.12.3). It is NOT running yet: the OVH web server only serves files (a `.php` in the site
-    folder comes back as a download; the publishing account has no sudo, Docker or nginx access), so the server
-    administrator has to start it and pass `/api/demo-request` to it – instruction:
-    `server/form-mail/INSTRUKCJA-PL.md`. Then: `data-endpoint="/api/demo-request"` on `.demo__form` in
-    index.html, pricing.html and case-study.html, a test on eqrento.com, and the Privacy Policy sentence about Google
-    Apps Script and Google Sheets (Łukasz's text) needs his change.
+  - **E-mail only, from the own server (Łukasz, 10 Nov 2026: no Google Drive, no Sheets, nothing saved to a file).**
+    The service is `server/form-mail/formmail.py` (Python standard library, tests in GitHub Actions and on the OVH
+    server's Python 3.12.3). The server administrator runs it and nginx passes the one address `/api/demo-request` to
+    it (exact match: `/api/demo-request/health` is not passed – it answers on the service's own port only) –
+    instruction: `server/form-mail/INSTRUKCJA-PL.md`. Running since 17 Nov 2026 (checked without sending: GET →
+    405 JSON, an empty POST → 400 with the missing fields). The settings – the destination address `MAIL_TO` and the
+    SMTP account – live only in `formmail.env` on the server, never in this repo.
+  - On the GitHub preview the same relative address leads nowhere (github.io has no such service), so there the
+    form always ends in the pre-filled e-mail – as before.
+  - Open (Łukasz's text): the Privacy Policy still says the form goes through Google Apps Script and Google Sheets.
   - `server/` is not part of the website: left out of the OVH publish (rsync exclude) and of the Pages preview.
 - **Integrations section** – Wojtek's design (5 Nov 2026) rebuilt in the site's styles (`INTEGRATIONS` block in
   `style.css`), reordered on 16 Nov 2026 (Łukasz: the owner must see ready connectors first, the API is a secondary
@@ -478,9 +480,6 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
 
 ## Before going live – still to do
 
-- Demo request form: once the form-to-e-mail service runs on the server (see “Demo request form” above), put
-  `/api/demo-request` into `data-endpoint` of `.demo__form` in `index.html`, `pricing.html` and `case-study.html`
-  (until then the form falls back to a pre-filled e-mail).
 - FAQ answers 2–6 and some Key features descriptions are placeholder copy.
 - Optional: WebP for the remaining pictures (Key features photos, How it works photos, the telematics images; the
   hero machines, logos, poster and footer logo are done – see “Speed”).
