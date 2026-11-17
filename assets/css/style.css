@@ -1700,7 +1700,11 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
   z-index: -1; width: 900px; height: 600px; left: 50%; bottom: -380px; translate: -40% 0;
   background: radial-gradient(closest-side, rgba(235, 151, 25, .55), transparent);
 }
-.footer__grid { display: grid; grid-template-columns: 340fr 420fr 240fr auto auto; gap: 32px; }   /* brand, Company, Contact, System, Key features (the feature pages, 10 Nov 2026) */
+/* brand, Company, Contact, System, Key features (the feature pages, 10 Nov 2026). Each column is as wide as its text and
+   the free space is shared equally between the columns, so the gaps look the same (Łukasz, 17 Nov 2026: Key features sat
+   too close to System). The four text columns never wrap (700px together); only the brand column gives way on narrow
+   desktops – 320px from about 1250px up, ~260px at 1201px, still wider than the 246px logo */
+.footer__grid { display: grid; grid-template-columns: minmax(0, 320px) repeat(4, max-content); justify-content: space-between; gap: 32px; }
 .footer__brand img { width: 246px; }
 .footer__brand p { margin-top: 24px; max-width: 320px; }
 .footer__brand p + p { margin-top: 24px; }
@@ -2213,7 +2217,7 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   .faq__grid { grid-template-columns: 1fr; gap: 32px; }
   .faq__title { max-width: 620px; }
 
-  .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .footer__grid { grid-template-columns: repeat(3, auto); }   /* Company, Contact, System: as wide as their text, the same gaps between them (space-between above); on the narrowest tablets they wrap */
   .footer__brand { grid-column: 1 / -1; }
   .footer__col--features { grid-column: 1 / -1; }
   .footer__col--features ul { columns: 3; column-gap: 32px; }
@@ -2384,13 +2388,19 @@ textarea.demo__input { height: auto; min-height: 96px; padding: 13px 16px; line-
   .qa.is-open .qa__q { padding-top: 24px; }
   .qa__a p { padding: 0 20px 24px; font-size: 15px; }
 
-  .footer__grid { grid-template-columns: 1fr 1fr; row-gap: 8px; }
+  .footer__grid { grid-template-columns: 1fr 1fr; justify-content: normal; row-gap: 8px; }   /* phones: two even columns, as before */
   .footer__grid > .footer__col:nth-child(2) { grid-column: 1 / -1; }
   .footer__col--features { padding-top: 32px; }
   .footer__col--features ul { columns: 2; column-gap: 20px; }
   .footer__brand img { width: 190px; }
   .footer__tagline { margin-top: 40px; }
   .footer__legal { max-width: 300px; }   /* the four links in two even rows (2 + 2), not 3 + 1 */
+}
+/* small tablets (641–720px): Company, Contact and System do not fit side by side at their text width (605px), and a
+   wrapped address left uneven gaps – so the phone order already here: Company across, then Contact | System */
+@media (min-width: 641px) and (max-width: 720px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; justify-content: normal; }
+  .footer__grid > .footer__col:nth-child(2) { grid-column: 1 / -1; }
 }
 /* narrowest phones (320px): the e-mail address sets the Contact column's width, so a smaller column gap
    leaves the System links (“Why EQrento?”, “How it works”, “Key features”) room for one line each */
