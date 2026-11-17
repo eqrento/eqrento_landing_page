@@ -205,23 +205,20 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
 - **The shared shell** (head, header, mobile menu, footer, demo dialog, cookie banner) of the eight newer pages is a
   copy of the one in offers-contracts.html; only the title, description, address and the current-page marks differ.
   Change the shell in every page, as for the other copies of index.html's parts.
-- **Copy rules for these pages:**
+- **Copy rules for these pages** (and the same facts everywhere on the site):
   - overuse goes on the invoice after the office approves it – never “automatically” (Łukasz, 9 Nov 2026), although
     Wojtek's list says automatic;
   - an offer takes “under a minute”, as on the home page (the list says 30 seconds);
-  - the mobile app is Android, plus “protocols via a link on any phone”; no re-rental, customer portal or cash register;
+  - telematics detects work over the daily limit, at night, on weekends and on holidays – NOT work outside an agreed
+    area and NOT work after a return was reported (Łukasz, 17 Nov 2026: “nie”; removed from the GPS page, the home page
+    and pricing);
+  - the mobile app is written as “Android and iOS” (Łukasz, 17 Nov 2026: Android today, iOS any moment – describe all
+    platforms), plus “protocols via a link on any phone”; no re-rental, customer portal or cash register;
+  - EQrento's own telemetry device is Teltonika hardware (they use Teltonika devices only);
+  - Comarch and Asseco Wapro are named without product names (Łukasz, 17 Nov 2026);
   - AI Assistant is “a paid add-on”, with no price;
-  - plan tags must match pricing.html (the comparison table decides when Wojtek's list says something else).
-- **For Wojtek to confirm** (his list marks most of them “to confirm before publishing”):
-  - GPS page: detection of work “outside the agreed area” and “after the return was reported”;
-  - the mobile app is written as Android only; Comarch and Asseco Wapro are named without products;
-  - Equipment page: “Equipment map with live GPS positions” is tagged Connected (the live map row of the comparison
-    table) – his list has “equipment map” under Equipment with no plan;
-  - Offers page: “Sales offers next to the rental ones” is tagged Enterprise (all sales rows of the comparison table are
-    Enterprise only) – his list has sales offers under Offers (Essential) and again under Equipment sales (Enterprise);
-  - Service page: what Essential already has (taken from the comparison table; his list puts the whole module in
-    Complete);
-  - GPS page: “(Teltonika hardware)” beside EQrento's own telemetry device.
+  - plan tags must match pricing.html (the comparison table decides when Wojtek's list says something else – confirmed
+    by Łukasz on 17 Nov 2026 for the Equipment map, sales offers, the Service plan box and the salesperson).
 
 ## Case study page (case-study.html, since 9 Nov 2026)
 
