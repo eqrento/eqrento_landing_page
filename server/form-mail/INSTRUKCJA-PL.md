@@ -52,13 +52,20 @@ Adres docelowy (`MAIL_TO`) poda Łukasz.
 
 Wysyłka poczty, trzy możliwości (poczta firmy jest w Google Workspace):
 
-> **Uwaga (17.11.2026):** nadawca musi być w domenie **eqrento.com** i wysyłany przez Google Workspace (możliwość 2
-> albo 3). Pierwsze ustawienie – `MAIL_FROM=noreply@eq-rento.com` przez pocztę OVH – nie dochodziło do skrzynki
-> w eqrento.com: eq-rento.com to inna domena (bez DKIM i DMARC), łudząco podobna do eqrento.com, a Google traktuje
-> taką wiadomość z nazwą „EQrento” jak podszywanie się (spam albo kwarantanna).
+> **Stan od 17.11.2026 (decyzja Łukasza):** wysyłka z `MAIL_FROM=noreply@eq-rento.com` (poczta OVH) na
+> `MAIL_TO=wojciech@eqrento.com`, `MAIL_FROM_NAME=EQrento`. Uwaga: eq-rento.com to inna domena niż eqrento.com
+> (Google Workspace) i łudząco do niej podobna, bez DKIM i DMARC – Google może takie wiadomości uznać za
+> podszywanie się (spam, kwarantanna albo odrzucenie). Żeby dochodziły:
+> - w Google Workspace dla eqrento.com dopuść nadawcę `noreply@eq-rento.com` (lista zatwierdzonych nadawców w
+>   ustawieniach spamu Gmaila) i sprawdź w dzienniku poczty, czy nie zatrzymuje ich ochrona przed podobnymi domenami;
+> - w OVH włącz DKIM dla eq-rento.com i dodaj rekord DMARC (`_dmarc.eq-rento.com TXT "v=DMARC1; p=none"`).
+>
+> Bez dokupowania kont: przekaźnik Google (możliwość 2) z ustawieniem „tylko adresy w moich domenach” wysyła z
+> dowolnego adresu w eqrento.com bez osobnej skrzynki; noreply@eqrento.com może też być bezpłatnym aliasem
+> istniejącej skrzynki (możliwość 3).
 
-1. **Konto SMTP, którego aplikacja EQrento już używa** do swoich e-maili – tylko jeśli wysyła z adresu w
-   eqrento.com (konto aplikacji w domenie eq-rento.com się nie nadaje, patrz uwaga wyżej).
+1. **Konto SMTP, którego aplikacja EQrento już używa** do swoich e-maili (tak jest teraz: noreply@eq-rento.com
+   przez pocztę OVH – patrz uwaga wyżej).
 2. **SMTP relay Google Workspace bez hasła:** `SMTP_HOST=smtp-relay.gmail.com`, port 587, `starttls`, puste
    `SMTP_USER` i `SMTP_PASSWORD`. W konsoli administratora Google (Aplikacje → Google Workspace → Gmail → Routing →
    Usługa przekazywania SMTP) trzeba dopuścić adres IP tego serwera i nadawców z własnej domeny.
