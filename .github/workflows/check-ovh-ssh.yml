@@ -7,6 +7,11 @@ name: Check connection to OVH (SSH)
 
 on:
   workflow_dispatch:
+    inputs:
+      pubkey:
+        description: 'Optional: a PEM public key, base64 in one line. The demo form settings are then read and shown ONLY ENCRYPTED with it (this repository and its logs are public).'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -100,6 +105,58 @@ jobs:
             echo "LINGER $(loginctl show-user "$(whoami)" -p Linger 2>/dev/null | cut -d= -f2)"
             systemctl --user show-environment >/dev/null 2>&1 && echo "SYSTEMD_USER_SESSION yes" || echo "SYSTEMD_USER_SESSION no"
             crontab -l >/dev/null 2>&1; echo "CRONTAB exit $? (0 has entries, 1 allowed but empty)"'
+
+      # The demo form's e-mail settings (17 Nov 2026: a test request was accepted, but no e-mail arrived). Read-only, and
+      # only when a public key is given. The log is public, so only yes/no facts are printed in plain text; the addresses,
+      # the other settings and the service's own log lines (one per request, no personal data) are printed ENCRYPTED with
+      # that key (AES-256 for the text, RSA-OAEP for the AES key) – only the holder of the private key can read them.
+      # SMTP_PASSWORD is never read: the check only says whether it is set.
+      - name: Demo form settings (read-only, shown encrypted)
+        if: ${{ inputs.pubkey != '' }}
+        env:
+          PUBKEY_B64: ${{ inputs.pubkey }}
+        run: |
+          out=$(ssh -p "$OVH_PORT" -i ~/.ssh/deploy_key -o BatchMode=yes -o ConnectTimeout=15 \
+              -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              "$OVH_USER@$OVH_HOST" '
+            keys="MAIL_TO|MAIL_FROM|MAIL_FROM_NAME|SMTP_HOST|SMTP_PORT|SMTP_SECURITY|SMTP_USER|SMTP_HELO|MIN_SECONDS"
+            pids=$(pgrep -f "python.*[f]ormmail\.py" | tr "\n" " ")
+            [ -n "$pids" ] && echo "FACT FORMMAIL_PROCESS yes" || echo "FACT FORMMAIL_PROCESS no (or not visible)"
+            for p in $pids; do
+              [ "$(stat -c %u /proc/$p 2>/dev/null)" = "$(id -u)" ] && echo "FACT PROCESS_RUNS_AS_ME yes" || echo "FACT PROCESS_RUNS_AS_ME no"
+              grep -qE "docker|containerd" /proc/$p/cgroup 2>/dev/null && echo "FACT PROCESS_IN_CONTAINER yes" || echo "FACT PROCESS_IN_CONTAINER no"
+              if [ -r /proc/$p/environ ]; then
+                echo "FACT PROCESS_SETTINGS_READABLE yes"
+                tr "\0" "\n" < /proc/$p/environ | grep -E "^($keys)=" | sed "s/^/SECRET process /"
+                tr "\0" "\n" < /proc/$p/environ | grep -qE "^SMTP_PASSWORD=.+" && echo "SECRET process SMTP_PASSWORD is set" || echo "SECRET process SMTP_PASSWORD is empty"
+              else
+                echo "FACT PROCESS_SETTINGS_READABLE no"
+              fi
+            done
+            files=$(timeout 25 find /opt /srv /home /var/www /var/lib/docker/volumes /etc /usr/local /root -maxdepth 6 -name formmail.env 2>/dev/null)
+            [ -n "$files" ] && echo "FACT SETTINGS_FILE_FOUND yes" || echo "FACT SETTINGS_FILE_FOUND no (or not visible to this user)"
+            for f in $files; do
+              if [ -r "$f" ]; then
+                echo "FACT SETTINGS_FILE_READABLE yes"
+                echo "SECRET file $f"
+                grep -E "^[[:space:]]*(export[[:space:]]+)?($keys)=" "$f" | sed "s/^/SECRET file /"
+                grep -qE "^[[:space:]]*(export[[:space:]]+)?SMTP_PASSWORD=.+" "$f" && echo "SECRET file SMTP_PASSWORD is set" || echo "SECRET file SMTP_PASSWORD is empty"
+              else
+                echo "FACT SETTINGS_FILE_READABLE no"
+              fi
+            done
+            lines=$(journalctl --no-pager -o cat --since "2026-11-16" 2>/dev/null | grep -E " formmail (sent|dropped|mail-error|invalid|rate-limited|too-large)" | tail -n 40)
+            [ -n "$lines" ] && echo "FACT SERVICE_LOG_READABLE yes" || echo "FACT SERVICE_LOG_READABLE no (or empty)"
+            printf "%s\n" "$lines" | sed "/^\$/d; s/^/SECRET log /"
+            true') || true
+          printf '%s\n' "$out" | sed -n 's/^FACT //p'
+          secret=$(printf '%s\n' "$out" | sed -n 's/^SECRET //p')
+          if [ -z "$secret" ]; then echo "Nothing to encrypt: no setting and no log line was readable for this user."; exit 0; fi
+          printf '%s' "$PUBKEY_B64" | base64 -d > pub.pem
+          K=$(openssl rand -hex 32)
+          echo "ENCRYPTED_KEY $(printf '%s' "$K" | openssl pkeyutl -encrypt -pubin -inkey pub.pem -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256 | base64 -w0)"
+          echo "ENCRYPTED_DATA $(printf '%s' "$secret" | K="$K" openssl enc -aes-256-cbc -pbkdf2 -salt -pass env:K -base64 -A)"
+          rm -f pub.pem
 
       - name: Remove the key from the runner
         if: always()
