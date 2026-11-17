@@ -378,7 +378,8 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
     server's Python 3.12.3). The server administrator runs it and nginx passes the one address `/api/demo-request` to
     it (exact match: `/api/demo-request/health` is not passed – it answers on the service's own port only) –
     instruction: `server/form-mail/INSTRUKCJA-PL.md`. Running since 17 Nov 2026 (checked without sending: GET →
-    405 JSON, an empty POST → 400 with the missing fields). The settings – the destination address `MAIL_TO` and the
+    405 JSON, an empty POST → 400 with the missing fields) and live on eqrento.com the same day: one test request
+    through the form on the page (company “TEST – EQrento website”) got `{"ok": true}` and the thank-you view. The settings – the destination address `MAIL_TO` and the
     SMTP account – live only in `formmail.env` on the server, never in this repo.
   - On the GitHub preview the same relative address leads nowhere (github.io has no such service), so there the
     form always ends in the pre-filled e-mail – as before.
