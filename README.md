@@ -380,7 +380,10 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
     instruction: `server/form-mail/INSTRUKCJA-PL.md`. Running since 17 Nov 2026 (checked without sending: GET →
     405 JSON, an empty POST → 400 with the missing fields) and live on eqrento.com the same day: one test request
     through the form on the page (company “TEST – EQrento website”) got `{"ok": true}` and the thank-you view. The settings – the destination address `MAIL_TO` and the
-    SMTP account – live only in `formmail.env` on the server, never in this repo.
+    SMTP account – live only in `formmail.env` on the server, never in this repo. The service runs in a container next
+    to nginx; the publishing account can read neither its settings nor its log (checked 17 Nov 2026 with
+    `check-ovh-ssh.yml`, which prints such values only encrypted) – the server administrator reads them
+    (`docker compose logs formmail`: one line per request – `sent demo`, `dropped …`, `mail-error …`).
   - On the GitHub preview the same relative address leads nowhere (github.io has no such service), so there the
     form always ends in the pre-filled e-mail – as before.
   - Privacy Policy (17 Nov 2026, Łukasz approved the wording): OVH also hosts the service that forwards the form to our
