@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /offer/
 Allow: /
 
 Sitemap: https://eqrento.com/sitemap.xml
