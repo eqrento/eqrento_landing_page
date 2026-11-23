@@ -48,7 +48,9 @@
   box-shadow: 0 1px 3px rgba(7, 10, 27, .08), 0 16px 48px -8px rgba(7, 10, 27, .2), 0 40px 110px -30px rgba(100, 98, 255, .45);
   font-size: 14px; line-height: 1.4; color: var(--gray-2);
 }
-.gl-report__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid rgba(23, 15, 4, .08); }
+/* the status label above the machine's name (Łukasz, 23 Nov 2026); on phones that leaves the head's right side free
+   for the lift */
+.gl-report__head { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid rgba(23, 15, 4, .08); }
 .gl-report__head p { display: flex; flex-direction: column; gap: 2px; }
 .gl-report__head b { font-size: 16px; font-weight: 600; color: var(--ink); }
 .gl-report__head small { font-size: 13px; }
@@ -291,11 +293,14 @@
   .gl-hero__text { gap: 16px; }
   .gl-hero__title { font-size: 30px; }
   .gl-actions { flex-direction: column; align-items: stretch; align-self: stretch; }
-  /* phones: the card takes the whole width and the whole lift stands on it, at the right (its wheels on the card's
-     top edge; the shadow under the wheels goes behind the card) */
-  .gl-hero__visual { padding: 44.5% 0 0; }
-  .gl-hero__lift { top: 0; right: 4%; bottom: auto; z-index: 0; width: 46%; transform: none; }
+  /* phones: the card takes the whole width and the lift stands in front of its top right corner, the lower half of
+     the machine over the card (Łukasz, 23 Nov 2026). The picture's machine runs from 16% to 84% of its height, so the
+     card starts at its middle: 0.499 × 563/490 × 46% = 26.4% of the width. The head's text keeps to the left 58%,
+     where the lift (from 60% of the card's width) cannot reach it */
+  .gl-hero__visual { padding: 26.4% 0 0; }
+  .gl-hero__lift { top: 0; right: 2%; bottom: auto; z-index: 2; width: 46%; transform: none; }
   .gl-report { position: relative; z-index: 1; padding: 18px 18px 20px; border-radius: 20px; }
+  .gl-report__head p { max-width: calc(58% - 8px); }
   .gl-week { height: 112px; gap: 6px; }
   .gl-days { gap: 6px; }
   .gl-sec .section-head + * { margin-top: 32px; }
