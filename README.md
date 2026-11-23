@@ -263,6 +263,11 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
 
 ## Things worth knowing
 
+- **Cloudflare redirect rules** (set in the Cloudflare dashboard, not in this repository; since 23 Nov 2026):
+  - `Redirect from WWW to root [Template]`: `https://www.eqrento.com/*` → `https://eqrento.com/${1}`, 301, query kept.
+  - `Remove trailing slash`: only the listed page addresses, e.g. `/pricing/` → `/pricing` (301, query kept). It is
+    a list on purpose: folders (`/en/` … `/pt/`, `/assets/`, `/offer/<slug>/`) get their slash back from the server,
+    and stripping it there loops. **A new page → add `"/<page>/"` to that rule's list.**
 - **Section spacing** – two variables at the top of `style.css`: `--sec-y` (76px desktop / 50px from 1200px down)
   where the background changes, `--sec-join` (48px / 32px) where two neighbouring sections share the same background.
 - **Hero background** – the block marked `EXPERIMENT` at the end of `style.css` gives the hero and header the light
