@@ -271,7 +271,8 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   `offer/bilift-7k2m9/`). One HTML file with its own script and the screenshots inside it, **in the site's look**
   (Łukasz, 23 Nov 2026): it loads the site's `assets/css/style.css` (`../../assets/…`, so an offer must sit exactly two
   folders deep) and uses its classes – `.btn`, `.kicker`, `.section-head`, `.h2`, `.lead`, `.icon-box`, `.billing`,
-  `.faq__grid` with `.qa__icon`, `.footer` with `.footer__bottom` / `.footer__legal` / `.footer__cookie-btn`, the
+  `.faq__grid` with `.qa__icon`, `.footer` with `.glow--footer`, `.footer__brand`, `.footer__col`, `.footer__bottom`,
+  `.footer__copyright`, `.footer__legal` and `.footer__cookie-btn`, `section[id]` scroll-margin (the offer sets it to its top bar), the
   `.cookie` card for the consent question – plus `assets/img/logo-eqrento.webp`, `assets/icons/logo-light.webp`,
   `assets/icons/arrow-btn.svg` and the Sora fonts. Renaming or removing any of these changes the offers too: check them.
   It does not use main.js.
