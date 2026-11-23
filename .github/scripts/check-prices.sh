@@ -4,6 +4,8 @@
 #   - pricing.html – the plan cards and the comparison table's header (data-price="…" data-yearly="…" data-monthly="…").
 # The lowest price also appears in pricing.html's title and descriptions ("from $199/month") and in the home page FAQ
 # ("Plans start at $199 a month").
+# Other pages can quote the Essential price as <span data-price-quote="essential">$199</span> (the GPS landing page);
+# those quotes are compared too.
 # This check runs before the GitHub preview and before the publish to eqrento.com and stops both when the pages
 # disagree, so a price changed in one place only never goes out. Run it locally too:  bash .github/scripts/check-prices.sh
 set -u
@@ -35,6 +37,13 @@ for t in $(grep -o 'from \$[0-9,]*/month' pricing.html | sort -u | sed 's/ /_/g'
 done
 faq=$(grep -o 'Plans start at \$[0-9,]*' index.html | sed 's/Plans start at //' | head -1)
 [ "$faq" = "$low" ] || bad "the home page FAQ says \"Plans start at ${faq:-?}\", the Essential price is $low"
+
+# the Essential price quoted on other pages (data-price-quote="essential")
+for f in *.html; do
+  for q in $(grep -o 'data-price-quote="essential">[^<]*' "$f" | sed 's/.*>//' | sort -u); do
+    [ "$q" = "$low" ] || bad "$f quotes the Essential price as $q, the Essential price is $low"
+  done
+done
 
 if [ "$fail" -ne 0 ]; then
   echo "Prices differ between index.html and pricing.html – fix them in both files (see the lines above)."

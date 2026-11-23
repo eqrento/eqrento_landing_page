@@ -61,9 +61,16 @@ case-study.html        – the BAC Polska case study (see “Case study page” 
 offers-contracts.html, equipment.html, transport.html, gps-telematics.html, service.html, warehouse.html,
 equipment-sales.html, invoicing.html, ai-assistant.html
                        – the nine feature pages (see “Feature pages” below; preview only for now)
-gps-telematics-new.html – DRAFT (Wojtek, 23 Nov 2026): a standalone GPS landing page with its own look, shown in the
-                         GitHub preview only – noindex, not linked from the menus, not in the sitemap. Never publish it
-                         to eqrento.com without Łukasz's OK; the current page stays in gps-telematics.html
+gps-telematics-new.html – DRAFT (Wojtek's GPS landing page of 23 Nov 2026, rebuilt in the site's look): GPS as a module of
+                         its own – a sample overuse report, how it works, the device, a savings calculator, a comparison,
+                         pricing ($4 per machine a month, minimum $100; device $69), FAQ and a 30-day pilot on 10 machines.
+                         Own styles in assets/css/gps.css, script in assets/js/gps.js (the calculator; the pilot form
+                         opens the visitor's e-mail program with a message to Wojtek – the address is put together in
+                         the script, so it is not written out in this public repository). No noindex (Łukasz wants it
+                         indexed), canonical = its own address. GitHub preview only – not linked from the menus, not in
+                         the sitemap. Never publish it to eqrento.com without Łukasz's OK; before that decide its address
+                         (then the sitemap and the Cloudflare trailing-slash list) and whether it replaces
+                         gps-telematics.html, which stays the GPS page until then
 privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
 cookie-policy.html     – Cookie Policy
 robots.txt, sitemap.xml – search engines (point to https://eqrento.com/; /offer/ is disallowed)
@@ -75,6 +82,7 @@ site.webmanifest       – Android home-screen icons (round 192 / 512 px + maska
 assets/css/style.css   – all styles; design tokens at the top (:root)
 assets/js/main.js      – interactions and animations (all pages)
 assets/js/pricing.js   – pricing page only: yearly / monthly, “Show only differences”, the plan shown on phones
+assets/css/gps.css, assets/js/gps.js – the GPS landing page draft only (gps-telematics-new.html)
 .github/scripts/check-prices.sh – stops the preview and the publish when the prices on the two pages differ
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos, og-image.png (1200×630 link-preview picture)
@@ -144,6 +152,8 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
     `data-price` + `data-yearly` + `data-monthly`).
   - The Essential price is also in pricing.html's title and descriptions (“from $199/month”) and in the home FAQ (“Plans
     start at $199 a month”).
+  - The GPS landing page draft (gps-telematics-new.html) quotes the Essential price as
+    `<span data-price-quote="essential">$199</span>`; the check compares that too.
   - Change a price in every place. `bash .github/scripts/check-prices.sh` checks them and runs before every preview and
     publish – a difference stops both.
 - **Demo requests:** from pricing.html the `page` field is `/pricing`. The card buttons send `source` “pricing – <plan>”,

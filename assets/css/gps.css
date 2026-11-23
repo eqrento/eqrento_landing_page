@@ -1,0 +1,345 @@
+/* =========================================================
+   GPS LANDING (gps-telematics-new.html) – Wojtek's standalone GPS page of 23 Nov 2026, rebuilt in the site's own look:
+   white cards on the page grey, navy (the logo mark) for the highlighted cards, violet labels, orange only for action
+   and money (the buttons, the flagged overuse). Loaded after style.css by this page only, so the draft does not touch
+   the shared stylesheet; everything here starts with .gl. No reveal animations (main.js plays them on the home page only).
+   Breakpoints as in style.css: 1200 / 1100 / 900 / 767 / 640 / 400 / 340.
+   ========================================================= */
+.gl .h2 { text-wrap: balance; }
+/* icons drawn in the page (the site's icon colour, in the usual light-yellow box) */
+.gl .icon-box svg { width: 24px; height: 24px; fill: none; stroke: #eda532; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- hero: the text and an example of a flagged rental ---------- */
+.gl-hero { padding: calc(var(--header-h) + 40px) 0 var(--sec-join); }   /* starts under the fixed header, like the pricing page */
+.gl-hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: center; }
+.gl-hero__text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+/* the price label: the violet pill of the home page's hero label (inline-block, so the spaces around the price stay) */
+.gl-chip {
+  display: inline-block; padding: 8px 18px; border-radius: 22px;
+  font-size: 15px; line-height: 1.4; color: var(--ink);
+  background: rgba(101, 97, 255, .07); border: 1px solid rgba(101, 97, 255, .24);
+}
+.gl-chip b { font-size: 18px; font-weight: 600; color: var(--label-violet-ink); }
+.gl-hero__title { font-size: var(--h1); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); text-wrap: balance; }
+.gl-hero__title em { font-style: normal; color: var(--label-violet-ink); }
+.gl-hero__text .lead { max-width: 660px; }
+/* ticks: orange in the hero (as the hero chips on the home page), the neutral marker elsewhere */
+.gl-ticks { display: flex; flex-direction: column; gap: 10px; }
+.gl-ticks li { position: relative; padding-left: 30px; font-size: 16px; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
+.gl-ticks li::before, .gl-price__list li::before {
+  content: ""; position: absolute; left: 0; top: 2px; width: 20px; height: 20px; background: #eda532;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.gl-ticks--plain li::before, .gl-price__list li::before { background: var(--marker); }
+.gl-actions { display: flex; flex-wrap: wrap; gap: 12px 16px; margin-top: 8px; }
+.gl-actions .btn--arrow { min-width: 0; }
+
+/* the example report: a floating white card (the shadow of the drawn screen in the case study) */
+.gl-report {
+  padding: 22px 24px 24px; border-radius: 24px; background: var(--white);
+  box-shadow: 0 1px 3px rgba(7, 10, 27, .08), 0 16px 48px -8px rgba(7, 10, 27, .2), 0 40px 110px -30px rgba(100, 98, 255, .45);
+  font-size: 14px; line-height: 1.4; color: var(--gray-2);
+}
+.gl-report__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid rgba(23, 15, 4, .08); }
+.gl-report__head p { display: flex; flex-direction: column; gap: 2px; }
+.gl-report__head b { font-size: 16px; font-weight: 600; color: var(--ink); }
+.gl-report__head small { font-size: 13px; }
+.gl-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; align-items: end; height: 132px; margin-top: 18px; }
+.gl-week i { display: block; height: var(--h); border-radius: 6px 6px 2px 2px; background: #d5d2fb; }   /* within the contract: a tint of the logo violet */
+.gl-week i.is-over { background: #ffa41b; }
+.gl-week i.is-idle { background: #ecebf3; }
+.gl-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 6px; font-size: 12px; text-align: center; color: var(--marker-soft); }
+.gl-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-size: 12px; }
+.gl-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.gl-legend span::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: #d5d2fb; }
+.gl-legend .is-over::before { background: #ffa41b; }
+.gl-report__row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 0; border-top: 1px solid rgba(23, 15, 4, .08); color: var(--ink); }
+.gl-legend + .gl-report__row { margin-top: 14px; }
+.gl-report__row b { font-weight: 600; white-space: nowrap; }
+.gl-report__row--over b { color: #a85600; }
+.gl-report__acts { display: flex; gap: 8px; padding-top: 4px; }
+.gl-mini {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; height: 36px; border-radius: 10px;
+  font-size: 13px; font-weight: 600; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(23, 15, 4, .14);
+}
+.gl-mini--bill { color: #170f04; background: var(--gradient); box-shadow: none; }
+/* status labels: orange for the overuse (money), violet for the rest – as in the case study */
+.gl-tag {
+  display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
+}
+.gl-tag--flag { color: #8a4600; background: #fff1d6; }
+.gl-tag--ok { color: var(--label-violet-ink); background: rgba(101, 97, 255, .1); }
+
+/* ---------- sections ---------- */
+.gl-sec { padding: var(--sec-join) 0; }
+.gl-sec .section-head + * { margin-top: 48px; }
+
+/* the problem: three cards */
+.gl-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.gl-card {
+  display: flex; flex-direction: column; gap: 14px; padding: 28px;
+  border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.gl-card h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); text-wrap: balance; }
+.gl-card p { font-size: 15px; line-height: 1.55; color: var(--gray-2); text-wrap: pretty; }
+
+/* how it works: six steps, the flagging one navy */
+.gl-flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.gl-step {
+  display: flex; flex-direction: column; gap: 8px; padding: 20px;
+  border-radius: 20px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.gl-step__num { font-size: 13px; font-weight: 600; letter-spacing: .08em; color: var(--label-violet-ink); }
+.gl-step b { font-size: 16px; font-weight: 600; line-height: 1.3; color: var(--ink); }
+.gl-step__text { font-size: 14px; line-height: 1.45; color: var(--gray-2); text-wrap: pretty; }
+.gl-step--key { background: var(--mark-navy); box-shadow: var(--shadow-brand); }
+.gl-step--key .gl-step__num { color: #cfcbff; }
+.gl-step--key b { color: var(--white); }
+.gl-step--key .gl-step__text { color: #b3afd6; }
+
+/* the two made-up documents: the report and the invoice */
+.gl-docs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 20px; }
+.gl-doc { min-width: 0; padding: 28px 28px 20px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05); }
+.gl-doc h3 { margin-top: 10px; font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); text-wrap: balance; }
+.gl-doc > p:not(.kicker) { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--gray-2); text-wrap: pretty; }
+.gl-table { width: 100%; margin-top: 18px; border-collapse: collapse; font-size: 14px; line-height: 1.4; color: var(--ink); font-variant-numeric: tabular-nums; }
+.gl-table th {
+  padding: 8px; text-align: left; border-bottom: 1px solid #efedf5;
+  font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #6d6a86;
+}
+.gl-table td { padding: 11px 8px; border-bottom: 1px solid #efedf5; vertical-align: middle; }
+.gl-table .is-num { text-align: right; white-space: nowrap; }
+.gl-table tr.is-flag td { background: #fff8ea; }   /* the overuse rows: a tint of the orange */
+.gl-table tr.is-total td { font-weight: 600; border-bottom: 0; }
+
+/* the device: the tracker and its three wires on navy, the three inputs beside it */
+.gl-device { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center; }
+.gl-device__visual {
+  position: relative; isolation: isolate; overflow: hidden; padding: 36px;
+  border-radius: 24px; background: var(--mark-navy); box-shadow: var(--shadow-brand);
+}
+.gl-device__visual::before {
+  content: ""; position: absolute; z-index: -1; width: 520px; height: 520px; right: -220px; top: -240px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(151, 118, 254, .45), transparent);
+}
+.gl-device__visual svg { width: 100%; }
+.gl-device__text { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.gl-inputs { align-self: stretch; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.gl-inputs li {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; padding: 20px 22px;
+  border-radius: 20px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.gl-inputs h3 { font-size: 17px; font-weight: 600; line-height: 1.3; color: var(--ink); }
+.gl-inputs p { margin-top: 4px; font-size: 15px; line-height: 1.5; color: var(--gray-2); text-wrap: pretty; }
+
+/* the calculator: the sliders on white, the result on navy */
+.gl-calc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.gl-calc__inputs, .gl-calc__result { min-width: 0; padding: 32px; border-radius: 24px; }
+.gl-calc__inputs { background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05); }
+.gl-calc__group { margin-bottom: 18px; font-size: 13px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--marker-soft); }
+.gl-field + .gl-calc__group { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(23, 15, 4, .08); }
+.gl-field + .gl-field { margin-top: 22px; }
+.gl-field label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.gl-field output { flex: none; color: var(--label-violet-ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gl-field__hint { margin-top: 2px; font-size: 13px; line-height: 1.4; color: var(--marker-soft); }
+/* the sliders: a light track filled in the orange of the cookie banner's switches, a white knob. WebKit has no
+   “filled part”, so gps.js keeps --p (0–1, the position) on each slider and the track draws the fill from it;
+   the values in the page are those of the defaults */
+.gl-field input[type="range"] {
+  -webkit-appearance: none; appearance: none; display: block; width: 100%; height: 28px; margin: 6px 0 0; padding: 0;
+  background: transparent; cursor: pointer;
+}
+.gl-field input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px; border-radius: 3px;
+  background: linear-gradient(#eda532, #eda532) 0 0 / calc(11px + (100% - 22px) * var(--p, 0)) 100% no-repeat, #e6e3ee;
+}
+.gl-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; box-sizing: border-box; width: 22px; height: 22px; margin-top: -8px;
+  border-radius: 50%; border: 2px solid #eda532; background: var(--white); box-shadow: 0 1px 4px rgba(23, 15, 4, .25);
+}
+.gl-field input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: #e6e3ee; }
+.gl-field input[type="range"]::-moz-range-progress { height: 6px; border-radius: 3px; background: #eda532; }
+.gl-field input[type="range"]::-moz-range-thumb {
+  box-sizing: border-box; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #eda532;
+  background: var(--white); box-shadow: 0 1px 4px rgba(23, 15, 4, .25);
+}
+.gl-field input[type="range"]:focus { outline: none; }
+.gl-field input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(107, 92, 255, .3); }
+.gl-field input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px rgba(107, 92, 255, .3); }
+.gl-calc__result { display: flex; flex-direction: column; background: var(--mark-navy); box-shadow: var(--shadow-brand); color: #b3afd6; }
+.gl-calc__result .kicker { color: #cfcbff; }
+.gl-calc__big { margin-top: 14px; font-size: clamp(40px, 1.6vw + 24px, 54px); font-weight: 600; line-height: 1.05; letter-spacing: -.03em; color: var(--white); }
+.gl-calc__big small { font-size: 18px; font-weight: 600; letter-spacing: -.01em; color: #cfcbff; white-space: nowrap; }
+.gl-calc__big.is-msg { font-size: clamp(26px, .8vw + 18px, 32px); line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
+.gl-calc__sub { margin-top: 10px; font-size: 16px; line-height: 1.5; }
+.gl-calc__head { margin-top: 26px; font-size: 12px; font-weight: 600; line-height: 1.4; letter-spacing: .1em; text-transform: uppercase; color: #b3afd6; }
+.gl-calc__rows { margin: 6px 0 0; }
+.gl-calc__rows div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, .1); font-size: 15px; line-height: 1.4; color: #dcd9f2; }
+.gl-calc__rows dd { margin: 0; font-weight: 600; color: var(--white); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.gl-calc__rows .is-money dd { color: #ffbb2d; }   /* the extra days found: money */
+.gl-calc__note { margin-top: auto; padding-top: 22px; font-size: 13px; line-height: 1.5; }
+
+/* compare: one white card; our column in ink on a violet tint */
+.gl-cmp { overflow: hidden; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05); }
+.gl-cmp table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.45; }
+.gl-cmp th, .gl-cmp td { padding: 16px 24px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(23, 15, 4, .08); color: var(--gray-2); }
+.gl-cmp thead th, .gl-cmp thead td { font-size: 14px; font-weight: 600; background: rgba(28, 26, 23, .03); }
+.gl-cmp thead .is-us { color: var(--label-violet-ink); }
+.gl-cmp tbody th { width: 34%; font-weight: 400; }
+.gl-cmp td.is-us { font-weight: 600; color: var(--ink); background: rgba(101, 97, 255, .04); }
+.gl-cmp tbody tr:last-child > * { border-bottom: 0; }
+.gl-note { margin: 16px auto 0; max-width: 980px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-2); }
+
+/* existing telematics (navy) and accounting (white), the systems as chips */
+.gl-integ { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 20px; }
+.gl-box {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 36px;
+  border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.gl-box__title { font-size: clamp(22px, .6vw + 17px, 26px); font-weight: 600; line-height: 1.25; letter-spacing: -.01em; color: var(--ink); text-wrap: balance; }
+.gl-box > p:not(.kicker) { font-size: 15px; line-height: 1.6; color: var(--gray-2); text-wrap: pretty; }
+.gl-box--navy { background: var(--mark-navy); box-shadow: var(--shadow-brand); }
+.gl-box--navy .kicker { color: #cfcbff; }
+.gl-box--navy .gl-box__title { color: var(--white); }
+.gl-box--navy > p:not(.kicker) { color: #b3afd6; }
+.gl-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.gl-chips li {
+  display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 999px;
+  font-size: 14px; font-weight: 600; color: var(--ink); white-space: nowrap;
+  background: var(--soft); box-shadow: inset 0 0 0 1px rgba(23, 15, 4, .08);
+}
+.gl-box--navy .gl-chips li { color: var(--white); background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
+
+/* pricing: three cards (the subscription navy, like the recommended plan) and four examples */
+.gl-prices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.gl-price { display: flex; flex-direction: column; padding: 32px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05); }
+.gl-price__name { font-size: 13px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--label-violet-ink); }
+.gl-price__num {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; margin-top: 12px;
+  font-size: clamp(40px, 1.6vw + 24px, 54px); font-weight: 600; line-height: 1.05; letter-spacing: -.03em; color: var(--ink);
+}
+.gl-price__num small, .gl-price__from { font-size: 17px; font-weight: 600; letter-spacing: -.01em; color: var(--gray-2); }
+.gl-price__per { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--gray-2); }
+.gl-price__per a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.gl-price__list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(23, 15, 4, .08); }
+.gl-price__list li { position: relative; padding-left: 30px; font-size: 15px; line-height: 1.5; color: var(--gray-2); text-wrap: pretty; }
+.gl-price--key { background: var(--mark-navy); box-shadow: var(--shadow-brand); }
+.gl-price--key .gl-price__name { color: #cfcbff; }
+.gl-price--key .gl-price__num { color: var(--white); }
+.gl-price--key .gl-price__num small, .gl-price--key .gl-price__per { color: #b3afd6; }
+.gl-price--key .gl-price__list { border-top-color: rgba(255, 255, 255, .12); }
+.gl-price--key .gl-price__list li { color: #dcd9f2; }
+.gl-price--key .gl-price__list li::before { background: #dcd9f2; }
+.gl-examples {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 20px; padding: 22px 32px;
+  border-radius: 20px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.gl-examples li { display: flex; flex-direction: column; gap: 2px; font-size: 14px; line-height: 1.4; color: var(--gray-2); }
+.gl-examples b { font-size: 20px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+
+/* the FAQ is followed by the pilot box, so the join spacing below it (as on the pricing page) */
+.gl-faq { padding-bottom: var(--sec-join); }
+
+/* the pilot: the offer and the request; the last section before the footer, so the full spacing below */
+.gl-pilot { padding: var(--sec-join) 0 var(--sec-y); }
+.gl-pilot__box {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: 56px;
+  padding: 64px; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.gl-pilot__text { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+/* the fields of the demo request dialog (.demo__label, .demo__input) on a soft panel */
+.gl-form { display: flex; flex-direction: column; gap: 18px; padding: 28px; border-radius: 20px; background: var(--soft); }
+.gl-form__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.gl-form .demo__label { margin-bottom: 8px; }
+.gl-form__send { width: 100%; min-width: 0; }
+.gl-form__note { font-size: 13px; line-height: 1.5; color: var(--marker-soft); }
+
+@media (max-width: 1200px) {
+  .gl-hero__grid, .gl-device { gap: 40px; }
+  .gl-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gl-pilot__box { gap: 40px; padding: 48px; }
+}
+/* up to 1100px the hero, the device and the pilot box stack */
+@media (max-width: 1100px) {
+  .gl-hero__grid, .gl-device, .gl-pilot__box { grid-template-columns: minmax(0, 1fr); }
+  .gl-report, .gl-device__visual { max-width: 560px; }
+  .gl-device__visual { width: 100%; justify-self: center; }
+}
+@media (max-width: 900px) {
+  .gl-docs, .gl-calc, .gl-integ, .gl-prices { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .gl-cards { grid-template-columns: minmax(0, 1fr); }
+  .gl-examples { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .gl-hero { padding-top: calc(var(--header-h) + 24px); }
+  .gl-hero__text { gap: 16px; }
+  .gl-hero__title { font-size: 30px; }
+  .gl-actions { flex-direction: column; align-items: stretch; align-self: stretch; }
+  .gl-report { padding: 18px 18px 20px; border-radius: 20px; }
+  .gl-week { height: 112px; gap: 6px; }
+  .gl-days { gap: 6px; }
+  .gl-sec .section-head + * { margin-top: 32px; }
+  .gl-cards { gap: 16px; }
+  .gl-card { padding: 24px; border-radius: 20px; }
+  .gl-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gl-step { padding: 18px 16px; }
+  .gl-docs { gap: 16px; margin-top: 16px; }
+  .gl-doc { padding: 24px 20px 12px; border-radius: 20px; }
+  /* the tables: each row on two lines (report: machine and hours, then customer and event; invoice: item and amount,
+     then the quantity), the column heads for screen readers only – nothing is wider than the card at 320px */
+  .gl-table, .gl-table tbody { display: block; }
+  .gl-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+  .gl-table tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; padding: 11px 8px; border-bottom: 1px solid #efedf5; }
+  .gl-table td { padding: 0; border: 0; }
+  .gl-table tr.is-flag { background: #fff8ea; }
+  .gl-table tr.is-flag td { background: none; }
+  .gl-table tr.is-total { border-bottom: 0; }
+  .gl-table--report td:nth-child(1) { grid-area: 1 / 1; font-weight: 600; }
+  .gl-table--report td:nth-child(4) { grid-area: 1 / 2; font-weight: 600; }
+  .gl-table--report td:nth-child(2) { grid-area: 2 / 1; font-size: 13px; color: var(--gray-2); }
+  .gl-table--report td:nth-child(3) { grid-area: 2 / 2; justify-self: end; }
+  .gl-table--invoice td:nth-child(1) { grid-area: 1 / 1; }
+  .gl-table--invoice td:nth-child(3) { grid-area: 1 / 2; align-self: start; }
+  .gl-table--invoice td:nth-child(2) { grid-area: 2 / 1; text-align: left; font-size: 13px; color: var(--gray-2); }
+  .gl-table--invoice td:nth-child(2):empty { display: none; }
+  .gl-device__visual { padding: 24px; border-radius: 20px; }
+  .gl-inputs li { padding: 18px; }
+  .gl-calc__inputs, .gl-calc__result { padding: 24px 20px; border-radius: 20px; }
+  /* compare: every row becomes a card – the feature, then our answer and the usual one with their labels */
+  .gl-cmp { border-radius: 20px; }
+  .gl-cmp thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+  .gl-cmp table, .gl-cmp tbody, .gl-cmp tr, .gl-cmp tbody th, .gl-cmp tbody td { display: block; }
+  .gl-cmp tr { padding: 18px 20px; border-bottom: 1px solid rgba(23, 15, 4, .08); }
+  .gl-cmp tbody tr:last-child { border-bottom: 0; }
+  .gl-cmp tbody th { width: auto; padding: 0 0 8px; border: 0; font-weight: 600; color: var(--ink); }
+  .gl-cmp tbody td { position: relative; padding: 4px 0 4px 124px; border: 0; font-size: 14px; }   /* the label in the padding, so a cell's words stay one text */
+  .gl-cmp td.is-us { background: none; }
+  .gl-cmp tbody td::before { content: attr(data-label); position: absolute; left: 0; top: 4px; width: 112px; font-size: 12px; font-weight: 600; line-height: 1.7; color: var(--marker-soft); }
+  .gl-box { padding: 28px 24px; border-radius: 20px; }
+  .gl-price { padding: 28px 24px; border-radius: 20px; }
+  .gl-examples { padding: 20px 24px; }
+  /* the pilot: the fields straight in the white box (white fields with a border, as in the demo request dialog) */
+  .gl-pilot__box { gap: 28px; padding: 32px 20px; border-radius: 20px; }
+  .gl-form { padding: 0; border-radius: 0; background: none; }
+  .gl-form__grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 400px) {
+  .gl-flow { grid-template-columns: minmax(0, 1fr); }
+  .gl-chip { font-size: 14px; }
+  .gl-calc__big small { display: block; margin-top: 6px; }   /* “more per month” under the amount */
+  /* the four examples: one per line, the price on the right */
+  .gl-examples { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .gl-examples li { flex-direction: row; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .gl-examples b { font-size: 17px; }
+}
+/* 320px: the arrow buttons need a little less padding to fit their boxes (as the demo buttons on the other pages) */
+@media (max-width: 340px) {
+  .gl-form__send { padding-left: 18px; gap: 6px; font-size: 14px; }
+  .gl-form__send .btn__icon { width: 40px; height: 40px; }
+  .gl-cmp tbody td { padding-left: 106px; }
+  .gl-cmp tbody td::before { width: 96px; }
+}
