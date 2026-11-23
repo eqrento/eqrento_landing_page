@@ -118,7 +118,7 @@
        Every section starts with an h2 that has an id; the contents list is built from them. ============ -->
   <article class="legal__doc">
 
-    <p class="legal__lead">The EQrento website uses Google Analytics&nbsp;4 to count visits and see how the Website is used, but only if you agree to analytics cookies. Without your consent, it stores only your choice from the cookie banner in your browser’s local storage, which is strictly necessary and needs no consent. You can view every page of the Website, including offers prepared for our clients, without agreeing to analytics.</p>
+    <p class="legal__lead">The EQrento website uses analytics tools&nbsp;– Google Analytics&nbsp;4, Hotjar and Microsoft Clarity&nbsp;– and, for marketing, the Google Ads conversion linker, but only if you agree to the relevant category. Hotjar and Microsoft Clarity record how you use the pages. Without your consent, the Website stores only your choice from the cookie banner in your browser’s local storage, which is strictly necessary and needs no consent. You can view every page of the Website, including offers prepared for our clients, without agreeing to analytics or marketing.</p>
     <p>This Cookie Policy applies to eqrento.com (the “Website”), operated by SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o. (“we”, “us”). How we process personal data is explained in our <a href="privacy-policy.html">Privacy Policy</a>.</p>
 
     <h2 id="what-cookies-are">1. What cookies and similar technologies are</h2>
@@ -127,7 +127,7 @@
     <p>In this Policy, “cookies” covers all of these technologies.</p>
 
     <h2 id="what-we-store">2. What the Website stores on your device</h2>
-    <p>The Website uses one necessary item in your browser’s local storage and, only if you agree to analytics, the cookies of Google Analytics&nbsp;4:</p>
+    <p>The Website uses one necessary item in your browser’s local storage. Only with your consent, it also uses the items of the tools described in <a href="#analytics-marketing">section&nbsp;5</a>, which we load through Google Tag Manager:</p>
     <!-- on tablets and phones every row becomes a card: the data-label of each cell is shown above it.
          A new tool (analytics, marketing) = a new row here, its own date above, and a new VERSION in main.js -->
     <table class="legal__table" role="table">
@@ -156,9 +156,65 @@
           <td role="cell" data-label="Category">Analytics</td>
           <td role="cell" data-label="How long it is kept">2&nbsp;years from your last visit, or until you withdraw consent or clear your browser data</td>
         </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">_hjSessionUser_&lt;ID&gt;</th>
+          <td role="cell" data-label="Type and provider">Cookie, first-party, set by Hotjar:<br>Hotjar Limited</td>
+          <td role="cell" data-label="Purpose">Keeps a random Hotjar user ID for this Website, so that later visits are attributed to the same user; Hotjar does not track users across different websites (&lt;ID&gt; is the identifier of our Hotjar site)</td>
+          <td role="cell" data-label="Category">Analytics</td>
+          <td role="cell" data-label="How long it is kept">365&nbsp;days</td>
+        </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">_hjSession_&lt;ID&gt;</th>
+          <td role="cell" data-label="Type and provider">Cookie, first-party, set by Hotjar:<br>Hotjar Limited</td>
+          <td role="cell" data-label="Purpose">Holds the data of your current visit, so that its pages are attributed to the same session</td>
+          <td role="cell" data-label="Category">Analytics</td>
+          <td role="cell" data-label="How long it is kept">30&nbsp;minutes, extended while you are active</td>
+        </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">Other Hotjar items</th>
+          <td role="cell" data-label="Type and provider">Cookies, session and local storage, first-party, set by Hotjar:<br>Hotjar Limited</td>
+          <td role="cell" data-label="Purpose">Let the Hotjar code work: _hjHasCachedUserAttributes and _hjUserAttributesHash check whether user data needs updating, hjViewportId and hjActiveViewportIds keep the size of your browser window, _hjCookieTest, _hjLocalStorageTest, _hjSessionStorageTest and _hjTLDTest test what your browser allows; _hjClosedSurveyInvites, _hjDonePolls and _hjMinimizedPolls are used only if we show you a Hotjar survey</td>
+          <td role="cell" data-label="Category">Analytics</td>
+          <td role="cell" data-label="How long it is kept">The tests: under a second; _hjUserAttributesHash: 2&nbsp;minutes, extended while you are active; the survey items: 365&nbsp;days; the others: until the end of your visit</td>
+        </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">_clck</th>
+          <td role="cell" data-label="Type and provider">Cookie, first-party, set by Microsoft Clarity:<br>Microsoft Ireland Operations Limited</td>
+          <td role="cell" data-label="Purpose">Keeps a random Clarity user ID and your preferences for this Website</td>
+          <td role="cell" data-label="Category">Analytics</td>
+          <td role="cell" data-label="How long it is kept">1&nbsp;year</td>
+        </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">_clsk</th>
+          <td role="cell" data-label="Type and provider">Cookie, first-party, set by Microsoft Clarity:<br>Microsoft Ireland Operations Limited</td>
+          <td role="cell" data-label="Purpose">Connects the pages you view into one recording of your visit</td>
+          <td role="cell" data-label="Category">Analytics</td>
+          <td role="cell" data-label="How long it is kept">1&nbsp;day</td>
+        </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">CLID, MUID, MR, SM, ANONCHK</th>
+          <td role="cell" data-label="Type and provider">Cookies, third-party, set on Microsoft’s domains (such as clarity.ms):<br>Microsoft</td>
+          <td role="cell" data-label="Purpose">CLID records the first time Clarity saw your browser on any website using Clarity; MUID identifies browsers visiting Microsoft websites and is used for advertising, site analytics and other operational purposes; MR and SM refresh and synchronize MUID; ANONCHK is always set to 0</td>
+          <td role="cell" data-label="Category">Analytics; MUID and the related items also Marketing</td>
+          <td role="cell" data-label="How long it is kept">Determined by Microsoft; you can delete them in your browser settings</td>
+        </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">_gcl_au, _gcl_aw (also _gcl_gs, _gcl_gb, _gcl_ag, _gcl_dc)</th>
+          <td role="cell" data-label="Type and provider">Cookies, first-party, set by the Google Ads conversion linker:<br>Google Ireland Limited</td>
+          <td role="cell" data-label="Purpose">Store information about the Google ad you clicked to reach the Website, if any, so that we can see whether our ads lead to visits and demo requests</td>
+          <td role="cell" data-label="Category">Marketing</td>
+          <td role="cell" data-label="How long it is kept">90&nbsp;days</td>
+        </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">_gcl_ls</th>
+          <td role="cell" data-label="Type and provider">Local storage, first-party, set by the Google Ads conversion linker:<br>Google Ireland Limited</td>
+          <td role="cell" data-label="Purpose">Keeps the same ad click information in your browser’s local storage</td>
+          <td role="cell" data-label="Category">Marketing</td>
+          <td role="cell" data-label="How long it is kept">Until you withdraw consent or clear your browser data</td>
+        </tr>
       </tbody>
     </table>
-    <p>The eq-cookie-consent item stays in your browser and is not sent to us. The Google Analytics cookies are sent to Google together with information about your visit (see <a href="#analytics-marketing">section&nbsp;5</a>). Fonts, images and videos on the Website are served from our own server, and the Website does not embed content from other companies, such as YouTube videos, maps or social media plugins.</p>
+    <p>The eq-cookie-consent item stays in your browser and is not sent to us. The other items are read by the tools that set them and sent to their providers together with information about your visit (see <a href="#analytics-marketing">section&nbsp;5</a>). Fonts, images and videos on the Website are served from our own server, and the Website does not embed content from other companies, such as YouTube videos, maps or social media plugins.</p>
 
     <h2 id="legal-basis">3. Legal basis</h2>
     <p>Storing information on your device, or reading information already stored there, is governed by Article&nbsp;399 of the Polish Electronic Communications Law of 12&nbsp;July 2024 (Prawo komunikacji elektronicznej), which implements Article&nbsp;5(3) of the ePrivacy Directive 2002/58/EC.</p>
@@ -175,9 +231,10 @@
       <li><strong>Reject all</strong>&nbsp;– keeps only the Necessary category;</li>
       <li><strong>Customize</strong>&nbsp;– lets you switch individual categories on or off and confirm with <strong>Save my choices</strong>.</li>
     </ul>
+    <p><strong>Analytics</strong> covers Google Analytics&nbsp;4, Hotjar and Microsoft Clarity. <strong>Marketing</strong> covers the Google Ads conversion linker and the advertising-related Microsoft cookies used by Clarity. Google Tag Manager loads these tools only after you agree to Analytics; if you agree to Analytics but not to Marketing, the marketing items are not stored.</p>
     <!-- “Cookie settings” here is a button: it opens the cookie banner, like the one in the footer -->
-    <p>Until you make a choice, only necessary items are used, and we do not treat continued browsing as consent. You can change or withdraw your consent at any time via <button type="button" class="legal__cookie-btn" data-cookie-open>Cookie settings</button> in the Website footer. Withdrawal does not affect the lawfulness of processing carried out before it.</p>
-    <p>Offer pages that we prepare for individual clients ask only about analytics, in a short notice shown after you open the offer. It is the same setting as the Analytics category in the banner, so your choice applies to the whole Website.</p>
+    <p>Until you make a choice, only necessary items are used, and we do not treat continued browsing as consent. You can change or withdraw your consent at any time via <button type="button" class="legal__cookie-btn" data-cookie-open>Cookie settings</button> in the Website footer. When you withdraw consent, we delete the first-party items of these tools from your browser and reload the page, so that they stop working; cookies set on Microsoft’s domains can be deleted in your browser settings. Withdrawal does not affect the lawfulness of processing carried out before it.</p>
+    <p>Offer pages that we prepare for individual clients ask only about analytics (Google Analytics, Hotjar and Microsoft Clarity), in a short notice shown after you open the offer; you can change your answer via “Ustawienia cookies” at the bottom of the offer page. It is the same setting as the Analytics category in the banner, so your choice applies to the whole Website; your Marketing choice stays as you set it in the banner.</p>
     <p>You can also decide in your browser settings whether websites may store and read information on your device, and delete what is already stored:</p>
     <ul>
       <li><a href="https://support.google.com/chrome/answer/95647">Google Chrome</a></li>
@@ -188,10 +245,14 @@
     <p>If you block or clear local storage, the Website cannot remember your choice and will show the banner again.</p>
 
     <h2 id="analytics-marketing">5. Analytics and marketing tools</h2>
+    <p><strong>Google Tag Manager.</strong> We load the tools below with Google Tag Manager, a service of Google Ireland Limited, and only after you agree to Analytics.</p>
     <p><strong>Google Analytics&nbsp;4.</strong> We use Google Analytics&nbsp;4, provided by Google Ireland Limited, Gordon House, Barrow Street, Dublin&nbsp;4, Ireland, to count visits and see how the Website is used: which pages are viewed and for how long, on what kind of device and browser, from which country or city, and from which page or campaign visitors arrive. On offer pages prepared for individual clients, it also records whether the offer has been opened and which of its parts were viewed, for example the price, so that we know whether our offer has been read. Google Analytics&nbsp;4 does not store IP addresses; it uses them only to determine the approximate location.</p>
-    <p>Google Analytics runs only if you agree to the Analytics category: its script loads, and its cookies are set, only after your consent. We use the results as statistics, to improve the Website and our offers; we do not use Google Analytics to show you ads.</p>
+    <p>Google Analytics runs only if you agree to the Analytics category: it is loaded, and its cookies are set, only after your consent. We use the results as statistics, to improve the Website and our offers.</p>
     <p>Google processes this data for us under its data processing terms. Data about individual visits is kept in Google Analytics for no longer than 14&nbsp;months; after that, only aggregated statistics remain. Google may process the data outside the European Economic Area, including in the United States, on the basis of the <span class="nowrap">EU–U.S.</span> Data Privacy Framework (see section&nbsp;6 of our <a href="privacy-policy.html#transfers-outside-eea">Privacy Policy</a>). Google explains <a href="https://policies.google.com/technologies/partner-sites">how it uses information from websites that use its services</a>. You can also block Google Analytics on all websites with Google’s <a href="https://tools.google.com/dlpage/gaoptout">opt-out browser add-on</a>.</p>
-    <p><strong>Marketing tools.</strong> The banner also includes the Marketing category, but no marketing tools are active on the Website at present. Before we start using any, we will list each of them in the table in <a href="#what-we-store">section&nbsp;2</a>&nbsp;– with its provider, purpose, retention period and any transfer of data outside the European Economic Area&nbsp;– update the date of this Policy and ask for your choice again. They will load only after you consent to the Marketing category.</p>
+    <p><strong>Hotjar.</strong> Hotjar, provided by Hotjar Limited (Malta, company number C65490; part of the Contentsquare group), records how visitors use the pages&nbsp;– clicks, taps, mouse movements and scrolling, together with the page content as it is shown, including offer pages prepared for individual clients&nbsp;– and shows them to us as recordings and heatmaps. Text you type into form fields is not recorded. Hotjar also collects technical data (type of device, screen size, browser), the country and a random user ID; it does not store IP addresses. The data is stored in Ireland (EU) on Amazon Web Services; some of Hotjar’s sub-processors are outside the EU. Recordings and heatmaps are kept for 365&nbsp;days. According to Hotjar, it may also reuse this data to develop and improve its tools and services.</p>
+    <p><strong>Microsoft Clarity.</strong> Microsoft Clarity, provided by Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin&nbsp;18, Ireland, records visits in the same way&nbsp;– mouse movements, clicks, scrolling and how the page is displayed, including offer pages&nbsp;– and creates heatmaps; content entered in form fields is masked and not sent. Microsoft acts as a controller of this data. It is stored in the Microsoft Azure cloud and may be transferred to Microsoft Corporation in the United States, which is certified under the <span class="nowrap">EU–U.S.</span> Data Privacy Framework; Microsoft Ireland also has standard contractual clauses with it. We can view recordings for up to 30&nbsp;days and heatmaps for up to 9&nbsp;months. We pass your choice on to Clarity: without your consent to Analytics it sets no cookies, and its advertising-related cookies are allowed only if you also agree to Marketing. More in the <a href="https://www.microsoft.com/privacy/privacystatement">Microsoft Privacy Statement</a>.</p>
+    <p><strong>Google Ads conversion linker (Marketing).</strong> If you agree to Marketing, this Google tool stores information about the Google ad you clicked to reach the Website, so that we can see whether our ads lead to visits and demo requests. Without your consent to Marketing, it stores nothing. It is provided by Google Ireland Limited, and the data may be processed in the United States on the basis of the <span class="nowrap">EU–U.S.</span> Data Privacy Framework.</p>
+    <p>Before we start using any other analytics or marketing tool, we will list it in the table in <a href="#what-we-store">section&nbsp;2</a>, update the date of this Policy and ask for your choice again.</p>
 
     <h2 id="contact-changes">6. Contact and changes to this Cookie Policy</h2>
     <p>If you have questions about cookies on the Website, write to <a href="mailto:contact@eqrento.com">contact@eqrento.com</a> or to SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o., ul.&nbsp;Gen.&nbsp;Władysława Sikorskiego&nbsp;19, 65-454&nbsp;Zielona&nbsp;Góra, Poland.</p>
@@ -265,18 +326,18 @@
 <!-- ============ COOKIE BANNER (shown by main.js until the visitor makes a choice) ============ -->
 <div class="cookie" id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-text" hidden>
   <p class="cookie__title" id="cookie-title">We use cookies</p>
-  <p class="cookie__text" id="cookie-text">We use cookies that are necessary for this site to work. With your consent, we may also use analytics and marketing cookies. You can change your choice at any time via “Cookie settings” in the footer. <a href="cookie-policy.html">Cookie Policy</a></p>
+  <p class="cookie__text" id="cookie-text">We use cookies that are necessary for this site to work. With your consent, we also use analytics cookies (Google Analytics, Hotjar and Microsoft Clarity, which also record how you use the pages) and marketing cookies (Google&nbsp;Ads). You can change your choice at any time via “Cookie settings” in the footer. <a href="cookie-policy.html">Cookie Policy</a></p>
   <div class="cookie__prefs" hidden>
     <label class="cookie__opt">
       <span><b>Necessary</b><small>Required for the site to work. Always on.</small></span>
       <input type="checkbox" checked disabled>
     </label>
     <label class="cookie__opt">
-      <span><b>Analytics</b><small>Help us understand how visitors use the site.</small></span>
+      <span><b>Analytics</b><small>Google Analytics, Hotjar and Microsoft Clarity: statistics and recordings of how visitors use the site.</small></span>
       <input type="checkbox" data-category="analytics">
     </label>
     <label class="cookie__opt">
-      <span><b>Marketing</b><small>Measure our campaigns and show relevant offers.</small></span>
+      <span><b>Marketing</b><small>Google Ads: measuring whether our ads lead to visits and demo requests.</small></span>
       <input type="checkbox" data-category="marketing">
     </label>
   </div>
@@ -288,6 +349,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20261123a" defer></script>
+<script src="assets/js/main.js?v=20261123b" defer></script>
 </body>
 </html>

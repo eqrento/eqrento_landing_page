@@ -557,12 +557,13 @@
    The choice is kept in localStorage (strictly necessary, so it needs no consent itself).
    To load a tool only after consent:  window.eqOnConsent('analytics', () => { …load the analytics script… });
    Bump VERSION when the Cookie Policy changes – everybody is asked again (the policy promises it).
-   VERSION 1 = the Cookie Policy of 4 November 2026; VERSION 2 = the Cookie Policy of 23 November 2026 (Google Analytics 4).
+   VERSION 1 = the Cookie Policy of 4 November 2026; VERSION 2 = 23 November 2026 (Google Analytics 4);
+   VERSION 3 = the Cookie Policy with Google Tag Manager: GA4, Hotjar, Microsoft Clarity, Google Ads conversion linker.
    The client offer pages (/offer/<slug>/) read and write the same choice and expect the same VERSION. */
 (() => {
   const banner = document.getElementById('cookie-banner');
   if (!banner) return;
-  const KEY = 'eq-cookie-consent', VERSION = 2;
+  const KEY = 'eq-cookie-consent', VERSION = 3;
   const prefs = banner.querySelector('.cookie__prefs');
   const boxes = [...banner.querySelectorAll('input[data-category]')];
   const btn = name => banner.querySelector(`[data-cookie="${name}"]`);
@@ -623,6 +624,61 @@
   const stored = read();
   if (stored) apply(stored);
   else setTimeout(() => show(false), 600);
+})();
+
+/* ---------- Google Tag Manager (GTM-PHGRDTPF, Wojtek's container): GA4, Hotjar, Microsoft Clarity, Google Ads ----------
+   Loads only on eqrento.com (not on the github.io preview or locally) and only after consent to Analytics: Hotjar and
+   Clarity are Custom HTML tags in the container with no consent check of their own. Consent Mode v2 tells the Google
+   tags what is allowed (the ad_* types follow the Marketing choice, so the conversion linker stores nothing without it);
+   Clarity gets its own signal (consentv2), which it requires in the EEA. Withdrawing consent deletes the first-party
+   cookies of these tools and reloads the page, so that nothing keeps running. Every tool is listed in the Cookie Policy:
+   a new tag in the container = the policy first (and a new VERSION above). */
+(() => {
+  const GTM_ID = 'GTM-PHGRDTPF';
+  if (location.hostname !== 'eqrento.com' || !window.eqOnConsent) return;
+  const dl = window.dataLayer = window.dataLayer || [];
+  function gtag() { dl.push(arguments); }
+  window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+  const g = on => (on ? 'granted' : 'denied');
+  const signal = c => {
+    gtag('consent', 'update', {
+      analytics_storage: g(c.analytics), ad_storage: g(c.marketing), ad_user_data: g(c.marketing), ad_personalization: g(c.marketing)
+    });
+    window.clarity('consentv2', { ad_Storage: g(c.marketing), analytics_Storage: g(c.analytics) });
+  };
+  const clear = pattern => {
+    const names = document.cookie.split(';').map(s => s.split('=')[0].trim()).filter(n => pattern.test(n));
+    const domains = ['', location.hostname, '.' + location.hostname.split('.').slice(-2).join('.')];
+    names.forEach(n => domains.forEach(d => { document.cookie = `${n}=; Max-Age=0; path=/${d ? `; domain=${d}` : ''}`; }));
+  };
+  let loaded = false;
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  window.eqOnConsent('analytics', () => {
+    if (loaded) return;
+    loaded = true;
+    signal(window.eqConsent);
+    dl.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
+    document.head.appendChild(s);
+  });
+  document.addEventListener('eq:consent', e => {
+    if (!loaded) return;
+    const c = e.detail;
+    signal(c);
+    if (!c.marketing) { clear(/^_gcl_/); try { localStorage.removeItem('_gcl_ls'); } catch (err) {} }
+    if (!c.analytics) {
+      window.clarity('consent', false);
+      clear(/^(_ga|_gcl_|_hj|_clck$|_clsk$)/);
+      try { ['_gcl_ls', 'hjActiveViewportIds', '_hjUserAttributes'].forEach(k => localStorage.removeItem(k)); sessionStorage.removeItem('hjViewportId'); } catch (err) {}
+      setTimeout(() => location.reload(), 300);
+    }
+  });
+  // a sent demo request: the container turns eqr_contact_submit into the GA4 event contact_form_submit
+  document.addEventListener('eq:demo-request', e => {
+    if (loaded) dl.push({ event: 'eqr_contact_submit', form_source: e.detail.source, fleet_size: e.detail.fleet_size });
+  });
 })();
 
 /* ---------- demo request dialog ----------
