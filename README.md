@@ -256,10 +256,12 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   Never commit an offer's plain source, its password or a hash of the password.
 - **Not indexed:** `robots.txt` has `Disallow: /offer/`, every offer has `<meta name="robots" content="noindex,
   nofollow">`, and offers are never added to `sitemap.xml`.
-- **GA4:** the offer page sends events (`offer_opened`, `offer_view_pricing`, …) to GA4 only after consent, once a GA4
-  ID is set in its `GA_ID` (empty for now; the site has no GA4 yet). The policies already describe GA4 and offer
-  pages (23 Nov 2026), and main.js's consent is `VERSION = 2`, the version the offer page expects (it shares the
-  `eq-cookie-consent` choice). The offer is readable without consent: the notice appears only after the offer opens.
+- **Analytics:** the offer page loads the same Google Tag Manager container as the site (`GTM_ID`, set when the page is
+  built), only on eqrento.com and only after consent to Analytics; it shares the `eq-cookie-consent` choice and expects
+  the same `VERSION` as main.js (3). Its events (`offer_opened`, `offer_return`, `offer_view_pricing`, …) wait until
+  the container loads and go to `dataLayer` as `{event, offer, offer_detail}`; the container needs a GA4 event tag for
+  them. The offer is readable without consent: the notice appears only after the offer opens, and “Ustawienia cookies”
+  in its footer reopens it.
 
 ## Things worth knowing
 
@@ -374,11 +376,16 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   the 01/06 progress bar always fit (`.steps__pin` in CSS, `--pin-h` / `--pin-head` set in `layoutSteps()`).
 - **Cookie banner** – markup at the end of `index.html`, styles under “COOKIE BANNER” in `style.css`, logic at the end
   of `main.js`. The choice (necessary / analytics / marketing) is stored in `localStorage` (`eq-cookie-consent`);
-  “Cookie settings” in the footer reopens it. Since 23 Nov 2026 the Cookie Policy and the Privacy Policy describe
-  Google Analytics 4 (consent `VERSION = 2`), but the GA4 tag is not on the site yet (no GA4 ID). Load it, and any
-  marketing tag, only after consent:
-  `window.eqOnConsent('analytics', () => { /* load the analytics script here */ });`
-  (or listen to the `eq:consent` event). Change `VERSION` in `main.js` to ask everybody again after a policy change.
+  “Cookie settings” in the footer reopens it. Change `VERSION` in `main.js` to ask everybody again after a policy change
+  (3 since the Google Tag Manager policy). Anything else that needs consent:
+  `window.eqOnConsent('analytics', () => { /* load the script here */ });` (or listen to the `eq:consent` event).
+- **Google Tag Manager** – Wojtek's container `GTM-PHGRDTPF` (GA4 `G-4PX88Q60ME`, Hotjar, Microsoft Clarity, the
+  Google Ads conversion linker), loaded by `main.js` only on eqrento.com (not on the preview or locally) and only after
+  consent to Analytics, because Hotjar and Clarity are Custom HTML tags without consent checks. Consent Mode v2
+  (`ad_*` = the Marketing choice) and Clarity's `consentv2` are sent before the container starts. Withdrawing consent
+  deletes the tools' first-party cookies and reloads the page. A sent demo request pushes `eqr_contact_submit` (the
+  container turns it into the GA4 event `contact_form_submit`). The container is shared with other SOLTIX sites:
+  **every tag that can fire on eqrento.com must be in the Cookie Policy first** (and `VERSION` raised).
 - **Demo request form** – every “Book a demo” / “Book a 30-minute demo” button links to `#book-demo` and opens the
   `<dialog id="book-demo">` near the end of `index.html` (styles under “DEMO REQUEST DIALOG”, logic at the end of
   `main.js`); `https://eqrento.com/#book-demo` opens it directly (links in e-mails, ads). Fields: what they rent
