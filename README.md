@@ -63,7 +63,8 @@ equipment-sales.html, invoicing.html, ai-assistant.html
                        – the nine feature pages (see “Feature pages” below; preview only for now)
 privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
 cookie-policy.html     – Cookie Policy
-robots.txt, sitemap.xml – search engines (point to https://eqrento.com/)
+robots.txt, sitemap.xml – search engines (point to https://eqrento.com/; /offer/ is disallowed)
+offer/<slug>/index.html – encrypted client offers (see “Client offers” below; not indexed, not in the sitemap)
 404.html               – page for unknown addresses (GitHub Pages serves it automatically; works from the site root)
 favicon.ico            – browser tab / bookmarks (16, 32, 48 px), made from the EQ mark
 apple-touch-icon.png   – iOS home screen (180 px)
@@ -243,6 +244,21 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   (main.js, `KINDS`) swaps the heading, lead, button, thank-you line and e-mail wording; any other button brings back the
   demo texts. `source` “case study – free hours audit”. “Get a free hours audit” in the hero only scrolls to that box.
 - **No reveal animations and no page script** (main.js plays the reveals on the home page only).
+
+## Client offers (offer/, since 23 Nov 2026)
+
+- **What:** one page per client offer, `offer/<slug>/index.html` → `https://eqrento.com/offer/<slug>/` (first one:
+  `offer/bilift-7k2m9/`). Self-contained single HTML files (inline CSS, JS and images); they do not use the site's
+  styles or scripts.
+- **This repository is public, so an offer goes in encrypted only.** Everything but the password screen is AES-256
+  ciphertext; the browser decrypts it with the password the client got by e-mail (PBKDF2-SHA256, 600,000 iterations).
+  The plain source and the tool that encrypts it are kept outside the repository (`../oferty/`, with a README).
+  Never commit an offer's plain source, its password or a hash of the password.
+- **Not indexed:** `robots.txt` has `Disallow: /offer/`, every offer has `<meta name="robots" content="noindex,
+  nofollow">`, and offers are never added to `sitemap.xml`.
+- **GA4:** the offer page sends events (`offer_opened`, `offer_view_pricing`, …) to GA4 only after consent, once a GA4
+  ID is set in its `GA_ID` (empty for now; the site has no GA4 yet). Before that: a Cookie Policy row and date, and
+  `VERSION = 2` in main.js's cookie consent (the offer page shares the `eq-cookie-consent` choice and expects version 2).
 
 ## Things worth knowing
 
