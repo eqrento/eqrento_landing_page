@@ -375,7 +375,11 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
 - **Steps (How it works)** – pinned while the cards scroll; on short screens the pin position adapts so the cards and
   the 01/06 progress bar always fit (`.steps__pin` in CSS, `--pin-h` / `--pin-head` set in `layoutSteps()`).
 - **Cookie banner** – markup at the end of `index.html`, styles under “COOKIE BANNER” in `style.css`, logic at the end
-  of `main.js`. The choice (necessary / analytics / marketing) is stored in `localStorage` (`eq-cookie-consent`);
+  of `main.js`. A card in the middle of the screen (since 23 Nov 2026); the page is dimmed by the card's own
+  `box-shadow`, not by an overlay element, so the page stays usable (no cookie wall) and a cookie-notice blocker that
+  hides `#cookie-banner` (EasyList Cookie has `###cookie-banner`; left as it is on purpose) removes the dimming too.
+  The dialog takes the focus when it opens. “Reject all” must stay on the first screen, as big as “Accept all”, and
+  the switches in Customize must start off (pre-ticked boxes are not valid consent – CJEU Planet49). The choice (necessary / analytics / marketing) is stored in `localStorage` (`eq-cookie-consent`);
   “Cookie settings” in the footer reopens it. Change `VERSION` in `main.js` to ask everybody again after a policy change
   (3 since the Google Tag Manager policy). Anything else that needs consent:
   `window.eqOnConsent('analytics', () => { /* load the script here */ });` (or listen to the `eq:consent` event).
