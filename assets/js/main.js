@@ -563,6 +563,7 @@
 (() => {
   const banner = document.getElementById('cookie-banner');
   if (!banner) return;
+  banner.tabIndex = -1;
   const KEY = 'eq-cookie-consent', VERSION = 3;
   const prefs = banner.querySelector('.cookie__prefs');
   const boxes = [...banner.querySelectorAll('input[data-category]')];
@@ -597,7 +598,8 @@
     boxes.forEach(b => { b.checked = !!current[b.dataset.category]; });
     setCustomize(customize);
     banner.hidden = false;
-    requestAnimationFrame(() => requestAnimationFrame(() => banner.classList.add('is-visible')));
+    // the dialog takes the focus, so keyboard and screen-reader users land on it (the page stays usable behind it)
+    requestAnimationFrame(() => requestAnimationFrame(() => { banner.classList.add('is-visible'); banner.focus({ preventScroll: true }); }));
   };
   const hide = () => {
     banner.classList.remove('is-visible');

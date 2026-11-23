@@ -1744,18 +1744,22 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
 .footer__cookie-btn:hover { color: var(--white); }
 
 /* =========================================================
-   COOKIE BANNER – non-blocking card, bottom left (bottom sheet on phones)
+   COOKIE BANNER – a card in the middle of the screen with the page dimmed around it (Łukasz, 23 Nov 2026: the choice
+   has to be noticed). The dimming is the card's own huge shadow, not a separate layer: the page stays usable behind it
+   (no cookie wall), and when a browser's cookie-notice blocker hides #cookie-banner the dimming goes with it.
    ========================================================= */
 .cookie {
-  position: fixed; z-index: 200; left: 24px; bottom: 24px;
-  width: min(440px, calc(100% - 48px)); padding: 24px; border-radius: 20px;
+  position: fixed; z-index: 200; left: 50%; top: 50%;
+  width: min(520px, calc(100% - 32px)); max-height: calc(100% - 32px); overflow-y: auto; overscroll-behavior: contain;
+  padding: 28px; border-radius: 20px;
   background: var(--white); color: var(--ink); font-size: 14px; line-height: 1.55;
-  box-shadow: 0 24px 60px -16px rgba(23, 15, 4, .35), 0 0 0 1px rgba(23, 15, 4, .06);
-  opacity: 0; transform: translateY(16px);
+  box-shadow: 0 0 0 100vmax rgba(16, 12, 58, .45), 0 24px 60px -16px rgba(23, 15, 4, .35), 0 0 0 1px rgba(23, 15, 4, .06);
+  opacity: 0; transform: translate(-50%, calc(-50% + 16px));
   transition: opacity .45s var(--ease), transform .45s var(--ease);
 }
 .cookie[hidden] { display: none; }
-.cookie.is-visible { opacity: 1; transform: none; }
+.cookie.is-visible { opacity: 1; transform: translate(-50%, -50%); }
+.cookie:focus { outline: none; }
 .cookie__title { font-size: 18px; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; color: var(--black); }
 .cookie__text { margin-top: 8px; color: var(--gray-2); }
 .cookie__text a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
@@ -1801,10 +1805,7 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
 .cookie__btn[hidden] { display: none; }
 .cookie__btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 @media (max-width: 640px) {
-  .cookie {
-    left: 12px; right: 12px; bottom: 12px; width: auto; padding: 20px;
-    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-  }
+  .cookie { width: calc(100% - 24px); max-height: calc(100% - 24px); padding: 22px 20px; }
 }
 @media (prefers-reduced-motion: reduce) { .cookie { transition: none; } }
 
