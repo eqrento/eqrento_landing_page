@@ -1,7 +1,7 @@
 /* =========================================================
-   GPS LANDING (gps-telematics-new.html) – Wojtek's standalone GPS page of 23 Nov 2026, rebuilt in the site's own look:
+   GPS & TELEMATICS PAGE (gps-telematics.html, the new page of 23 Nov 2026) – Wojtek's GPS page, rebuilt in the site's look:
    white cards on the page grey, navy (the logo mark) for the highlighted cards, violet labels, orange only for action
-   and money (the buttons, the flagged overuse). Loaded after style.css by this page only, so the draft does not touch
+   and money (the buttons, the flagged overuse). Loaded after style.css by this page only, so the page does not touch
    the shared stylesheet; everything here starts with .gl. No reveal animations (main.js plays them on the home page only).
    Breakpoints as in style.css: 1200 / 1100 / 900 / 767 / 640 / 400 / 340.
    ========================================================= */

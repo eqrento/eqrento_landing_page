@@ -1,4 +1,4 @@
-/* GPS landing page (gps-telematics-new.html): the savings calculator and the pilot request.
+/* GPS & Telematics page (gps-telematics.html, the new page of 23 Nov 2026): the savings calculator and the pilot request.
    A file of its own, not an inline script: the server's Content-Security-Policy allows only the two inline scripts
    it knows by hash. Loaded after main.js, which runs the header, menus, FAQ, demo dialog and cookie banner. */
 (() => {

@@ -61,17 +61,18 @@ case-study.html        – the BAC Polska case study (see “Case study page” 
 offers-contracts.html, equipment.html, transport.html, gps-telematics.html, service.html, warehouse.html,
 equipment-sales.html, invoicing.html, ai-assistant.html
                        – the nine feature pages (see “Feature pages” below; preview only for now)
-gps-telematics-new.html – DRAFT (Wojtek's GPS landing page of 23 Nov 2026, rebuilt in the site's look): GPS as a module of
-                         its own – a sample overuse report with the home page's scissor lift beside it, how it works,
-                         a live map of Europe, the device, a savings calculator, a comparison,
-                         pricing ($4 per machine a month, minimum $100; device $69), FAQ and a 30-day pilot on 10 machines.
-                         Own styles in assets/css/gps.css, script in assets/js/gps.js (the calculator; the pilot form
-                         opens the visitor's e-mail program with a message to Wojtek – the address is put together in
-                         the script, so it is not written out in this public repository). No noindex (Łukasz wants it
-                         indexed), canonical = its own address. GitHub preview only – not linked from the menus, not in
-                         the sitemap. Never publish it to eqrento.com without Łukasz's OK; before that decide its address
-                         (then the sitemap and the Cloudflare trailing-slash list) and whether it replaces
-                         gps-telematics.html, which stays the GPS page until then
+gps-telematics.html    – on main (the preview) since 23 Nov 2026: the NEW GPS & Telematics page (Łukasz: it replaces the
+                         old one) – Wojtek's GPS page rebuilt in the site's look: GPS as a module of its own, a sample
+                         overuse report with the home page's scissor lift, how it works, a live map of Europe, the device,
+                         a savings calculator, a comparison, pricing ($4 per machine a month, minimum $100; device $69),
+                         FAQ and a 30-day pilot on 10 machines. Own styles in assets/css/gps.css, script in
+                         assets/js/gps.js (the calculator; the pilot form opens the visitor's e-mail program with a
+                         message to Wojtek – the address is put together in the script, so it is not written out in
+                         this public repository). Indexable, canonical https://eqrento.com/gps-telematics.
+                         **NOT on eqrento.com until Łukasz approves it** (like the case study): the live site keeps the
+                         old page (“From the Connected plan”). Publish branches start from the live commit, so neither
+                         this page nor its files go live without their own commits. The draft address
+                         gps-telematics-new is gone
 privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
 cookie-policy.html     – Cookie Policy
 robots.txt, sitemap.xml – search engines (point to https://eqrento.com/; /offer/ is disallowed)
@@ -83,7 +84,7 @@ site.webmanifest       – Android home-screen icons (round 192 / 512 px + maska
 assets/css/style.css   – all styles; design tokens at the top (:root)
 assets/js/main.js      – interactions and animations (all pages)
 assets/js/pricing.js   – pricing page only: yearly / monthly, “Show only differences”, the plan shown on phones
-assets/css/gps.css, assets/js/gps.js – the GPS landing page draft only (gps-telematics-new.html)
+assets/css/gps.css, assets/js/gps.js – the new GPS & Telematics page only (gps-telematics.html)
 assets/img/screens/gps-europe-*.jpg – that page's live map: the app menu and map buttons of gps-*.jpg + OpenStreetMap
                          tiles (zoom 5, grey as in the app) with made-up machines. The credit “© OpenStreetMap contributors”
                          on the picture must stay (the map's licence). Its source page and the steps to remake it are in
@@ -157,7 +158,7 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
     `data-price` + `data-yearly` + `data-monthly`).
   - The Essential price is also in pricing.html's title and descriptions (“from $199/month”) and in the home FAQ (“Plans
     start at $199 a month”).
-  - The GPS landing page draft (gps-telematics-new.html) quotes the Essential price as
+  - The new GPS & Telematics page (gps-telematics.html) quotes the Essential price as
     `<span data-price-quote="essential">$199</span>`; the check compares that too.
   - Change a price in every place. `bash .github/scripts/check-prices.sh` checks them and runs before every preview and
     publish – a difference stops both.
@@ -198,7 +199,8 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
     salesperson in the driver's job, supervisor approval = Connected). The Service plan box also says what is already
     in Essential (service reminders, fault reporting, repair history – the three rows of the comparison table).
   - GPS & Telematics – “From the Connected plan”, no tags. The telemetry device is named without its price (“its
-    price is on the Pricing page”).
+    price is on the Pricing page”). That is the OLD page, still live; the new page on main has its own GPS prices
+    (see the Structure list) and waits for Łukasz's approval.
   - Warehouse (WMS), Equipment sales – “In the Enterprise plan”, no tags.
   - AI Assistant – “A paid add-on in every plan”, no price; the third group lists Wojtek's example questions.
 - **Screenshots:** each page shows its module's screenshot from `assets/img/screens/` (the four sizes of the home tab),

@@ -4,7 +4,7 @@
 #   - pricing.html – the plan cards and the comparison table's header (data-price="…" data-yearly="…" data-monthly="…").
 # The lowest price also appears in pricing.html's title and descriptions ("from $199/month") and in the home page FAQ
 # ("Plans start at $199 a month").
-# Other pages can quote the Essential price as <span data-price-quote="essential">$199</span> (the GPS landing page);
+# Other pages can quote the Essential price as <span data-price-quote="essential">$199</span> (the new GPS & Telematics page);
 # those quotes are compared too.
 # This check runs before the GitHub preview and before the publish to eqrento.com and stops both when the pages
 # disagree, so a price changed in one place only never goes out. Run it locally too:  bash .github/scripts/check-prices.sh
