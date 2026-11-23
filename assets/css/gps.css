@@ -11,7 +11,7 @@
 
 /* ---------- hero: the text and an example of a flagged rental ---------- */
 .gl-hero { padding: calc(var(--header-h) + 40px) 0 var(--sec-join); }   /* starts under the fixed header, like the pricing page */
-.gl-hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: center; }
+.gl-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
 .gl-hero__text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 /* the price label: the violet pill of the home page's hero label (inline-block, so the spaces around the price stay) */
 .gl-chip {
@@ -34,6 +34,13 @@
 .gl-ticks--plain li::before, .gl-price__list li::before { background: var(--marker); }
 .gl-actions { display: flex; flex-wrap: wrap; gap: 12px 16px; margin-top: 8px; }
 .gl-actions .btn--arrow { min-width: 0; }
+
+/* the report card and the scissor lift of the home page's hero: the card leaves the right 28% of the column free and
+   the lift (42% wide) stands there, its wheels on the card's bottom line (the picture's wheels end at 84% of its
+   height). The picture is empty on its left 18%, so only that empty part overlaps the card – nothing in it is covered */
+.gl-hero__visual { position: relative; padding-right: 28%; }
+.gl-hero__lift { position: absolute; right: -4%; bottom: 0; z-index: 1; width: 42%; transform: translateY(16%); pointer-events: none; }
+.gl-hero__lift img { display: block; width: 100%; height: auto; }
 
 /* the example report: a floating white card (the shadow of the drawn screen in the case study) */
 .gl-report {
@@ -124,7 +131,7 @@
   content: ""; position: absolute; z-index: -1; width: 520px; height: 520px; right: -220px; top: -240px; border-radius: 50%;
   background: radial-gradient(closest-side, rgba(151, 118, 254, .45), transparent);
 }
-.gl-device__visual svg { width: 100%; }
+.gl-device__visual svg { display: block; width: 100%; max-width: 400px; margin: 0 auto; }
 .gl-device__text { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .gl-inputs { align-self: stretch; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
 .gl-inputs li {
@@ -185,10 +192,14 @@
 .gl-cmp { overflow: hidden; border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05); }
 .gl-cmp table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.45; }
 .gl-cmp th, .gl-cmp td { padding: 16px 24px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(23, 15, 4, .08); color: var(--gray-2); }
-.gl-cmp thead th, .gl-cmp thead td { font-size: 14px; font-weight: 600; background: rgba(28, 26, 23, .03); }
-.gl-cmp thead .is-us { color: var(--label-violet-ink); }
+/* the column heads as in the pricing page's table: the name in 16px, a short line under it, a darker line below */
+.gl-cmp thead th { padding: 22px 24px 16px; vertical-align: bottom; border-bottom-color: rgba(23, 15, 4, .14); }
+.gl-cmp__name { display: block; font-size: 16px; font-weight: 600; line-height: 1.35; color: var(--ink); }
+.gl-cmp__sub { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; line-height: 1.4; color: var(--gray-2); }
 .gl-cmp tbody th { width: 34%; font-weight: 400; }
-.gl-cmp td.is-us { font-weight: 600; color: var(--ink); background: rgba(101, 97, 255, .04); }
+/* our column, its head included, tinted like the recommended plan in the pricing page's table */
+.gl-cmp .is-us { background: #fffbef; }
+.gl-cmp td.is-us { font-weight: 600; color: var(--ink); }
 .gl-cmp tbody tr:last-child > * { border-bottom: 0; }
 .gl-note { margin: 16px auto 0; max-width: 980px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-2); }
 
@@ -264,7 +275,8 @@
 /* up to 1100px the hero, the device and the pilot box stack */
 @media (max-width: 1100px) {
   .gl-hero__grid, .gl-device, .gl-pilot__box { grid-template-columns: minmax(0, 1fr); }
-  .gl-report, .gl-device__visual { max-width: 560px; }
+  .gl-hero__visual { max-width: 780px; }   /* the card 560px wide, the lift beside it */
+  .gl-device__visual { max-width: 560px; }
   .gl-device__visual { width: 100%; justify-self: center; }
 }
 @media (max-width: 900px) {
@@ -279,7 +291,11 @@
   .gl-hero__text { gap: 16px; }
   .gl-hero__title { font-size: 30px; }
   .gl-actions { flex-direction: column; align-items: stretch; align-self: stretch; }
-  .gl-report { padding: 18px 18px 20px; border-radius: 20px; }
+  /* phones: the card takes the whole width and the whole lift stands on it, at the right (its wheels on the card's
+     top edge; the shadow under the wheels goes behind the card) */
+  .gl-hero__visual { padding: 44.5% 0 0; }
+  .gl-hero__lift { top: 0; right: 4%; bottom: auto; z-index: 0; width: 46%; transform: none; }
+  .gl-report { position: relative; z-index: 1; padding: 18px 18px 20px; border-radius: 20px; }
   .gl-week { height: 112px; gap: 6px; }
   .gl-days { gap: 6px; }
   .gl-sec .section-head + * { margin-top: 32px; }
@@ -306,7 +322,9 @@
   .gl-table--invoice td:nth-child(3) { grid-area: 1 / 2; align-self: start; }
   .gl-table--invoice td:nth-child(2) { grid-area: 2 / 1; text-align: left; font-size: 13px; color: var(--gray-2); }
   .gl-table--invoice td:nth-child(2):empty { display: none; }
-  .gl-device__visual { padding: 24px; border-radius: 20px; }
+  .gl-device__visual { padding: 20px 14px; border-radius: 20px; }
+  /* the live map: the app menu drops out (as on the home page's map), so the map itself is larger */
+  .gl-map .features__screen img { width: 118.8%; max-width: none; margin-left: -18.8%; }
   .gl-inputs li { padding: 18px; }
   .gl-calc__inputs, .gl-calc__result { padding: 24px 20px; border-radius: 20px; }
   /* compare: every row becomes a card – the feature, then our answer and the usual one with their labels */

@@ -62,7 +62,8 @@ offers-contracts.html, equipment.html, transport.html, gps-telematics.html, serv
 equipment-sales.html, invoicing.html, ai-assistant.html
                        – the nine feature pages (see “Feature pages” below; preview only for now)
 gps-telematics-new.html – DRAFT (Wojtek's GPS landing page of 23 Nov 2026, rebuilt in the site's look): GPS as a module of
-                         its own – a sample overuse report, how it works, the device, a savings calculator, a comparison,
+                         its own – a sample overuse report with the home page's scissor lift beside it, how it works,
+                         a live map of Europe, the device, a savings calculator, a comparison,
                          pricing ($4 per machine a month, minimum $100; device $69), FAQ and a 30-day pilot on 10 machines.
                          Own styles in assets/css/gps.css, script in assets/js/gps.js (the calculator; the pilot form
                          opens the visitor's e-mail program with a message to Wojtek – the address is put together in
@@ -83,6 +84,10 @@ assets/css/style.css   – all styles; design tokens at the top (:root)
 assets/js/main.js      – interactions and animations (all pages)
 assets/js/pricing.js   – pricing page only: yearly / monthly, “Show only differences”, the plan shown on phones
 assets/css/gps.css, assets/js/gps.js – the GPS landing page draft only (gps-telematics-new.html)
+assets/img/screens/gps-europe-*.jpg – that page's live map: the app menu and map buttons of gps-*.jpg + OpenStreetMap
+                         tiles (zoom 5, grey as in the app) with made-up machines. The credit “© OpenStreetMap contributors”
+                         on the picture must stay (the map's licence). Its source page and the steps to remake it are in
+                         ../gps-landing/mapa-europy/ (outside this repository)
 .github/scripts/check-prices.sh – stops the preview and the publish when the prices on the two pages differ
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos, og-image.png (1200×630 link-preview picture)

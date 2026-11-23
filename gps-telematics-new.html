@@ -29,7 +29,7 @@
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css?v=20261123a">
-  <link rel="stylesheet" href="assets/css/gps.css?v=20261123a">
+  <link rel="stylesheet" href="assets/css/gps.css?v=20261123b">
 </head>
 <body>
 
@@ -138,7 +138,10 @@
         </div>
       </div>
 
-      <!-- an example of a flagged rental (made-up data): orange = the overuse, as everywhere on the site -->
+      <!-- an example of a flagged rental (made-up data): orange = the overuse, as everywhere on the site. Beside it the
+           scissor lift of the home page's hero (the same pictures), standing at the card's lower right like the machines
+           at the home page's windows; only the empty side of its picture overlaps the card (gps.css) -->
+      <div class="gl-hero__visual">
       <div class="gl-report">
         <p class="sr-only">Example of an overuse report (demo data)</p>
         <div class="gl-report__head">
@@ -153,6 +156,13 @@
         <p class="gl-report__row"><span>Saturday 13&nbsp;March&nbsp;2027 · <span class="nowrap">07:12–13:40</span></span><b>6.5&nbsp;h</b></p>
         <p class="gl-report__row gl-report__row--over"><span>Extra day at contract&nbsp;rate</span><b>$120.00</b></p>
         <p class="gl-report__acts" aria-hidden="true"><span class="gl-mini gl-mini--bill">Add to invoice</span><span class="gl-mini">Dismiss</span></p>
+      </div>
+      <div class="gl-hero__lift" aria-hidden="true">
+        <img src="assets/img/hero-lift-490.webp"
+             srcset="assets/img/hero-lift-330.webp 330w, assets/img/hero-lift-490.webp 490w"
+             sizes="(max-width: 640px) calc(46vw - 18px), (max-width: 1100px) min(42vw, 328px), min(21vw, 280px)"
+             width="490" height="563" alt="">
+      </div>
       </div>
     </div>
   </section>
@@ -239,24 +249,55 @@
     </div>
   </section>
 
+  <!-- ============ LIVE MAP – the picture of gps-telematics.html (the app's map in the Key features window frame), with
+       machines across Europe instead of Poland (Łukasz, 23 Nov 2026). gps-europe-*.jpg = the original screenshot's app
+       menu and map buttons + OpenStreetMap tiles at zoom 5, grey as in the app, and made-up machines and pop-up.
+       OpenStreetMap needs the credit “© OpenStreetMap contributors”: it is on the picture, bottom right ============ -->
+  <section class="gl-sec gl-map" id="live-map" aria-labelledby="map-title">
+    <div class="wrap-narrow">
+      <div class="section-head">
+        <p class="kicker">Live map</p>
+        <h2 class="h2" id="map-title">Every machine on one map</h2>
+        <p class="lead">See where each machine is right now, across Europe. Click a pin for the machine’s address, signal and&nbsp;battery.</p>
+      </div>
+      <div class="mod-shot">
+        <div class="features__screen">
+          <img src="assets/img/screens/gps-europe-1080.jpg"
+               srcset="assets/img/screens/gps-europe-860.jpg 860w, assets/img/screens/gps-europe-1080.jpg 1080w, assets/img/screens/gps-europe-1290.jpg 1290w, assets/img/screens/gps-europe-1720.jpg 1720w"
+               sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1200px) calc(100vw - 64px), 1120px"
+               width="1894" height="953" loading="lazy" decoding="async"
+               alt="The live map in EQrento: machines marked across Europe, and a pop-up with one machine’s address, signal, inspection date and maintenance due date">
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ THE DEVICE ============ -->
   <section class="gl-sec" id="device" aria-labelledby="device-title">
     <div class="wrap-narrow gl-device">
       <div class="gl-device__visual" aria-hidden="true">
-        <svg viewBox="0 0 420 300" fill="none" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-          <rect x="130" y="90" width="160" height="110" rx="18" fill="rgba(255,255,255,.07)" stroke="#9776fe" stroke-width="2"/>
-          <text x="210" y="138" fill="#fff" font-size="16" font-weight="600" text-anchor="middle">Teltonika</text>
-          <text x="210" y="160" fill="#b3afd6" font-size="12" text-anchor="middle">GPS tracker</text>
-          <circle cx="270" cy="108" r="5" fill="#28c840"/>
-          <path d="M150 200v40H60" stroke="#ffd23f" stroke-width="3"/>
-          <path d="M210 200v60H60" stroke="#ff7a6b" stroke-width="3"/>
-          <path d="M270 200v40h90" stroke="#b3afd6" stroke-width="3"/>
-          <text x="56" y="236" fill="#ffd23f" font-size="13" text-anchor="end">Ignition</text>
-          <text x="56" y="256" fill="#ff7a6b" font-size="13" text-anchor="end">Power</text>
-          <text x="366" y="236" fill="#b3afd6" font-size="13">Ground</text>
-          <path d="M210 90V48" stroke="#9776fe" stroke-width="2" stroke-dasharray="4 5"/>
-          <path d="M186 40a34 34 0 0 1 48 0M176 28a50 50 0 0 1 68 0" stroke="#9776fe" stroke-width="2.5"/>
-          <text x="300" y="44" fill="#b3afd6" font-size="12">GPS + mobile data</text>
+        <!-- the tracker (no brand name on it) with its three wires: the wires are drawn first and the tracker – opaque,
+             with a socket for each wire – on top, so every wire comes out of its socket; the three ends and labels
+             stand on one line, each label centred under its wire -->
+        <svg viewBox="70 4 305 288" fill="none" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+          <path d="M210 80V54" stroke="#9776fe" stroke-width="2" stroke-dasharray="4 5"/>
+          <path d="M188 42a31 31 0 0 1 44 0M177 30a47 47 0 0 1 66 0" stroke="#9776fe" stroke-width="2.5"/>
+          <text x="252" y="34" fill="#b3afd6" font-size="13">GPS + mobile data</text>
+          <path d="M170 176v22a10 10 0 0 1-10 10h-40a10 10 0 0 0-10 10v24" stroke="#ffd23f" stroke-width="3"/>
+          <path d="M210 176v66" stroke="#ff7a6b" stroke-width="3"/>
+          <path d="M250 176v22a10 10 0 0 0 10 10h40a10 10 0 0 1 10 10v24" stroke="#b3afd6" stroke-width="3"/>
+          <circle cx="110" cy="246" r="5" fill="#ffd23f"/>
+          <circle cx="210" cy="246" r="5" fill="#ff7a6b"/>
+          <circle cx="310" cy="246" r="5" fill="#b3afd6"/>
+          <text x="110" y="276" fill="#ffd23f" font-size="14" font-weight="600" text-anchor="middle">Ignition</text>
+          <text x="210" y="276" fill="#ff7a6b" font-size="14" font-weight="600" text-anchor="middle">Power</text>
+          <text x="310" y="276" fill="#b3afd6" font-size="14" font-weight="600" text-anchor="middle">Ground</text>
+          <rect x="140" y="80" width="140" height="96" rx="16" fill="#2a2372" stroke="#9776fe" stroke-width="2"/>
+          <rect x="162" y="170" width="16" height="12" rx="3" fill="#3a3290" stroke="#9776fe" stroke-width="1.5"/>
+          <rect x="202" y="170" width="16" height="12" rx="3" fill="#3a3290" stroke="#9776fe" stroke-width="1.5"/>
+          <rect x="242" y="170" width="16" height="12" rx="3" fill="#3a3290" stroke="#9776fe" stroke-width="1.5"/>
+          <circle cx="262" cy="97" r="5" fill="#28c840"/>
+          <text x="210" y="133" fill="#fff" font-size="15" font-weight="600" text-anchor="middle">GPS tracker</text>
         </svg>
       </div>
       <div class="gl-device__text">
@@ -294,11 +335,11 @@
         <div class="gl-calc__inputs">
           <h3 class="gl-calc__group">Your fleet today</h3>
           <div class="gl-field">
-            <label for="gl-fleet">Machines in your fleet <output id="gl-o-fleet" for="gl-fleet">80</output></label>
+            <label for="gl-fleet">Machines in your fleet <output id="gl-o-fleet" for="gl-fleet">80 units</output></label>
             <input id="gl-fleet" type="range" min="10" max="500" step="5" value="80" style="--p:.1429">
           </div>
           <div class="gl-field">
-            <label for="gl-tel">Machines with telematics today <output id="gl-o-tel" for="gl-tel">40</output></label>
+            <label for="gl-tel">Machines with telematics today <output id="gl-o-tel" for="gl-tel">40 units</output></label>
             <p class="gl-field__hint" id="gl-tel-hint">Set to 0 if you have no GPS yet</p>
             <input id="gl-tel" type="range" min="0" max="500" step="5" value="40" aria-describedby="gl-tel-hint" style="--p:.08">
           </div>
@@ -313,7 +354,7 @@
             <input id="gl-rate" type="range" min="40" max="400" step="10" value="110" style="--p:.1944">
           </div>
           <div class="gl-field">
-            <label for="gl-extra">Unbilled extra days per 10 machines per month <output id="gl-o-extra" for="gl-extra">2</output></label>
+            <label for="gl-extra">Unbilled extra days per 10 machines per month <output id="gl-o-extra" for="gl-extra">2 days</output></label>
             <p class="gl-field__hint" id="gl-extra-hint">Saturdays, holidays, night work, double shifts</p>
             <input id="gl-extra" type="range" min="0" max="10" step="0.5" value="2" aria-describedby="gl-extra-hint" style="--p:.2">
           </div>
@@ -349,7 +390,11 @@
       <div class="gl-cmp">
         <table role="table">
           <thead role="rowgroup">
-            <tr role="row"><td role="cell"></td><th role="columnheader" scope="col" class="is-us">EQrento GPS</th><th role="columnheader" scope="col">Typical telematics subscription</th></tr>
+            <tr role="row">
+              <th role="columnheader" scope="col"><span class="sr-only">Feature</span></th>
+              <th role="columnheader" scope="col" class="is-us"><span class="gl-cmp__name">EQrento GPS</span><span class="gl-cmp__sub">standalone module</span></th>
+              <th role="columnheader" scope="col"><span class="gl-cmp__name">Typical telematics</span><span class="gl-cmp__sub">subscription</span></th>
+            </tr>
           </thead>
           <tbody role="rowgroup">
             <tr role="row"><th role="rowheader" scope="row">Device</th><td role="cell" class="is-us" data-label="EQrento GPS">$69 <span class="nowrap">one-time</span></td><td role="cell" data-label="Typical telematics">often $120–150</td></tr>
@@ -724,6 +769,6 @@
 </div>
 
 <script src="assets/js/main.js?v=20261123c" defer></script>
-<script src="assets/js/gps.js?v=20261123a" defer></script>
+<script src="assets/js/gps.js?v=20261123b" defer></script>
 </body>
 </html>

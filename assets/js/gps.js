@@ -28,11 +28,13 @@
       // the filled part of each slider's track (gps.css)
       inputs.forEach(el => el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min)).toFixed(4)));
 
-      set('gl-o-fleet', fleet);
-      set('gl-o-tel', tel);
+      // the values beside the sliders, with their units (Łukasz, 23 Nov 2026: “80 units”, “2 days”)
+      const count = (n, one, many) => `${n % 1 ? n.toFixed(1) : n} ${n === 1 ? one : many}`;
+      set('gl-o-fleet', count(fleet, 'unit', 'units'));
+      set('gl-o-tel', count(tel, 'unit', 'units'));
       set('gl-o-price', usd(price, price % 1 !== 0));
       set('gl-o-rate', usd(rate));
-      set('gl-o-extra', per10 % 1 ? per10.toFixed(1) : per10);
+      set('gl-o-extra', count(per10, 'day', 'days'));
 
       const today = tel * price,
             ours = Math.max(MINIMUM, PER_MACHINE * fleet),
