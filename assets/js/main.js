@@ -557,11 +557,12 @@
    The choice is kept in localStorage (strictly necessary, so it needs no consent itself).
    To load a tool only after consent:  window.eqOnConsent('analytics', () => { …load the analytics script… });
    Bump VERSION when the Cookie Policy changes – everybody is asked again (the policy promises it).
-   VERSION 1 = the Cookie Policy of 4 November 2026. */
+   VERSION 1 = the Cookie Policy of 4 November 2026; VERSION 2 = the Cookie Policy of 23 November 2026 (Google Analytics 4).
+   The client offer pages (/offer/<slug>/) read and write the same choice and expect the same VERSION. */
 (() => {
   const banner = document.getElementById('cookie-banner');
   if (!banner) return;
-  const KEY = 'eq-cookie-consent', VERSION = 1;
+  const KEY = 'eq-cookie-consent', VERSION = 2;
   const prefs = banner.querySelector('.cookie__prefs');
   const boxes = [...banner.querySelectorAll('input[data-category]')];
   const btn = name => banner.querySelector(`[data-cookie="${name}"]`);

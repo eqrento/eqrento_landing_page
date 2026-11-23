@@ -110,7 +110,7 @@
     <h1 class="legal__title">Cookie Policy</h1>
     <!-- with every update: change both the date and its datetime, and raise VERSION in the cookie-consent part of
          main.js, so that every visitor is asked again (section 2 promises that) -->
-    <p class="legal__date">Last updated: <time datetime="2026-11-04">4&nbsp;November 2026</time></p>
+    <p class="legal__date">Last updated: <time datetime="2026-11-23">23&nbsp;November 2026</time></p>
   </header>
 
   <!-- “On this page”: main.js fills it in from the h2 headings below -->
@@ -120,7 +120,7 @@
        Every section starts with an h2 that has an id; the contents list is built from them. ============ -->
   <article class="legal__doc">
 
-    <p class="legal__lead">The EQrento website currently sets no cookies. It stores only your choice from the cookie banner in your browser’s local storage, which is strictly necessary and needs no consent. We use analytics or marketing tools only if you agree to them&nbsp;– none are in use at present.</p>
+    <p class="legal__lead">The EQrento website uses Google Analytics&nbsp;4 to count visits and see how the Website is used, but only if you agree to analytics cookies. Without your consent, it stores only your choice from the cookie banner in your browser’s local storage, which is strictly necessary and needs no consent. You can view every page of the Website, including offers prepared for our clients, without agreeing to analytics.</p>
     <p>This Cookie Policy applies to eqrento.com (the “Website”), operated by SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o. (“we”, “us”). How we process personal data is explained in our <a href="privacy-policy.html">Privacy Policy</a>.</p>
 
     <h2 id="what-cookies-are">1. What cookies and similar technologies are</h2>
@@ -129,7 +129,7 @@
     <p>In this Policy, “cookies” covers all of these technologies.</p>
 
     <h2 id="what-we-store">2. What the Website stores on your device</h2>
-    <p>At present, the Website does not set any cookies. It uses one necessary item in your browser’s local storage:</p>
+    <p>The Website uses one necessary item in your browser’s local storage and, only if you agree to analytics, the cookies of Google Analytics&nbsp;4:</p>
     <!-- on tablets and phones every row becomes a card: the data-label of each cell is shown above it.
          A new tool (analytics, marketing) = a new row here, its own date above, and a new VERSION in main.js -->
     <table class="legal__table" role="table">
@@ -144,9 +144,23 @@
           <td role="cell" data-label="Category">Necessary</td>
           <td role="cell" data-label="How long it is kept">Until you change your choice or clear your browser data; we ask again when this Policy changes</td>
         </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">_ga</th>
+          <td role="cell" data-label="Type and provider">Cookie, first-party, set by Google Analytics&nbsp;4:<br>Google Ireland Limited</td>
+          <td role="cell" data-label="Purpose">Tells visits from different browsers apart with a random number, so that visits and returning visitors can be counted</td>
+          <td role="cell" data-label="Category">Analytics</td>
+          <td role="cell" data-label="How long it is kept">2&nbsp;years from your last visit, or until you withdraw consent or clear your browser data</td>
+        </tr>
+        <tr role="row">
+          <th role="rowheader" scope="row">_ga_&lt;ID&gt;</th>
+          <td role="cell" data-label="Type and provider">Cookie, first-party, set by Google Analytics&nbsp;4:<br>Google Ireland Limited</td>
+          <td role="cell" data-label="Purpose">Keeps the state of your current visit, for example when it started and how many pages you have viewed (&lt;ID&gt; is the identifier of our Google Analytics property)</td>
+          <td role="cell" data-label="Category">Analytics</td>
+          <td role="cell" data-label="How long it is kept">2&nbsp;years from your last visit, or until you withdraw consent or clear your browser data</td>
+        </tr>
       </tbody>
     </table>
-    <p>This item stays in your browser and is not sent to us. Fonts, images and videos on the Website are served from our own server, and the Website does not embed content from other companies, such as YouTube videos, maps or social media plugins.</p>
+    <p>The eq-cookie-consent item stays in your browser and is not sent to us. The Google Analytics cookies are sent to Google together with information about your visit (see <a href="#analytics-marketing">section&nbsp;5</a>). Fonts, images and videos on the Website are served from our own server, and the Website does not embed content from other companies, such as YouTube videos, maps or social media plugins.</p>
 
     <h2 id="legal-basis">3. Legal basis</h2>
     <p>Storing information on your device, or reading information already stored there, is governed by Article&nbsp;399 of the Polish Electronic Communications Law of 12&nbsp;July 2024 (Prawo komunikacji elektronicznej), which implements Article&nbsp;5(3) of the ePrivacy Directive 2002/58/EC.</p>
@@ -154,7 +168,7 @@
       <li><strong>Necessary items</strong> need no consent, because they are required to provide the Website you are using (Article&nbsp;399(3) of that law). The eq-cookie-consent item falls into this category.</li>
       <li><strong>Analytics and marketing items</strong> may be used only after we have informed you and you have given your consent (Article&nbsp;399(1)). Where they involve personal data, we process it on the basis of your consent (Article&nbsp;6(1)(a) GDPR).</li>
     </ul>
-    <p>You can refuse or withdraw consent at any time. Refusing does not limit your access to any part of the Website.</p>
+    <p>You can refuse or withdraw consent at any time. Refusing does not limit your access to any part of the Website, including offer pages prepared for our clients.</p>
 
     <h2 id="managing-choices">4. Managing your choices</h2>
     <p>When you first visit the Website, a banner lets you choose:</p>
@@ -165,6 +179,7 @@
     </ul>
     <!-- “Cookie settings” here is a button: it opens the cookie banner, like the one in the footer -->
     <p>Until you make a choice, only necessary items are used, and we do not treat continued browsing as consent. You can change or withdraw your consent at any time via <button type="button" class="legal__cookie-btn" data-cookie-open>Cookie settings</button> in the Website footer. Withdrawal does not affect the lawfulness of processing carried out before it.</p>
+    <p>Offer pages that we prepare for individual clients ask only about analytics, in a short notice shown after you open the offer. It is the same setting as the Analytics category in the banner, so your choice applies to the whole Website.</p>
     <p>You can also decide in your browser settings whether websites may store and read information on your device, and delete what is already stored:</p>
     <ul>
       <li><a href="https://support.google.com/chrome/answer/95647">Google Chrome</a></li>
@@ -175,8 +190,10 @@
     <p>If you block or clear local storage, the Website cannot remember your choice and will show the banner again.</p>
 
     <h2 id="analytics-marketing">5. Analytics and marketing tools</h2>
-    <p>The banner includes the Analytics and Marketing categories, but no such tools are active on the Website at present.</p>
-    <p>Before we start using any of them, we will list each tool in the table in <a href="#what-we-store">section&nbsp;2</a>&nbsp;– with its provider, purpose, retention period and any transfer of data outside the European Economic Area&nbsp;– and update the date of this Policy. These tools will load only after you consent to the relevant category, and we will ask for your choice again when we add them.</p>
+    <p><strong>Google Analytics&nbsp;4.</strong> We use Google Analytics&nbsp;4, provided by Google Ireland Limited, Gordon House, Barrow Street, Dublin&nbsp;4, Ireland, to count visits and see how the Website is used: which pages are viewed and for how long, on what kind of device and browser, from which country or city, and from which page or campaign visitors arrive. On offer pages prepared for individual clients, it also records whether the offer has been opened and which of its parts were viewed, for example the price, so that we know whether our offer has been read. Google Analytics&nbsp;4 does not store IP addresses; it uses them only to determine the approximate location.</p>
+    <p>Google Analytics runs only if you agree to the Analytics category: its script loads, and its cookies are set, only after your consent. We use the results as statistics, to improve the Website and our offers; we do not use Google Analytics to show you ads.</p>
+    <p>Google processes this data for us under its data processing terms. Data about individual visits is kept in Google Analytics for no longer than 14&nbsp;months; after that, only aggregated statistics remain. Google may process the data outside the European Economic Area, including in the United States, on the basis of the <span class="nowrap">EU–U.S.</span> Data Privacy Framework (see section&nbsp;6 of our <a href="privacy-policy.html#transfers-outside-eea">Privacy Policy</a>). Google explains <a href="https://policies.google.com/technologies/partner-sites">how it uses information from websites that use its services</a>. You can also block Google Analytics on all websites with Google’s <a href="https://tools.google.com/dlpage/gaoptout">opt-out browser add-on</a>.</p>
+    <p><strong>Marketing tools.</strong> The banner also includes the Marketing category, but no marketing tools are active on the Website at present. Before we start using any, we will list each of them in the table in <a href="#what-we-store">section&nbsp;2</a>&nbsp;– with its provider, purpose, retention period and any transfer of data outside the European Economic Area&nbsp;– update the date of this Policy and ask for your choice again. They will load only after you consent to the Marketing category.</p>
 
     <h2 id="contact-changes">6. Contact and changes to this Cookie Policy</h2>
     <p>If you have questions about cookies on the Website, write to <a href="mailto:contact@eqrento.com">contact@eqrento.com</a> or to SOLTIX&nbsp;Sp.&nbsp;z&nbsp;o.o., ul.&nbsp;Gen.&nbsp;Władysława Sikorskiego&nbsp;19, 65-454&nbsp;Zielona&nbsp;Góra, Poland.</p>
@@ -274,6 +291,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20261117a" defer></script>
+<script src="assets/js/main.js?v=20261123a" defer></script>
 </body>
 </html>

@@ -257,8 +257,9 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
 - **Not indexed:** `robots.txt` has `Disallow: /offer/`, every offer has `<meta name="robots" content="noindex,
   nofollow">`, and offers are never added to `sitemap.xml`.
 - **GA4:** the offer page sends events (`offer_opened`, `offer_view_pricing`, …) to GA4 only after consent, once a GA4
-  ID is set in its `GA_ID` (empty for now; the site has no GA4 yet). Before that: a Cookie Policy row and date, and
-  `VERSION = 2` in main.js's cookie consent (the offer page shares the `eq-cookie-consent` choice and expects version 2).
+  ID is set in its `GA_ID` (empty for now; the site has no GA4 yet). The policies already describe GA4 and offer
+  pages (23 Nov 2026), and main.js's consent is `VERSION = 2`, the version the offer page expects (it shares the
+  `eq-cookie-consent` choice). The offer is readable without consent: the notice appears only after the offer opens.
 
 ## Things worth knowing
 
@@ -368,8 +369,9 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   the 01/06 progress bar always fit (`.steps__pin` in CSS, `--pin-h` / `--pin-head` set in `layoutSteps()`).
 - **Cookie banner** – markup at the end of `index.html`, styles under “COOKIE BANNER” in `style.css`, logic at the end
   of `main.js`. The choice (necessary / analytics / marketing) is stored in `localStorage` (`eq-cookie-consent`);
-  “Cookie settings” in the footer reopens it. The site itself sets no cookies today – when you add analytics or
-  marketing tags, load them only after consent:
+  “Cookie settings” in the footer reopens it. Since 23 Nov 2026 the Cookie Policy and the Privacy Policy describe
+  Google Analytics 4 (consent `VERSION = 2`), but the GA4 tag is not on the site yet (no GA4 ID). Load it, and any
+  marketing tag, only after consent:
   `window.eqOnConsent('analytics', () => { /* load the analytics script here */ });`
   (or listen to the `eq:consent` event). Change `VERSION` in `main.js` to ask everybody again after a policy change.
 - **Demo request form** – every “Book a demo” / “Book a 30-minute demo” button links to `#book-demo` and opens the
