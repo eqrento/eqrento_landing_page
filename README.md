@@ -61,6 +61,9 @@ case-study.html        – the BAC Polska case study (see “Case study page” 
 offers-contracts.html, equipment.html, transport.html, gps-telematics.html, service.html, warehouse.html,
 equipment-sales.html, invoicing.html, ai-assistant.html
                        – the nine feature pages (see “Feature pages” below; preview only for now)
+gps-telematics-new.html – DRAFT (Wojtek, 23 Nov 2026): a standalone GPS landing page with its own look, shown in the
+                         GitHub preview only – noindex, not linked from the menus, not in the sitemap. Never publish it
+                         to eqrento.com without Łukasz's OK; the current page stays in gps-telematics.html
 privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
 cookie-policy.html     – Cookie Policy
 robots.txt, sitemap.xml – search engines (point to https://eqrento.com/; /offer/ is disallowed)

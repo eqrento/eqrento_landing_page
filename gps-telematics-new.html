@@ -1,0 +1,594 @@
+<!doctype html>
+<!-- DRAFT for review (Wojtek, 23 Nov 2026): a standalone GPS landing page, shown in the GitHub preview only. Not linked from the
+     menus, not in the sitemap, not for eqrento.com until Łukasz approves it. The current page stays in gps-telematics.html. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>EQrento GPS – every hour your machines work, on the invoice</title>
+<meta name="description" content="GPS trackers for rental fleets from €4 per machine per month. Engine hours from the ignition, overuse checked against the contract and added to the invoice after your approval.">
+<style>
+:root{
+  --navy:#101724; --ink:#101724; --muted:#5b6275; --line:#e6e4df;
+  --bg:#f8f7f5; --card:#ffffff; --brand:#6561FF; --brand2:#8f8cff; --brand-soft:#eeedff;
+  --green:#16a34a; --green-soft:#e7f7ed; --red:#dc2626; --red-soft:#fdecec; --amber:#b45309; --amber-soft:#fff4e0;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--brand)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.12}
+h2{font-size:clamp(28px,3.6vw,42px);font-weight:700}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brand)}
+.lead{font-size:18px;color:var(--muted);max-width:720px}
+section{padding:92px 0}
+.sec-head{margin-bottom:44px}
+.sec-head .eyebrow{margin-bottom:12px}
+.sec-head .lead{margin-top:14px}
+.center{text-align:center}.center .lead{margin-left:auto;margin-right:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:600;font-size:16px;padding:14px 22px;border-radius:12px;border:0;cursor:pointer;background:var(--brand);color:#fff;text-decoration:none;transition:transform .15s,background .15s}
+.btn:hover{background:#5450f0;transform:translateY(-1px)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.28);color:#fff}
+.btn.light{background:#fff;color:var(--ink);border:1px solid var(--line)}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(16,23,36,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+.topbar img{height:26px;display:block}
+.topbar nav{display:flex;gap:24px}
+.topbar nav a{color:#c4c8d8;text-decoration:none;font-size:14px;font-weight:500}
+.topbar nav a:hover{color:#fff}
+.topbar .btn{padding:10px 16px;font-size:14px}
+
+/* HERO */
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:80px 0 100px}
+.hero::before{content:"";position:absolute;width:1000px;height:1000px;right:-420px;top:-460px;border-radius:50%;background:radial-gradient(circle,rgba(101,97,255,.42),transparent 65%)}
+.hero .wrap{position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(38px,5.2vw,60px);font-weight:800;margin:18px 0 20px}
+.hero h1 span{color:var(--brand2)}
+.hero .lead{color:#c4c8d8}
+.hero-points{list-style:none;margin-top:24px;display:grid;gap:10px;color:#dfe1ea}
+.hero-points li{display:flex;gap:10px}
+.hero-points li::before,.check li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--brand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 12.5l3.2 3.2L17.5 8.5' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.hero-cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+.price-chip{display:inline-flex;align-items:baseline;gap:6px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);font-size:14px;color:#dfe1ea}
+.price-chip b{font-size:18px;color:#fff}
+
+/* mock report (hero) */
+.mock{background:#fff;color:var(--ink);border-radius:20px;box-shadow:0 30px 70px rgba(0,0,0,.35);overflow:hidden}
+.mock-h{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #eef0f4}
+.mock-h .t{font-weight:700;font-size:15px}
+.mock-h .s{font-size:12px;color:var(--muted)}
+.pill{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px}
+.pill.red{background:var(--red-soft);color:var(--red)}
+.pill.green{background:var(--green-soft);color:var(--green)}
+.pill.amber{background:var(--amber-soft);color:var(--amber)}
+.mock-b{padding:16px 20px 20px}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:130px;margin-top:6px}
+.bar{border-radius:6px 6px 2px 2px;background:var(--brand-soft);position:relative}
+.bar.in{background:#cfcdfd}
+.bar.over{background:var(--red)}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:6px;font-size:11px;color:var(--muted);text-align:center}
+.legend{display:flex;gap:14px;margin-top:12px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.mock-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid #eef0f4;font-size:14px}
+.mock-row b{white-space:nowrap}
+.mock-foot{display:flex;gap:10px;margin-top:12px}
+.mini-btn{flex:1;text-align:center;font-size:13px;font-weight:600;padding:9px;border-radius:9px;background:var(--brand);color:#fff}
+.mini-btn.sec{background:#f1f2f6;color:var(--ink)}
+
+/* PROBLEM */
+.prob{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prob .c{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.prob .ic{width:44px;height:44px;border-radius:12px;background:var(--red-soft);display:flex;align-items:center;justify-content:center}
+.prob .ic svg{width:22px;height:22px;stroke:var(--red);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.prob h3{font-size:19px;margin-top:16px}
+.prob p{font-size:15px;color:var(--muted);margin-top:8px}
+
+/* FLOW */
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;position:relative}
+.flow .st{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;position:relative}
+.flow .st .n{width:34px;height:34px;border-radius:10px;background:var(--navy);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+.flow .st.hl .n{background:var(--red)}
+.flow .st.ok .n{background:var(--green)}
+.flow .st h3{font-size:16px;margin-top:14px}
+.flow .st p{font-size:14px;color:var(--muted);margin-top:6px}
+.flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:36px;width:12px;height:2px;background:#c9c6ff}
+.flow-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.fc{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px}
+.fc .lbl{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+.fc h3{font-size:20px;margin-top:6px}
+.fc p{font-size:15px;color:var(--muted);margin-top:6px}
+.tbl{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+.tbl th{text-align:left;font-size:12px;color:var(--muted);font-weight:600;padding:8px 6px;border-bottom:1px solid #eef0f4}
+.tbl td{padding:10px 6px;border-bottom:1px solid #eef0f4}
+.tbl td.r,.tbl th.r{text-align:right}
+.tbl tr.flag td{background:#fff7f7}
+.tbl tr.tot td{font-weight:700;border-bottom:0}
+
+/* DEVICE */
+.dev{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
+.dev-visual{background:var(--navy);border-radius:24px;padding:34px;color:#fff;position:relative;overflow:hidden}
+.dev-visual::before{content:"";position:absolute;width:500px;height:500px;right:-220px;top:-240px;border-radius:50%;background:radial-gradient(circle,rgba(101,97,255,.45),transparent 65%)}
+.dev-visual svg{position:relative;width:100%;height:auto;display:block}
+.inputs{display:grid;gap:14px}
+.inp{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;display:grid;grid-template-columns:44px 1fr;gap:16px}
+.inp .ic{width:44px;height:44px;border-radius:12px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center}
+.inp .ic svg{width:22px;height:22px;stroke:var(--brand);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.inp h3{font-size:17px}
+.inp p{font-size:15px;color:var(--muted);margin-top:4px}
+
+/* CALC */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.calc .inputs-box,.calc .result{border-radius:22px;padding:28px}
+.calc .inputs-box{background:var(--card);border:1px solid var(--line)}
+.grp{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:4px 0 16px}
+.grp:not(:first-child){margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.field{margin-bottom:20px}
+.field label{display:flex;justify-content:space-between;gap:12px;font-weight:600;font-size:15px}
+.field label output{color:var(--brand);font-weight:700;white-space:nowrap}
+.field .hint{font-size:13px;color:var(--muted);margin-top:2px}
+input[type=range]{width:100%;margin-top:10px;accent-color:var(--brand)}
+.result{background:var(--navy);color:#fff;display:flex;flex-direction:column}
+.result .eyebrow{color:var(--brand2)}
+.r-big{font-size:52px;font-weight:800;letter-spacing:-.03em;margin:10px 0 2px}
+.r-big small{font-size:18px;color:#c4c8d8;font-weight:600}
+.r-big.msg{font-size:32px;line-height:1.15}
+.r-sub{color:#c4c8d8}
+.r-rows{margin-top:22px}
+.r-row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:15px;color:#dfe1ea}
+.r-row b{color:#fff;white-space:nowrap}
+.r-row.hl b{color:var(--brand2)}
+.r-head{margin-top:22px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8d93a8}
+.r-note{margin-top:auto;padding-top:20px;font-size:13px;color:#8d93a8}
+
+/* COMPARE */
+.cmp{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.cmp table{width:100%;border-collapse:collapse}
+.cmp th,.cmp td{padding:16px 22px;text-align:left;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top}
+.cmp th{font-size:14px;color:var(--muted);font-weight:600;background:#fbfaf8}
+.cmp th.us{color:var(--brand)}
+.cmp td.us{font-weight:600;background:#fbfbff}
+.cmp tr:last-child td{border-bottom:0}
+.cmp-note{font-size:13px;color:var(--muted);margin-top:12px}
+
+/* INTEGRATIONS */
+.integ{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:stretch}
+.integ .box{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px}
+.integ .box.dark{background:var(--navy);color:#fff;border-color:var(--navy)}
+.integ h3{font-size:22px}
+.integ p{color:var(--muted);margin-top:10px;font-size:15px}
+.integ .dark p{color:#c4c8d8}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{padding:10px 16px;border-radius:12px;border:1px solid var(--line);font-weight:700;font-size:15px;background:#fbfaf8}
+.dark .chip{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#fff}
+
+/* PRICING */
+.pricing{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px}
+.pc.main{border:2px solid var(--brand)}
+.pc .t{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.pc .p{font-size:48px;font-weight:800;letter-spacing:-.03em;margin-top:10px}
+.pc .p small{font-size:17px;font-weight:600;color:var(--muted)}
+.pc .d{color:var(--muted);font-size:15px;margin-top:4px}
+.pc ul{list-style:none;margin-top:18px;display:grid;gap:9px;font-size:15px}
+.pc li{display:flex;gap:10px}
+.pc li::before{content:"✓";color:var(--brand);font-weight:800}
+.examples{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.examples div{font-size:14px;color:var(--muted)}
+.examples b{display:block;font-size:20px;color:var(--ink);margin-top:2px}
+
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:880px;margin:0 auto}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+summary{font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--brand);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted);font-size:15px}
+
+/* CTA */
+.cta{background:var(--navy);color:#fff;padding:92px 0;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;width:900px;height:900px;left:-380px;bottom:-500px;border-radius:50%;background:radial-gradient(circle,rgba(101,97,255,.4),transparent 65%)}
+.cta-grid{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center}
+.cta h2{font-size:clamp(30px,4vw,44px)}
+.cta .lead{color:#c4c8d8;margin-top:14px}
+.cta .check{list-style:none;display:grid;gap:10px;margin-top:22px;color:#dfe1ea}
+.cta .check li{display:flex;gap:10px}
+.form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:26px;display:grid;gap:12px}
+.form label{font-size:13px;color:#c4c8d8;font-weight:600}
+.form input,.form select{width:100%;margin-top:6px;font:inherit;font-size:15px;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;outline:none}
+.form select option{color:#101724}
+.form input:focus,.form select:focus{border-color:var(--brand2)}
+.form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form .small{font-size:12px;color:#8d93a8}
+footer{background:var(--navy);color:#8d93a8;font-size:13px;padding:24px 0;border-top:1px solid rgba(255,255,255,.06)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:980px){
+  .hero-grid,.dev,.calc,.integ,.cta-grid,.flow-cards{grid-template-columns:1fr}
+  .flow{grid-template-columns:repeat(3,1fr)}
+  .flow .st:nth-child(3)::after{display:none}
+  .prob,.pricing{grid-template-columns:1fr}
+  .examples{grid-template-columns:1fr 1fr}
+  .topbar nav{display:none}
+  section{padding:64px 0}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .flow{grid-template-columns:1fr 1fr}
+  .flow .st::after{display:none}
+  .r-big{font-size:40px}
+  .cmp th,.cmp td{padding:12px 12px;font-size:14px}
+  .form .row2{grid-template-columns:1fr}
+  .examples{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="https://eqrento.com" aria-label="EQrento"><img src="data:image/png;base64,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" alt="EQrento"></a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#device">The device</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn" href="#pilot">Order a pilot</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="price-chip">GPS for rental fleets from <b>€4</b> per machine / month</span>
+      <h1>Every hour your machines work. <span>On the invoice.</span></h1>
+      <p class="lead">A Teltonika tracker on every machine. EQrento counts engine hours from the ignition, checks them against the rental contract and flags weekend, holiday and overtime work. You approve, and it goes on the invoice with a PDF report as proof.</p>
+      <ul class="hero-points">
+        <li>Engine hours from the ignition, not from guesswork</li>
+        <li>Overuse checked against each contract automatically</li>
+        <li>Device €69, no multi-year contract to lock you in</li>
+      </ul>
+      <div class="hero-cta">
+        <a class="btn" href="#calculator">Calculate your savings</a>
+        <a class="btn ghost" href="#pilot">Order a pilot</a>
+      </div>
+    </div>
+    <div class="mock" aria-label="Example overuse report with demo data">
+      <div class="mock-h">
+        <div><div class="t">SL-104 · Scissor lift 10 m</div><div class="s">Contract DEMO-2027-0412 · Mon–Fri, 8 h/day</div></div>
+        <span class="pill red">Overuse</span>
+      </div>
+      <div class="mock-b">
+        <div class="week">
+          <div class="bar in" style="height:62%"></div>
+          <div class="bar in" style="height:70%"></div>
+          <div class="bar in" style="height:58%"></div>
+          <div class="bar in" style="height:66%"></div>
+          <div class="bar in" style="height:61%"></div>
+          <div class="bar over" style="height:74%"></div>
+          <div class="bar" style="height:4%"></div>
+        </div>
+        <div class="days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+        <div class="legend"><span><i style="background:#cfcdfd"></i>Within contract</span><span><i style="background:var(--red)"></i>Outside contract</span></div>
+        <div class="mock-row" style="margin-top:12px"><span>Saturday 13 March 2027 · 07:12–13:40</span><b>6.5 h</b></div>
+        <div class="mock-row"><span>Extra day at contract rate</span><b>€ 120.00</b></div>
+        <div class="mock-foot"><span class="mini-btn">Add to invoice</span><span class="mini-btn sec">Dismiss</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section>
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="eyebrow">The problem</div>
+      <h2>Your machines work more than you invoice</h2>
+      <p class="lead">Nobody is cheating. The customer has a deadline, the machine is on site, and nobody compares the hour meter with the contract.</p>
+    </div>
+    <div class="prob">
+      <div class="c"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M14 14l4 4M18 14l-4 4"/></svg></div><h3>Weekends and holidays</h3><p>Rented Monday to Friday, working on Saturday. The invoice still says five days.</p></div>
+      <div class="c"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Double shifts</h3><p>The contract says 8 hours a day. The machine runs 14. The hour meter knows, the invoice does not.</p></div>
+      <div class="c"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h13M12 7l5 5-5 5"/><path d="M21 4v16"/></svg></div><h3>After off-hire</h3><p>Off-hire called on Friday, collected on Wednesday. Was the machine standing still in between?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="eyebrow">How it works</div>
+      <h2>From GPS to invoice in six steps</h2>
+      <p class="lead">The same flow that runs in the full EQrento platform, available as a standalone GPS module.</p>
+    </div>
+    <div class="flow">
+      <div class="st"><div class="n">1</div><h3>Tracker</h3><p>Teltonika device on the machine: position, ignition and battery voltage.</p></div>
+      <div class="st"><div class="n">2</div><h3>Engine hours</h3><p>Every ignition-on period is logged with start, end and location.</p></div>
+      <div class="st"><div class="n">3</div><h3>Contract check</h3><p>Hours are compared with the rental period, working days and daily limit.</p></div>
+      <div class="st hl"><div class="n">4</div><h3>Overuse flagged</h3><p>Weekends, holidays, overtime and work after off-hire land in one report.</p></div>
+      <div class="st"><div class="n">5</div><h3>Your approval</h3><p>You decide what to charge. Nothing goes to the customer without you.</p></div>
+      <div class="st ok"><div class="n">6</div><h3>Invoice</h3><p>The extra line goes on the invoice with a PDF report as proof.</p></div>
+    </div>
+    <div class="flow-cards">
+      <div class="fc">
+        <div class="lbl">Report</div>
+        <h3>Telematics and contract, side by side</h3>
+        <p>One list of every machine that worked outside its contract this month.</p>
+        <table class="tbl">
+          <thead><tr><th>Machine</th><th>Customer</th><th>Event</th><th class="r">Hours</th></tr></thead>
+          <tbody>
+            <tr class="flag"><td>SL-104</td><td>DEMO BUILD Ltd.</td><td><span class="pill red">Saturday</span></td><td class="r">6.5</td></tr>
+            <tr class="flag"><td>BL-218</td><td>DEMO LOGISTICS BV</td><td><span class="pill amber">Overtime</span></td><td class="r">5.0</td></tr>
+            <tr class="flag"><td>TH-031</td><td>DEMO CIVIL Ltd.</td><td><span class="pill red">After off-hire</span></td><td class="r">3.2</td></tr>
+            <tr><td>SL-087</td><td>DEMO EVENTS BV</td><td><span class="pill green">Within contract</span></td><td class="r">–</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fc">
+        <div class="lbl">Invoice</div>
+        <h3>Overuse right on the invoice</h3>
+        <p>After approval the extra line is added automatically, with the report attached.</p>
+        <table class="tbl">
+          <thead><tr><th>Item</th><th class="r">Qty</th><th class="r">Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Rental SL-104, 1–19 March 2027</td><td class="r">15 days</td><td class="r">€ 1,800.00</td></tr>
+            <tr><td>Transport delivery and collection</td><td class="r">1</td><td class="r">€ 180.00</td></tr>
+            <tr class="flag"><td>Extra day: Saturday 13 March 2027 (GPS report)</td><td class="r">1 day</td><td class="r">€ 120.00</td></tr>
+            <tr class="tot"><td>Total net</td><td></td><td class="r">€ 2,100.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVICE -->
+<section id="device" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap dev">
+    <div class="dev-visual" aria-hidden="true">
+      <svg viewBox="0 0 420 300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="130" y="90" width="160" height="110" rx="18" fill="#1d2536" stroke="#8f8cff" stroke-width="2"/>
+        <text x="210" y="138" fill="#fff" font-family="Inter,Arial" font-size="16" font-weight="700" text-anchor="middle">Teltonika</text>
+        <text x="210" y="160" fill="#c4c8d8" font-family="Inter,Arial" font-size="12" text-anchor="middle">GPS tracker</text>
+        <circle cx="270" cy="108" r="5" fill="#16a34a"/>
+        <path d="M150 200v40H60" stroke="#fbbf24" stroke-width="3"/>
+        <path d="M210 200v60H60" stroke="#ef4444" stroke-width="3"/>
+        <path d="M270 200v40h90" stroke="#9aa3b5" stroke-width="3"/>
+        <text x="56" y="236" fill="#fbbf24" font-family="Inter,Arial" font-size="13" text-anchor="end">Ignition</text>
+        <text x="56" y="256" fill="#ef4444" font-family="Inter,Arial" font-size="13" text-anchor="end">Power</text>
+        <text x="366" y="236" fill="#9aa3b5" font-family="Inter,Arial" font-size="13">Ground</text>
+        <path d="M210 90V48" stroke="#8f8cff" stroke-width="2" stroke-dasharray="4 5"/>
+        <path d="M186 40a34 34 0 0 1 48 0M176 28a50 50 0 0 1 68 0" stroke="#8f8cff" stroke-width="2.5"/>
+        <text x="300" y="44" fill="#c4c8d8" font-family="Inter,Arial" font-size="12">GPS + mobile data</text>
+      </svg>
+    </div>
+    <div>
+      <div class="eyebrow">The device</div>
+      <h2 style="margin-top:12px">Three inputs. All you need for billing.</h2>
+      <p class="lead" style="margin-top:14px;margin-bottom:24px">A proven Teltonika tracker, connected to the machine's ignition and battery. Your mechanic can install it with our step-by-step guide.</p>
+      <div class="inputs">
+        <div class="inp"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h3>Ignition: engine hours</h3><p>The yellow wire goes to the ignition. Every minute the machine is switched on counts towards its engine hours.</p></div></div>
+        <div class="inp"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 11v2M7 12h4M9 10v4"/></svg></div><div><h3>Battery voltage</h3><p>See the battery condition of every machine in the report, useful for electric scissor lifts and machines standing idle on site.</p></div></div>
+        <div class="inp"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><h3>GPS position</h3><p>Where every machine is right now and where it worked. Find machines faster at collection.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calculator">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="eyebrow">Calculator</div>
+      <h2>What would you save?</h2>
+      <p class="lead">Enter what you pay today and how often machines work beyond the contract. Default values are cautious examples, not a promise.</p>
+    </div>
+    <div class="calc">
+      <div class="inputs-box">
+        <div class="grp">Your fleet today</div>
+        <div class="field"><label for="f1">Machines in your fleet <output id="o1"></output></label><input id="f1" type="range" min="10" max="500" step="5" value="80"></div>
+        <div class="field"><label for="f2">Machines with telematics today <output id="o2"></output></label><div class="hint">Set to 0 if you have no GPS yet</div><input id="f2" type="range" min="0" max="500" step="5" value="40"></div>
+        <div class="field"><label for="f3">What you pay per machine per month <output id="o3"></output></label><div class="hint">Take the amount from your current telematics invoice</div><input id="f3" type="range" min="0" max="30" step="0.5" value="12"></div>
+        <div class="grp">Work beyond the contract</div>
+        <div class="field"><label for="f4">Average daily rental rate <output id="o4"></output></label><input id="f4" type="range" min="40" max="400" step="10" value="110"></div>
+        <div class="field"><label for="f5">Unbilled extra days per 10 machines per month <output id="o5"></output></label><div class="hint">Saturdays, holidays, double shifts, days after off-hire</div><input id="f5" type="range" min="0" max="10" step="0.5" value="2"></div>
+      </div>
+      <div class="result">
+        <div class="eyebrow">Your monthly result</div>
+        <div class="r-big" id="rBig"></div>
+        <div class="r-sub" id="rSub"></div>
+        <div class="r-head">Telematics cost</div>
+        <div class="r-rows">
+          <div class="r-row"><span>Today</span><b id="rToday"></b></div>
+          <div class="r-row"><span>EQrento GPS on the whole fleet</span><b id="rUs"></b></div>
+          <div class="r-row"><span>One-time devices (€69 each)</span><b id="rDev"></b></div>
+        </div>
+        <div class="r-head">Revenue you can invoice</div>
+        <div class="r-rows">
+          <div class="r-row hl"><span>Extra days found per month</span><b id="rRec"></b></div>
+          <div class="r-row"><span>Devices paid back in</span><b id="rPb"></b></div>
+        </div>
+        <div class="r-note">Estimate based on your inputs. EQrento GPS: €4 per machine per month, minimum €100 per month. Device cost is shown separately and not included in the monthly result. Whether you invoice extra days depends on your contract terms.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="eyebrow">Compare</div>
+      <h2>Built for rental billing, priced for rental fleets</h2>
+    </div>
+    <div class="cmp">
+      <table>
+        <thead><tr><th></th><th class="us">EQrento GPS</th><th>Typical telematics subscription</th></tr></thead>
+        <tbody>
+          <tr><td>Device</td><td class="us">€69 one-time</td><td>often €120–150</td></tr>
+          <tr><td>Monthly per machine</td><td class="us">€4, minimum €100 per fleet</td><td>often €8–15</td></tr>
+          <tr><td>Contract length</td><td class="us">No multi-year lock-in</td><td>often 36 months or longer</td></tr>
+          <tr><td>Overuse checked against rental contracts</td><td class="us">Yes, automatically</td><td>Usually a separate export</td></tr>
+          <tr><td>Extra line on the invoice after approval</td><td class="us">Yes, with PDF proof</td><td>Manual</td></tr>
+          <tr><td>Full rental software when you need it</td><td class="us">Offers, contracts, transport, service, invoicing</td><td>Not included</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note">Market prices are indicative and vary by supplier, fleet size and contract. Check your own invoice in the calculator above.</p>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section style="padding-top:0">
+  <div class="wrap integ">
+    <div class="box dark">
+      <div class="eyebrow" style="color:var(--brand2)">Already have telematics?</div>
+      <h3 style="margin-top:10px">Keep it. Connect it.</h3>
+      <p>Locked into a telematics contract or running OEM telematics on new machines? EQrento connects to it, so overuse still goes on the invoice. Use our tracker only on machines that have nothing.</p>
+      <div class="chips"><span class="chip">Trackunit</span><span class="chip">Zoomlion</span><span class="chip">Teltonika</span></div>
+    </div>
+    <div class="box">
+      <div class="eyebrow">Accounting</div>
+      <h3 style="margin-top:10px">Invoices where your accountant expects them</h3>
+      <p>Invoices with overuse lines can be sent on to your accounting system.</p>
+      <div class="chips"><span class="chip">Exact</span><span class="chip">SnelStart</span><span class="chip">Comarch</span><span class="chip">Asseco Wapro</span><span class="chip">KSeF</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="eyebrow">Pricing</div>
+      <h2>Simple pricing per machine</h2>
+      <p class="lead">Start with GPS. Use the rest of EQrento whenever you are ready.</p>
+    </div>
+    <div class="pricing">
+      <div class="pc">
+        <div class="t">Device</div>
+        <div class="p">€69<small> one-time</small></div>
+        <div class="d">per machine</div>
+        <ul><li>Teltonika GPS tracker</li><li>Ignition, power and GPS inputs</li><li>Step-by-step installation guide</li></ul>
+      </div>
+      <div class="pc main">
+        <div class="t">GPS subscription</div>
+        <div class="p">€4<small> / month</small></div>
+        <div class="d">per machine, minimum €100 per month</div>
+        <ul><li>Live position and engine hours</li><li>Overuse report against contracts</li><li>Approval and invoice line with PDF proof</li><li>Battery voltage in the report</li><li>Unlimited users</li></ul>
+      </div>
+      <div class="pc">
+        <div class="t">Full platform</div>
+        <div class="p" style="font-size:34px;margin-top:18px">from $199<small> / month</small></div>
+        <div class="d">billed yearly, see eqrento.com/pricing</div>
+        <ul><li>Offers and contracts</li><li>Transport with driver app</li><li>Service and invoicing</li><li>AI Assistant as an add-on</li></ul>
+      </div>
+    </div>
+    <div class="examples">
+      <div>10 machines<b>€100 / month</b></div>
+      <div>25 machines<b>€100 / month</b></div>
+      <div>50 machines<b>€200 / month</b></div>
+      <div>150 machines<b>€600 / month</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center"><div class="eyebrow">FAQ</div><h2>Questions rental companies ask</h2></div>
+    <div class="faq">
+      <details><summary>Do I need the full EQrento system to use GPS?</summary><p>No. The GPS module works on its own, with reports and overuse detection. To check overuse, EQrento needs the rental period of each machine: enter it in EQrento or import it from Excel. The rest of the platform is there when you want it.</p></details>
+      <details><summary>How are engine hours counted?</summary><p>The tracker is connected to the ignition. Every period when the machine is switched on is logged with start time, end time and location, and added up as engine hours.</p></details>
+      <details><summary>Who installs the device?</summary><p>Usually your own mechanic, with our step-by-step guide. The tracker needs power, ground and the ignition signal.</p></details>
+      <details><summary>Will overuse be charged automatically?</summary><p>No. EQrento flags it and you decide. Only approved items go on the invoice, together with a PDF report your customer can check.</p></details>
+      <details><summary>We already pay for telematics. Do we have to switch?</summary><p>No. If you use Trackunit or Zoomlion telematics, EQrento can read that data. Many companies combine both: existing telematics on new machines, our tracker on the rest.</p></details>
+      <details><summary>What happens to our data if we stop?</summary><p>The data is yours. You can export it at any time.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- CTA -->
+<section class="cta" id="pilot">
+  <div class="wrap cta-grid">
+    <div>
+      <div class="eyebrow" style="color:var(--brand2)">Pilot</div>
+      <h2 style="margin-top:12px">Try it on 10 machines for 30 days</h2>
+      <p class="lead">Pick the machines that go out most often. After 30 days you get an overuse report and see what you would have invoiced.</p>
+      <ul class="check">
+        <li>10 trackers and setup support</li>
+        <li>Overuse report after 30 days</li>
+        <li>You decide afterwards, no long contract</li>
+      </ul>
+    </div>
+    <div class="form" id="pilotForm">
+      <div class="row2">
+        <label>Company<input id="pCompany" type="text" autocomplete="organization"></label>
+        <label>Your name<input id="pName" type="text" autocomplete="name"></label>
+      </div>
+      <div class="row2">
+        <label>Email<input id="pEmail" type="email" autocomplete="email"></label>
+        <label>Phone (optional)<input id="pPhone" type="tel" autocomplete="tel"></label>
+      </div>
+      <div class="row2">
+        <label>Fleet size<select id="pFleet"><option>up to 50</option><option selected>51–200</option><option>201–500</option><option>over 500</option></select></label>
+        <label>Telematics today<select id="pTel"><option>None</option><option>Trackunit</option><option>OEM telematics</option><option>Other</option></select></label>
+      </div>
+      <button class="btn" type="button" id="pSend">Order a pilot</button>
+      <div class="small">Opens an email to the EQrento team with your details. We reply within one working day.</div>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span>EQrento is a service and brand of SOLTIX Sp. z o.o., Zielona Góra, Poland</span><span>© 2026 SOLTIX Sp. z o.o.</span></div></footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function eur(n){var s=Math.round(Math.abs(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');return (n<0?'−':'')+'€'+s}
+  function calc(){
+    var fleet=+$('f1').value, telEl=$('f2');
+    if(+telEl.value>fleet){telEl.value=fleet}
+    var tel=+telEl.value, price=+$('f3').value, rate=+$('f4').value, per10=+$('f5').value;
+    $('o1').textContent=fleet;$('o2').textContent=tel;$('o3').textContent='€'+price.toFixed(price%1?1:0);
+    $('o4').textContent='€'+rate;$('o5').textContent=per10%1?per10.toFixed(1):per10;
+    var today=tel*price, us=Math.max(100,4*fleet), dev=69*fleet, rec=fleet/10*per10*rate;
+    var gain=today-us+rec;
+    $('rToday').textContent=eur(today)+' / month';
+    $('rUs').textContent=eur(us)+' / month';
+    $('rDev').textContent=eur(dev);
+    $('rRec').textContent=eur(rec)+' / month';
+    var big=$('rBig');
+    if(gain>0){
+      big.className='r-big';big.innerHTML=eur(gain)+' <small>more per month</small>';
+      $('rSub').textContent=(today>us?'Lower telematics cost and ':'')+'extra days on the invoice, for the whole fleet.';
+      $('rPb').textContent=Math.max(1,Math.ceil(dev/gain))+(Math.ceil(dev/gain)===1?' month':' months');
+    }else{
+      big.className='r-big msg';big.textContent='Every machine tracked, every hour on record';
+      $('rSub').textContent='The whole fleet on one map, with engine hours ready for billing.';
+      $('rPb').textContent='–';
+    }
+  }
+  ['f1','f2','f3','f4','f5'].forEach(function(id){$(id).addEventListener('input',calc)});
+  calc();
+
+  $('pSend').addEventListener('click',function(){
+    var lines=['Company: '+$('pCompany').value,'Name: '+$('pName').value,'Email: '+$('pEmail').value,'Phone: '+$('pPhone').value,'Fleet size: '+$('pFleet').value,'Telematics today: '+$('pTel').value];
+    var href='mailto:'+['wojciech','equirento.eu'].join('@')+'?subject='+encodeURIComponent('GPS pilot request – '+($('pCompany').value||'rental company'))+'&body='+encodeURIComponent(lines.join('\n'));
+    window.location.href=href;
+  });
+})();
+</script>
+</body>
+</html>
