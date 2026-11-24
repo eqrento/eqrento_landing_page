@@ -61,18 +61,17 @@ case-study.html        – the BAC Polska case study (see “Case study page” 
 offers-contracts.html, equipment.html, transport.html, gps-telematics.html, service.html, warehouse.html,
 equipment-sales.html, invoicing.html, ai-assistant.html
                        – the nine feature pages (see “Feature pages” below; preview only for now)
-gps-telematics.html    – on main (the preview) since 23 Nov 2026: the NEW GPS & Telematics page (Łukasz: it replaces the
-                         old one) – Wojtek's GPS page rebuilt in the site's look: GPS as a module of its own, a sample
+gps-telematics.html    – the NEW GPS & Telematics page (on main since 23 Nov 2026, LIVE since 24 Nov 2026; it replaced the
+                         old one; also a separate offer for companies that want only the GPS module) – Wojtek's GPS page rebuilt in the site's look: GPS as a module of its own, a sample
                          overuse report with the home page's scissor lift, how it works, a live map of Europe, the device,
                          a savings calculator, a comparison, pricing ($4 per machine a month, minimum $100; device $69),
                          FAQ and a 30-day pilot on 10 machines. Own styles in assets/css/gps.css, script in
                          assets/js/gps.js (the calculator; the pilot form opens the visitor's e-mail program with a
                          message to Wojtek – the address is put together in the script, so it is not written out in
                          this public repository). Indexable, canonical https://eqrento.com/gps-telematics.
-                         **NOT on eqrento.com until Łukasz approves it** (like the case study): the live site keeps the
-                         old page (“From the Connected plan”). Publish branches start from the live commit, so neither
-                         this page nor its files go live without their own commits. The draft address
-                         gps-telematics-new is gone
+                         Its structure differs from the other feature pages on purpose. pricing.html points to it in the
+                         „Only need GPS?” box. The GPS prices ($4, $100, $69) are not in check-prices.sh: change them in
+                         this page, gps.js (PER_MACHINE, MINIMUM, DEVICE) and that box together
 privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
 cookie-policy.html     – Cookie Policy
 robots.txt, sitemap.xml – search engines (point to https://eqrento.com/; /offer/ is disallowed)
@@ -199,9 +198,8 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   - Transport, Service – “From the Complete plan”; tags mark what starts higher (fuel and cleaning to the invoice, the
     salesperson in the driver's job, supervisor approval = Connected). The Service plan box also says what is already
     in Essential (service reminders, fault reporting, repair history – the three rows of the comparison table).
-  - GPS & Telematics – “From the Connected plan”, no tags. The telemetry device is named without its price (“its
-    price is on the Pricing page”). That is the OLD page, still live; the new page on main has its own GPS prices
-    (see the Structure list) and waits for Łukasz's approval.
+  - GPS & Telematics – since 24 Nov 2026 its own page with its own GPS prices (see the Structure list), not the
+    plan box.
   - Warehouse (WMS), Equipment sales – “In the Enterprise plan”, no tags.
   - AI Assistant – “A paid add-on in every plan”, no price; the third group lists Wojtek's example questions.
 - **Screenshots:** each page shows its module's screenshot from `assets/img/screens/` (the four sizes of the home tab),
