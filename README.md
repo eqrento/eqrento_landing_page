@@ -70,8 +70,7 @@ gps-telematics.html    – the NEW GPS & Telematics page (on main since 23 Nov 2
                          message to Wojtek – the address is put together in the script, so it is not written out in
                          this public repository). Indexable, canonical https://eqrento.com/gps-telematics.
                          Its structure differs from the other feature pages on purpose. pricing.html points to it in the
-                         „Only need GPS?” box. The GPS prices ($4, $100, $69) are not in check-prices.sh: change them in
-                         this page, gps.js (PER_MACHINE, MINIMUM, DEVICE) and that box together
+                         „Only need GPS?” box. Its GPS prices ($4, $100, $69) are checked by check-prices.sh (see Pricing below)
 privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
 cookie-policy.html     – Cookie Policy
 robots.txt, sitemap.xml – search engines (point to https://eqrento.com/; /offer/ is disallowed)
@@ -89,7 +88,7 @@ assets/img/screens/gps-europe-*.jpg – that page's live map: the app menu and m
                          on the picture must stay (the map's licence). gps-europe-phone-*.jpg = the same picture without
                          the app menu (272 px cut on the left of the 1720 px source), for phones. Its source page and the
                          steps to remake both are in ../gps-landing/mapa-europy/ (outside this repository)
-.github/scripts/check-prices.sh – stops the preview and the publish when the prices on the two pages differ
+.github/scripts/check-prices.sh – stops the preview and the publish when the plan or GPS prices differ between pages
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos, og-image.png (1200×630 link-preview picture)
 assets/icons/          – SVG icons, logo-light.png (footer logo, all white), icon-192/512 and icon-maskable-512 PNGs
@@ -160,6 +159,14 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
     start at $199 a month”).
   - The new GPS & Telematics page (gps-telematics.html) quotes the Essential price as
     `<span data-price-quote="essential">$199</span>`; the check compares that too.
+  - The GPS module: $4 per machine a month, minimum $100, device $69. The source is the line
+    `const PER_MACHINE = 4, MINIMUM = 100, DEVICE = 69;` in assets/js/gps.js (the calculator). Every other place is
+    marked `<span data-price-quote="gps-month">$4</span>` (`gps-minimum`, `gps-device`): gps-telematics.html and
+    pricing.html, including the $69 device in the Connected and Enterprise plans (the same device). The check compares
+    the marks with gps.js, finds a current GPS price written without its mark on those two pages, checks the GPS
+    page's title and descriptions (“from $4 per machine per month”), and recomputes the four examples under its
+    price cards and the calculator's result written in the page for the default values. To change a GPS price: gps.js,
+    every mark, the descriptions, the examples and the calculator's default result – the check lists what is left.
   - Change a price in every place. `bash .github/scripts/check-prices.sh` checks them and runs before every preview and
     publish – a difference stops both.
 - **Demo requests:** from pricing.html the `page` field is `/pricing`. The card buttons send `source` “pricing – <plan>”,

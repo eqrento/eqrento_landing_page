@@ -29,7 +29,7 @@
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css?v=20261124a">
-  <link rel="stylesheet" href="assets/css/gps.css?v=20261124d">
+  <link rel="stylesheet" href="assets/css/gps.css?v=20261124e">
 </head>
 <body>
 
@@ -122,13 +122,13 @@
   <section class="gl-hero">
     <div class="wrap-narrow gl-hero__grid">
       <div class="gl-hero__text">
-        <p class="pill pill--dark"><span class="gl-pill__lead">GPS for rental fleets</span><span class="gl-pill__rest"> from $4 per machine / month</span></p>
+        <p class="pill pill--dark"><span class="gl-pill__lead">GPS for rental fleets</span><span class="gl-pill__rest"> from <span data-price-quote="gps-month">$4</span> per machine / month</span></p>
         <h1 class="gl-hero__title">Every hour your machines work. <em>On&nbsp;the&nbsp;invoice.</em></h1>
         <p class="lead">A Teltonika tracker on every machine. EQrento counts engine hours from the ignition, checks them against the rental contract and flags weekend, holiday and overtime work. You approve, and it goes on the invoice with a PDF report as&nbsp;proof.</p>
         <ul class="gl-ticks">
           <li>Engine hours from the ignition, not from guesswork</li>
           <li>Overuse checked against each contract automatically</li>
-          <li>Device $69, no <span class="nowrap">multi-year</span> contract to lock you&nbsp;in</li>
+          <li>Device <span data-price-quote="gps-device">$69</span>, no <span class="nowrap">multi-year</span> contract to lock you&nbsp;in</li>
         </ul>
         <div class="gl-actions">
           <a href="#calculator" class="btn btn--primary btn--arrow">
@@ -332,7 +332,8 @@
   </section>
 
   <!-- ============ CALCULATOR (gps.js). The numbers in the markup are the result for the default values, so the page
-       reads the same before the script runs; change them together with the defaults ============ -->
+       reads the same before the script runs; change them together with the defaults (check-prices.sh recomputes them
+       with the prices of gps.js and stops the preview and the publish when they differ) ============ -->
   <section class="gl-sec" id="calculator" aria-labelledby="calc-title">
     <div class="wrap-narrow">
       <div class="section-head">
@@ -376,14 +377,14 @@
           <dl class="gl-calc__rows">
             <div><dt>Today</dt><dd id="gl-r-today">$480 / month</dd></div>
             <div><dt>EQrento GPS on the whole fleet</dt><dd id="gl-r-ours">$320 / month</dd></div>
-            <div><dt><span class="nowrap">One-time</span> devices ($69 each)</dt><dd id="gl-r-devices">$5,520</dd></div>
+            <div><dt><span class="nowrap">One-time</span> devices (<span data-price-quote="gps-device">$69</span> each)</dt><dd id="gl-r-devices">$5,520</dd></div>
           </dl>
           <h3 class="gl-calc__head">Revenue you can invoice</h3>
           <dl class="gl-calc__rows">
             <div class="is-money"><dt>Extra days found</dt><dd id="gl-r-found">$1,760 / month</dd></div>
             <div><dt>Devices paid back in</dt><dd id="gl-r-payback">3 months</dd></div>
           </dl>
-          <p class="gl-calc__note">Estimate based on your inputs. EQrento GPS: $4 per machine per month, minimum $100 per month. Device cost is shown separately and not included in the monthly result. Whether you invoice extra days depends on your contract&nbsp;terms.</p>
+          <p class="gl-calc__note">Estimate based on your inputs. EQrento GPS: <span data-price-quote="gps-month">$4</span> per machine per month, minimum <span data-price-quote="gps-minimum">$100</span> per month. Device cost is shown separately and not included in the monthly result. Whether you invoice extra days depends on your contract&nbsp;terms.</p>
         </div>
       </div>
     </div>
@@ -406,8 +407,8 @@
             </tr>
           </thead>
           <tbody role="rowgroup">
-            <tr role="row"><th role="rowheader" scope="row">Device</th><td role="cell" class="is-us" data-label="EQrento GPS">$69 <span class="nowrap">one-time</span></td><td role="cell" data-label="Typical telematics">often $120–150</td></tr>
-            <tr role="row"><th role="rowheader" scope="row">Monthly per machine</th><td role="cell" class="is-us" data-label="EQrento GPS">$4, minimum $100 per&nbsp;fleet</td><td role="cell" data-label="Typical telematics">often $8–15</td></tr>
+            <tr role="row"><th role="rowheader" scope="row">Device</th><td role="cell" class="is-us" data-label="EQrento GPS"><span data-price-quote="gps-device">$69</span> <span class="nowrap">one-time</span></td><td role="cell" data-label="Typical telematics">often $120–150</td></tr>
+            <tr role="row"><th role="rowheader" scope="row">Monthly per machine</th><td role="cell" class="is-us" data-label="EQrento GPS"><span data-price-quote="gps-month">$4</span>, minimum <span data-price-quote="gps-minimum">$100</span> per&nbsp;fleet</td><td role="cell" data-label="Typical telematics">often $8–15</td></tr>
             <tr role="row"><th role="rowheader" scope="row">Contract length</th><td role="cell" class="is-us" data-label="EQrento GPS">No <span class="nowrap">multi-year</span> <span class="nowrap">lock-in</span></td><td role="cell" data-label="Typical telematics">often 36 months or&nbsp;longer</td></tr>
             <tr role="row"><th role="rowheader" scope="row">Overuse checked against rental contracts</th><td role="cell" class="is-us" data-label="EQrento GPS">Yes, automatically</td><td role="cell" data-label="Typical telematics">Usually a separate export</td></tr>
             <tr role="row"><th role="rowheader" scope="row">Extra line on the invoice after&nbsp;approval</th><td role="cell" class="is-us" data-label="EQrento GPS">Yes, with PDF proof</td><td role="cell" data-label="Typical telematics">Manual</td></tr>
@@ -437,8 +438,9 @@
     </div>
   </section>
 
-  <!-- ============ PRICING. The Essential price is quoted from pricing.html: data-price-quote lets check-prices.sh
-       compare it, so it cannot go out of step ============ -->
+  <!-- ============ PRICING. Every price on this page is marked with data-price-quote: the Essential price quoted from
+       pricing.html and the GPS prices (gps-month, gps-minimum, gps-device = PER_MACHINE, MINIMUM, DEVICE in gps.js).
+       check-prices.sh compares them all and recomputes the examples below, so they cannot go out of step ============ -->
   <section class="gl-sec" id="gps-pricing" aria-labelledby="price-title">
     <div class="wrap-narrow">
       <div class="section-head">
@@ -449,7 +451,7 @@
       <div class="gl-prices">
         <article class="gl-price">
           <h3 class="gl-price__name">Device</h3>
-          <p class="gl-price__num">$69<small><span class="nowrap">one-time</span></small></p>
+          <p class="gl-price__num"><span data-price-quote="gps-device">$69</span><small><span class="nowrap">one-time</span></small></p>
           <p class="gl-price__per">per machine</p>
           <ul class="gl-price__list">
             <li>Teltonika GPS tracker</li>
@@ -459,8 +461,8 @@
         </article>
         <article class="gl-price gl-price--key">
           <h3 class="gl-price__name">GPS subscription</h3>
-          <p class="gl-price__num">$4<small>/ month</small></p>
-          <p class="gl-price__per">per machine, minimum $100 per&nbsp;month</p>
+          <p class="gl-price__num"><span data-price-quote="gps-month">$4</span><small>/ month</small></p>
+          <p class="gl-price__per">per machine, minimum <span data-price-quote="gps-minimum">$100</span> per&nbsp;month</p>
           <ul class="gl-price__list">
             <li>Live position and engine hours</li>
             <li>Overuse report against contracts</li>

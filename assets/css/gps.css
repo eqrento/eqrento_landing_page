@@ -18,6 +18,7 @@
    it may take two lines (inline-block there, the same font and padding) */
 .gl-hero .pill--dark { color: var(--ink); background: rgba(101, 97, 255, .07); border-color: rgba(101, 97, 255, .24); }
 .gl-hero .pill--dark .gl-pill__lead { margin: 0; color: var(--label-violet-ink); font-weight: 600; }
+.gl-hero .pill--dark [data-price-quote] { margin: 0; color: inherit; }   /* the price marked for check-prices.sh: not one of the pill's own spans */
 .gl-hero .pill--dark .gl-pill__rest { margin-left: .3em; color: inherit; }   /* its leading space is for copying and screen readers; the margin draws it */
 .gl-hero__title { font-size: var(--h1); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); text-wrap: balance; }
 .gl-hero__title em { font-style: normal; color: var(--label-violet-ink); }
