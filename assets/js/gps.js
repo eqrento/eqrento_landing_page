@@ -9,7 +9,10 @@
      ours   = $4 per machine for the whole fleet, at least $100 a month
      found  = unbilled extra days per 10 machines × (fleet / 10) × the daily rate
      result = today − ours + found; the devices ($69 each) are shown apart, with the months they take to pay back.
-     The numbers written in the page are this result for the default values: change them together. */
+     The numbers written in the page are this result for the default values: change them together.
+     This line is the source of the GPS prices for .github/scripts/check-prices.sh: it compares every price marked
+     data-price-quote="gps-month|gps-minimum|gps-device" (this page and pricing.html) with it and recomputes the page's
+     examples and default result with the same formula. Keep the line's shape, and change the formula there too. */
   const PER_MACHINE = 4, MINIMUM = 100, DEVICE = 69;
   const inputs = ['gl-fleet', 'gl-tel', 'gl-price', 'gl-rate', 'gl-extra'].map($);
   if (inputs.every(Boolean)) {
