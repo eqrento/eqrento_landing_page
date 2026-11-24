@@ -259,7 +259,13 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   marks bigger, compact and heavy marks smaller). Optional per logo: `--tone` darkens a pale logo in its grey state,
   `--logo-gray: url(#logo-gray-red)` uses a red-channel grey (for the red-on-black Tenge logo; the SVG filter is inline
   in the logos section). Logos are grey, full colour on hover / tap. When they don't fit in one row, JS turns the
-  strip into a seamless marquee (currently always, with 9 logos).
+  strip into a seamless marquee (currently always, with 10 logos).
+  - Adding a logo: a PNG master in `assets/img` with a transparent background, trimmed to the mark plus 4 px, then
+    `logo-NAME.webp` (q 0.9, see Speed) and a new `<li>` (next `--d` step: +70ms). `--lh` ≈ 54.4 × aspect^-0.5 ×
+    ink^-0.25, where aspect = the mark's width / height and ink = the mean of alpha × (1 − luminance) over the mark's
+    box (this matches the existing logos within ±5%). A logo sent on a white background (JPG) is made transparent first:
+    Kanwod (24 Nov 2026) came as a JPG; white was turned into transparency, the JPG noise and a stray pixel removed;
+    `--lh:37.7`.
 - **Product screenshots** (Key features tabs and the telematics map) – raw light-theme screenshots (≈ 1900×960, no
   frame or glow) resized in advance to the sizes the page shows, so the browser never has to shrink a big picture (that
   is what made the small menu text look soft): `assets/img/screens/<name>-860|1080|1290|1720.png` (`gps` is JPEG) for
