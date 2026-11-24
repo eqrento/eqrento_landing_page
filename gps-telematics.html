@@ -29,7 +29,7 @@
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css?v=20261123a">
-  <link rel="stylesheet" href="assets/css/gps.css?v=20261123c">
+  <link rel="stylesheet" href="assets/css/gps.css?v=20261124a">
 </head>
 <body>
 
@@ -253,7 +253,10 @@
   <!-- ============ LIVE MAP – the picture of gps-telematics.html (the app's map in the Key features window frame), with
        machines across Europe instead of Poland (Łukasz, 23 Nov 2026). gps-europe-*.jpg = the original screenshot's app
        menu and map buttons + OpenStreetMap tiles at zoom 5, grey as in the app, and made-up machines and pop-up.
-       OpenStreetMap needs the credit “© OpenStreetMap contributors”: it is on the picture, bottom right ============ -->
+       OpenStreetMap needs the credit “© OpenStreetMap contributors”: it is on the picture, bottom right.
+       Phones get gps-europe-phone-*.jpg: the same picture without the app menu, cut in the file itself (Łukasz, 24 Nov
+       2026: the map did not show on his phone, where it was the wide picture shifted left by CSS and loaded lazily).
+       Not lazy, like the screenshots of the other feature pages ============ -->
   <section class="gl-sec gl-map" id="live-map" aria-labelledby="map-title">
     <div class="wrap-narrow">
       <div class="section-head">
@@ -263,11 +266,16 @@
       </div>
       <div class="mod-shot">
         <div class="features__screen">
-          <img src="assets/img/screens/gps-europe-1080.jpg"
-               srcset="assets/img/screens/gps-europe-860.jpg 860w, assets/img/screens/gps-europe-1080.jpg 1080w, assets/img/screens/gps-europe-1290.jpg 1290w, assets/img/screens/gps-europe-1720.jpg 1720w"
-               sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1200px) calc(100vw - 64px), 1120px"
-               width="1894" height="953" loading="lazy" decoding="async"
-               alt="The live map in EQrento: machines marked across Europe, and a pop-up with one machine’s address, signal, inspection date and maintenance due date">
+          <picture>
+            <source media="(max-width: 640px)"
+                    srcset="assets/img/screens/gps-europe-phone-680.jpg 680w, assets/img/screens/gps-europe-phone-1020.jpg 1020w, assets/img/screens/gps-europe-phone-1360.jpg 1360w"
+                    sizes="calc(100vw - 40px)" width="1448" height="865">
+            <img src="assets/img/screens/gps-europe-1080.jpg"
+                 srcset="assets/img/screens/gps-europe-860.jpg 860w, assets/img/screens/gps-europe-1080.jpg 1080w, assets/img/screens/gps-europe-1290.jpg 1290w, assets/img/screens/gps-europe-1720.jpg 1720w"
+                 sizes="(max-width: 1200px) calc(100vw - 64px), 1120px"
+                 width="1894" height="953" decoding="async"
+                 alt="The live map in EQrento: machines marked across Europe, and a pop-up with one machine’s address, signal, inspection date and maintenance due date">
+          </picture>
         </div>
       </div>
     </div>
@@ -305,21 +313,21 @@
         <p class="kicker">The device</p>
         <h2 class="h2" id="device-title">Three inputs.<br>All you need for&nbsp;billing.</h2>
         <p class="lead">A proven Teltonika tracker, connected to the machine’s ignition and battery. Your mechanic can install it with our <span class="nowrap">step-by-step</span>&nbsp;guide.</p>
-        <ul class="gl-inputs">
-          <li>
-            <span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <div><h3>Ignition: engine hours</h3><p>The yellow wire goes to the ignition. Every minute the machine is switched on counts towards its engine&nbsp;hours.</p></div>
-          </li>
-          <li>
-            <span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 11v2M7 12h4M9 10v4"/></svg></span>
-            <div><h3>Battery voltage</h3><p>See the battery condition of every machine in the report, useful for electric scissor lifts and machines standing idle on&nbsp;site.</p></div>
-          </li>
-          <li>
-            <span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-            <div><h3>GPS position</h3><p>Where every machine is right now and where it worked. Find machines faster at&nbsp;collection.</p></div>
-          </li>
-        </ul>
       </div>
+      <ul class="gl-inputs">
+        <li>
+          <span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><h3>Ignition: engine hours</h3><p>The yellow wire goes to the ignition. Every minute the machine is switched on counts towards its engine&nbsp;hours.</p></div>
+        </li>
+        <li>
+          <span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 11v2M7 12h4M9 10v4"/></svg></span>
+          <div><h3>Battery voltage</h3><p>See the battery condition of every machine in the report, useful for electric scissor lifts and machines standing idle on&nbsp;site.</p></div>
+        </li>
+        <li>
+          <span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <div><h3>GPS position</h3><p>Where every machine is right now and where it worked. Find machines faster at&nbsp;collection.</p></div>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -372,7 +380,7 @@
           </dl>
           <h3 class="gl-calc__head">Revenue you can invoice</h3>
           <dl class="gl-calc__rows">
-            <div class="is-money"><dt>Extra days found per month</dt><dd id="gl-r-found">$1,760 / month</dd></div>
+            <div class="is-money"><dt>Extra days found</dt><dd id="gl-r-found">$1,760 / month</dd></div>
             <div><dt>Devices paid back in</dt><dd id="gl-r-payback">3 months</dd></div>
           </dl>
           <p class="gl-calc__note">Estimate based on your inputs. EQrento GPS: $4 per machine per month, minimum $100 per month. Device cost is shown separately and not included in the monthly result. Whether you invoice extra days depends on your contract&nbsp;terms.</p>

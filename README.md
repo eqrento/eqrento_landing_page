@@ -87,8 +87,9 @@ assets/js/pricing.js   – pricing page only: yearly / monthly, “Show only dif
 assets/css/gps.css, assets/js/gps.js – the new GPS & Telematics page only (gps-telematics.html)
 assets/img/screens/gps-europe-*.jpg – that page's live map: the app menu and map buttons of gps-*.jpg + OpenStreetMap
                          tiles (zoom 5, grey as in the app) with made-up machines. The credit “© OpenStreetMap contributors”
-                         on the picture must stay (the map's licence). Its source page and the steps to remake it are in
-                         ../gps-landing/mapa-europy/ (outside this repository)
+                         on the picture must stay (the map's licence). gps-europe-phone-*.jpg = the same picture without
+                         the app menu (272 px cut on the left of the 1720 px source), for phones. Its source page and the
+                         steps to remake both are in ../gps-landing/mapa-europy/ (outside this repository)
 .github/scripts/check-prices.sh – stops the preview and the publish when the prices on the two pages differ
 assets/fonts/          – Sora (variable, self-hosted, latin + latin-ext)
 assets/img/            – images, client logos, og-image.png (1200×630 link-preview picture)

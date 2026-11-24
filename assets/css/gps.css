@@ -85,14 +85,14 @@
 .gl-sec { padding: var(--sec-join) 0; }
 .gl-sec .section-head + * { margin-top: 48px; }
 
-/* the problem: three cards */
+/* the problem: three cards – the title on one line with its icon, the text under both (Łukasz, 24 Nov 2026) */
 .gl-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .gl-card {
-  display: flex; flex-direction: column; gap: 14px; padding: 28px;
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; align-content: start; gap: 16px; padding: 28px;
   border-radius: 24px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 .gl-card h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); text-wrap: balance; }
-.gl-card p { font-size: 15px; line-height: 1.55; color: var(--gray-2); text-wrap: pretty; }
+.gl-card p { grid-column: 1 / -1; font-size: 15px; line-height: 1.55; color: var(--gray-2); text-wrap: pretty; }
 
 /* how it works: six steps, the flagging one navy */
 .gl-flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
@@ -123,8 +123,18 @@
 .gl-table tr.is-flag td { background: #fff8ea; }   /* the overuse rows: a tint of the orange */
 .gl-table tr.is-total td { font-weight: 600; border-bottom: 0; }
 
-/* the device: the tracker and its three wires on navy, the three inputs beside it */
-.gl-device { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center; }
+/* the live map (in the window frame of Key features, style.css): phones get their own picture through <picture> */
+.gl-map picture { display: block; }
+
+/* the device: the tracker and its three wires on navy, beside the text and the three inputs. Grid areas: stacked
+   (up to 1100px) the drawing stands between the text and the inputs (Łukasz, 24 Nov 2026) */
+.gl-device {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); grid-template-areas: "visual head" "visual inputs";
+  gap: 24px 56px;
+}
+.gl-device > .gl-device__visual { grid-area: visual; align-self: center; }
+.gl-device > .gl-device__text { grid-area: head; align-self: end; }
+.gl-device > .gl-inputs { grid-area: inputs; align-self: start; }
 .gl-device__visual {
   position: relative; isolation: isolate; overflow: hidden; padding: 36px;
   border-radius: 24px; background: var(--mark-navy); box-shadow: var(--shadow-brand);
@@ -135,7 +145,7 @@
 }
 .gl-device__visual svg { display: block; width: 100%; max-width: 400px; margin: 0 auto; }
 .gl-device__text { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-.gl-inputs { align-self: stretch; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.gl-inputs { display: flex; flex-direction: column; gap: 12px; }
 .gl-inputs li {
   display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; padding: 20px 22px;
   border-radius: 20px; background: var(--white); box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
@@ -270,7 +280,8 @@
 .gl-form__note { font-size: 13px; line-height: 1.5; color: var(--marker-soft); }
 
 @media (max-width: 1200px) {
-  .gl-hero__grid, .gl-device { gap: 40px; }
+  .gl-hero__grid { gap: 40px; }
+  .gl-device { column-gap: 40px; }
   .gl-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .gl-pilot__box { gap: 40px; padding: 48px; }
 }
@@ -280,6 +291,7 @@
   .gl-hero__visual { max-width: 780px; }   /* the card 560px wide, the lift beside it */
   .gl-device__visual { max-width: 560px; }
   .gl-device__visual { width: 100%; justify-self: center; }
+  .gl-device { grid-template-areas: "head" "visual" "inputs"; row-gap: 32px; }
 }
 @media (max-width: 900px) {
   .gl-docs, .gl-calc, .gl-integ, .gl-prices { grid-template-columns: minmax(0, 1fr); }
@@ -293,11 +305,12 @@
   .gl-hero__text { gap: 16px; }
   .gl-hero__title { font-size: 30px; }
   .gl-actions { flex-direction: column; align-items: stretch; align-self: stretch; }
-  /* phones: the card takes the whole width and the lift stands in front of its top right corner, the lower half of
-     the machine over the card (Łukasz, 23 Nov 2026). The picture's machine runs from 16% to 84% of its height, so the
-     card starts at its middle: 0.499 × 563/490 × 46% = 26.4% of the width. The head's text keeps to the left 58%,
-     where the lift (from 60% of the card's width) cannot reach it */
-  .gl-hero__visual { padding: 26.4% 0 0; }
+  /* phones: the card takes the whole width and the lift stands in front of its top right corner, most of the machine
+     over the card (Łukasz, 23 and 24 Nov 2026). The picture (46% wide) is 46% × 563/490 = 52.9% of the width high and
+     its machine runs from 16% to 84% of that height, so the card starts a fifth down the machine:
+     (0.16 + 0.2 × 0.68) × 52.9% = 15.6% of the width; the wheels stay above the line under the card's head. The head's
+     text keeps to the left 58%, where the lift (from 60% of the card's width) cannot reach it */
+  .gl-hero__visual { padding: 15.6% 0 0; }
   .gl-hero__lift { top: 0; right: 2%; bottom: auto; z-index: 2; width: 46%; transform: none; }
   .gl-report { position: relative; z-index: 1; padding: 18px 18px 20px; border-radius: 20px; }
   .gl-report__head p { max-width: calc(58% - 8px); }
@@ -328,8 +341,9 @@
   .gl-table--invoice td:nth-child(2) { grid-area: 2 / 1; text-align: left; font-size: 13px; color: var(--gray-2); }
   .gl-table--invoice td:nth-child(2):empty { display: none; }
   .gl-device__visual { padding: 20px 14px; border-radius: 20px; }
-  /* the live map: the app menu drops out (as on the home page's map), so the map itself is larger */
-  .gl-map .features__screen img { width: 118.8%; max-width: none; margin-left: -18.8%; }
+  /* the live map: its own picture without the app menu (gps-europe-phone-*.jpg, 1448 × 865), so the map is larger */
+  .gl-map .features__screen img { aspect-ratio: 1448 / 865; }
+  .gl-device { row-gap: 24px; }
   .gl-inputs li { padding: 18px; }
   .gl-calc__inputs, .gl-calc__result { padding: 24px 20px; border-radius: 20px; }
   /* compare: every row becomes a card – the feature, then our answer and the usual one with their labels */
