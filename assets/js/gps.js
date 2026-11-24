@@ -4,11 +4,11 @@
 (() => {
   const $ = id => document.getElementById(id);
 
-  /* ---------- the calculator: Wojtek's formula, in US dollars ----------
+  /* ---------- the calculator: Wojtek's formula, in euros (the site's currency since 24 Nov 2026) ----------
      today  = machines with telematics today × what is paid per machine
-     ours   = $4 per machine for the whole fleet, at least $100 a month
+     ours   = €4 per machine for the whole fleet, at least €100 a month
      found  = unbilled extra days per 10 machines × (fleet / 10) × the daily rate
-     result = today − ours + found; the devices ($69 each) are shown apart, with the months they take to pay back.
+     result = today − ours + found; the devices (€69 each) are shown apart, with the months they take to pay back.
      The numbers written in the page are this result for the default values: change them together.
      This line is the source of the GPS prices for .github/scripts/check-prices.sh: it compares every price marked
      data-price-quote="gps-month|gps-minimum|gps-device" (this page and pricing.html) with it and recomputes the page's
@@ -17,10 +17,10 @@
   const inputs = ['gl-fleet', 'gl-tel', 'gl-price', 'gl-rate', 'gl-extra'].map($);
   if (inputs.every(Boolean)) {
     const [fleetEl, telEl, priceEl, rateEl, extraEl] = inputs;
-    const usd = (n, cents) => {
+    const eur = (n, cents) => {
       const v = cents ? Math.round(n * 100) / 100 : Math.round(n);
       const digits = cents ? 2 : 0;
-      return (v < 0 ? '−' : '') + '$' + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+      return (v < 0 ? '−' : '') + '€' + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
     };
     const set = (id, text) => { $(id).textContent = text; };
 
@@ -35,8 +35,8 @@
       const count = (n, one, many) => `${n % 1 ? n.toFixed(1) : n} ${n === 1 ? one : many}`;
       set('gl-o-fleet', count(fleet, 'unit', 'units'));
       set('gl-o-tel', count(tel, 'unit', 'units'));
-      set('gl-o-price', usd(price, price % 1 !== 0));
-      set('gl-o-rate', usd(rate));
+      set('gl-o-price', eur(price, price % 1 !== 0));
+      set('gl-o-rate', eur(rate));
       set('gl-o-extra', count(per10, 'day', 'days'));
 
       const today = tel * price,
@@ -45,17 +45,17 @@
             found = fleet / 10 * per10 * rate,
             gain = today - ours + found;
 
-      set('gl-r-today', `${usd(today)} / month`);
-      set('gl-r-ours', `${usd(ours)} / month`);
-      set('gl-r-devices', usd(devices));
-      set('gl-r-found', `${usd(found)} / month`);
+      set('gl-r-today', `${eur(today)} / month`);
+      set('gl-r-ours', `${eur(ours)} / month`);
+      set('gl-r-devices', eur(devices));
+      set('gl-r-found', `${eur(found)} / month`);
 
       const big = $('gl-r-big');
       if (gain > 0) {
         big.classList.remove('is-msg');
         const small = document.createElement('small');
         small.textContent = 'more per month';
-        big.replaceChildren(`${usd(gain)} `, small);
+        big.replaceChildren(`${eur(gain)} `, small);
         const parts = [];
         if (today > ours) parts.push('lower telematics cost');
         if (found > 0) parts.push('extra days on the invoice');
