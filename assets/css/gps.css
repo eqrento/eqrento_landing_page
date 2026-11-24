@@ -17,7 +17,8 @@
    size, colours and violet opening words (Łukasz, 24 Nov 2026). Its text is longer than the home page's, so on phones
    it may take two lines (inline-block there, the same font and padding) */
 .gl-hero .pill--dark { color: var(--ink); background: rgba(101, 97, 255, .07); border-color: rgba(101, 97, 255, .24); }
-.gl-hero .pill--dark span { margin: 0; color: var(--label-violet-ink); font-weight: 600; }
+.gl-hero .pill--dark .gl-pill__lead { margin: 0; color: var(--label-violet-ink); font-weight: 600; }
+.gl-hero .pill--dark .gl-pill__rest { margin-left: .3em; color: inherit; }   /* its leading space is for copying and screen readers; the margin draws it */
 .gl-hero__title { font-size: var(--h1); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); text-wrap: balance; }
 .gl-hero__title em { font-style: normal; color: var(--label-violet-ink); }
 .gl-hero__text .lead { max-width: 660px; }
@@ -303,6 +304,8 @@
     display: inline-block; height: auto; min-height: 56px; padding: 16px 28px; border-radius: 28px;
     font-size: 16px; font-weight: 600; line-height: 1.4; white-space: normal;
   }
+  /* two lines broken after the first words (Łukasz, 24 Nov 2026): „GPS for rental fleets“ / „from $4 per machine / month“ */
+  .gl-hero .pill--dark .gl-pill__lead, .gl-hero .pill--dark .gl-pill__rest { display: block; margin: 0; }
   .gl-hero { padding-top: calc(var(--header-h) + 24px); }
   .gl-hero__text { gap: 16px; }
   .gl-hero__title { font-size: 30px; }
