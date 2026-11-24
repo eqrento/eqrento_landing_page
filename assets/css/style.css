@@ -1093,7 +1093,8 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
 .pricing__tracker .icon-box { grid-area: icon; }
 .pricing__tracker-title { grid-area: title; align-self: end; font-weight: 600; color: var(--ink); }
 .pricing__tracker-text { grid-area: text; align-self: start; }
-.pricing__tracker + .pricing__tracker { margin-top: 16px; }   /* the AI Assistant box right under the telemetry box */
+.pricing__tracker-text a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }   /* as the links in FAQ answers */
+.pricing__tracker + .pricing__tracker { margin-top: 16px; }   /* the next boxes (GPS module, AI Assistant) right under the telemetry box */
 .pricing__note { margin: 20px auto 0; max-width: 760px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-2); }
 @media (min-width: 1201px) { .pricing__note { max-width: none; } }   /* wide screens: the whole note on one line */
 
