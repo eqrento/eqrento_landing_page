@@ -13,13 +13,11 @@
 .gl-hero { padding: calc(var(--header-h) + 40px) 0 var(--sec-join); }   /* starts under the fixed header, like the pricing page */
 .gl-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
 .gl-hero__text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
-/* the price label: the violet pill of the home page's hero label (inline-block, so the spaces around the price stay) */
-.gl-chip {
-  display: inline-block; padding: 8px 18px; border-radius: 22px;
-  font-size: 15px; line-height: 1.4; color: var(--ink);
-  background: rgba(101, 97, 255, .07); border: 1px solid rgba(101, 97, 255, .24);
-}
-.gl-chip b { font-size: 18px; font-weight: 600; color: var(--label-violet-ink); }
+/* the label above the H1 = the home page hero's pill (style.css .pill .pill--dark and its .hero rules): same height,
+   size, colours and violet opening words (Łukasz, 24 Nov 2026). Its text is longer than the home page's, so on phones
+   it may take two lines (inline-block there, the same font and padding) */
+.gl-hero .pill--dark { color: var(--ink); background: rgba(101, 97, 255, .07); border-color: rgba(101, 97, 255, .24); }
+.gl-hero .pill--dark span { margin: 0; color: var(--label-violet-ink); font-weight: 600; }
 .gl-hero__title { font-size: var(--h1); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); text-wrap: balance; }
 .gl-hero__title em { font-style: normal; color: var(--label-violet-ink); }
 .gl-hero__text .lead { max-width: 660px; }
@@ -301,6 +299,10 @@
   .gl-examples { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
+  .gl-hero .pill--dark {
+    display: inline-block; height: auto; min-height: 56px; padding: 16px 28px; border-radius: 28px;
+    font-size: 16px; font-weight: 600; line-height: 1.4; white-space: normal;
+  }
   .gl-hero { padding-top: calc(var(--header-h) + 24px); }
   .gl-hero__text { gap: 16px; }
   .gl-hero__title { font-size: 30px; }
@@ -366,7 +368,6 @@
 }
 @media (max-width: 400px) {
   .gl-flow { grid-template-columns: minmax(0, 1fr); }
-  .gl-chip { font-size: 14px; }
   .gl-calc__big small { display: block; margin-top: 6px; }   /* “more per month” under the amount */
   /* the four examples: one per line, the price on the right */
   .gl-examples { grid-template-columns: minmax(0, 1fr); gap: 10px; }
@@ -375,6 +376,7 @@
 }
 /* 320px: the arrow buttons need a little less padding to fit their boxes (as the demo buttons on the other pages) */
 @media (max-width: 340px) {
+  .gl-hero .pill--dark { padding: 16px 20px; font-size: 15px; }   /* as the home page's label at 320px */
   .gl-form__send { padding-left: 18px; gap: 6px; font-size: 14px; }
   .gl-form__send .btn__icon { width: 40px; height: 40px; }
   .gl-cmp tbody td { padding-left: 106px; }
