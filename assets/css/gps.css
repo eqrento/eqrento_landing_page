@@ -83,7 +83,7 @@
 
 /* ---------- sections ---------- */
 .gl-sec { padding: var(--sec-join) 0; }
-.gl-sec .section-head + * { margin-top: 48px; }
+.gl-sec .section-head + * { margin-top: 64px; }   /* heading → content as on the home page (Integrations, GPS): 64px, 40px on phones */
 
 /* the problem: three cards – the title on one line with its icon, the text under both (Łukasz, 24 Nov 2026) */
 .gl-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -316,7 +316,7 @@
   .gl-report__head p { max-width: calc(58% - 8px); }
   .gl-week { height: 112px; gap: 6px; }
   .gl-days { gap: 6px; }
-  .gl-sec .section-head + * { margin-top: 32px; }
+  .gl-sec .section-head + * { margin-top: 40px; }
   .gl-cards { gap: 16px; }
   .gl-card { padding: 24px; border-radius: 20px; }
   .gl-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
