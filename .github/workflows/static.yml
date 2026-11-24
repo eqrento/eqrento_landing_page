@@ -26,24 +26,35 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment-retry.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       # the prices are written in index.html (teaser) and pricing.html: no preview while they differ
       - name: Check that the prices match on both pages
         run: bash .github/scripts/check-prices.sh
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       # server/ holds the form-to-e-mail service, which is not part of the website (see server/form-mail/README.md)
       - name: Leave the server folder out of the preview
         run: rm -rf server
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        # v5 pairs with deploy-pages v5 (v3 from 2024 with deploy-pages v5: on 24 Nov 2026 the deploy step often found
+        # no artifact right after a successful upload). Hidden files stay out (the site has none; .git/.github never go in)
+        uses: actions/upload-pages-artifact@v5
         with:
           # Upload entire repository
           path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+      # one more try after a pause if GitHub did not find the artifact yet (the job fails only if this fails too)
+      - name: Wait before the second try
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - name: Deploy to GitHub Pages (second try)
+        id: deployment-retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v5
