@@ -64,13 +64,13 @@ equipment-sales.html, invoicing.html, ai-assistant.html
 gps-telematics.html    – the NEW GPS & Telematics page (on main since 23 Nov 2026, LIVE since 24 Nov 2026; it replaced the
                          old one; also a separate offer for companies that want only the GPS module) – Wojtek's GPS page rebuilt in the site's look: GPS as a module of its own, a sample
                          overuse report with the home page's scissor lift, how it works, a live map of Europe, the device,
-                         a savings calculator, a comparison, pricing ($4 per machine a month, minimum $100; device $69),
+                         a savings calculator, a comparison, pricing (€4 per machine a month, minimum €100; device €69),
                          FAQ and a 30-day pilot on 10 machines. Own styles in assets/css/gps.css, script in
                          assets/js/gps.js (the calculator; the pilot form opens the visitor's e-mail program with a
                          message to Wojtek – the address is put together in the script, so it is not written out in
                          this public repository). Indexable, canonical https://eqrento.com/gps-telematics.
                          Its structure differs from the other feature pages on purpose. pricing.html points to it in the
-                         „Only need GPS?” box. Its GPS prices ($4, $100, $69) are checked by check-prices.sh (see Pricing below)
+                         „Only need GPS?” box. Its GPS prices (€4, €100, €69) are checked by check-prices.sh (see Pricing below)
 privacy-policy.html    – Privacy Policy (see “Privacy Policy and Cookie Policy” below)
 cookie-policy.html     – Cookie Policy
 robots.txt, sitemap.xml – search engines (point to https://eqrento.com/; /offer/ is disallowed)
@@ -134,7 +134,7 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
   1. H1 + switch: one state for the cards and the table header (pricing.js).
   2. The four plan cards.
   3. “Compare all EQrento features” (`id="compare"`), always open.
-  4. The telemetry and AI Assistant notes, then the USD / VAT / unit note. Each note's title and text are separate
+  4. The telemetry and AI Assistant notes, then the EUR / VAT / unit note. Each note's title and text are separate
      paragraphs (a grid): on phones the title sits beside the icon and the text runs under both (Łukasz, 9 Nov 2026).
   5. Pricing FAQ: only questions with an answer in the existing copy; the four without an answer were left out.
   6. The closing “Book a 30-minute demo”.
@@ -155,16 +155,16 @@ section. With 7 items, one of them with an arrow, the gaps between them are 36px
 - **Prices:**
   - They are in two pages: index.html (teaser, yearly, `<b data-price="…">`) and pricing.html (cards and table header,
     `data-price` + `data-yearly` + `data-monthly`).
-  - The Essential price is also in pricing.html's title and descriptions (“from $199/month”) and in the home FAQ (“Plans
-    start at $199 a month”).
+  - The Essential price is also in pricing.html's title and descriptions (“from €199/month”) and in the home FAQ (“Plans
+    start at €199 a month”).
   - The new GPS & Telematics page (gps-telematics.html) quotes the Essential price as
-    `<span data-price-quote="essential">$199</span>`; the check compares that too.
-  - The GPS module: $4 per machine a month, minimum $100, device $69. The source is the line
+    `<span data-price-quote="essential">€199</span>`; the check compares that too.
+  - The GPS module: €4 per machine a month, minimum €100, device €69. The source is the line
     `const PER_MACHINE = 4, MINIMUM = 100, DEVICE = 69;` in assets/js/gps.js (the calculator). Every other place is
-    marked `<span data-price-quote="gps-month">$4</span>` (`gps-minimum`, `gps-device`): gps-telematics.html and
-    pricing.html, including the $69 device in the Connected and Enterprise plans (the same device). The check compares
+    marked `<span data-price-quote="gps-month">€4</span>` (`gps-minimum`, `gps-device`): gps-telematics.html and
+    pricing.html, including the €69 device in the Connected and Enterprise plans (the same device). The check compares
     the marks with gps.js, finds a current GPS price written without its mark on those two pages, checks the GPS
-    page's title and descriptions (“from $4 per machine per month”), and recomputes the four examples under its
+    page's title and descriptions (“from €4 per machine per month”), and recomputes the four examples under its
     price cards and the calculator's result written in the page for the default values. To change a GPS price: gps.js,
     every mark, the descriptions, the examples and the calculator's default result – the check lists what is left.
   - Change a price in every place. `bash .github/scripts/check-prices.sh` checks them and runs before every preview and

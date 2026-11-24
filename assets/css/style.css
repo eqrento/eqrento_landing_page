@@ -1042,7 +1042,7 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
 .plan__price small { font-size: 16px; font-weight: 400; letter-spacing: 0; color: var(--gray-2); }
 .plan__price small.plan__billing { font-size: 14px; }
 /* “Ask for a quote” is set like the prices (same size, weight, tracking), with “tailored to your fleet” under it.
-   It is wider than “$799 /month”, so on one line it only fits the card at the price size when the card is wide (tablet / phone);
+   It is wider than “€799 /month”, so on one line it only fits the card at the price size when the card is wide (tablet / phone);
    in the narrow four-column row the span shrinks to the card’s inner width (100cqi of the <p>, 7.45em = the text’s width in em). */
 .plan__price--quote { container-type: inline-size; flex-direction: column; align-items: flex-start; gap: 4px; }
 .plan__price--quote span { display: block; white-space: nowrap; font-size: min(1em, calc(100cqi / 7.45)); }
@@ -1143,7 +1143,7 @@ a.int-tile--more:hover { background: transparent; border-color: #ffa41b; }
 }
 .cmp__table .n::before { width: 12px; height: 2px; border-radius: 2px; background: #d6d0c8; }
 .cmp__table .t { font-size: 14px; font-weight: 600; }
-/* notes in plan cells (“Without checklists”, “$69 per device, one-time”) look like the feature names: regular weight, same size */
+/* notes in plan cells (“Without checklists”, “€69 per device, one-time”) look like the feature names: regular weight, same size */
 .cmp__table td.t--note { font-size: inherit; font-weight: 400; line-height: inherit; }
 @media (max-width: 640px) { .cmp__table td.t--note { font-size: 12px; line-height: 1.3; } }   /* phones: four narrow plan cells side by side, like the other text cells */
 

@@ -305,7 +305,7 @@
     display: inline-block; height: auto; min-height: 56px; padding: 16px 28px; border-radius: 28px;
     font-size: 16px; font-weight: 600; line-height: 1.4; white-space: normal;
   }
-  /* two lines broken after the first words (Łukasz, 24 Nov 2026): „GPS for rental fleets“ / „from $4 per machine / month“ */
+  /* two lines broken after the first words (Łukasz, 24 Nov 2026): „GPS for rental fleets“ / „from €4 per machine / month“ */
   .gl-hero .pill--dark .gl-pill__lead, .gl-hero .pill--dark .gl-pill__rest { display: block; margin: 0; }
   .gl-hero { padding-top: calc(var(--header-h) + 24px); }
   .gl-hero__text { gap: 16px; }
